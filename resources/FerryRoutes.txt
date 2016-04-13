@@ -1,0 +1,30 @@
+Stornoway,Ullapool,1,1
+Stornoway,Wick,1,5
+Stornoway,Fort William,1,5
+Wick,Aberdeen,1,3
+Londonderry,Fort William,1,5
+Londonderry,Glassgow,1,4
+Londonderry,Stranraer,1,3
+Edinburgh,Aberdeen,1,4
+Belfast,Stranraer,1,1
+Belfast,Barrow,1,4
+Stranraer,Carlisle,1,3
+Newcastle,Aberdeen,1,6
+Newcastle,Hull,1,5
+Dundalk,Holyhead,1,3
+Dublin,Holyhead,1,2
+Holyhead,Aberystwyth,1,2
+Liverpool,Barrow,1,1
+Liverpool,Holyhead,1,2
+Rosslare,Holyhead,1,3
+Rosslare,Aberystwyth,1,3
+Rosslare,Carmarthen,1,4
+Cork,Penzance,2,6
+Cardiff,Bristol,1,1
+Penzance,Cardiff,1,5
+Penzance,Plymouth,1,3
+Plymouth,Southampton,1,5
+FranceA,SouthamptonA,1,3,1
+FranceB,SouthamptonB,1,3,2
+France,Dover,1,2
+New York,Southampton,3,10

@@ -1,0 +1,6 @@
+name;cost;numberAvalable;description
+Thermocompressor;1;1;Claim 2 Routes this turn then return this card.
+Water Tenders;2;2;When drawing Train Cards, you can decide to draw 2 blind cards instead of the regular 2.
+Risky Contracts;2;1;At the end of the game, score 20 points if you have the most completed tickets. If not, loose 20 points.
+Equalising Beam;2;1;At the end of the game, score 15 points if you have the longest Route. If not, loose 15 points.
+Diesel Power;3;1;When claiming a Route, you may play 1 less card than required. You must still play at least 1 card, and you cannot ignore a Locomotive on a Ferry route
