@@ -1,4 +1,5 @@
-
+import java.util.*;
+import java.io.*;
 /**
  * Write a description of class GameBoard here.
  * 
@@ -7,27 +8,62 @@
  */
 public class GameBoard
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    ArrayList<City> cities = new ArrayList<City>();
+    ArrayList<Route> routes = new ArrayList<Route>();
 
-    /**
-     * Constructor for objects of class GameBoard
-     */
-    public GameBoard()
-    {
-        // initialise instance variables
-        x = 0;
+    public static void main(String args[]){
+        GameBoard board = new GameBoard();
+        board.printLists();
+
+    }
+
+    public GameBoard(){
+        importCities();
+        importRoutes();
+    }
+
+    public void printLists(){
+        System.out.println("Cities:");
+        for(City c : cities){
+            System.out.println(c.toString());
+        }
+        System.out.println("\n\n\nRoutes:");
+        for(Route r : routes){
+            System.out.println(r.toString());
+        }
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * Imports routes from the text file "Cities.txt"
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public void importCities(){
+        try(Scanner sc = new Scanner(new File("resources\\Cities.txt"))){
+            while(sc.hasNext()){
+                cities.add(new City(sc.nextLine(),","));
+            }
+        }catch(Exception FileNotFound){
+            System.err.println("Cities.txt not found");
+        }
+    }
+
+    /**
+     * Imports routes from the text files "Routes.txt" and "FerryRoutes.txt"
+     */
+    public void importRoutes(){
+        try(Scanner sc = new Scanner(new File("resources\\Routes.txt"))){
+            while(sc.hasNext()){
+                routes.add(new Route(sc.nextLine(),","));
+            }
+        }catch(Exception FileNotFound){
+            System.err.println("Routes.txt not found");
+        }
+        try(Scanner sc = new Scanner(new File("resources\\FerryRoutes.txt"))){
+            while(sc.hasNext()){
+                routes.add(new FerryRoute(sc.nextLine(),","));
+            }
+        }catch(Exception FileNotFound){
+            System.err.println("FerryRoutes.txt not found");
+        }
+
     }
 }

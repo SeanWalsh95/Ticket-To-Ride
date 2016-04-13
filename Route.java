@@ -1,4 +1,4 @@
-
+import java.util.*;
 /**
  * Write a description of class Route here.
  * 
@@ -7,27 +7,43 @@
  */
 public class Route
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
+    String cityA, cityB;
+    String routeColor;
+    int trainRequirement;
+    int ownerID;
+    
+    
     /**
-     * Constructor for objects of class Route
+     * Basic constructor to initlise values to their null or default values
      */
-    public Route()
+    public Route(){}
+    
+    /**
+     * Constructor that takes a string deliminated with the given deliminator to initlize the values of this class
+     * in the following format (example uses ";" as a deliminator) cityA;cityB;size;color
+     */
+    public Route(String s , String delim)
     {
-        // initialise instance variables
-        x = 0;
+        StringTokenizer st = new StringTokenizer(s,delim);
+        cityA = st.nextToken();
+        cityB = st.nextToken();
+        trainRequirement = Integer.parseInt(st.nextToken());
+        routeColor = st.nextToken();
     }
-
+    
     /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * Constructor that takes a in and sets the values for this class
      */
-    public int sampleMethod(int y)
+    public Route(String cityA, String cityB, String routeColor, int trainRequirement)
     {
-        // put your code here
-        return x + y;
+        this.cityA =cityA;
+        this.cityB = cityB;
+        this.routeColor = routeColor;
+        this.trainRequirement = trainRequirement;
+    }
+    
+    public String toString()
+    {
+        return "Route: "+cityA+"\t"+cityB+"\t"+routeColor+"\t"+trainRequirement+"\t";//+owner.toString();
     }
 }

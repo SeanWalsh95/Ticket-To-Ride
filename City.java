@@ -1,4 +1,4 @@
-
+import java.util.*;
 /**
  * Write a description of class City here.
  * 
@@ -7,27 +7,20 @@
  */
 public class City
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
+    String name,region;
+    
     /**
-     * Constructor for objects of class City
+     * Constructor that takes a string deliminated with the given deliminator to initlize the values of this class
+     * in the following format (example uses ";" as a deliminator) name;region
      */
-    public City()
-    {
-        // initialise instance variables
-        x = 0;
+    public City(String s, String delim){
+        StringTokenizer st = new StringTokenizer(s,delim);
+        name = st.nextToken();
+        region = st.nextToken();
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    
+    public String toString(){
+        return name+","+region;
     }
 }
+
