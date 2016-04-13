@@ -7,6 +7,26 @@ import java.util.*;
  */
 public class Deck
 {
-    ArrayList<Deck> deck = new ArrayList<Deck>();
-    ArrayList<Deck> discarded = new ArrayList<Deck>();
+    protected ArrayList<Card> deck = new ArrayList<Card>();
+    protected ArrayList<Card> discarded = new ArrayList<Card>();
+    
+    /**
+     * This method take shuffles the cards in the deck
+     */
+    public void shuffle()
+    {
+        Collections.shuffle(this.deck);//Randomly shuffles the deck
+    }
+    
+    public ArrayList<Card> drawCards(int x)
+    {
+        ArrayList<Card> drawnCards = new ArrayList<Card>();
+        for(int i = 0; i < x; i++)
+        {
+            drawnCards.add(deck.get(i));
+            deck.remove(i);
+        }
+        return drawnCards;
+    }
+    
 }
