@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 /**
  * Write a description of class Deck here.
  * 
@@ -7,26 +8,18 @@ import java.util.*;
  */
 public class Deck
 {
-    protected ArrayList<Card> deck = new ArrayList<Card>();
-    protected ArrayList<Card> discarded = new ArrayList<Card>();
-    
-    /**
-     * This method take shuffles the cards in the deck
-     */
-    public void shuffle()
-    {
-        Collections.shuffle(this.deck);//Randomly shuffles the deck
-    }
-    
-    public ArrayList<Card> drawCards(int x)
-    {
-        ArrayList<Card> drawnCards = new ArrayList<Card>();
-        for(int i = 0; i < x; i++)
-        {
-            drawnCards.add(deck.get(i));
-            deck.remove(i);
+    ArrayList<Card> deck = new ArrayList<Card>();
+    ArrayList<Card> discarded = new ArrayList<Card>();
+    public Deck(String type, String path){
+        try(Scanner sc = new Scanner(new File(path))){
+            while(sc.hasNext()){
+                if(type.equals("Train"))
+                    deck.add(new Train(sc.nextLine(),","));
+                if(type.equals("Destination"))
+                    deck.add(new Destination(sc.nextLine(),","));
+            }
+        }catch(Exception e){
+            System.err.println("Cannot find file from the follwing path"+path);
         }
-        return drawnCards;
     }
-    
 }
