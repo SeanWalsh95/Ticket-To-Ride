@@ -1,4 +1,4 @@
-import java.util.*;
+
 /**
  * Write a description of class Train here.
  * 
@@ -7,38 +7,17 @@ import java.util.*;
  */
 public class Train extends Card
 {
-    protected RouteColor color;
+    RouteColor color;
     private static final String path = "resources\\images\\cards\\train cards\\";
     /**
-     * Constructor for objects of class Train
+     * import from csv in the format RouteColor
+     * 
      */
-    public Train(String s, String delim)
-    {
-        // the following block of code breaks a single string into the 
-        // parameter values for the class storing them in local strings to be
-        // parsed into values for the class
-        StringTokenizer st = new StringTokenizer(s,delim);
-        String trainColor = st.nextToken();
-        String trainImagePath = st.nextToken();
-        
-        //identifying message for this class
-        String classMsg = "(ERR CONST Train)";
-        
-        try
-        {
-            color = RouteColor.valueOf(trainColor.toUpperCase().replace(" ", ""));
-        }
-        catch(Exception e)
-        {
-            System.err.println(classMsg+trainColor+" : Invalid Train Color");
-        }
-        try
-        {
-            imagePath = trainImagePath.replace(" ","");
-        }
-        catch(Exception e)
-        {
-            System.err.println(classMsg+trainImagePath+" : Invalid train image path");
-        }
+    public Train(RouteColor color){
+        this.color = color;
+    }
+
+    public String getImage(){
+        return path+color+".png";
     }
 }
