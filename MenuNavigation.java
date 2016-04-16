@@ -72,11 +72,9 @@ implements MouseListener, MouseMotionListener, ActionListener {
         playBackgroundSound();
 
         //set the mouseCursor image
-        //         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        //         Image mouseCursor = toolkit.getImage("resources/images/mouseCursor/mouseCursorFinal.png");
-        //         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        //         Cursor a = toolkit.createCustomCursor(image.mouseCursor , new Point(this.getX(),this.getY()), "img");
-        //         setCursor(a);
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Cursor a = toolkit.createCustomCursor(image.mouseCursor , new Point(this.getX(),this.getY()), "img");
+        setCursor(a);
 
         // provide any initialisation necessary for your JApplet
         addMouseListener( this );
@@ -321,7 +319,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 if(x >= 962 && x <= 962+80 && y >= 13 && y <= 13+30)
                 {
                     //play the button sound
-                    playButtonSound();
+                    playButtonSoundPage();
                     //set rulesScreen1 to false
                     //set rulesScreen2 to true
                     rulesScreen1 = false;
@@ -347,7 +345,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 if(x >= 219 && x <= 219+80 && y >= 13 && y <= 13+30)
                 {
                     //play the button sound
-                    playButtonSound();
+                    playButtonSoundPage();
                     //set rulesScreen1 to true
                     //set rulesScreen2 to false
                     rulesScreen1 = true;
@@ -625,6 +623,14 @@ implements MouseListener, MouseMotionListener, ActionListener {
     {
         //set the random number to play random button sound
         String buttonSound = "resources/sounds/buttons/button1.wav";
+        //plays random button sound from button names
+        play( getDocumentBase(), buttonSound );
+    }
+
+    public void playButtonSoundPage()
+    {
+        //set the random number to play random button sound
+        String buttonSound = "resources/sounds/buttons/Pageturn.wav";
         //plays random button sound from button names
         play( getDocumentBase(), buttonSound );
     }
