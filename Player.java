@@ -15,6 +15,7 @@ public class Player
     protected int score = 0;
     protected ArrayList<Card> heldDestinationCards = new ArrayList<Card>();
     protected ArrayList<Card> heldTrainCards = new ArrayList<Card>();
+    protected ArrayList<Tech> tech = new ArrayList<Tech>();
     
     public String toString(){
         return playerName+" ID:"+playerID;

@@ -8,7 +8,7 @@ import java.util.*;
 public class FerryRoute extends Route
 {
     //number of locomotives required to take the route
-    int locomotiveRequiremnet;
+    int locomotiveRequirement;
     /**
      * Constructor that takes a string deliminated with the given deliminator to initlize the values of this class
      * in the following format (example uses ";" as a deliminator) cityA;cityB;locomotiveRequiremnet;size
@@ -55,6 +55,6 @@ public class FerryRoute extends Route
     }
     
     public String toString(){
-        return "FerryRoute: "+cityA+"\t"+cityB+"\t"+color+"\t"+trainRequirement+"\t"+locomotiveRequiremnet;
+        return "FerryRoute: "+cityA+"\t"+cityB+"\t"+color+"\t"+trainRequirement+"\t"+locomotiveRequirement;
     }
 }

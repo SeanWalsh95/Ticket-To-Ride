@@ -1,4 +1,5 @@
 import java.util.*;
+import javax.swing.*;
 /**
  * Write a description of class GameBoard here.
  * 
@@ -24,22 +25,22 @@ public class GameBoard
      * @return The method returns true if the purchase was successful
      */
     public boolean buyRoute(City cityA, City cityB){
-        Player curPlayer = players.get(i);
+        Player curPlayer = players.get(currentPlayer);
         Route desRoute = getRoute(cityA.name,cityB.name);
         boolean success = false;
         if(desRoute == null) return success;
-        if(desRoute.owner == -1){
+        if(desRoute.ownerID == -1){
             if(techChecker(curPlayer,desRoute,cityA,cityB)){
                 if(desRoute instanceof FerryRoute){
-                    if(purchase(desRoute,curPlayer,((FerryRoute)desRoute).locamotiveRequirement)){
+                    if(purchase(desRoute,curPlayer,((FerryRoute)desRoute).locomotiveRequirement)){
                         success = true;
-                        desRoute.owner = curPlayer.playerID;
+                        desRoute.ownerID = curPlayer.playerID;
                     }
                 }
                 else{
                     if(purchase(desRoute,curPlayer,0)){
                         success = true;
-                        desRoute.owner = curPlayer.playerID;
+                        desRoute.ownerID = curPlayer.playerID;
                     }
                 }
             }
@@ -51,8 +52,12 @@ public class GameBoard
      * Handles removal of cards from the player's hand in order to purchase route
      * 
      * @param route The route you want to buy
+     * @param player The player doing the buying
+     * @param locoCost The number of locomotives needed to buy the route
      */
-    private boolean purchase(Route route,Player player,int locaCost){
+    private boolean purchase(Route route,Player player,int locoCost){
+        
+        return false;
     }
 
     /**
@@ -67,24 +72,23 @@ public class GameBoard
      */
     private boolean techChecker(Player player, Route route, City cityA, City cityB){
         //Next 2 if blocks handles all checks for region techs 
-        if(!cityA.region.toLowerCase.equals("england")){
-            if(cityA.region.toLowerCase.equals("scotland")){
+        if(cityA.region != Region.England){
+            if(cityA.region == Region.Scotland){
                 if(!hasTech(player,"scotland concession")) return false;
             }
-            else if(cityA.region.toLowerCase.equals("wales")){
+            else if(cityA.region == Region.Wales){
                 if(!hasTech(player,"wales concession")) return false;
             }
             else{
-                if(!hasTech(player,"scotland concession")) return false;
                 if(!hasTech(player,"ireland/france concession")) return false;
             }
         }
-        if(!cityB.region.toLowerCase.equals("england") &&
-        !cityB.region.toLowerCase.equals(cityA.region.toLowerCase)){
-            if(cityB.region.toLowerCase.equals("scotland")){
+        if(cityB.region != Region.England &&
+        cityB.region != cityA.region){
+            if(cityB.region == Region.Scotland){
                 if(!hasTech(player,"scotland concession")) return false;
             }
-            else if(cityB.region.toLowerCase.equals("wales")){
+            else if(cityB.region == Region.Wales){
                 if(!hasTech(player,"wales concession")) return false;
             }
             else{
@@ -117,8 +121,8 @@ public class GameBoard
      * @return The method returns true if the player owns a tech of the specified name
      */
     private boolean hasTech(Player player, String techName){
-        for(Tech tech: Player.tech){
-            if(tech.name.toLowerCase.equals(techName)){
+        for(Tech tech: player.tech){
+            if(tech.name.toLowerCase().equals(techName)){
                 return true;
             }
         }
@@ -133,7 +137,7 @@ public class GameBoard
      * 
      * @return The Route object that connects the two cities
      */
-    public Route getRoute(String cityA, String cityB){
+    public Route getRoute(CityName cityA, CityName cityB){
         for(int i=0; i<routes.size(); i++){
             if((routes.get(i).cityA.equals(cityA) && routes.get(i).cityB.equals(cityB)) ||
             (routes.get(i).cityB.equals(cityA) && routes.get(i).cityA.equals(cityB)))
@@ -170,12 +174,12 @@ public class GameBoard
      */
     private int checkPlayerDest(Player player){
         int score = 0;
-        ArrayList<String> visited = new ArrayList<String>();
-        for(int i=0; i<player.heldDestCards.size(); i++){
-            if(checkDestCard(player.playerID,player.heldDestCards.get(i).cityA,player.heldDestCards.get(i).cityB,visited))
-                score += player.heldDestCards.get(i).pointValue;
+        ArrayList<CityName> visited = new ArrayList<CityName>();
+        for(int i=0; i<player.heldDestinationCards.size(); i++){
+            if(checkDestCard(player.playerID,((Dest)player.heldDestinationCards.get(i)).cityA,((Dest)player.heldDestinationCards.get(i)).cityB,visited))
+                score += ((Dest)player.heldDestinationCards.get(i)).pointValue;
             else
-                score -= player.heldDestCards.get(i).pointValue;
+                score -= ((Dest)player.heldDestinationCards.get(i)).pointValue;
         }
         return score;
     }
@@ -191,12 +195,12 @@ public class GameBoard
      * 
      * @return The method will return true if a path exists or false otherwise
      */
-    private boolean checkDestCard(int playerID, String start, String dest, ArrayList<String> visited){
+    private boolean checkDestCard(int playerID, CityName start, CityName dest, ArrayList<CityName> visited){
         if(start.equals(dest))return true;
         else{
             visited.add(start);
             for(int i=0; i<routes.size(); i++){
-                if(routes.get(i).owner == playerID){
+                if(routes.get(i).ownerID == playerID){
                     if(routes.get(i).cityA.equals(start) && !visited.contains(routes.get(i).cityB))
                         return checkDestCard(playerID,routes.get(i).cityB,dest,visited);
                     else if(routes.get(i).cityB.equals(start) && !visited.contains(routes.get(i).cityA))
