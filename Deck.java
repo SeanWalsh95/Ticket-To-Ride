@@ -46,11 +46,10 @@ public class Deck
         {
             while(sc.hasNext()){
                 if(type.equals("Train")){
-                    StringTokenizer st = new StringTokenizer(sc.nextLine(),",");
-                    String routeColorStr = st.nextToken();
-                    int cardCount = Integer.parseInt(st.nextToken());
-                    for(int i = 0; 0 < cardCount; i++)
-                        deck.add(new Train(RouteColor.valueOf(routeColorStr)));
+                    String[] line = sc.nextLine().split(",");
+                    int cardCount = Integer.parseInt(line[1]);
+                    for(int i = 0; i < cardCount; i++)
+                        deck.add(new Train(RouteColor.valueOf(line[0])));
                 }
                 if(type.equals("Destination")){
                     deck.add(new Dest(sc.nextLine(),","));
