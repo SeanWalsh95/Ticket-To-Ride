@@ -31,6 +31,7 @@ public class GameBoard
         if(desRoute == null) return success;
         if(desRoute.ownerID == -1){
             if(techChecker(curPlayer,desRoute,cityA,cityB)){
+                ArrayList<Card> trainsToSpend = selectTrains();
                 if(desRoute instanceof FerryRoute){
                     if(purchase(desRoute,curPlayer,((FerryRoute)desRoute).locomotiveRequirement)){
                         success = true;
@@ -54,10 +55,114 @@ public class GameBoard
      * @param route The route you want to buy
      * @param player The player doing the buying
      * @param locoCost The number of locomotives needed to buy the route
+     * 
+     * @return Returns true if purchase was successful, false if not
      */
-    private boolean purchase(Route route,Player player,int locoCost){
-        
-        return false;
+    private boolean purchase(Route route,Player player,int locoCost,ArrayList<Card> trains){
+        int locos = 0;
+        int unmatchedTrains = 0;
+        int properColor = 0;
+        int trainReq = route.trainRequirement;
+        if(hasTech(player,"diesel power"))trainReq--;
+        RouteColor colorOfClaim = route.color;
+        if(trainReq > trains.size())return false;
+        else if(trains.size() >= trainReq){
+            if(route.color != RouteColor.NEUTRAL){
+                RouteColor mostPopColor = getMostColor(trains);
+                for(Card train: trains){
+                    if((Train)train.color != mostPopColor)unmatchedTrains++;
+                    else properColor++;
+                }
+                if(hasTech(player,"booster")){
+                    locos += unmatchedTrains/3;
+                }
+                else{
+                    locos += unmatchedTrains/4;
+                }
+            }
+            else{
+                for(Card train: trains){
+                    if((Train)train.color != colorOfClaim)unmatchedTrains++;
+                    else properColor++;
+                }
+                if(hasTech(player,"booster")){
+                    locos += unmatchedTrains/3;
+                }
+                else{
+                    locos += unmatchedTrains/4;
+                }
+            }
+        }
+        for(i = 0; i < trains.size(); i++){
+            if(((Train)trains.get(i)).color == RouteColor.NEUTRAL)locos++;
+        }
+        if(locos < locoCost)return false;
+        locos -= locoCost;
+        if(trainReq > (locos + properColor))return false;
+        for(Card train: trains){
+            player.heldTrainCards.remove(train);
+            trainDeck.discarded.add(train);
+        }
+        return true;
+    }
+
+    /**
+     * Gets the train color most prevalent in the given ArrayList
+     * 
+     * @param trains The ArrayList you want to search
+     * 
+     * @return The color most prevalent in the array
+     */
+    private RouteColor getMostColor(ArrayList<Card> trains){
+        int yellow = 0;
+        int pink = 0;
+        int red = 0;
+        int black = 0;
+        int blue = 0;
+        int green = 0;
+        int white = 0;
+        int orange = 0;
+        for(Card train: trains){
+            if((Train)train.color == RouteColor.YELLOW)yellow++;
+            else if((Train)train.color == RouteColor.PINK)pink++;
+            else if((Train)train.color == RouteColor.RED)red++;
+            else if((Train)train.color == RouteColor.BLACK)black++;
+            else if((Train)train.color == RouteColor.BLUE)blue++;
+            else if((Train)train.color == RouteColor.GREEN)green++;
+            else if((Train)train.color == RouteColor.WHITE)white++;
+            else if((Train)train.color == RouteColor.ORANGE)orange++;
+        }
+        if(yellow >= pink && yellow >= red && yellow >= black &&
+        yellow >= blue && yellow >= green && yellow >= white && yellow >= orange){
+            return RouteColor.YELLOW;
+        }
+        else if(pink >= yellow && pink >= red && pink >= black &&
+        pink >= blue && pink >= green && pink >= white && pink >= orange){
+            return RouteColor.PINK;
+        }
+        else if(red >= pink && red >= yellow && red >= black &&
+        red >= blue && red >= green && red >= white && red >= orange){
+            return RouteColor.RED;
+        }
+        else if(black >= pink && black >= red && black >= yellow &&
+        black >= blue && black >= green && black >= white && black >= orange){
+            return RouteColor.BLACK;
+        }
+        else if(blue >= pink && blue >= red && blue >= yellow &&
+        blue >= black && blue >= green && blue >= white && blue >= orange){
+            return RouteColor.BLUE;
+        }
+        else if(green >= pink && green >= red && green >= yellow &&
+        green >= blue && green >= black && green >= white && green >= orange){
+            return RouteColor.GREEN;
+        }
+        else if(white >= pink && white >= red && white >= yellow &&
+        white >= blue && white >= green && white >= black && white >= orange){
+            return RouteColor.WHITE;
+        }
+        else{
+            return RouteColor.BLACK;
+        }
     }
 
     /**
