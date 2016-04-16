@@ -8,7 +8,7 @@ import java.util.*;
 public class Train extends Card
 {
     protected RouteColor color;
-    protected String imagePath;
+    private static final String path = "resources\\images\\cards\\train cards\\";
     /**
      * Constructor for objects of class Train
      */
