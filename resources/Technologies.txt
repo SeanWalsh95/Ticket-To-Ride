@@ -1,12 +1,11 @@
-id,name,cost,numberAvalable,description
-wc,Wales Concession,1,4,Allows you to claim routes into any of the 5 cities in Wales.
-ifc,Ireland/France Concession,1,4,Allows you to claim routes into any of the 10 cities in Ireland and into France.
-sc,Scotland Concession,1,4,Allows you to claim routes into any of the 10 cities in Scotland.
-ms,Mechanical Stoker,1,4,Allows you to claim 3 space routes.
-ssb,Superheated Steam Boiler,2,4,Allows you to claim 4,5 and 6 space routes. The Mechanical Stoker is still needed to claim 3 space routes.
-prop,Propellers,2,4,Allows you to claim Ferry routes.
-boost,Booster,2,4,You may use any 3 cards as a Locomotive (instead of 4).
-boillag,Boiler Lagging,2,4,You score 1 extra point for each route that you claim.
-steamturb,Steam Turbines,2,4,You score 2 extra points for each Ferry route that you claim.
-doubhead,Double heading,4,4,At the end of the game you score 2 points for each Ticket that you completed\
-row,Right of Way,4,1,You may play this card to claim a route that was already claimed by another player. When playing this card, you must still play the correct number of cards to claim the route. Simply place your trains on it next to the other player's trains. You must immediately claim the route when you take this card, and after you have claimed the route, you return the card to the table so it can be taken by another player. 
+Wales Concession,1,4,Allows you to claim routes into any of the 5 cities in Wales.
+Ireland/France Concession,1,4,Allows you to claim routes into any of the 10 cities in Ireland and into France.
+Scotland Concession,1,4,Allows you to claim routes into any of the 10 cities in Scotland.
+Mechanical Stoker,1,4,Allows you to claim 3 space routes.
+Superheated Steam Boiler,2,4,Allows you to claim 4,5 and 6 space routes. The Mechanical Stoker is still needed to claim 3 space routes.
+Propellers,2,4,Allows you to claim Ferry routes.
+Booster,2,4,You may use any 3 cards as a Locomotive (instead of 4).
+Boiler Lagging,2,4,You score 1 extra point for each route that you claim.
+Steam Turbines,2,4,You score 2 extra points for each Ferry route that you claim.
+Double heading,4,4,At the end of the game you score 2 points for each Ticket that you completed\
+Right of Way,4,1,You may play this card to claim a route that was already claimed by another player. When playing this card, you must still play the correct number of cards to claim the route. Simply place your trains on it next to the other player's trains. You must immediately claim the route when you take this card, and after you have claimed the route, you return the card to the table so it can be taken by another player. 
