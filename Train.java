@@ -18,6 +18,6 @@ public class Train extends Card
     }
 
     public String getImage(){
-        return path+color+".png";
+        return path+color+".jpg";
     }
 }

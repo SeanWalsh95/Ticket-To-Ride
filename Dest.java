@@ -30,6 +30,6 @@ public class Dest extends Card
     }
     
     public String getImage(){
-        return path+cityA+"_"+cityB+".png";
+        return path+cityA+"_"+cityB+".jpg";
     }
 }
