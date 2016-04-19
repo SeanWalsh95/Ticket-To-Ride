@@ -1,9 +1,10 @@
 import java.awt.*;
 
 /**
- * Write a description of class ImageLibrary here.
+ * ImageLibrary holds all the images that are
+ * Used in the GUI construction
  * 
- * @author (your name) 
+ * @author (Jordan Cartwright) 
  * @version (a version number or a date)
  */
 public class ImageLibrary
@@ -18,7 +19,9 @@ public class ImageLibrary
 
     //get the images from the backgrounds folder
     Image mainMenuBackground;
-    Image gameBoarbackground;
+    Image gameBoarbackground2Players;
+    Image gameBoarbackground3Players;
+    Image gameBoarbackground4Players;
 
     //images for the Main Menu
     Image mainMenu;
@@ -54,15 +57,174 @@ public class ImageLibrary
     Image nextButtonPressed;
     Image previousButtonPressed;
 
+    //images for the gameBoard screen
+    Image buyTechButtonUnselected;
+    Image buyTechButtonHighlighted;
+    Image buyTechButtonPressed;
+    Image viewTechButtonUnselected;
+    Image viewTechButtonHighlighted;
+    Image viewTechButtonPressed;
+    Image viewDestButtonUnselected;
+    Image viewDestButtonHighlighted;
+    Image viewDestButtonPressed;
+
+    //CityHover Images
+    Image emptyHover;
+    Image stornowayHover;
+    Image ullapoolHover;
+    Image wickHover;
+    Image fortwilliamHover;
+    Image invernessHover;
+    Image aberdeenHover;
+    Image londonderryHover;
+    Image glasgowHover;
+    Image edinburghHover;
+    Image dundeeHover;
+    Image sligoHover;
+    Image belfastHover;
+    Image stranraerHover;
+    Image galwayHover;
+    Image dundalkHover;
+    Image carlisleHover;
+    Image newcastleHover;
+    Image limerickHover;
+    Image tullamoreHover;
+    Image dublinHover;
+    Image barrowsHover;
+    Image corkHover;
+    Image rosslareHover;
+    Image hollyheadHover;
+    Image liverpoolHover;
+    Image leedsHover;
+    Image aberystrythHover;
+    Image manchesterHover;
+    Image hullHover;
+    Image carmarthenHover;
+    Image llandrindodwellsHover;
+    Image birminghamHover;
+    Image nottinghamHover;
+    Image cardiffHover;
+    Image northamptonHover;
+    Image cambridgeHover;
+    Image norwichHover;
+    Image penzanceHover;
+    Image plymouthHover;
+    Image bristolHover;
+    Image readingHover;
+    Image londonHover;
+    Image ipswichHover;
+    Image southamptonHover;
+    Image brightonHover;
+    Image doverHover;
+    Image franceHover;
+
     /**
      * Constructor for objects of class ImageLibrary
      */
     public ImageLibrary()
     {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
+        //City Hover images
+        emptyHover = toolkit.getImage(
+            "resources/images/cityHover/emptyHover.png");
+        stornowayHover = toolkit.getImage(
+            "resources/images/cityHover/stornowayHover.png");
+        ullapoolHover = toolkit.getImage(
+            "resources/images/cityHover/ullapoolHover.png");
+        wickHover = toolkit.getImage(
+            "resources/images/cityHover/wickHover.png");
+        fortwilliamHover = toolkit.getImage(
+            "resources/images/cityHover/fortwilliamHover.png");
+        invernessHover = toolkit.getImage(
+            "resources/images/cityHover/invernessHover.png");
+        aberdeenHover = toolkit.getImage(
+            "resources/images/cityHover/aberdeenHover.png");
+        londonderryHover = toolkit.getImage(
+            "resources/images/cityHover/londonderryHover.png");
+        glasgowHover = toolkit.getImage(
+            "resources/images/cityHover/glasgowHover.png");
+        edinburghHover = toolkit.getImage(
+            "resources/images/cityHover/edinburghHover.png");
+        dundeeHover = toolkit.getImage(
+            "resources/images/cityHover/dundeeHover.png");
+        sligoHover = toolkit.getImage(
+            "resources/images/cityHover/sligoHover.png");
+        belfastHover = toolkit.getImage(
+            "resources/images/cityHover/belfastHover.png");
+        stranraerHover = toolkit.getImage(
+            "resources/images/cityHover/stranraerHover.png");
+        galwayHover = toolkit.getImage(
+            "resources/images/cityHover/galwayHover.png");
+        dundalkHover = toolkit.getImage(
+            "resources/images/cityHover/dundalkHover.png");
+        carlisleHover = toolkit.getImage(
+            "resources/images/cityHover/carlisleHover.png");
+        newcastleHover = toolkit.getImage(
+            "resources/images/cityHover/newcastleHover.png");
+        limerickHover = toolkit.getImage(
+            "resources/images/cityHover/limerickHover.png");
+        tullamoreHover = toolkit.getImage(
+            "resources/images/cityHover/tullamoreHover.png");
+        dublinHover = toolkit.getImage(
+            "resources/images/cityHover/dublinHover.png");
+        barrowsHover = toolkit.getImage(
+            "resources/images/cityHover/barrowsHover.png");
+        corkHover = toolkit.getImage(
+            "resources/images/cityHover/corkHover.png");
+        rosslareHover = toolkit.getImage(
+            "resources/images/cityHover/rosslareHover.png");
+        hollyheadHover = toolkit.getImage(
+            "resources/images/cityHover/hollyheadHover.png");
+        liverpoolHover = toolkit.getImage(
+            "resources/images/cityHover/liverpoolHover.png");
+        leedsHover = toolkit.getImage(
+            "resources/images/cityHover/leedsHover.png");
+        aberystrythHover = toolkit.getImage(
+            "resources/images/cityHover/aberystrythHover.png");
+        manchesterHover = toolkit.getImage(
+            "resources/images/cityHover/manchesterHover.png");
+        hullHover = toolkit.getImage(
+            "resources/images/cityHover/hullHover.png");
+        carmarthenHover = toolkit.getImage(
+            "resources/images/cityHover/carmarthenHover.png");
+        llandrindodwellsHover = toolkit.getImage(
+            "resources/images/cityHover/llandrindodwellsHover.png");
+        birminghamHover = toolkit.getImage(
+            "resources/images/cityHover/birminghamHover.png");
+        nottinghamHover = toolkit.getImage(
+            "resources/images/cityHover/nottinghamHover.png");
+        cardiffHover = toolkit.getImage(
+            "resources/images/cityHover/cardiffHover.png");
+        northamptonHover = toolkit.getImage(
+            "resources/images/cityHover/northamptonHover.png");
+        cambridgeHover = toolkit.getImage(
+            "resources/images/cityHover/cambridgeHover.png");
+        norwichHover = toolkit.getImage(
+            "resources/images/cityHover/norwichHover.png");
+        penzanceHover = toolkit.getImage(
+            "resources/images/cityHover/penzanceHover.png");
+        plymouthHover = toolkit.getImage(
+            "resources/images/cityHover/plymouthHover.png");
+        bristolHover = toolkit.getImage(
+            "resources/images/cityHover/bristolHover.png");
+        readingHover = toolkit.getImage(
+            "resources/images/cityHover/readingHover.png");
+        londonHover = toolkit.getImage(
+            "resources/images/cityHover/londonHover.png");
+        ipswichHover = toolkit.getImage(
+            "resources/images/cityHover/ipswichHover.png");
+        southamptonHover = toolkit.getImage(
+            "resources/images/cityHover/southamptonHover.png");
+        brightonHover = toolkit.getImage(
+            "resources/images/cityHover/brightonHover.png");
+        doverHover = toolkit.getImage(
+            "resources/images/cityHover/doverHover.png");
+        franceHover = toolkit.getImage(
+            "resources/images/cityHover/franceHover.png");
+
         //get the image from the mouse cursor
         mouseCursor = toolkit.getImage(
-            "resources/images/mouseCursor/mouseCursorFinal.png");
+            "resources/images/mouseCursors/mouseCursorFinal.png");
 
         //general Images needed more than once
         backButtonUnselected = toolkit.getImage(
@@ -74,13 +236,17 @@ public class ImageLibrary
 
         //get the images from the backgrounds folder
         mainMenuBackground = toolkit.getImage(
-            "resources/images/backgrounds/MainMenu.png");
-        gameBoarbackground = toolkit.getImage(
-            "resources/images/backgrounds/GameBackground.png");
+            "resources/images/backgrounds/MainMenuBackground.png");
+        gameBoarbackground2Players = toolkit.getImage(
+            "resources/images/backgrounds/GameBackground 2 Players.png");
+        gameBoarbackground3Players = toolkit.getImage(
+            "resources/images/backgrounds/GameBackground 3 Players.png");
+        gameBoarbackground4Players = toolkit.getImage(
+            "resources/images/backgrounds/GameBackground 4 Players.png");
 
         //images for the Main Menu
         mainMenu = toolkit.getImage(
-            "resources/images/backgrounds/MainMenuBackground.png");
+            "resources/images/backgrounds/MainMenu.png");
         playButtonUnselected = toolkit.getImage(
             "resources/images/buttons/mainMenu/PlayGameButtonUnselected.png");
         rulesButtonUnselected = toolkit.getImage(
@@ -96,7 +262,7 @@ public class ImageLibrary
         playButtonPressed = toolkit.getImage(
             "resources/images/buttons/mainMenu/PlayGameButtonPressed.png");
         rulesButtonPressed = toolkit.getImage(
-            "resources/images/buttons/mainMenu/RulesButtonButtonPressed.png");
+            "resources/images/buttons/mainMenu/RulesButtonPressed.png");
         quitButtonPressed = toolkit.getImage(
             "resources/images/buttons/mainMenu/QuitButtonPressed.png");
 
@@ -140,5 +306,24 @@ public class ImageLibrary
         previousButtonPressed = toolkit.getImage(
             "resources/images/buttons/rulesScreen/PreviousButtonPressed.png");
 
+        //Images for the game board screen
+        buyTechButtonUnselected = toolkit.getImage(
+            "resources/images/buttons/gameBoard/BuyTechButtonUnselected.png");
+        buyTechButtonHighlighted = toolkit.getImage(
+            "resources/images/buttons/gameBoard/BuyTechButtonHighlighted.png");
+        buyTechButtonPressed = toolkit.getImage(
+            "resources/images/buttons/gameBoard/BuyTechButtonPressed.png");
+        viewTechButtonUnselected = toolkit.getImage(
+            "resources/images/buttons/gameBoard/ViewTechButtonUnselected.png");
+        viewTechButtonHighlighted = toolkit.getImage(
+            "resources/images/buttons/gameBoard/ViewTechButtonHighlighted.png");
+        viewTechButtonPressed = toolkit.getImage(
+            "resources/images/buttons/gameBoard/ViewTechButtonPressed.png");
+        viewDestButtonUnselected = toolkit.getImage(
+            "resources/images/buttons/gameBoard/ViewDestButtonUnselected.png");
+        viewDestButtonHighlighted = toolkit.getImage(
+            "resources/images/buttons/gameBoard/ViewDestButtonHighlighted.png");
+        viewDestButtonPressed = toolkit.getImage(
+            "resources/images/buttons/gameBoard/ViewDestButtonPressed.png");
     }
 }
