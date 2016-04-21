@@ -11,6 +11,7 @@ public class GameBoard
     protected ArrayList<Player> players;
     protected ArrayList<Route> routes;
     protected ArrayList<City> cities;
+    protected ArrayList<Tech> techAvail;
     protected Deck trainDeck;
     protected Deck destDeck;
     private boolean lastTurn;
@@ -45,6 +46,10 @@ public class GameBoard
                     }
                 }
             }
+        }
+        if(success == true){
+            if(!hasTech(curPlayer,Technology.Thermocompressor)) endTurn();
+            else discardTech(curPlayer,Technology.Thermocompressor);
         }
         return success;
     }
@@ -235,13 +240,28 @@ public class GameBoard
     }
 
     /**
-     * Method finds a route that connects two cities
-     * 
-     * @param cityA The name of one of the cities you want to connect
-     * @param cityB The name of one of the cities you want to connect
-     * 
-     * @return The Route object that connects the two cities
+     * Removes the tech named techName from the player
+     *
+     * @param player The player you want to remove the tech from
+     * @param techName The name of the tech you want to discard
      */
+    private void discardTechTech(Player player, Technology techName){
+        for(Tech tech: player.tech){
+            if(tech.name==techName){
+                techAvail.add(tech);
+                player.tech.remove(tech);
+            }
+        }
+
+
+        /**
+         * Method finds a route that connects two cities
+         *
+         * @param cityA The name of one of the cities you want to connect
+         * @param cityB The name of one of the cities you want to connect
+         *
+         * @return The Route object that connects the two cities
+         */
     public Route getRoute(CityName cityA, CityName cityB){
         for(int i=0; i<routes.size(); i++){
             if((routes.get(i).cityA.equals(cityA) && routes.get(i).cityB.equals(cityB)) ||
@@ -279,10 +299,11 @@ public class GameBoard
      */
     private int checkPlayerDest(Player player){
         int score = 0;
-        ArrayList<CityName> visited = new ArrayList<CityName>();
         for(int i=0; i<player.heldDestinationCards.size(); i++){
+            ArrayList<CityName> visited = new ArrayList<CityName>();
             if(checkDestCard(player.playerID,((Dest)player.heldDestinationCards.get(i)).cityA,((Dest)player.heldDestinationCards.get(i)).cityB,visited))
                 score += ((Dest)player.heldDestinationCards.get(i)).pointValue;
+                player.completedDestCards++;
             else
                 score -= ((Dest)player.heldDestinationCards.get(i)).pointValue;
         }

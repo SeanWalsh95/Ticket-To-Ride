@@ -13,6 +13,7 @@ public class Player
     protected Color playerColor = Color.BLACK;
     protected int trainPieces = 0;
     protected int score = 0;
+    protected int completedDestCards = 0;
     protected ArrayList<Card> heldDestinationCards = new ArrayList<Card>();
     protected ArrayList<Card> heldTrainCards = new ArrayList<Card>();
     protected ArrayList<Tech> tech = new ArrayList<Tech>();
