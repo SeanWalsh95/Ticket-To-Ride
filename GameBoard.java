@@ -63,7 +63,7 @@ public class GameBoard
         int unmatchedTrains = 0;
         int properColor = 0;
         int trainReq = route.trainRequirement;
-        if(hasTech(player,"diesel power"))trainReq--;
+        if(hasTech(player,Technology.DieselPower))trainReq--;
         RouteColor colorOfClaim = route.color;
         if(trainReq > trains.size())return false;
         else if(trains.size() >= trainReq){
@@ -73,7 +73,7 @@ public class GameBoard
                     if((Train)train.color != mostPopColor)unmatchedTrains++;
                     else properColor++;
                 }
-                if(hasTech(player,"booster")){
+                if(hasTech(player,Technology.Booster)){
                     locos += unmatchedTrains/3;
                 }
                 else{
@@ -85,7 +85,7 @@ public class GameBoard
                     if((Train)train.color != colorOfClaim)unmatchedTrains++;
                     else properColor++;
                 }
-                if(hasTech(player,"booster")){
+                if(hasTech(player,Technology.Booster)){
                     locos += unmatchedTrains/3;
                 }
                 else{
@@ -179,39 +179,39 @@ public class GameBoard
         //Next 2 if blocks handles all checks for region techs 
         if(cityA.region != Region.England){
             if(cityA.region == Region.Scotland){
-                if(!hasTech(player,"scotland concession")) return false;
+                if(!hasTech(player,Technology.ScotlandConcession)) return false;
             }
             else if(cityA.region == Region.Wales){
-                if(!hasTech(player,"wales concession")) return false;
+                if(!hasTech(player,Technology.WalesConcession)) return false;
             }
             else{
-                if(!hasTech(player,"ireland/france concession")) return false;
+                if(!hasTech(player,Technology.IrelandFranceConcession)) return false;
             }
         }
         if(cityB.region != Region.England &&
         cityB.region != cityA.region){
             if(cityB.region == Region.Scotland){
-                if(!hasTech(player,"scotland concession")) return false;
+                if(!hasTech(player,Technology.ScotlandConcession)) return false;
             }
             else if(cityB.region == Region.Wales){
-                if(!hasTech(player,"wales concession")) return false;
+                if(!hasTech(player,Technology.WalesConcession)) return false;
             }
             else{
-                if(!hasTech(player,"ireland/france concession")) return false;
+                if(!hasTech(player,Technology.IrelandFranceConcession)) return false;
             }
         }
 
         //Handles route length checks
         if(route.trainRequirement == 3){
-            if(!hasTech(player,"mechanical stoker")) return false;
+            if(!hasTech(player,Technology.MechanicalStoker)) return false;
         }
         else if(route.trainRequirement == 4 && route.trainRequirement == 5 && route.trainRequirement == 6){
-            if(!hasTech(player,"superheated steam boiler")) return false;
+            if(!hasTech(player,Technology.SuperheatedSteamBoiler)) return false;
         }
 
         //checks if it is a ferry route DOES NOT HANDLE THE SPECIAL ROUTE CASE YET BE ADVISED
         if(route instanceof FerryRoute){
-            if(!hasTech(player,"propellers")) return false;
+            if(!hasTech(player,Technology.Propellers)) return false;
         }
 
         return true;
@@ -225,9 +225,9 @@ public class GameBoard
      * 
      * @return The method returns true if the player owns a tech of the specified name
      */
-    private boolean hasTech(Player player, String techName){
+    private boolean hasTech(Player player, Technology techName){
         for(Tech tech: player.tech){
-            if(tech.name.toLowerCase().equals(techName)){
+            if(tech.name==techName){
                 return true;
             }
         }
