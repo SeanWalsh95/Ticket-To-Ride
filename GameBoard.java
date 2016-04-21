@@ -273,15 +273,63 @@ public class GameBoard
     }
 
     /**
+     *This method handles tech purchasing
      *
+     * @param tech The tech that the player selects to buy
+     *
+     * @return Method returns true if the tech is purchased successfully
      */
     public boolean buyTech(Tech tech) {
-
+        ArrayList<Card> trainsToSpend = selectTrains();
+        ArrayList<Card> trainsSpent = new ArrayList<Card>();
+        int locoCost = tech.cost;
+        if(trainsToSpend.size() < locoCost)return false;
+        else{
+            for(Card train: trainsToSpend){
+                if((Train)train.color == RouteColor.NEUTRAL){
+                    trainsToSpend.remove(train);
+                    trainsSpent.add(train);
+                }
+            }
+            if(trainsSpent.size() == locoCost){
+                for(Card train: trainsSpent){
+                    currentPlayer.heldTrainCards.remove(train);
+                    trainDeck.discarded.add(train);
+                }
+                techAvail.remove(tech);
+                currentPlayer.tech.add(tech);
+                return true;
+            }
+            else{
+                if(hasTech(currentPlayer,Technology.Booster)){
+                    if(locoCost == trainsSpent.size() + (trainsToSpend.size()/3)){
+                        trainsSpent.addAll(trainsToSpend);
+                        for(Card train: trainsSpent){
+                            currentPlayer.heldTrainCards.remove(train);
+                            trainDeck.discarded.add(train);
+                        }
+                        techAvail.remove(tech);
+                        currentPlayer.tech.add(tech);
+                        return true;
+                    }
+                }
+                else{
+                    if(locoCost == trainsSpent.size() + (trainsToSpend.size()/4)){
+                        trainsSpent.addAll(trainsToSpend);
+                        for(Card train: trainsSpent){
+                            currentPlayer.heldTrainCards.remove(train);
+                            trainDeck.discarded.add(train);
+                        }
+                        techAvail.remove(tech);
+                        currentPlayer.tech.add(tech);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
 
     }
-
-
-
 
     /**
      * This method moves the currentPlayer to the next player and ends their turn
