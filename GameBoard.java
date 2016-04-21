@@ -245,31 +245,43 @@ public class GameBoard
      * @param player The player you want to remove the tech from
      * @param techName The name of the tech you want to discard
      */
-    private void discardTechTech(Player player, Technology techName){
-        for(Tech tech: player.tech){
-            if(tech.name==techName){
+    private void discardTechTech(Player player, Technology techName) {
+        for (Tech tech : player.tech) {
+            if (tech.name == techName) {
                 techAvail.add(tech);
                 player.tech.remove(tech);
             }
         }
 
+    }
 
-        /**
-         * Method finds a route that connects two cities
-         *
-         * @param cityA The name of one of the cities you want to connect
-         * @param cityB The name of one of the cities you want to connect
-         *
-         * @return The Route object that connects the two cities
-         */
-    public Route getRoute(CityName cityA, CityName cityB){
-        for(int i=0; i<routes.size(); i++){
-            if((routes.get(i).cityA.equals(cityA) && routes.get(i).cityB.equals(cityB)) ||
-            (routes.get(i).cityB.equals(cityA) && routes.get(i).cityA.equals(cityB)))
+    /**
+    * Method finds a route that connects two cities
+    *
+    * @param cityA The name of one of the cities you want to connect
+    * @param cityB The name of one of the cities you want to connect
+    *
+    * @return The Route object that connects the two cities
+    */
+    public Route getRoute(CityName cityA, CityName cityB) {
+        for (int i = 0; i < routes.size(); i++) {
+            if ((routes.get(i).cityA.equals(cityA) && routes.get(i).cityB.equals(cityB)) ||
+                    (routes.get(i).cityB.equals(cityA) && routes.get(i).cityA.equals(cityB)))
                 return routes.get(i);
         }
         return null;
     }
+
+    /**
+     *
+     */
+    public boolean buyTech(Tech tech) {
+
+
+    }
+
+
+
 
     /**
      * This method moves the currentPlayer to the next player and ends their turn
@@ -337,3 +349,4 @@ public class GameBoard
         return false;
     }
 }
+
