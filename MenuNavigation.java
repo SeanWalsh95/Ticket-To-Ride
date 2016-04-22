@@ -84,6 +84,9 @@ implements MouseListener, MouseMotionListener, ActionListener {
     private boolean rulesScreen2 = false;
     private boolean quitScreen = false;
     private boolean gameBoard = false;
+    private boolean buyTech = false;
+    private boolean viewTech = false;
+    private boolean viewDest = false;
 
     //general buttons
     private boolean backButton = false;
@@ -106,6 +109,10 @@ implements MouseListener, MouseMotionListener, ActionListener {
     private boolean buyTechButton = false;
     private boolean viewTechButton = false;
     private boolean viewDestButton = false;
+
+    //buyTechButtons
+    private boolean purchaseButton = false;
+    private boolean highlight = false;
 
     /**
      * Called by the browser or applet viewer to inform this JApplet that it
@@ -162,7 +169,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
 
         if(mainMenu == true) {
             //when you mouse over PLAY GAME
-            if((x >= 509 && x <= 509+242 && y >= 473 && y <= 473+92) &&
+            if((x >= 500 && x <= 500+260 && y >= 464 && y <= 464+111) &&
             playButton == false)
             {
                 //paint highlighted button
@@ -171,7 +178,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
             }
 
             //when you mouse over RULES
-            else if((x >= 131 && x <= 131+242 && y >= 473 && y <= 473+92) &&
+            else if((x >= 125 && x <= 125+260 && y >= 464 && y <= 464+111) &&
             rulesButton == false)
             {
                 //paint highlighted button
@@ -180,16 +187,16 @@ implements MouseListener, MouseMotionListener, ActionListener {
             }
 
             //when you mouse over QUIT
-            else if((x >= 887 && x <= 887+242 && y >= 473 && y <= 473+92) &&
+            else if((x >= 875 && x <= 875+260 && y >= 464 && y <= 464+111) &&
             quitButton == false)
             {
                 //paint highlighted button
                 quitButton = true;
                 repaint();
             }
-            else if(!(x >= 509 && x <= 509+242 && y >= 473 && y <= 473+92) &&
-            !(x >= 131 && x <= 131+242 && y >= 473 && y <= 473+92) &&
-            !(x >= 887 && x <= 887+242 && y >= 473 && y <= 473+92))
+            else if(!(x >= 500 && x <= 500+260 && y >= 464 && y <= 464+111) &&
+            !(x >= 125 && x <= 125+260 && y >= 464 && y <= 464+111) &&
+            !(x >= 875 && x <= 875+260 && y >= 464 && y <= 464+111))
             {
                 playButton = rulesButton = quitButton = false;
                 repaint();
@@ -199,7 +206,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
         else if(selectNumPlayersScreen == true)
         {
             //when you mouse over BACK BUTTON
-            if((x >= 5 && x <= 5+80 && y >= 864 && y <= 864+30)
+            if((x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
             && backButton == false)
             {
                 //paint highlighted button
@@ -207,7 +214,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 repaint();
             }
             //when you mouse over TWO PLAYERS
-            else if(x >= 131 && x <= 131+242 && y >= 473 && y <= 473+92
+            else if(x >= 125 && x <= 125+260 && y >= 464 && y <= 464+111
             && twoPlayers == false)
             {
                 //paint highlighted button
@@ -215,7 +222,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 repaint();
             }
             //when you mouse over THREE PLAYERS
-            else if(x >= 509 && x <= 509+242 && y >= 473 && y <= 473+92
+            else if(x >= 500 && x <= 500+260 && y >= 464 && y <= 464+111
             && threePlayers == false)
             {
                 //paint highlighted button
@@ -223,17 +230,17 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 repaint();
             }
             //when you mouse over FOUR PLAYERS
-            else if(x >= 887 && x <= 887+242 && y >= 473 && y <= 473+92
+            else if(x >= 875 && x <= 875+260 && y >= 464 && y <= 464+111
             && fourPlayers == false)
             {
                 //paint highlighted button
                 fourPlayers = true;
                 repaint();
             }
-            else if(!(x >= 5 && x <= 5+80 && y >= 864 && y <= 864+30) &&
-            !(x >= 131 && x <= 131+242 && y >= 473 && y <= 473+92) &&
-            !(x >= 509 && x <= 509+242 && y >= 473 && y <= 473+92) &&
-            !(x >= 887 && x <= 887+242 && y >= 473 && y <= 473+92))
+            else if(!(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48) &&
+            !(x >= 125 && x <= 125+260 && y >= 464 && y <= 464+111) &&
+            !(x >= 500 && x <= 500+260 && y >= 464 && y <= 464+111) &&
+            !(x >= 875 && x <= 875+260 && y >= 464 && y <= 464+111))
             {
                 backButton = twoPlayers = threePlayers = 
                 fourPlayers = false;                
@@ -243,7 +250,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
         else if(rulesScreen1 == true)
         {
             //when you mouse over BACK BUTTON
-            if((x >=5 && x <= 5+80 && y >=864  && y <= 864+30)
+            if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48
             && backButton == false)
             {
                 //paint highlighted button
@@ -257,7 +264,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 nextButton = true;
                 repaint();
             }
-            else if(!(x >=5 && x <= 5+80 && y >=864  && y <= 864+30) &&
+            else if(!(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48) &&
             !(x >= 962 && x <= 962+80 && y >= 13 && y <= 13+30))
             {
                 backButton = nextButton = false;
@@ -267,7 +274,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
         }
         else if(rulesScreen2 == true) {
             //when you mouse over BACK
-            if(x >= 5 && x <= 5+80 && y >= 864 && y <= 864+30
+            if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48
             && backButton == false)
             {
                 //paint highlighted button
@@ -282,7 +289,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 previousButton = true;
                 repaint();
             }
-            else if(!(x >= 5 && x <= 5+80 && y >= 864 && y <= 864+30) &&
+            else if(!(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48) &&
             !(x >= 219 && x <= 219+80 && y >= 13 && y <= 13+30))
             {
                 backButton = previousButton = false;
@@ -755,6 +762,63 @@ implements MouseListener, MouseMotionListener, ActionListener {
             }
 
         }
+        else if(viewTech == true)
+        {
+            //when you mouse over BACK BUTTON
+            if((x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+            && backButton == false)
+            {
+                //paint highlighted button
+                backButton = true;
+                repaint();
+            }
+            else if(!(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48))
+            {
+                backButton = false;
+                repaint();
+            }
+        }
+        else if(buyTech == true)
+        {
+            //when you mouse over BACK BUTTON
+            if((x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+            && backButton == false)
+            {
+                //paint highlighted button
+                backButton = true;
+                repaint();
+            }
+            //when you mouse over the PURCHASE BUTTON
+            else if(x >= 543 && x <= 543+174 && y >= 828 && y <= 828+51
+            && purchaseButton == false)
+            {
+                purchaseButton = true;
+                repaint();
+            }
+            else if(!(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+            && !(x >= 543 && x <= 543+174 && y >= 828 && y <= 828+51))
+            {
+                purchaseButton = false;
+                backButton = false;
+                repaint();
+            }
+        }
+        else if(viewDest == true)
+        {
+            //when you mouse over BACK BUTTON
+            if((x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+            && backButton == false)
+            {
+                //paint highlighted button
+                backButton = true;
+                repaint();
+            }
+            else if(!(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48))
+            {
+                backButton = false;
+                repaint();
+            }
+        }
         e.consume();
     }
 
@@ -774,7 +838,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
         if(mainMenu == true) {
             if (e.getButton() == MouseEvent.BUTTON1) {
 
-                if(x >= 509 && x <= 509+242 && y >= 473 && y <= 473+92)
+                if(x >= 500 && x <= 500+260 && y >= 464 && y <= 464+111)
                 {
                     //if you press the 1st mouse button 
                     //on the PLAY GAME button it shows
@@ -782,7 +846,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                     paintPressedPlayGameButton(g);
                 }
 
-                if(x >= 131 && x <= 131+242 && y >= 473 && y <= 473+92)
+                if(x >= 125 && x <= 125+260 && y >= 464 && y <= 464+111)
                 {
                     //if you press the 1st mouse button 
                     //on the RULES button it shows
@@ -790,7 +854,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                     paintPressedRulesButton(g);
                 }
 
-                if(x >= 887 && x <= 887+242 && y >= 473 && y <= 473+92)
+                if(x >= 875 && x <= 875+260 && y >= 464 && y <= 464+111)
                 {
                     //if you press the 1st mouse button  
                     //on the QUIT button it shows
@@ -803,7 +867,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
         else if(rulesScreen1 == true) {
             if (e.getButton() == MouseEvent.BUTTON1) {
 
-                if(x >= 5 && x <= 5+80 && y >= 864 && y <= 864+30)
+                if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
                 {
                     //if you press the 1st mouse button 
                     //on the BACK button it shows
@@ -824,7 +888,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
         else if(rulesScreen2 == true) {
             if (e.getButton() == MouseEvent.BUTTON1) {
 
-                if(x >= 5 && x <= 5+80 && y >= 864 && y <= 864+30)
+                if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
                 {
                     //if you press the 1st mouse button 
                     //on the BACK button it shows
@@ -851,7 +915,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
         else if(selectNumPlayersScreen == true) {
             if (e.getButton() == MouseEvent.BUTTON1) {
 
-                if(x >= 5 && x <= 5+80 && y >= 864 && y <= 864+30)
+                if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
                 {
                     //if you press the 1st mouse button 
                     //on the BACK button it shows
@@ -860,7 +924,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 }
 
                 //Plays a button sound when you press 2 PLAYERS
-                if(x >= 131 && x <= 131+242 && y >= 473 && y <= 473+92)
+                if(x >= 125 && x <= 125+260 && y >= 464 && y <= 464+111)
                 {
                     //if you press the 1st mouse button 
                     //on the 2 PLAYERS button it shows
@@ -869,7 +933,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 }
 
                 //Plays a button sound when you press 3 PLAYERS
-                if(x >= 509 && x <= 509+242 && y >= 473 && y <= 473+92)
+                if(x >= 500 && x <= 500+260 && y >= 464 && y <= 464+111)
                 {
                     //if you press the 1st mouse button 
                     //on the 3 PLAYERS button it shows
@@ -878,7 +942,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 }
 
                 //Plays a button sound when you press 4 PLAYERS
-                if(x >= 887 && x <= 887+242 && y >= 473 && y <= 473+92)
+                if(x >= 875 && x <= 875+260 && y >= 464 && y <= 464+111)
                 {
                     //if you press the 1st mouse button 
                     //on the 4 PLAYERS button it shows
@@ -916,6 +980,47 @@ implements MouseListener, MouseMotionListener, ActionListener {
             }
 
         }
+        else if(viewTech == true)
+        {
+            if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+            {
+                //if you press the 1st mouse button 
+                //on the BACK button it shows
+                //a PRESSED button image
+                paintPressedBackButton(g);
+            }
+
+        }        
+        else if(buyTech == true)
+        {
+            if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+            {
+                //if you press the 1st mouse button 
+                //on the BACK button it shows
+                //a PRESSED button image
+                paintPressedBackButton(g);
+            }
+
+            else if(x >= 543 && x <= 543+174 && y >= 828 && y <= 828+51)
+            {
+                //if you press the 1st mouse button 
+                //on the PURCHASE button it shows
+                //a PRESSED button image
+                paintPressedPurchaseButton(g);
+            }
+
+        }        
+        else if(viewDest == true)
+        {
+            if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+            {
+                //if you press the 1st mouse button 
+                //on the BACK button it shows
+                //a PRESSED button image
+                paintPressedBackButton(g);
+            }
+
+        }
 
     }
 
@@ -933,7 +1038,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
         if(mainMenu == true) {
             if (e.getButton() == MouseEvent.BUTTON1) {
 
-                if(x >= 509 && x <= 509+242 && y >= 473 && y <= 473+92)
+                if(x >= 500 && x <= 500+260 && y >= 464 && y <= 464+111)
                 {
                     //if you press the 1st mouse button 
                     //on the PLAY GAME button it shows
@@ -941,7 +1046,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                     paintUnselectedPlayGameButton(g);
                 }
 
-                if(x >= 131 && x <= 131+242 && y >= 473 && y <= 473+92)
+                if(x >= 125 && x <= 125+260 && y >= 464 && y <= 464+111)
                 {
                     //if you press the 1st mouse button 
                     //on the RULES button it shows
@@ -949,7 +1054,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                     paintUnselectedRulesButton(g);
                 }
 
-                if(x >= 887 && x <= 887+242 && y >= 473 && y <= 473+92)
+                if(x >= 875 && x <= 875+260 && y >= 464 && y <= 464+111)
                 {
                     //if you press the 1st mouse button  
                     //on the QUIT button it shows
@@ -962,7 +1067,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
         else if(rulesScreen1 == true) {
             if (e.getButton() == MouseEvent.BUTTON1) {
 
-                if(x >= 5 && x <= 5+80 && y >= 864 && y <= 864+30)
+                if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
                 {
                     //if you press the 1st mouse button 
                     //on the BACK button it shows
@@ -983,7 +1088,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
         else if(rulesScreen2 == true) {
             if (e.getButton() == MouseEvent.BUTTON1) {
 
-                if(x >= 5 && x <= 5+80 && y >= 864 && y <= 864+30)
+                if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
                 {
                     //if you press the 1st mouse button 
                     //on the BACK button it shows
@@ -1010,7 +1115,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
         else if(selectNumPlayersScreen == true) {
             if (e.getButton() == MouseEvent.BUTTON1) {
 
-                if(x >= 5 && x <= 5+80 && y >= 864 && y <= 864+30)
+                if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
                 {
                     //if you press the 1st mouse button 
                     //on the BACK button it shows
@@ -1019,7 +1124,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 }
 
                 //Plays a button sound when you press 2 PLAYERS
-                if(x >= 131 && x <= 131+242 && y >= 473 && y <= 473+92)
+                if(x >= 125 && x <= 125+260 && y >= 464 && y <= 464+111)
                 {
                     //if you press the 1st mouse button 
                     //on the 2 PLAYERS button it shows
@@ -1028,7 +1133,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 }
 
                 //Plays a button sound when you press 3 PLAYERS
-                if(x >= 509 && x <= 509+242 && y >= 473 && y <= 473+92)
+                if(x >= 500 && x <= 500+260 && y >= 464 && y <= 464+111)
                 {
                     //if you press the 1st mouse button 
                     //on the 3 PLAYERS button it shows
@@ -1037,7 +1142,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 }
 
                 //Plays a button sound when you press 4 PLAYERS
-                if(x >= 887 && x <= 887+242 && y >= 473 && y <= 473+92)
+                if(x >= 875 && x <= 875+260 && y >= 464 && y <= 464+111)
                 {
                     //if you press the 1st mouse button 
                     //on the 4 PLAYERS button it shows
@@ -1074,6 +1179,46 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 paintUnselectedviewDestButton(g);
             }
 
+        }
+        else if(viewTech == true)
+        {
+            if((x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+            && backButton == false)
+            {
+                //if you press the 1st mouse button 
+                //on the BACK button it shows
+                //a PRESSED button image
+                paintUnselectedBackButton(g);
+            }
+        }
+        else if(buyTech == true)
+        {
+            if((x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+            && backButton == false)
+            {
+                //if you press the 1st mouse button 
+                //on the BACK button it shows
+                //a PRESSED button image
+                paintUnselectedBackButton(g);
+            }
+            else if(x >= 543 && x <= 543+174 && y >= 828 && y <= 828+51)
+            {
+                //if you press the 1st mouse button 
+                //on the PURCHASE button it shows
+                //a PRESSED button image
+                paintUnselectedPurchaseButton(g);
+            }
+        }
+        else if(viewDest == true)
+        {
+            if((x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+            && backButton == false)
+            {
+                //if you press the 1st mouse button 
+                //on the BACK button it shows
+                //a PRESSED button image
+                paintUnselectedBackButton(g);
+            }
         }
 
     }
@@ -1128,7 +1273,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
         else if(rulesScreen1 == true) {
             if (e.getButton() == MouseEvent.BUTTON1) {
                 //Plays a button sound when you press BACK
-                if(x >= 5 && x <= 5+80 && y >= 864 && y <= 864+30)
+                if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
                 {
                     //play the button sound
                     playButtonSound();
@@ -1153,7 +1298,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
         else if(rulesScreen2 == true) {
             if (e.getButton() == MouseEvent.BUTTON1) {
                 //Plays a button sound when you press BACK
-                if(x >= 5 && x <= 5+80 && y >= 864 && y <= 864+30)
+                if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
                 {
                     //play the button sound
                     playButtonSound();
@@ -1186,7 +1331,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
             if (e.getButton() == MouseEvent.BUTTON1) {
 
                 //Plays a button sound when you press BACK
-                if(x >= 5 && x <= 5+80 && y >= 864 && y <= 864+30)
+                if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
                 {
                     //play the button sound
                     playButtonSound();
@@ -1241,22 +1386,87 @@ implements MouseListener, MouseMotionListener, ActionListener {
             {
                 //play the button sound
                 playButtonSound();
+                //set the gameBoard to false
+                //set the viewtech true
+                gameBoard = false;
+                viewTech = true;
             }
             //Plays a button sound when you press buyTechButton
             else if(x >= 828 && x <= 828+196 && y >= 508 && y <= 508+51)
             {
                 //play the button sound
                 playButtonSound();
+                //set the gameBoard to false
+                //set the buyTech true
+                gameBoard = false;
+                buyTech = true;
             }
             //Plays a button sound when you press viewDestButton
             else if(x >= 1044 && x <= 1044+196 && y >= 508 && y <= 508+51)
             {
                 //play the button sound
                 playButtonSound();
+                //set the gameBoard to false
+                //set the viewDest true
+                gameBoard = false;
+                viewDest = true;
+            }
+
+        }        
+        else if(viewTech == true)
+        {
+            //Plays a button sound when you press BACK
+            if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the gameBoard to false
+                //set the buyTech true
+                gameBoard = true;
+                viewTech = false;
             }
 
         }
+        else if(buyTech == true)
+        {
+            //Plays a button sound when you press BACK
+            if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the gameBoard to false
+                //set the buyDest true
+                gameBoard = true;
+                buyTech = false;
+            }
 
+            //Plays a button sound when you press PURCHASE
+            else if(x >= 543 && x <= 543+174 && y >= 828 && y <= 828+51)
+            {
+                //play the button sound
+                playButtonSound();
+                //add the selected tech to the player
+
+                //go back to the gameboard
+                gameBoard = true;
+                buyTech = false;
+            }
+
+        }        
+        else if(viewDest == true)
+        {
+            //Plays a button sound when you press BACK
+            if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the gameBoard to false
+                //set the viewDest true
+                gameBoard = true;
+                viewDest = false;
+            }
+
+        }
         //repaint with the new Booleans
         repaint();
 
@@ -1308,12 +1518,74 @@ implements MouseListener, MouseMotionListener, ActionListener {
             setUpSelectNumPlayersScreen();
             checkPlayerButtons(g);
         }
+        else if(buyTech == true)
+        {
+            setUpBuyTechScreen();
+            checkBuyTechButtons(g);
+        }
+        else if(viewTech == true)
+        {
+            setUpViewTechScreen();
+            checkViewTechButtons(g);
+        }
+        else if(viewDest == true)
+        {
+            setUpViewDestScreen();
+            checkViewDestButtons(g);
+        }
 
     }
 
     //===============================================
     //      methods for button highlighting
     //===============================================
+
+    public void checkViewTechButtons(Graphics g)
+    {
+        if(backButton == true)
+        {
+            //visibility of the play button is true
+            paintHighlightedBackButton(g);
+        }
+        else
+        {
+            //visibility of the play button icon is false
+            paintUnselectedBackButton(g);
+        }
+    }
+
+    public void checkBuyTechButtons(Graphics g)
+    {
+        if(backButton == true)
+        {
+            //visibility of the play button is true
+            paintHighlightedBackButton(g);
+        }
+        else
+        {
+            //visibility of the play button icon is false
+            paintUnselectedBackButton(g);
+        }
+
+        if(purchaseButton == true)
+            paintHighlightedPurchaseButton(g);
+        else
+            paintUnselectedPurchaseButton(g);
+    }
+
+    public void checkViewDestButtons(Graphics g)
+    {
+        if(backButton == true)
+        {
+            //visibility of the play button is true
+            paintHighlightedBackButton(g);
+        }
+        else
+        {
+            //visibility of the play button icon is false
+            paintUnselectedBackButton(g);
+        }
+    }
 
     public void checkCityHover(Graphics g)
     {
@@ -1611,6 +1883,24 @@ implements MouseListener, MouseMotionListener, ActionListener {
         g.drawImage(image.gameBoarbackground4Players, 0, 0, this);
     }
 
+    public void setUpBuyTechScreen()
+    {
+        Graphics g = getGraphics();
+        g.drawImage(image.buyTech, 0, 0, this);
+    }
+
+    public void setUpViewTechScreen()
+    {
+        Graphics g = getGraphics();
+        g.drawImage(image.viewTech, 0, 0, this);
+    }
+
+    public void setUpViewDestScreen()
+    {
+        Graphics g = getGraphics();
+        g.drawImage(image.viewDest, 0, 0, this);
+    }
+
     //===============================================
     //      Setting up the game sounds
     //===============================================
@@ -1673,111 +1963,128 @@ implements MouseListener, MouseMotionListener, ActionListener {
     //===============================================
     //      Setting up the button Images for print
     //===============================================
+
+    //buyTech
+    public void paintUnselectedPurchaseButton(Graphics g)
+    {
+        g.drawImage(image.purchaseButtonUnselected, 543, 828, this);
+    }
+
+    public void paintHighlightedPurchaseButton(Graphics g)
+    {
+        g.drawImage(image.purchaseButtonHighlighted, 543, 828, this);
+    }
+
+    public void paintPressedPurchaseButton(Graphics g)
+    {
+        g.drawImage(image.purchaseButtonPressed, 543, 828, this);
+    }
+
     //main menu
     public void paintUnselectedBackButton(Graphics g)
     {
-        g.drawImage(image.backButtonUnselected, 5, 864, this);
+        g.drawImage(image.backButtonUnselected, 5, 846, this);
     }
 
     public void paintUnselectedPlayGameButton(Graphics g)
     {
-        g.drawImage(image.playButtonUnselected, 509, 473, this);
+        g.drawImage(image.playButtonUnselected, 500, 464, this);
     }
 
     public void paintUnselectedRulesButton(Graphics g)
     {
-        g.drawImage(image.rulesButtonUnselected, 131, 473, this);
+        g.drawImage(image.rulesButtonUnselected, 125, 464, this);
     }
 
     public void paintUnselectedQuitButton(Graphics g)
     {
-        g.drawImage(image.quitButtonUnselected, 887, 473, this);
+        g.drawImage(image.quitButtonUnselected, 875, 464, this);
     }
 
     public void paintHighlightedBackButton(Graphics g)
     {
-        g.drawImage(image.backButtonHighlighted, 5, 864, this);
+        g.drawImage(image.backButtonHighlighted, 5, 846, this);
     }
 
     public void paintHighlightPlayGameButton(Graphics g)
     {
-        g.drawImage(image.playButtonHighlighted, 509, 473, this);
+        g.drawImage(image.playButtonHighlighted, 500, 464, this);
     }
 
     public void paintHighlightRulesButton(Graphics g)
     {
-        g.drawImage(image.rulesButtonHighlighted, 131, 473, this);
+        g.drawImage(image.rulesButtonHighlighted, 125, 464, this);
     }
 
     public void paintHighlightQuitButton(Graphics g)
     {
-        g.drawImage(image.quitButtonHighlighted, 887, 473, this);
+        g.drawImage(image.quitButtonHighlighted, 875, 464, this);
     }
 
     public void paintPressedBackButton(Graphics g)
     {
-        g.drawImage(image.backButtonPressed, 5, 864, this);
+        g.drawImage(image.backButtonPressed, 5, 846, this);
     }
 
     public void paintPressedPlayGameButton(Graphics g)
     {
-        g.drawImage(image.playButtonPressed, 509, 473, this);
+        g.drawImage(image.playButtonPressed, 500, 464, this);
     }
 
     public void paintPressedRulesButton(Graphics g)
     {
-        g.drawImage(image.rulesButtonPressed, 131, 473, this);
+        g.drawImage(image.rulesButtonPressed, 125, 464, this);
     }
 
     public void paintPressedQuitButton(Graphics g)
     {
-        g.drawImage(image.quitButtonPressed, 887, 473, this);
+        g.drawImage(image.quitButtonPressed, 875, 464, this);
     }
 
     //images for selectnumplyers screen
     public void paintUnselected2PlayersButton(Graphics g)
     {
-        g.drawImage(image.twoPlayersUnselected, 131, 473, this);
+        g.drawImage(image.twoPlayersUnselected, 125, 464, this);
     }
 
     public void paintUnselected3PlayersButton(Graphics g)
     {
-        g.drawImage(image.threePlayersUnselected, 509, 473, this);
+        g.drawImage(image.threePlayersUnselected, 500, 464, this);
     }
 
     public void paintUnselected4PlayersButton(Graphics g)
     {
-        g.drawImage(image.fourPlayersUnselected, 887, 473, this);
+        g.drawImage(image.fourPlayersUnselected, 875, 464, this);
     }
 
     public void paintHighlighted2PlayersButton(Graphics g)
     {
-        g.drawImage(image.twoPlayersHighlighted, 131, 473, this);
+        g.drawImage(image.twoPlayersHighlighted, 125, 464, this);
     }
 
     public void paintHighlighted3PlayersButton(Graphics g)
     {
-        g.drawImage(image.threePlayersHighlighted, 509, 473, this);
+        g.drawImage(image.threePlayersHighlighted, 500, 464, this);
     }
 
     public void paintHighlighted4PlayersButton(Graphics g)
     {
-        g.drawImage(image.fourPlayersHighlighted, 887, 473, this);
+        g.drawImage(image.fourPlayersHighlighted, 875, 464, this);
     }
 
     public void paintPressed2PlayersButton(Graphics g)
     {
-        g.drawImage(image.twoPlayersPressed, 131, 473, this);
+        g.drawImage(image.twoPlayersPressed, 125, 464, this);
     }
 
     public void paintPressed3PlayersButton(Graphics g)
     {
-        g.drawImage(image.threePlayersPressed, 509, 473, this);
+        g.drawImage(image.threePlayersPressed, 500, 464, this);
     }
 
     public void paintPressed4PlayersButton(Graphics g)
     {
-        g.drawImage(image.fourPlayersPressed, 887, 473, this);
+        g.drawImage(image.fourPlayersPressed, 875, 464, this);
     }
 
     //rules screen

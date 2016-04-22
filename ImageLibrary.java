@@ -118,12 +118,41 @@ public class ImageLibrary
     Image doverHover;
     Image franceHover;
 
+    //images for the viewTechScreen
+    Image viewTech;
+
+    //Images for the buyTechScreen
+    Image buyTech;
+    Image purchaseButtonUnselected;
+    Image purchaseButtonHighlighted;
+    Image purchaseButtonPressed;
+
+    //Images for the viewDestScreen
+    Image viewDest;
+
     /**
      * Constructor for objects of class ImageLibrary
      */
     public ImageLibrary()
     {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
+        //Images for the viewTechScreen
+        viewTech = toolkit.getImage(
+            "resources/images/backgrounds/viewTechScreen.png");
+            
+        //Images for the buyTechScreen
+        buyTech = toolkit.getImage(
+            "resources/images/backgrounds/buyTechScreen.png");
+        purchaseButtonUnselected = toolkit.getImage(
+            "resources/images/buttons/buyTech/purchaseButtonUnselected.png");
+        purchaseButtonHighlighted = toolkit.getImage(
+            "resources/images/buttons/buyTech/purchaseButtonHighlighted.png");
+        purchaseButtonPressed = toolkit.getImage(
+            "resources/images/buttons/buyTech/purchaseButtonPressed.png");
+            
+        //Images for the viewDestScreen
+        viewDest = toolkit.getImage(
+            "resources/images/backgrounds/viewDestScreen.png");
         //City Hover images
         emptyHover = toolkit.getImage(
             "resources/images/cityHover/emptyHover.png");
