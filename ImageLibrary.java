@@ -118,6 +118,8 @@ public class ImageLibrary
     Image doverHover;
     Image franceHover;
 
+    Image background;
+
     //images for the viewTechScreen
     Image viewTech;
 
@@ -138,9 +140,13 @@ public class ImageLibrary
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         //Images for the viewTechScreen
         viewTech = toolkit.getImage(
-            "resources/images/backgrounds/viewTechScreen.png");
-            
-        //Images for the buyTechScreen
+            "resources/images/backgrounds/GameBackground.png");
+
+
+        background = toolkit.getImage(
+            "resources/images/backgrounds/GameBackground.png");
+        
+            //Images for the buyTechScreen
         buyTech = toolkit.getImage(
             "resources/images/backgrounds/buyTechScreen.png");
         purchaseButtonUnselected = toolkit.getImage(
@@ -149,7 +155,7 @@ public class ImageLibrary
             "resources/images/buttons/buyTech/purchaseButtonHighlighted.png");
         purchaseButtonPressed = toolkit.getImage(
             "resources/images/buttons/buyTech/purchaseButtonPressed.png");
-            
+
         //Images for the viewDestScreen
         viewDest = toolkit.getImage(
             "resources/images/backgrounds/viewDestScreen.png");
@@ -354,5 +360,10 @@ public class ImageLibrary
             "resources/images/buttons/gameBoard/ViewDestButtonHighlighted.png");
         viewDestButtonPressed = toolkit.getImage(
             "resources/images/buttons/gameBoard/ViewDestButtonPressed.png");
+    }
+
+    public Image getHover(CityName name){
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        return toolkit.getImage("resources//images//cityHover//"+name+"Hover.png");
     }
 }

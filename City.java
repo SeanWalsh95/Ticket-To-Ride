@@ -9,15 +9,19 @@ public class City
 {
     CityName name;
     Region region;
+    int x, y;
+    boolean hover;
 
     /**
      * Constructor that takes a string deliminated with the given deliminator to initlize the values of this class
-     * in the following format (example uses ";" as a deliminator) name;region
+     * in the following format (example uses ";" as a deliminator) name;region;x;y
      */
     public City(String s, String delim){
         StringTokenizer st = new StringTokenizer(s,delim);
         String nameStr = st.nextToken();
         String regionStr = st.nextToken();
+        String xStr = st.nextToken();
+        String yStr = st.nextToken();
         
         String classMsg = "(ERR CONST City)";
         
@@ -31,9 +35,37 @@ public class City
         }catch(Exception e){
             System.err.println(classMsg+regionStr+": Invalid Region name");
         }
+        try{
+            x = Integer.parseInt(xStr);
+        }catch(Exception e){
+            System.err.println(classMsg+xStr+": Cannot parse x to int");
+        }
+        try{
+            y = Integer.parseInt(yStr);
+        }catch(Exception e){
+            System.err.println(classMsg+yStr+": Cannot parse y to int");
+        }
+        hover = false;
     }
 
     public String toString(){
-        return name+","+region;
+        return name+","+region+" ("+x+","+y+")";
+    }
+    
+    /**
+     * method to determine if a the curser is hovering over a citys location
+     * 
+     * @param mouseX the current x positon of the curser
+     * @param mouseY the current y positon of the curser
+     * 
+     * @return true if hovering false if not
+     */
+    public boolean inRange(int mouseX, int mouseY){
+        int xOFFSET= 16, yOFFSET = 39;
+        if(mouseX >= x+xOFFSET && mouseX <= x+20+xOFFSET && mouseY >= y+yOFFSET && mouseY <= y+20+yOFFSET){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
