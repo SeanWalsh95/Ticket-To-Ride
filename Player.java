@@ -17,7 +17,13 @@ public class Player
     protected ArrayList<Card> heldDestinationCards = new ArrayList<Card>();
     protected ArrayList<Card> heldTrainCards = new ArrayList<Card>();
     protected ArrayList<Tech> tech = new ArrayList<Tech>();
-    
+
+    public Player(int id, String name, Color color){
+        playerName = name;
+        playerID = id;
+        playerColor = color;
+    }
+
     public String toString(){
         return playerName+" ID:"+playerID;
     }

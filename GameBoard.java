@@ -14,8 +14,8 @@ public class GameBoard
     protected ArrayList<Tech> techAvail;
     protected Deck trainDeck;
     protected Deck destDeck;
-    private boolean lastTurn;
-    private int currentPlayer;
+    protected boolean lastTurn;
+    protected int currentPlayer;
 
     /**
      * Purchases the route between two cities for the current player

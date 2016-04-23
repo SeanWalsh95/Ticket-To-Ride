@@ -10,8 +10,8 @@ import java.awt.*;
 public class GamePanel extends JPanel{
     CityBuilder cb;//replace with a refrence to GameBoard.citys
     DeckBuilder db;//replace with a refrence to GameBoard.currentPlayer.hand;
-    ImageLibrary image;
     JButton viewTechnologyButt,buyTechnologyButt, viewDestinationsButt;
+    ImageLibrary image;
 
     /**
      * Constructor for objects of class GamePanel
@@ -21,8 +21,9 @@ public class GamePanel extends JPanel{
         this.setLayout(null);
 
         cb = new CityBuilder();
+
         image = new ImageLibrary();
-        
+
         viewTechnologyButt = new JButton("");
         viewTechnologyButt.setBounds(612, 508, 196, 51);
         viewTechnologyButt.setIcon(new ImageIcon(image.viewTechButtonUnselected));
@@ -80,7 +81,6 @@ public class GamePanel extends JPanel{
     }
 
 
-
     public void paintComponent( Graphics g )
     {
         super.paintComponent( g );
@@ -94,6 +94,7 @@ public class GamePanel extends JPanel{
                 g.drawImage(image.emptyHover, 8, 8, this);
             }
         }
+        drawPlayerHand(g);
     } // end method paintComponent
 
     public void mouseCheckHoverCity(int x, int y){
@@ -105,5 +106,9 @@ public class GamePanel extends JPanel{
                 c.hover = false;
                 repaint();
             }
+    }
+
+    public void drawPlayerHand(Graphics g){
+
     }
 }

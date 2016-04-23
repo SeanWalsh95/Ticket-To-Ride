@@ -8,12 +8,12 @@ import java.io.*;
  */
 public class DeckBuilder
 {
-    protected Deck trainDeck;
+    //protected Deck trainDeck;
     protected Deck destDeck;
     protected ArrayList<Card> tech;
     public DeckBuilder()
     {
-        trainDeck = new Deck("Train","resources\\TainCards.txt");
+        //trainDeck = new Deck("Train","resources\\TainCards.txt");
         destDeck = new  Deck("Dest","resources\\DestinationCards.txt");
         tech = new ArrayList<Card>();
         try(Scanner sc = new Scanner(new File("resources\\Technologies.txt")))

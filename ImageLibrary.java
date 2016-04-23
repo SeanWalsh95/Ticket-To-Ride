@@ -140,7 +140,7 @@ public class ImageLibrary
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         //Images for the viewTechScreen
         viewTech = toolkit.getImage(
-            "resources/images/backgrounds/GameBackground.png");
+            "resources/images/backgrounds/viewTechScreen.png");
 
 
         background = toolkit.getImage(
