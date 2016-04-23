@@ -64,7 +64,6 @@ public class GamePanel extends JPanel{
                 }
             });
 
-            
         buyTechnologyButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e)
                 {
@@ -81,7 +80,6 @@ public class GamePanel extends JPanel{
                 }
             });
 
-            
         viewDestinationsButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e)
                 {
@@ -98,7 +96,6 @@ public class GamePanel extends JPanel{
                 }
             });
 
-
         this.add(viewTechnologyButt);
         this.add(buyTechnologyButt);
         this.add(viewDestinationsButt);
@@ -109,7 +106,6 @@ public class GamePanel extends JPanel{
         CardSelectPanel panel = new CardSelectPanel(image.viewTech ,db.tech);
         JDialog jd = new JDialog(parentFrame,true);
         jd.setTitle("Card Select");
-
 
         jd.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed( MouseEvent e ){
@@ -143,7 +139,7 @@ public class GamePanel extends JPanel{
     public void setSelectedTechCards(ArrayList<Card> selected){
         selectedTechCards = selected;
     }
-    
+
     public void selectDestCards(){
         JFrame parentFrame = (JFrame)SwingUtilities.windowForComponent(this);
         CardSelectPanel panel = new CardSelectPanel(image.viewTech ,db.dest);
@@ -178,7 +174,7 @@ public class GamePanel extends JPanel{
             System.out.println(((Dest)c).toString());
         }
     }
-    
+
     public void setSelectedDestCards(ArrayList<Card> selected){
         selectedDestCards = selected;
     }
@@ -188,9 +184,9 @@ public class GamePanel extends JPanel{
         CardSelectPanel panel = new CardSelectPanel(image.viewTech ,cardsToShow);
         JDialog jd = new JDialog(parentFrame,true);
         jd.setTitle("Card Select");
-        
+
         panel.remove(panel.purchaseButt);
-        
+
         panel.backButt.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e)
                 {
@@ -202,7 +198,7 @@ public class GamePanel extends JPanel{
         jd.add(panel);
         jd.setVisible(true);
     }
-    
+
     public void paintComponent( Graphics g )
     {
         super.paintComponent( g );
@@ -229,7 +225,7 @@ public class GamePanel extends JPanel{
                 repaint();
             }
     }
-    
+
     public CityName getClickedCity(int x, int y){
         for(City c : cb.cities) 
             if(c.inRange(x,y))
@@ -238,6 +234,34 @@ public class GamePanel extends JPanel{
     }
 
     public void drawPlayerHand(Graphics g){
+        int rows = 3, cardWidth=146, cardHeight=94, leftBorder=650, topBorder=585;
+        ArrayList<Card> trainCards = db.train;//GameBoard.getCurrPlayer().getTech();
 
+        RouteColor[] order = new RouteColor[]{
+                RouteColor.BLACK,
+                RouteColor.GREEN,
+                RouteColor.BLUE,
+                RouteColor.YELLOW,
+                RouteColor.NEUTRAL,
+                RouteColor.ORANGE,
+                RouteColor.RED,
+                RouteColor.WHITE,
+                RouteColor.PINK
+            };
+
+        Font currentFont = g.getFont();
+        Font newFont = currentFont.deriveFont(currentFont.getSize() * 1.5F);
+        g.setFont(newFont);
+
+        for(int i=0; i < 9; i++){
+            int x = ((i%rows)*55)+(i%rows)*cardWidth+leftBorder;
+            int y = ((i/rows)*7)+(i/rows)*cardHeight+topBorder;
+            int count = CardCounter.countTrainColor(trainCards,order[i]);
+            if(count > 0){
+                g.drawImage(Train.getImage(order[i]),x,y,cardWidth,cardHeight,this);
+                g.setColor(Color.WHITE);
+                g.drawString(count+"",x-15,y+25);
+            }
+        }
     }
 }
