@@ -1,4 +1,6 @@
-
+import java.awt.*;
+import java.util.*;
+import java.io.File;
 /**
  * Write a description of class Train here.
  * 
@@ -17,7 +19,14 @@ public class Train extends Card
         this.color = color;
     }
 
-    public String getImage(){
-        return path+color+".jpg";
+    public Image getImage(){
+        String filePath = path+color+".jpg";
+        try(Scanner sc = new Scanner(new File(filePath))){
+            Toolkit toolkit = Toolkit.getDefaultToolkit();
+            return toolkit.getImage(filePath);
+        }catch(Exception e){
+            System.err.println("(ERR Train.getImage): Cannot find file \""+filePath+"\"");
+        }
+        return null;
     }
 }

@@ -46,23 +46,27 @@ public class Deck
         {
             while(sc.hasNext()){
                 if(type.equals("Train")){
+                    int cardCount = 0;
                     String[] line = sc.nextLine().split(",");
-                    int cardCount = Integer.parseInt(line[1]);
+                    try{
+                        cardCount = Integer.parseInt(line[1]);
+                    }catch(Exception e){
+                        System.err.println("(ERR TrainDeck)"+line[1]+": Cannot parse cardCount to int");
+                    }
                     for(int i = 0; i < cardCount; i++)
                         deck.add(new Train(RouteColor.valueOf(line[0])));
                 }
-                if(type.equals("Destination")){
+                if(type.equals("Dest")){
                     deck.add(new Dest(sc.nextLine(),","));
                 }
             }
         }
         catch(Exception e)
         {
-            System.err.println("Cannot find file from the follwing path"+path);
+            System.err.println("Cannot find file from the follwing path "+path);
         }
-        shuffle();
+        //shuffle();
     }
-
     /**
      * This method rebuilds the deck by taking the discarded cards adding 
      * them to the deck and then clearing the discarded pile

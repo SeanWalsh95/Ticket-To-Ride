@@ -1,4 +1,6 @@
+import java.awt.*;
 import java.util.*;
+import java.io.File;
 /**
  * Write a description of class Destination here.
  * 
@@ -29,7 +31,14 @@ public class Dest extends Card
         }
     }
     
-    public String getImage(){
-        return path+cityA+"_"+cityB+".jpg";
+    public Image getImage(){
+        String filePath = path+cityA+"_"+cityB+".jpg";
+        try(Scanner sc = new Scanner(new File(filePath))){
+            Toolkit toolkit = Toolkit.getDefaultToolkit();
+            return toolkit.getImage(filePath);
+        }catch(Exception e){
+            System.err.println("(ERR Dest.getImage): Cannot find file \""+filePath+"\"");
+        }
+        return null;
     }
 }

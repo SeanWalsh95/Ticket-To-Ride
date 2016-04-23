@@ -1,3 +1,4 @@
+import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
 /**
@@ -6,12 +7,11 @@ import java.awt.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class GamePanel extends JPanel
-{
-    // instance variables - replace the example below with your own
-    CityBuilder cb;
+public class GamePanel extends JPanel{
+    CityBuilder cb;//replace with a refrence to GameBoard.citys
+    DeckBuilder db;//replace with a refrence to GameBoard.currentPlayer.hand;
     ImageLibrary image;
-    JButton viewTechnologyButt, buyTechnologyButt, viewDestinationsButt;
+    JButton viewTechnologyButt,buyTechnologyButt, viewDestinationsButt;
 
     /**
      * Constructor for objects of class GamePanel
@@ -22,7 +22,7 @@ public class GamePanel extends JPanel
 
         cb = new CityBuilder();
         image = new ImageLibrary();
-
+        
         viewTechnologyButt = new JButton("");
         viewTechnologyButt.setBounds(612, 508, 196, 51);
         viewTechnologyButt.setIcon(new ImageIcon(image.viewTechButtonUnselected));
@@ -77,8 +77,9 @@ public class GamePanel extends JPanel
         this.add(viewTechnologyButt);
         this.add(buyTechnologyButt);
         this.add(viewDestinationsButt);
-
     }
+
+
 
     public void paintComponent( Graphics g )
     {

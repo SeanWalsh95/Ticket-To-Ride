@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.*;
 import java.io.File;
 /**
@@ -49,13 +50,14 @@ public class Tech extends Card
         }
     }
 
-    public String getImage(){
+    public Image getImage(){
         String filePath = path+name+".jpg";
         try(Scanner sc = new Scanner(new File(filePath))){
-            return filePath;
+            Toolkit toolkit = Toolkit.getDefaultToolkit();
+            return toolkit.getImage(filePath);
         }catch(Exception e){
             System.err.println("(ERR Tech.getImage): Cannot find file \""+filePath+"\"");
         }
-        return "";
+        return null;
     }
 }

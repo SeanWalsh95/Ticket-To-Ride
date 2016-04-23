@@ -8,12 +8,13 @@ import java.awt.event.*;
  * @version (a version number or a date)
  */
 public class GameFrame extends JFrame
-implements MouseListener, MouseMotionListener{
+implements MouseListener,MouseMotionListener{
 
     GamePanel gp;
 
     public GameFrame(){
         super( "Ticket to Ride - Team 3 (2016)" );
+        ImageLibrary image = new ImageLibrary();
 
         gp = new GamePanel();
         getContentPane().add( gp, BorderLayout.CENTER ); // add panel to frame
@@ -25,13 +26,7 @@ implements MouseListener, MouseMotionListener{
 
     public void mouseEntered( MouseEvent e ){}
 
-    public void mouseDragged(MouseEvent e){}
-
-    public void mousePressed( MouseEvent e ){
-        int x = e.getX();
-        int y = e.getY();
-        System.out.println("Click!"+" ("+x+","+y+")");
-    }
+    public void mousePressed( MouseEvent e ){}
 
     public void mouseReleased( MouseEvent e ){}
 
@@ -39,6 +34,8 @@ implements MouseListener, MouseMotionListener{
 
     public void mouseExited( MouseEvent e ){}
 
+    public void mouseDragged(MouseEvent e){}
+    
     public void mouseMoved(MouseEvent e){
         int x = e.getX();
         int y = e.getY();
