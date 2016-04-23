@@ -1,5 +1,6 @@
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.*;
 import java.awt.*;
 /**
  * Write a description of class GamePanel here.
@@ -12,6 +13,7 @@ public class GamePanel extends JPanel{
     DeckBuilder db;//replace with a refrence to GameBoard.currentPlayer.hand;
     JButton viewTechnologyButt,buyTechnologyButt, viewDestinationsButt;
     ImageLibrary image;
+    ArrayList<Card> selectedTechCards,selectedDestCards;
 
     /**
      * Constructor for objects of class GamePanel
@@ -23,6 +25,7 @@ public class GamePanel extends JPanel{
         cb = new CityBuilder();
 
         image = new ImageLibrary();
+        db = new DeckBuilder();
 
         viewTechnologyButt = new JButton("");
         viewTechnologyButt.setBounds(612, 508, 196, 51);
@@ -45,6 +48,12 @@ public class GamePanel extends JPanel{
         viewDestinationsButt.setOpaque(false);
         viewDestinationsButt.setContentAreaFilled(false);
 
+        viewTechnologyButt.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e)
+                {
+                    //showPlayerCards(GameBoard.getCurrPlayer().getTech());
+                }
+            });
         viewTechnologyButt.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseEntered(java.awt.event.MouseEvent evt) {
                     viewTechnologyButt.setIcon(new ImageIcon(image.viewTechButtonHighlighted));
@@ -55,6 +64,13 @@ public class GamePanel extends JPanel{
                 }
             });
 
+            
+        buyTechnologyButt.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e)
+                {
+                    purchaseTechCards();
+                }
+            });
         buyTechnologyButt.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseEntered(java.awt.event.MouseEvent evt) {
                     buyTechnologyButt.setIcon(new ImageIcon(image.buyTechButtonHighlighted));
@@ -65,6 +81,13 @@ public class GamePanel extends JPanel{
                 }
             });
 
+            
+        viewDestinationsButt.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e)
+                {
+                    selectDestCards();
+                }
+            });
         viewDestinationsButt.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseEntered(java.awt.event.MouseEvent evt) {
                     viewDestinationsButt.setIcon(new ImageIcon(image.viewDestButtonHighlighted));
@@ -75,12 +98,111 @@ public class GamePanel extends JPanel{
                 }
             });
 
+
         this.add(viewTechnologyButt);
         this.add(buyTechnologyButt);
         this.add(viewDestinationsButt);
     }
 
+    public void purchaseTechCards(){
+        JFrame parentFrame = (JFrame)SwingUtilities.windowForComponent(this);
+        CardSelectPanel panel = new CardSelectPanel(image.viewTech ,db.tech);
+        JDialog jd = new JDialog(parentFrame,true);
+        jd.setTitle("Card Select");
 
+
+        jd.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed( MouseEvent e ){
+                    Point p = e.getPoint();
+                    panel.select(panel.getCardIndex(p));
+                }
+            });
+        panel.backButt.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e)
+                {
+                    jd.dispose();
+                }
+            });
+        panel.purchaseButt.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e)
+                {
+                    setSelectedTechCards(panel.getSelected());
+                    jd.dispose();
+                }
+            });
+
+        jd.setSize( 1276, 939 ); // set frame size
+        jd.add(panel);
+        jd.setVisible(true);
+
+        for(Card c : selectedTechCards){
+            System.out.println(((Tech)c).name);
+        }
+    }
+
+    public void setSelectedTechCards(ArrayList<Card> selected){
+        selectedTechCards = selected;
+    }
+    
+    public void selectDestCards(){
+        JFrame parentFrame = (JFrame)SwingUtilities.windowForComponent(this);
+        CardSelectPanel panel = new CardSelectPanel(image.viewTech ,db.dest);
+        JDialog jd = new JDialog(parentFrame,true);
+        jd.setTitle("Card Select");
+
+        jd.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed( MouseEvent e ){
+                    Point p = e.getPoint();
+                    panel.select(panel.getCardIndex(p));
+                }
+            });
+        panel.backButt.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e)
+                {
+                    jd.dispose();
+                }
+            });
+        panel.purchaseButt.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e)
+                {
+                    setSelectedDestCards(panel.getSelected());
+                    jd.dispose();
+                }
+            });
+
+        jd.setSize( 1276, 939 ); // set frame size
+        jd.add(panel);
+        jd.setVisible(true);
+
+        for(Card c : selectedDestCards){
+            System.out.println(((Dest)c).toString());
+        }
+    }
+    
+    public void setSelectedDestCards(ArrayList<Card> selected){
+        selectedDestCards = selected;
+    }
+
+    public void showPlayerCards(ArrayList<Card> cardsToShow){
+        JFrame parentFrame = (JFrame)SwingUtilities.windowForComponent(this);
+        CardSelectPanel panel = new CardSelectPanel(image.viewTech ,cardsToShow);
+        JDialog jd = new JDialog(parentFrame,true);
+        jd.setTitle("Card Select");
+        
+        panel.remove(panel.purchaseButt);
+        
+        panel.backButt.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e)
+                {
+                    jd.dispose();
+                }
+            });
+
+        jd.setSize( 1276, 939 ); // set frame size
+        jd.add(panel);
+        jd.setVisible(true);
+    }
+    
     public void paintComponent( Graphics g )
     {
         super.paintComponent( g );
@@ -106,6 +228,13 @@ public class GamePanel extends JPanel{
                 c.hover = false;
                 repaint();
             }
+    }
+    
+    public CityName getClickedCity(int x, int y){
+        for(City c : cb.cities) 
+            if(c.inRange(x,y))
+                return c.name;
+        return null;
     }
 
     public void drawPlayerHand(Graphics g){

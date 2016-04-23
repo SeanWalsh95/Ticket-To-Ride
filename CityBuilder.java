@@ -15,7 +15,7 @@ public class CityBuilder
             while(sc.hasNext()){
                 String line = sc.nextLine();
                 City c = new City(line,",");
-                System.out.println(c.toString());
+                //System.out.println(c.toString());
                 cities.add(c);
             }
         }

@@ -18,11 +18,11 @@ public class CardSelectPanel extends JPanel
 
     public CardSelectPanel(Image background, ArrayList<Card> avalableCards){
         this.setLayout(null);
-        
+
         this.background = background;
         ImageLibrary image = new ImageLibrary();
 
-        selectedCards = new boolean[avalableCards.size()];
+        selectedCards = new boolean[avalableCards.size()+1];
         cards = new ArrayList<Card>(avalableCards);
         if(avalableCards.get(0) instanceof Dest){
             cardWidth = 160;
@@ -40,6 +40,7 @@ public class CardSelectPanel extends JPanel
         backButt.setBorderPainted(false);
         backButt.setOpaque(false);
         backButt.setContentAreaFilled(false);
+        backButt.setActionCommand("back");
 
         purchaseButt = new JButton("");
         purchaseButt.setBounds(543, 828, 174, 51);
@@ -47,6 +48,7 @@ public class CardSelectPanel extends JPanel
         purchaseButt.setBorderPainted(false);
         purchaseButt.setOpaque(false);
         purchaseButt.setContentAreaFilled(false);
+        purchaseButt.setActionCommand("purchase");
 
         backButt.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -88,14 +90,15 @@ public class CardSelectPanel extends JPanel
         }
     } // end method paintComponent
 
-    public int getCardIndex(int x, int y){
-        int row = ((x-leftBorder)-(rows*25))/cardWidth;
-        int col = ((y-topBorder)-((cards.size()/rows)*25))/cardHeight;
-        int index = row+col*rows;
-        if(index < cards.size()){
-            return index;
-        }else
-            return -1;
+    public int getCardIndex(Point point){
+        for(int i=0; i < cards.size();i++){
+            int x = ((i%rows)*25)+(i%rows)*cardWidth+leftBorder;
+            int y = ((i/rows)*25)+(i/rows)*cardHeight+topBorder;
+            Rectangle imageBounds = new Rectangle(x,y,cardWidth, cardHeight);
+            if (imageBounds.contains(point))
+                return i;
+        }
+        return -1;
     }
 
     public void select(int idx){
