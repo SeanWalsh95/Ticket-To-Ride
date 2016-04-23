@@ -1,5 +1,6 @@
 import java.awt.*;
-
+import java.io.*;
+import java.util.*;
 /**
  * ImageLibrary holds all the images that are
  * Used in the GUI construction
@@ -142,11 +143,10 @@ public class ImageLibrary
         viewTech = toolkit.getImage(
             "resources/images/backgrounds/viewTechScreen.png");
 
-
         background = toolkit.getImage(
             "resources/images/backgrounds/GameBackground.png");
-        
-            //Images for the buyTechScreen
+
+        //Images for the buyTechScreen
         buyTech = toolkit.getImage(
             "resources/images/backgrounds/buyTechScreen.png");
         purchaseButtonUnselected = toolkit.getImage(
@@ -363,7 +363,13 @@ public class ImageLibrary
     }
 
     public Image getHover(CityName name){
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        return toolkit.getImage("resources//images//cityHover//"+name+"Hover.png");
+        String path = "resources\\images\\cityHover\\"+name+"Hover.png";
+        try(Scanner sc = new Scanner(new File(path))){
+            Toolkit toolkit = Toolkit.getDefaultToolkit();
+            return toolkit.getImage(path);
+        }catch(Exception e){
+            System.err.println("cannot find city hover: "+path);
+        }
+        return null;
     }
 }

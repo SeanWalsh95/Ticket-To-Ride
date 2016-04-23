@@ -206,11 +206,8 @@ public class GamePanel extends JPanel{
         for(City c : cb.cities){
             g.setColor(Color.GREEN);
             g.drawRect(c.x,c.y,20,20);
-            if(c.hover){
+            if(c.hover)
                 g.drawImage(image.getHover(c.name), c.x-87, c.y-60, this);
-            }else{
-                g.drawImage(image.emptyHover, 8, 8, this);
-            }
         }
         drawPlayerHand(g);
     } // end method paintComponent
@@ -236,7 +233,6 @@ public class GamePanel extends JPanel{
     public void drawPlayerHand(Graphics g){
         int rows = 3, cardWidth=146, cardHeight=94, leftBorder=650, topBorder=585;
         ArrayList<Card> trainCards = db.train;//GameBoard.getCurrPlayer().getTech();
-
         RouteColor[] order = new RouteColor[]{
                 RouteColor.BLACK,
                 RouteColor.GREEN,
@@ -263,5 +259,29 @@ public class GamePanel extends JPanel{
                 g.drawString(count+"",x-15,y+25);
             }
         }
+    }
+
+    public RouteColor findClickdCard(Point point){
+        int rows = 3, cardWidth=146, cardHeight=94, leftBorder=650, topBorder=585;
+        RouteColor[] order = new RouteColor[]{
+                RouteColor.BLACK,
+                RouteColor.GREEN,
+                RouteColor.BLUE,
+                RouteColor.YELLOW,
+                RouteColor.NEUTRAL,
+                RouteColor.ORANGE,
+                RouteColor.RED,
+                RouteColor.WHITE,
+                RouteColor.PINK
+            };
+
+        for(int i=0; i < 9; i++){
+            int x = ((i%rows)*55)+(i%rows)*cardWidth+leftBorder;
+            int y = ((i/rows)*7)+(i/rows)*cardHeight+topBorder;
+            Rectangle imageBounds = new Rectangle(x,y,cardWidth, cardHeight);
+            if (imageBounds.contains(point))
+                return order[i];
+        }
+        return null;
     }
 }

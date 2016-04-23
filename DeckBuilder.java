@@ -23,7 +23,7 @@ public class DeckBuilder
         
         trainDeck.shuffle();
         train = new ArrayList<Card>();
-        train.addAll(trainDeck.drawCards(15));
+        train.addAll(trainDeck.drawCards(5));
         
         tech = new ArrayList<Card>();
         try(Scanner sc = new Scanner(new File("resources\\Technologies.txt")))
