@@ -103,7 +103,7 @@ public class GamePanel extends JPanel{
 
     public void purchaseTechCards(){
         JFrame parentFrame = (JFrame)SwingUtilities.windowForComponent(this);
-        CardSelectPanel panel = new CardSelectPanel(image.viewTech ,db.tech);
+        CardSelectPanel panel = new CardSelectPanel("Purchase Technologies",db.tech);
         JDialog jd = new JDialog(parentFrame,true);
         jd.setTitle("Card Select");
 
@@ -142,7 +142,7 @@ public class GamePanel extends JPanel{
 
     public void selectDestCards(){
         JFrame parentFrame = (JFrame)SwingUtilities.windowForComponent(this);
-        CardSelectPanel panel = new CardSelectPanel(image.viewTech ,db.dest);
+        CardSelectPanel panel = new CardSelectPanel("Select Destination Cards",db.dest);
         JDialog jd = new JDialog(parentFrame,true);
         jd.setTitle("Card Select");
 
@@ -181,7 +181,7 @@ public class GamePanel extends JPanel{
 
     public void showPlayerCards(ArrayList<Card> cardsToShow){
         JFrame parentFrame = (JFrame)SwingUtilities.windowForComponent(this);
-        CardSelectPanel panel = new CardSelectPanel(image.viewTech ,cardsToShow);
+        CardSelectPanel panel = new CardSelectPanel("Your Cards",cardsToShow);
         JDialog jd = new JDialog(parentFrame,true);
         jd.setTitle("Card Select");
 
@@ -204,29 +204,51 @@ public class GamePanel extends JPanel{
         super.paintComponent( g );
         g.drawImage(image.background,0,0,this);
         for(City c : cb.cities){
-            g.setColor(Color.GREEN);
-            g.drawRect(c.x,c.y,20,20);
+            JLabel cityLabel = new JLabel();
+            cityLabel.setBounds(c.x,c.y,20,20);
+            cityLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseEntered(java.awt.event.MouseEvent evt) {
+                        c.hover = true;
+                        repaint();
+                    }
+
+                    public void mouseExited(java.awt.event.MouseEvent evt) {
+                        c.hover = false;
+                        repaint();
+                    }
+                });
+            this.add(cityLabel);
+
+            //g.setColor(Color.GREEN);
+            //g.drawRect(c.x,c.y,20,20);
             if(c.hover)
                 g.drawImage(image.getHover(c.name), c.x-87, c.y-60, this);
         }
         drawPlayerHand(g);
     } // end method paintComponent
 
-    public void mouseCheckHoverCity(int x, int y){
-        for(City c : cb.cities) 
-            if(c.inRange(x,y)){
+    public void mouseCheckHoverCity(Point p){
+        for(City c : cb.cities){
+            Rectangle cityBounds = new Rectangle(c.getX(),c.getY(),20,20);
+            if(cityBounds.contains(p)){
                 c.hover = true;
                 repaint();
+                return;
             }else{
                 c.hover = false;
                 repaint();
             }
+        }
     }
 
-    public CityName getClickedCity(int x, int y){
-        for(City c : cb.cities) 
-            if(c.inRange(x,y))
+    public CityName getClickedCity(Point point){
+        for(City c : cb.cities){
+            Rectangle cityBounds = new Rectangle(c.getX(),c.getY(),20,20);
+            if(cityBounds.contains(point)){
+                System.out.println(c.name);
                 return c.name;
+            }
+        }
         return null;
     }
 
@@ -261,8 +283,8 @@ public class GamePanel extends JPanel{
         }
     }
 
-    public RouteColor findClickdCard(Point point){
-        int rows = 3, cardWidth=146, cardHeight=94, leftBorder=650, topBorder=585;
+    public RouteColor getClickedCard(Point point){
+        int rows = 3, cardWidth=146, cardHeight=94, leftBorder=650, topBorder=585+39;
         RouteColor[] order = new RouteColor[]{
                 RouteColor.BLACK,
                 RouteColor.GREEN,
@@ -279,8 +301,10 @@ public class GamePanel extends JPanel{
             int x = ((i%rows)*55)+(i%rows)*cardWidth+leftBorder;
             int y = ((i/rows)*7)+(i/rows)*cardHeight+topBorder;
             Rectangle imageBounds = new Rectangle(x,y,cardWidth, cardHeight);
-            if (imageBounds.contains(point))
+            if (imageBounds.contains(point)){
+                System.out.println(order[i]);
                 return order[i];
+            }
         }
         return null;
     }

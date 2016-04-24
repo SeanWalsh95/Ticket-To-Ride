@@ -1,6 +1,6 @@
 import javax.swing.JFrame;
-import java.awt.BorderLayout;
 import java.awt.event.*;
+import java.awt.*;
 /**
  * Write a description of class GameFrame here.
  * 
@@ -10,9 +10,13 @@ import java.awt.event.*;
 public class GameFrame extends JFrame
 implements MouseListener,MouseMotionListener{
     GamePanel gp;
+
+    Rectangle mapBounds = new Rectangle(9,39,590,885);
+    Rectangle playersCardsBounds = new Rectangle(609,573,636,320); 
+
     public GameFrame(){
         super( "Ticket to Ride - Team 3 (2016)" );
-        
+
         gp = new GamePanel();
         getContentPane().add( gp, BorderLayout.CENTER ); // add panel to frame
 
@@ -20,14 +24,14 @@ implements MouseListener,MouseMotionListener{
         addMouseMotionListener( this );
     }
 
-    public void actionPerformed(ActionEvent e){}
-
     public void mouseEntered( MouseEvent e ){}
 
     public void mousePressed( MouseEvent e ){
-        int x = e.getX();
-        int y = e.getY();
-        gp.getClickedCity(x,y);
+        Point p = e.getPoint();
+        if(mapBounds.contains(p))
+            gp.getClickedCity(p);
+        if(playersCardsBounds.contains(p))
+            gp.getClickedCard(p);
     }
 
     public void mouseReleased( MouseEvent e ){}
@@ -38,10 +42,6 @@ implements MouseListener,MouseMotionListener{
 
     public void mouseDragged(MouseEvent e){}
 
-    public void mouseMoved(MouseEvent e){
-        int x = e.getX();
-        int y = e.getY();
-        gp.mouseCheckHoverCity(x,y);
-    }
+    public void mouseMoved(MouseEvent e){}
 
 }

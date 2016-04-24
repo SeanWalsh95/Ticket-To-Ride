@@ -13,14 +13,16 @@ public class CardSelectPanel extends JPanel
     ArrayList<Card> cards, selected;
     int cardWidth, cardHeight ,rows, border = 50, topBorder = 100, leftBorder = 50;
     JButton backButt,purchaseButt;
+    String title;
 
     boolean[] selectedCards;
 
-    public CardSelectPanel(Image background, ArrayList<Card> avalableCards){
+    public CardSelectPanel(String titleIn, ArrayList<Card> avalableCards){
         this.setLayout(null);
-
-        this.background = background;
+        title = titleIn;
         ImageLibrary image = new ImageLibrary();
+        
+        this.background = image.woodBackground;
 
         selectedCards = new boolean[avalableCards.size()+1];
         cards = new ArrayList<Card>(avalableCards);
@@ -78,6 +80,14 @@ public class CardSelectPanel extends JPanel
     {
         super.paintComponent( g );
         g.drawImage(background,0,0,this);
+        g.setColor(Color.WHITE);
+        
+        Font currentFont = g.getFont();
+        Font newFont = currentFont.deriveFont(currentFont.getSize() * 3F);
+        g.setFont(newFont);
+        int titleBuffer = (this.getWidth()-(g.getFontMetrics().stringWidth(title)))/2;
+        g.drawString(title,titleBuffer,50);
+        
         //int x=58, y=110;
         for(int i=0; i < cards.size();i++){
             int x = ((i%rows)*25)+(i%rows)*cardWidth+leftBorder;

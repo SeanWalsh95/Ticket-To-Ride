@@ -13,6 +13,8 @@ public class ImageLibrary
     //mouse cursor
     Image mouseCursor;
 
+    Image woodBackground;
+
     //general Images needed more than once
     Image backButtonUnselected;
     Image backButtonHighlighted;
@@ -142,6 +144,9 @@ public class ImageLibrary
         //Images for the viewTechScreen
         viewTech = toolkit.getImage(
             "resources/images/backgrounds/viewTechScreen.png");
+
+        woodBackground = toolkit.getImage(
+            "resources/images/backgrounds/Woodbackground.png");
 
         background = toolkit.getImage(
             "resources/images/backgrounds/GameBackground.png");

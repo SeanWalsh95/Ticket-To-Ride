@@ -10,6 +10,7 @@ public class City
     CityName name;
     Region region;
     int x, y;
+    int xOFFSET= 16, yOFFSET = 39;
     boolean hover;
 
     /**
@@ -22,9 +23,9 @@ public class City
         String regionStr = st.nextToken();
         String xStr = st.nextToken();
         String yStr = st.nextToken();
-        
+
         String classMsg = "(ERR CONST City)";
-        
+
         try{
             name = CityName.valueOf(nameStr.replace(" ",""));
         }catch(Exception e){
@@ -51,6 +52,14 @@ public class City
     public String toString(){
         return name+","+region+" ("+x+","+y+")";
     }
+
+    public int getX(){
+        return x+xOFFSET;
+    }
+    
+    public int getY(){
+        return y+yOFFSET;
+    }
     
     /**
      * method to determine if a the curser is hovering over a citys location
@@ -61,7 +70,6 @@ public class City
      * @return true if hovering false if not
      */
     public boolean inRange(int mouseX, int mouseY){
-        int xOFFSET= 16, yOFFSET = 39;
         if(mouseX >= x+xOFFSET && mouseX <= x+20+xOFFSET && mouseY >= y+yOFFSET && mouseY <= y+20+yOFFSET){
             return true;
         }else{
