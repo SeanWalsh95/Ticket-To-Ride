@@ -23,7 +23,6 @@ import java.net.URISyntaxException;
 public class MenuNavigation extends JApplet
 implements MouseListener, MouseMotionListener, ActionListener {
     //set up access to the Image Library
-    ImageLibrary image = new ImageLibrary();
     String menuAudio = "";
 
     int playerCount = 0;
@@ -136,7 +135,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
 
         //set the mouseCursor image
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Cursor a = toolkit.createCustomCursor(image.mouseCursor,
+        Cursor a = toolkit.createCustomCursor(ImgLib.mouseCursor,
                 new Point(this.getX(),this.getY()), "img");
         setCursor(a);
 
@@ -1590,104 +1589,104 @@ implements MouseListener, MouseMotionListener, ActionListener {
     public void checkCityHover(Graphics g)
     {
         if(stornowayHover == true)
-            g.drawImage(image.stornowayHover, 395-87, 49-60, this);
+            g.drawImage(ImgLib.stornowayHover, 395-87, 49-60, this);
         if(ullapoolHover == true)
-            g.drawImage(image.ullapoolHover, 429-87, 94-60, this);
+            g.drawImage(ImgLib.ullapoolHover, 429-87, 94-60, this);
         if(wickHover == true)
-            g.drawImage(image.wickHover, 545-87, 94-60, this);
+            g.drawImage(ImgLib.wickHover, 545-87, 94-60, this);
         if(fortwilliamHover == true)
-            g.drawImage(image.fortwilliamHover, 383-87, 183-60, this);
+            g.drawImage(ImgLib.fortwilliamHover, 383-87, 183-60, this);
         if(invernessHover == true)
-            g.drawImage(image.invernessHover, 459-87, 138-60, this);
+            g.drawImage(ImgLib.invernessHover, 459-87, 138-60, this);
         if(aberdeenHover == true)
-            g.drawImage(image.aberdeenHover, 537-87, 219-60, this);
+            g.drawImage(ImgLib.aberdeenHover, 537-87, 219-60, this);
         if(londonderryHover == true)
-            g.drawImage(image.londonderryHover, 223-87, 263-60, this);
+            g.drawImage(ImgLib.londonderryHover, 223-87, 263-60, this);
         if(glasgowHover == true)
-            g.drawImage(image.glasgowHover, 387-87, 280-60, this);
+            g.drawImage(ImgLib.glasgowHover, 387-87, 280-60, this);
         if(edinburghHover == true)
-            g.drawImage(image.edinburghHover, 444-87, 297-60, this);
+            g.drawImage(ImgLib.edinburghHover, 444-87, 297-60, this);
         if(dundeeHover == true)
-            g.drawImage(image.dundeeHover, 482-87, 252-60, this);
+            g.drawImage(ImgLib.dundeeHover, 482-87, 252-60, this);
         if(sligoHover == true)
-            g.drawImage(image.sligoHover, 128-87, 298-60, this);
+            g.drawImage(ImgLib.sligoHover, 128-87, 298-60, this);
         if(belfastHover == true)
-            g.drawImage(image.belfastHover, 263-87, 342-60, this);
+            g.drawImage(ImgLib.belfastHover, 263-87, 342-60, this);
         if(stranraerHover == true)
-            g.drawImage(image.stranraerHover, 321-87, 336-60, this);
+            g.drawImage(ImgLib.stranraerHover, 321-87, 336-60, this);
         if(galwayHover == true)
-            g.drawImage(image.galwayHover, 60-87, 364-60, this);
+            g.drawImage(ImgLib.galwayHover, 60-87, 364-60, this);
         if(dundalkHover == true)
-            g.drawImage(image.dundalkHover, 215-87, 377-60, this);
+            g.drawImage(ImgLib.dundalkHover, 215-87, 377-60, this);
         if(carlisleHover == true)
-            g.drawImage(image.carlisleHover, 410-87, 390-60, this);
+            g.drawImage(ImgLib.carlisleHover, 410-87, 390-60, this);
         if(newcastleHover == true)
-            g.drawImage(image.newcastleHover, 477-87, 407-60, this);
+            g.drawImage(ImgLib.newcastleHover, 477-87, 407-60, this);
         if(limerickHover == true)
-            g.drawImage(image.limerickHover, 60-87, 430-60, this);
+            g.drawImage(ImgLib.limerickHover, 60-87, 430-60, this);
         if(tullamoreHover == true)
-            g.drawImage(image.tullamoreHover, 135-87, 417-60, this);
+            g.drawImage(ImgLib.tullamoreHover, 135-87, 417-60, this);
         if(dublinHover == true)
-            g.drawImage(image.dublinHover, 192-87, 432-60, this);
+            g.drawImage(ImgLib.dublinHover, 192-87, 432-60, this);
         if(barrowsHover == true)
-            g.drawImage(image.barrowsHover, 371-87, 437-60, this);
+            g.drawImage(ImgLib.barrowsHover, 371-87, 437-60, this);
         if(corkHover == true)
-            g.drawImage(image.corkHover, 49-87, 499-60, this);
+            g.drawImage(ImgLib.corkHover, 49-87, 499-60, this);
         if(rosslareHover == true)
-            g.drawImage(image.rosslareHover, 144-87, 511-60, this);
+            g.drawImage(ImgLib.rosslareHover, 144-87, 511-60, this);
         if(hollyheadHover == true)
-            g.drawImage(image.hollyheadHover, 275-87, 476-60, this);
+            g.drawImage(ImgLib.hollyheadHover, 275-87, 476-60, this);
         if(liverpoolHover == true)
-            g.drawImage(image.liverpoolHover, 345-87, 488-60, this);
+            g.drawImage(ImgLib.liverpoolHover, 345-87, 488-60, this);
         if(leedsHover == true)
-            g.drawImage(image.leedsHover, 442-87, 493-60, this);
+            g.drawImage(ImgLib.leedsHover, 442-87, 493-60, this);
         if(aberystrythHover == true)
-            g.drawImage(image.aberystrythHover, 255-87, 561-60, this);
+            g.drawImage(ImgLib.aberystrythHover, 255-87, 561-60, this);
         if(manchesterHover == true)
-            g.drawImage(image.manchesterHover, 391-87, 520-60, this);
+            g.drawImage(ImgLib.manchesterHover, 391-87, 520-60, this);
         if(hullHover == true)
-            g.drawImage(image.hullHover, 493-87, 530-60, this);
+            g.drawImage(ImgLib.hullHover, 493-87, 530-60, this);
         if(carmarthenHover == true)
-            g.drawImage(image.carmarthenHover, 221-87, 610-60, this);
+            g.drawImage(ImgLib.carmarthenHover, 221-87, 610-60, this);
         if(llandrindodwellsHover == true)
-            g.drawImage(image.llandrindodwellsHover, 294-87, 601-60, this);
+            g.drawImage(ImgLib.llandrindodwellsHover, 294-87, 601-60, this);
         if(birminghamHover == true)
-            g.drawImage(image.birminghamHover, 374-87, 612-60, this);
+            g.drawImage(ImgLib.birminghamHover, 374-87, 612-60, this);
         if(nottinghamHover == true)
-            g.drawImage(image.nottinghamHover, 425-87, 586-60, this);
+            g.drawImage(ImgLib.nottinghamHover, 425-87, 586-60, this);
         if(cardiffHover == true)
-            g.drawImage(image.cardiffHover, 262-87, 650-60, this);
+            g.drawImage(ImgLib.cardiffHover, 262-87, 650-60, this);
         if(northamptonHover == true)
-            g.drawImage(image.northamptonHover, 412-87, 656-60, this);
+            g.drawImage(ImgLib.northamptonHover, 412-87, 656-60, this);
         if(cambridgeHover == true)
-            g.drawImage(image.cambridgeHover, 467-87, 673-60, this);
+            g.drawImage(ImgLib.cambridgeHover, 467-87, 673-60, this);
         if(norwichHover == true)
-            g.drawImage(image.norwichHover, 553-87, 667-60, this);
+            g.drawImage(ImgLib.norwichHover, 553-87, 667-60, this);
         if(penzanceHover == true)
-            g.drawImage(image.penzanceHover, 93-87, 704-60, this);
+            g.drawImage(ImgLib.penzanceHover, 93-87, 704-60, this);
         if(plymouthHover == true)
-            g.drawImage(image.plymouthHover, 182-87, 713-60, this);
+            g.drawImage(ImgLib.plymouthHover, 182-87, 713-60, this);
         if(bristolHover == true)
-            g.drawImage(image.bristolHover, 300-87, 685-60, this);
+            g.drawImage(ImgLib.bristolHover, 300-87, 685-60, this);
         if(readingHover == true)
-            g.drawImage(image.readingHover, 380-87, 707-60, this);
+            g.drawImage(ImgLib.readingHover, 380-87, 707-60, this);
         if(londonHover == true)
-            g.drawImage(image.londonHover, 436-87, 726-60, this);
+            g.drawImage(ImgLib.londonHover, 436-87, 726-60, this);
         if(ipswichHover == true)
-            g.drawImage(image.ipswichHover, 510-87, 719-60, this);
+            g.drawImage(ImgLib.ipswichHover, 510-87, 719-60, this);
         if(southamptonHover == true)
-            g.drawImage(image.southamptonHover, 348-87, 761-60, this);
+            g.drawImage(ImgLib.southamptonHover, 348-87, 761-60, this);
         if(brightonHover == true)
-            g.drawImage(image.brightonHover, 409-87, 787-60, this);
+            g.drawImage(ImgLib.brightonHover, 409-87, 787-60, this);
         if(doverHover == true)
-            g.drawImage(image.doverHover, 501-87, 788-60, this);
+            g.drawImage(ImgLib.doverHover, 501-87, 788-60, this);
         if(franceHover == true)
-            g.drawImage(image.franceHover, 570-87, 829-60, this);
+            g.drawImage(ImgLib.franceHover, 570-87, 829-60, this);
         if(franceHover == true)
-            g.drawImage(image.franceHover, 301-87, 860-60, this);
+            g.drawImage(ImgLib.franceHover, 301-87, 860-60, this);
 
         else
-            g.drawImage(image.emptyHover, 8, 8, this);
+            g.drawImage(ImgLib.emptyHover, 8, 8, this);
 
     }
 
@@ -1821,19 +1820,19 @@ implements MouseListener, MouseMotionListener, ActionListener {
     {
 
         if(viewTechButton == true)
-            g.drawImage(image.viewTechButtonHighlighted, 612, 508, this);
+            g.drawImage(ImgLib.viewTechButtonHighlighted, 612, 508, this);
         else
-            g.drawImage(image.viewTechButtonUnselected, 612, 508, this);
+            g.drawImage(ImgLib.viewTechButtonUnselected, 612, 508, this);
 
         if(buyTechButton == true)
-            g.drawImage(image.buyTechButtonHighlighted, 828, 508, this);
+            g.drawImage(ImgLib.buyTechButtonHighlighted, 828, 508, this);
         else
-            g.drawImage(image.buyTechButtonUnselected, 828, 508, this);
+            g.drawImage(ImgLib.buyTechButtonUnselected, 828, 508, this);
 
         if(viewDestButton == true)
-            g.drawImage(image.viewDestButtonHighlighted, 1044, 508, this);
+            g.drawImage(ImgLib.viewDestButtonHighlighted, 1044, 508, this);
         else
-            g.drawImage(image.viewDestButtonUnselected, 1044, 508, this);
+            g.drawImage(ImgLib.viewDestButtonUnselected, 1044, 508, this);
 
     }    
 
@@ -1844,61 +1843,61 @@ implements MouseListener, MouseMotionListener, ActionListener {
     public void setUpMainMenuScreen()
     {
         Graphics g = getGraphics();
-        g.drawImage(image.mainMenu, 0, 0, this);
+        g.drawImage(ImgLib.mainMenu, 0, 0, this);
     }
 
     public void setUpRulesScreen1()
     {
         Graphics g = getGraphics();
-        g.drawImage(image.rulesScreen1, 0, 0, this);
+        g.drawImage(ImgLib.rulesScreen1, 0, 0, this);
     }
 
     public void setUpRulesScreen2()
     {
         Graphics g = getGraphics();
-        g.drawImage(image.rulesScreen2, 0, 0, this);
+        g.drawImage(ImgLib.rulesScreen2, 0, 0, this);
     }
 
     public void setUpSelectNumPlayersScreen()
     {
         Graphics g = getGraphics();
-        g.drawImage(image.selectPlayers, 0, 0, this);
+        g.drawImage(ImgLib.selectPlayers, 0, 0, this);
     }
 
     public void setUpGameBoardScreenTwoPlayers()
     {
         Graphics g = getGraphics();
-        g.drawImage(image.gameBoarbackground2Players, 0, 0, this);
+        g.drawImage(ImgLib.gameBoarbackground2Players, 0, 0, this);
     }
 
     public void setUpGameBoardScreenThreePlayers()
     {
         Graphics g = getGraphics();
-        g.drawImage(image.gameBoarbackground3Players, 0, 0, this);
+        g.drawImage(ImgLib.gameBoarbackground3Players, 0, 0, this);
     }
 
     public void setUpGameBoardScreenFourPlayers()
     {
         Graphics g = getGraphics();
-        g.drawImage(image.gameBoarbackground4Players, 0, 0, this);
+        g.drawImage(ImgLib.gameBoarbackground4Players, 0, 0, this);
     }
 
     public void setUpBuyTechScreen()
     {
         Graphics g = getGraphics();
-        g.drawImage(image.buyTech, 0, 0, this);
+        g.drawImage(ImgLib.buyTech, 0, 0, this);
     }
 
     public void setUpViewTechScreen()
     {
         Graphics g = getGraphics();
-        g.drawImage(image.viewTech, 0, 0, this);
+        g.drawImage(ImgLib.viewTech, 0, 0, this);
     }
 
     public void setUpViewDestScreen()
     {
         Graphics g = getGraphics();
-        g.drawImage(image.viewDest, 0, 0, this);
+        g.drawImage(ImgLib.viewDest, 0, 0, this);
     }
 
     //===============================================
@@ -1967,186 +1966,186 @@ implements MouseListener, MouseMotionListener, ActionListener {
     //buyTech
     public void paintUnselectedPurchaseButton(Graphics g)
     {
-        g.drawImage(image.purchaseButtonUnselected, 543, 828, this);
+        g.drawImage(ImgLib.purchaseButtonUnselected, 543, 828, this);
     }
 
     public void paintHighlightedPurchaseButton(Graphics g)
     {
-        g.drawImage(image.purchaseButtonHighlighted, 543, 828, this);
+        g.drawImage(ImgLib.purchaseButtonHighlighted, 543, 828, this);
     }
 
     public void paintPressedPurchaseButton(Graphics g)
     {
-        g.drawImage(image.purchaseButtonPressed, 543, 828, this);
+        g.drawImage(ImgLib.purchaseButtonPressed, 543, 828, this);
     }
 
     //main menu
     public void paintUnselectedBackButton(Graphics g)
     {
-        g.drawImage(image.backButtonUnselected, 5, 846, this);
+        g.drawImage(ImgLib.backButtonUnselected, 5, 846, this);
     }
 
     public void paintUnselectedPlayGameButton(Graphics g)
     {
-        g.drawImage(image.playButtonUnselected, 500, 464, this);
+        g.drawImage(ImgLib.playButtonUnselected, 500, 464, this);
     }
 
     public void paintUnselectedRulesButton(Graphics g)
     {
-        g.drawImage(image.rulesButtonUnselected, 125, 464, this);
+        g.drawImage(ImgLib.rulesButtonUnselected, 125, 464, this);
     }
 
     public void paintUnselectedQuitButton(Graphics g)
     {
-        g.drawImage(image.quitButtonUnselected, 875, 464, this);
+        g.drawImage(ImgLib.quitButtonUnselected, 875, 464, this);
     }
 
     public void paintHighlightedBackButton(Graphics g)
     {
-        g.drawImage(image.backButtonHighlighted, 5, 846, this);
+        g.drawImage(ImgLib.backButtonHighlighted, 5, 846, this);
     }
 
     public void paintHighlightPlayGameButton(Graphics g)
     {
-        g.drawImage(image.playButtonHighlighted, 500, 464, this);
+        g.drawImage(ImgLib.playButtonHighlighted, 500, 464, this);
     }
 
     public void paintHighlightRulesButton(Graphics g)
     {
-        g.drawImage(image.rulesButtonHighlighted, 125, 464, this);
+        g.drawImage(ImgLib.rulesButtonHighlighted, 125, 464, this);
     }
 
     public void paintHighlightQuitButton(Graphics g)
     {
-        g.drawImage(image.quitButtonHighlighted, 875, 464, this);
+        g.drawImage(ImgLib.quitButtonHighlighted, 875, 464, this);
     }
 
     public void paintPressedBackButton(Graphics g)
     {
-        g.drawImage(image.backButtonPressed, 5, 846, this);
+        g.drawImage(ImgLib.backButtonPressed, 5, 846, this);
     }
 
     public void paintPressedPlayGameButton(Graphics g)
     {
-        g.drawImage(image.playButtonPressed, 500, 464, this);
+        g.drawImage(ImgLib.playButtonPressed, 500, 464, this);
     }
 
     public void paintPressedRulesButton(Graphics g)
     {
-        g.drawImage(image.rulesButtonPressed, 125, 464, this);
+        g.drawImage(ImgLib.rulesButtonPressed, 125, 464, this);
     }
 
     public void paintPressedQuitButton(Graphics g)
     {
-        g.drawImage(image.quitButtonPressed, 875, 464, this);
+        g.drawImage(ImgLib.quitButtonPressed, 875, 464, this);
     }
 
     //images for selectnumplyers screen
     public void paintUnselected2PlayersButton(Graphics g)
     {
-        g.drawImage(image.twoPlayersUnselected, 125, 464, this);
+        g.drawImage(ImgLib.twoPlayersUnselected, 125, 464, this);
     }
 
     public void paintUnselected3PlayersButton(Graphics g)
     {
-        g.drawImage(image.threePlayersUnselected, 500, 464, this);
+        g.drawImage(ImgLib.threePlayersUnselected, 500, 464, this);
     }
 
     public void paintUnselected4PlayersButton(Graphics g)
     {
-        g.drawImage(image.fourPlayersUnselected, 875, 464, this);
+        g.drawImage(ImgLib.fourPlayersUnselected, 875, 464, this);
     }
 
     public void paintHighlighted2PlayersButton(Graphics g)
     {
-        g.drawImage(image.twoPlayersHighlighted, 125, 464, this);
+        g.drawImage(ImgLib.twoPlayersHighlighted, 125, 464, this);
     }
 
     public void paintHighlighted3PlayersButton(Graphics g)
     {
-        g.drawImage(image.threePlayersHighlighted, 500, 464, this);
+        g.drawImage(ImgLib.threePlayersHighlighted, 500, 464, this);
     }
 
     public void paintHighlighted4PlayersButton(Graphics g)
     {
-        g.drawImage(image.fourPlayersHighlighted, 875, 464, this);
+        g.drawImage(ImgLib.fourPlayersHighlighted, 875, 464, this);
     }
 
     public void paintPressed2PlayersButton(Graphics g)
     {
-        g.drawImage(image.twoPlayersPressed, 125, 464, this);
+        g.drawImage(ImgLib.twoPlayersPressed, 125, 464, this);
     }
 
     public void paintPressed3PlayersButton(Graphics g)
     {
-        g.drawImage(image.threePlayersPressed, 500, 464, this);
+        g.drawImage(ImgLib.threePlayersPressed, 500, 464, this);
     }
 
     public void paintPressed4PlayersButton(Graphics g)
     {
-        g.drawImage(image.fourPlayersPressed, 875, 464, this);
+        g.drawImage(ImgLib.fourPlayersPressed, 875, 464, this);
     }
 
     //rules screen
     public void paintUnselectedNextButton(Graphics g)
     {
-        g.drawImage(image.nextButtonUnselected, 962, 13, this);
+        g.drawImage(ImgLib.nextButtonUnselected, 962, 13, this);
     }
 
     public void paintUnselectedPreviousButton(Graphics g)
     {
-        g.drawImage(image.previousButtonUnselected, 219, 13, this);
+        g.drawImage(ImgLib.previousButtonUnselected, 219, 13, this);
     }
 
     public void paintHighlightedNextButton(Graphics g)
     {
-        g.drawImage(image.nextButtonHighlighted, 962, 13, this);
+        g.drawImage(ImgLib.nextButtonHighlighted, 962, 13, this);
     }
 
     public void paintHighlightedPreviousButton(Graphics g)
     {
-        g.drawImage(image.previousButtonHighlighted, 219, 13, this);
+        g.drawImage(ImgLib.previousButtonHighlighted, 219, 13, this);
     }
 
     public void paintPressedNextButton(Graphics g)
     {
-        g.drawImage(image.nextButtonPressed, 962, 13, this);
+        g.drawImage(ImgLib.nextButtonPressed, 962, 13, this);
     }
 
     public void paintPressedPreviousButton(Graphics g)
     {
-        g.drawImage(image.previousButtonPressed, 219, 13, this);
+        g.drawImage(ImgLib.previousButtonPressed, 219, 13, this);
     }
 
     //gameboard
     public void paintPressedviewTechButton(Graphics g)
     {
-        g.drawImage(image.viewTechButtonPressed, 612, 508, this);
+        g.drawImage(ImgLib.viewTechButtonPressed, 612, 508, this);
     }
 
     public void paintPressedBuyTechButton(Graphics g)
     {
-        g.drawImage(image.buyTechButtonPressed, 828, 508, this);
+        g.drawImage(ImgLib.buyTechButtonPressed, 828, 508, this);
     }
 
     public void paintPressedviewDestButton(Graphics g)
     {
-        g.drawImage(image.viewDestButtonPressed, 1044, 508, this);
+        g.drawImage(ImgLib.viewDestButtonPressed, 1044, 508, this);
     }
 
     public void paintUnselectedviewTechButton(Graphics g)
     {
-        g.drawImage(image.viewTechButtonUnselected, 612, 508, this);
+        g.drawImage(ImgLib.viewTechButtonUnselected, 612, 508, this);
     }
 
     public void paintUnselectedBuyTechButton(Graphics g)
     {
-        g.drawImage(image.buyTechButtonUnselected, 828, 508, this);
+        g.drawImage(ImgLib.buyTechButtonUnselected, 828, 508, this);
     }
 
     public void paintUnselectedviewDestButton(Graphics g)
     {
-        g.drawImage(image.viewDestButtonUnselected, 1044, 508, this);
+        g.drawImage(ImgLib.viewDestButtonUnselected, 1044, 508, this);
     }
 
     ////////////////////////////////////////////////////////////////////////////////

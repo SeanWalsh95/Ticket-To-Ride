@@ -20,9 +20,8 @@ public class CardSelectPanel extends JPanel
     public CardSelectPanel(String titleIn, ArrayList<Card> avalableCards){
         this.setLayout(null);
         title = titleIn;
-        ImageLibrary image = new ImageLibrary();
-        
-        this.background = image.woodBackground;
+
+        this.background = ImgLib.woodBackground;
 
         selectedCards = new boolean[avalableCards.size()+1];
         cards = new ArrayList<Card>(avalableCards);
@@ -38,7 +37,7 @@ public class CardSelectPanel extends JPanel
 
         backButt = new JButton("");
         backButt.setBounds(5, 828, 98, 48);
-        backButt.setIcon(new ImageIcon(image.backButtonUnselected));
+        backButt.setIcon(new ImageIcon(ImgLib.backButtonUnselected));
         backButt.setBorderPainted(false);
         backButt.setOpaque(false);
         backButt.setContentAreaFilled(false);
@@ -46,7 +45,7 @@ public class CardSelectPanel extends JPanel
 
         purchaseButt = new JButton("");
         purchaseButt.setBounds(543, 828, 174, 51);
-        purchaseButt.setIcon(new ImageIcon(image.purchaseButtonUnselected));
+        purchaseButt.setIcon(new ImageIcon(ImgLib.purchaseButtonUnselected));
         purchaseButt.setBorderPainted(false);
         purchaseButt.setOpaque(false);
         purchaseButt.setContentAreaFilled(false);
@@ -54,21 +53,21 @@ public class CardSelectPanel extends JPanel
 
         backButt.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseEntered(java.awt.event.MouseEvent evt) {
-                    backButt.setIcon(new ImageIcon(image.backButtonHighlighted));
+                    backButt.setIcon(new ImageIcon(ImgLib.backButtonHighlighted));
                 }
 
                 public void mouseExited(java.awt.event.MouseEvent evt) {
-                    backButt.setIcon(new ImageIcon(image.backButtonUnselected));
+                    backButt.setIcon(new ImageIcon(ImgLib.backButtonUnselected));
                 }
             });
 
         purchaseButt.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseEntered(java.awt.event.MouseEvent evt) {
-                    purchaseButt.setIcon(new ImageIcon(image.purchaseButtonHighlighted));
+                    purchaseButt.setIcon(new ImageIcon(ImgLib.purchaseButtonHighlighted));
                 }
 
                 public void mouseExited(java.awt.event.MouseEvent evt) {
-                    purchaseButt.setIcon(new ImageIcon(image.purchaseButtonUnselected));
+                    purchaseButt.setIcon(new ImageIcon(ImgLib.purchaseButtonUnselected));
                 }
             });
 
@@ -81,13 +80,13 @@ public class CardSelectPanel extends JPanel
         super.paintComponent( g );
         g.drawImage(background,0,0,this);
         g.setColor(Color.WHITE);
-        
+
         Font currentFont = g.getFont();
         Font newFont = currentFont.deriveFont(currentFont.getSize() * 3F);
         g.setFont(newFont);
         int titleBuffer = (this.getWidth()-(g.getFontMetrics().stringWidth(title)))/2;
         g.drawString(title,titleBuffer,50);
-        
+
         //int x=58, y=110;
         for(int i=0; i < cards.size();i++){
             int x = ((i%rows)*25)+(i%rows)*cardWidth+leftBorder;
@@ -118,6 +117,14 @@ public class CardSelectPanel extends JPanel
             selectedCards[idx] = false;
         }
         repaint();
+    }
+
+    public int getNumberSelected(){
+        int count=0;
+        for(boolean selected : selectedCards)
+            if(selected)
+                count++;
+        return count;
     }
 
     public ArrayList<Card> getSelected(){

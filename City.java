@@ -29,7 +29,7 @@ public class City
         try{
             name = CityName.valueOf(nameStr.replace(" ",""));
         }catch(Exception e){
-            System.err.println(classMsg+nameStr+": Invalid Region name");
+            System.err.println(classMsg+nameStr+": Invalid City name");
         }
         try{
             region = Region.valueOf(regionStr.replace(" ",""));
