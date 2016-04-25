@@ -29,7 +29,7 @@ public class GamePanel extends JPanel{
 
         selectedTechCards = new ArrayList<Card>();
         selectedDestCards = new ArrayList<Card>();
-        
+
         viewTechnologyButt = new JButton("");
         viewTechnologyButt.setBounds(612, 508, 196, 51);
         viewTechnologyButt.setIcon(new ImageIcon(ImgLib.viewTechButtonUnselected));
@@ -142,7 +142,7 @@ public class GamePanel extends JPanel{
     }
 
     public ArrayList<Card> purchaseTechCards(){
-        int limit = 1, minimum = 0;
+        int limit = 1, minimum = 1;
         JFrame parentFrame = (JFrame)SwingUtilities.windowForComponent(this);
         CardSelectPanel panel = new CardSelectPanel("Purchase Technologies",db.tech);
         JDialog jd = new JDialog(parentFrame,true);
@@ -165,8 +165,12 @@ public class GamePanel extends JPanel{
         panel.purchaseButt.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e)
                 {
-                    setSelectedTechCards(panel.getSelected());
-                    jd.dispose();
+                    if(panel.getNumberSelected() >= minimum){
+                        selectedTechCards = panel.getSelected();
+                        jd.dispose();
+                    }else{
+                        JOptionPane.showMessageDialog(new JFrame(), "You must select at least "+minimum+" cards");
+                    }
                 }
             });
 
@@ -206,7 +210,7 @@ public class GamePanel extends JPanel{
                 public void actionPerformed(java.awt.event.ActionEvent e)
                 {
                     if(panel.getNumberSelected() >= minimum){
-                        setSelectedDestCards(panel.getSelected());
+                        selectedDestCards = panel.getSelected();
                         jd.dispose();
                     }else{
                         JOptionPane.showMessageDialog(new JFrame(), "You must select at least "+minimum+" cards");
@@ -219,10 +223,6 @@ public class GamePanel extends JPanel{
         jd.setVisible(true);
 
         return selectedDestCards;
-    }
-
-    public void setSelectedDestCards(ArrayList<Card> selected){
-        selectedDestCards = selected;
     }
 
     public void showPlayerCards(String title,ArrayList<Card> cardsToShow){
@@ -250,12 +250,13 @@ public class GamePanel extends JPanel{
         super.paintComponent( g );
         g.drawImage(ImgLib.background,0,0,this);
         for(City c : cb.cities){
-            //g.setColor(Color.GREEN);
-            //g.drawRect(c.x,c.y,20,20);
+            g.setColor(Color.GREEN);
+            g.drawRect(c.x,c.y,20,20);
             if(c.hover)
                 g.drawImage(ImgLib.getHover(c.name), c.x-87, c.y-60, this);
         }
         drawPlayerHand(g);
+        //drawTrainDeck(g);
     } // end method paintComponent
 
     public void mouseCheckHoverCity(Point p){
@@ -306,7 +307,7 @@ public class GamePanel extends JPanel{
             int x = ((i%rows)*55)+(i%rows)*cardWidth+leftBorder;
             int y = ((i/rows)*7)+(i/rows)*cardHeight+topBorder;
             int count = CardCounter.countTrainColor(trainCards,order[i]);
-            if(count >= 0){
+            if(count > 0){
                 g.drawImage(Train.getImage(order[i]),x,y,cardWidth,cardHeight,this);
                 g.setColor(Color.WHITE);
                 g.drawString(count+"",x-15,y+25);
@@ -316,6 +317,7 @@ public class GamePanel extends JPanel{
 
     public RouteColor getClickedCard(Point point){
         int rows = 3, cardWidth=146, cardHeight=94, leftBorder=650, topBorder=585;//+39;
+        ArrayList<Card> trainCards = db.train;//GameBoard.getCurrPlayer().getTech();
         RouteColor[] order = new RouteColor[]{
                 RouteColor.BLACK,
                 RouteColor.GREEN,
@@ -332,11 +334,21 @@ public class GamePanel extends JPanel{
             int x = ((i%rows)*55)+(i%rows)*cardWidth+leftBorder;
             int y = ((i/rows)*7)+(i/rows)*cardHeight+topBorder;
             Rectangle imageBounds = new Rectangle(x,y,cardWidth, cardHeight);
-            if (imageBounds.contains(point)){
+            int count = CardCounter.countTrainColor(trainCards,order[i]);
+            if (imageBounds.contains(point) && count > 0){
                 System.out.println(order[i]);
                 return order[i];
             }
         }
         return null;
+    }
+
+    public void drawTrainDeck(Graphics g){
+        int cardWidth=146, cardHeight=94, leftBorder=603, topBorder=5;//+39;
+        for(int i=0; i < 9; i++){
+            int x = leftBorder;//((i%rows)*0)+(i%rows)*cardWidth+leftBorder;
+            int y = (i*4)+(i*cardHeight)+topBorder;
+            g.drawImage(ImgLib.backOfTrainCard,x,y,cardWidth,cardHeight,this);
+        }
     }
 }

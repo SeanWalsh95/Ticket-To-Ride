@@ -15,6 +15,9 @@ public class ImgLib
 
     public static Image woodBackground;
 
+    public static Image backOfTrainCard;
+    public static Image backOfDestCard;
+
     //general Images needed more than once
     public static Image backButtonUnselected;
     public static Image backButtonHighlighted;
@@ -150,6 +153,11 @@ public class ImgLib
 
         background = toolkit.getImage(
             "resources/images/backgrounds/GameBackground.png");
+
+        backOfTrainCard = toolkit.getImage(
+            "resources/images/cards/BackOfCard.png");
+        backOfDestCard = toolkit.getImage(
+            "resources/images/cards/BackOfTicket.png");
 
         //Images for the buyTechScreen
         buyTech = toolkit.getImage(

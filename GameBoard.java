@@ -14,8 +14,8 @@ public class GameBoard
     protected ArrayList<Tech> techAvail;
     protected Deck trainDeck;
     protected Deck destDeck;
-    protected boolean lastTurn;
-    protected int currentPlayer;
+    private boolean lastTurn;
+    private int currentPlayer;
 
     /**
      * Purchases the route between two cities for the current player
@@ -30,19 +30,36 @@ public class GameBoard
         Route desRoute = getRoute(cityA.name,cityB.name);
         boolean success = false;
         if(desRoute == null) return success;
-        if(desRoute.ownerID == -1){
+        if(desRoute.ownerID == -1 || hasTech(curPlayer,Technology.RightOfWay)){
             if(techChecker(curPlayer,desRoute,cityA,cityB)){
                 ArrayList<Card> trainsToSpend = selectTrains();
                 if(desRoute instanceof FerryRoute){
                     if(purchase(desRoute,curPlayer,((FerryRoute)desRoute).locomotiveRequirement)){
                         success = true;
                         desRoute.ownerID = curPlayer.playerID;
+                        if(hasTech(curPlayer,Technology.BoilerLagging))curPlayer.score += 1;
+                        if(hasTech(curPlayer,Technology.SteamTurbine))curPlayer.score += 2;
+                        if(desRoute.trainRequirement == 1) curPlayer.score += 1;
+                        else if(desRoute.trainRequirement == 2) curPlayer.score += 2;
+                        else if(desRoute.trainRequirement == 3) curPlayer.score += 4;
+                        else if(desRoute.trainRequirement == 4) curPlayer.score += 7;
+                        else if(desRoute.trainRequirement == 5) curPlayer.score += 10;
+                        else if(desRoute.trainRequirement == 6) curPlayer.score += 15;
+                        else curPlayer.score += 30;
                     }
                 }
                 else{
                     if(purchase(desRoute,curPlayer,0)){
                         success = true;
                         desRoute.ownerID = curPlayer.playerID;
+                        if(hasTech(curPlayer,Technology.BoilerLagging))curPlayer.score += 1;
+                        if(desRoute.trainRequirement == 1) curPlayer.score += 1;
+                        else if(desRoute.trainRequirement == 2) curPlayer.score += 2;
+                        else if(desRoute.trainRequirement == 3) curPlayer.score += 4;
+                        else if(desRoute.trainRequirement == 4) curPlayer.score += 7;
+                        else if(desRoute.trainRequirement == 5) curPlayer.score += 10;
+                        else if(desRoute.trainRequirement == 6) curPlayer.score += 15;
+                        else curPlayer.score += 30;
                     }
                 }
             }
@@ -181,6 +198,9 @@ public class GameBoard
      * @return Method returns true if the player can buy the route, false if not
      */
     private boolean techChecker(Player player, Route route, City cityA, City cityB){
+        //You need no tech for the southampton to New York route this base case handles that;
+        if(route.cityA == NewYork || route.cityB == NewYork)return true;
+
         //Next 2 if blocks handles all checks for region techs 
         if(cityA.region != Region.England){
             if(cityA.region == Region.Scotland){
@@ -256,17 +276,17 @@ public class GameBoard
     }
 
     /**
-    * Method finds a route that connects two cities
-    *
-    * @param cityA The name of one of the cities you want to connect
-    * @param cityB The name of one of the cities you want to connect
-    *
-    * @return The Route object that connects the two cities
-    */
+     * Method finds a route that connects two cities
+     *
+     * @param cityA The name of one of the cities you want to connect
+     * @param cityB The name of one of the cities you want to connect
+     *
+     * @return The Route object that connects the two cities
+     */
     public Route getRoute(CityName cityA, CityName cityB) {
         for (int i = 0; i < routes.size(); i++) {
             if ((routes.get(i).cityA.equals(cityA) && routes.get(i).cityB.equals(cityB)) ||
-                    (routes.get(i).cityB.equals(cityA) && routes.get(i).cityA.equals(cityB)))
+            (routes.get(i).cityB.equals(cityA) && routes.get(i).cityA.equals(cityB)))
                 return routes.get(i);
         }
         return null;
@@ -282,6 +302,7 @@ public class GameBoard
     public boolean buyTech(Tech tech) {
         ArrayList<Card> trainsToSpend = selectTrains();
         ArrayList<Card> trainsSpent = new ArrayList<Card>();
+        Player curPlayer = players.get(currentPlayer);
         int locoCost = tech.cost;
         if(trainsToSpend.size() < locoCost)return false;
         else{
@@ -293,23 +314,23 @@ public class GameBoard
             }
             if(trainsSpent.size() == locoCost){
                 for(Card train: trainsSpent){
-                    currentPlayer.heldTrainCards.remove(train);
+                    curPlayer.heldTrainCards.remove(train);
                     trainDeck.discarded.add(train);
                 }
                 techAvail.remove(tech);
-                currentPlayer.tech.add(tech);
+                curPlayer.tech.add(tech);
                 return true;
             }
             else{
-                if(hasTech(currentPlayer,Technology.Booster)){
+                if(hasTech(curPlayer,Technology.Booster)){
                     if(locoCost == trainsSpent.size() + (trainsToSpend.size()/3)){
                         trainsSpent.addAll(trainsToSpend);
                         for(Card train: trainsSpent){
-                            currentPlayer.heldTrainCards.remove(train);
+                            curPlayer.heldTrainCards.remove(train);
                             trainDeck.discarded.add(train);
                         }
                         techAvail.remove(tech);
-                        currentPlayer.tech.add(tech);
+                        curPlayer.tech.add(tech);
                         return true;
                     }
                 }
@@ -317,11 +338,11 @@ public class GameBoard
                     if(locoCost == trainsSpent.size() + (trainsToSpend.size()/4)){
                         trainsSpent.addAll(trainsToSpend);
                         for(Card train: trainsSpent){
-                            currentPlayer.heldTrainCards.remove(train);
+                            curPlayer.heldTrainCards.remove(train);
                             trainDeck.discarded.add(train);
                         }
                         techAvail.remove(tech);
-                        currentPlayer.tech.add(tech);
+                        curPlayer.tech.add(tech);
                         return true;
                     }
                 }
@@ -361,11 +382,12 @@ public class GameBoard
         int score = 0;
         for(int i=0; i<player.heldDestinationCards.size(); i++){
             ArrayList<CityName> visited = new ArrayList<CityName>();
-            if(checkDestCard(player.playerID,((Dest)player.heldDestinationCards.get(i)).cityA,((Dest)player.heldDestinationCards.get(i)).cityB,visited))
+            if(checkDestCard(player.playerID,((Dest)player.heldDestinationCards.get(i)).cityA,((Dest)player.heldDestinationCards.get(i)).cityB,visited)){
                 score += ((Dest)player.heldDestinationCards.get(i)).pointValue;
                 player.completedDestCards++;
-            else
+            }else{
                 score -= ((Dest)player.heldDestinationCards.get(i)).pointValue;
+            }
         }
         return score;
     }
@@ -396,5 +418,47 @@ public class GameBoard
         }
         return false;
     }
-}
 
+    /**
+     * This method will figure out the length of a player's longest route
+     *
+     * @param player The player whose route you want to check.
+     *
+     * @return The length of the longest route the player owns
+     */
+    private int longestRoutePlayerOwns(Player player){
+        int pID = player.playerID;
+        int max = 0;
+        int temp = 0;
+        for(Route route: routes){
+            if(route.ownerID == pID){
+                temp = playerRouteLength(pID,route,new ArrayList<Route>());
+            }
+            if(temp > max) max = temp;
+        }
+        return max;
+    }
+
+    /**
+     * Helper method to check the length of a route containing the given route
+     *
+     * @param pID The player's identification number
+     * @param route The route you want to add to the long route
+     * @param visited The list of routes already included in the current route
+     *
+     * @return The length of the route containing the given route
+     */
+    private int playerRouteLength(int pID,Route route,ArrayList<Route> visited){
+        int max = 0;
+        int temp = 0;
+        visited.add(route);
+        for(Route rt: routes){
+            if(!visited.contains(rt) && rt.ownerID == pID && (rt.cityA == route.cityA ||
+                rt.cityB == route.cityB || rt.cityA == route.cityB || rt.cityB == rt.cityA)){
+                temp = playerRouteLength(pID,rt,visited.copy());
+            }
+            if(temp > max) max = temp;
+        }
+        return max + route.trainRequirement;
+    }
+}

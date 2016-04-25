@@ -10,6 +10,7 @@ public class Deck
 {
     protected ArrayList<Card> deck = new ArrayList<Card>();
     protected ArrayList<Card> discarded = new ArrayList<Card>();
+    protected boolean shuffle = false;
 
     /**
      * This method shuffles the cards in the deck
@@ -28,10 +29,7 @@ public class Deck
     {
         ArrayList<Card> drawnCards = new ArrayList<Card>();
         for(int i = 0; i < x; i++)
-        {
-            drawnCards.add(deck.get(i));
-            deck.remove(i);
-        }
+            drawnCards.add(deck.remove(0));
         return drawnCards;
     }
 
@@ -67,6 +65,7 @@ public class Deck
         }
         //shuffle();
     }
+
     /**
      * This method rebuilds the deck by taking the discarded cards adding 
      * them to the deck and then clearing the discarded pile
@@ -75,10 +74,14 @@ public class Deck
     public void rebuildDeck()
     {
         this.deck.addAll(discarded);
+        Card c = deck.get(0);
+        if(c instanceof Train){
+           this.shuffle = true;
+        }
         shuffle();
         this.discarded.clear();
     }
-    
+
     /**
      * This method returns the deck size
      */
@@ -86,7 +89,7 @@ public class Deck
     {
         return this.deck.size();
     }
-    
+
     /**
      * This method adds discarded cards to the discarded ArrayList
      * @param x An ArrayList of cards that are going to be discarded
