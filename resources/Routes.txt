@@ -1,71 +1,71 @@
-Ullapool,Wick,3,yellow
-Ullapool,Inverness,1,orange
-Ullapool,Fort William,2,pink
-Inverness,Wick,2,red
-Inverness,Fort William,2,black
-Inverness,Aberdeen,3,pink
-Inverness,Dundee,2,blue
-Fort William,Dundee,3,green
-Fort William,Glasgow,2,orange
-Aberdeen,Dundee,1,white
-Dundee,Edinburgh,1,yellow,1
-Dundee,Edinburgh,1,red,2
-Edinburgh,Glasgow,1,blue,1
-Edinburgh,Glasgow,1,black,2
-Edinburgh,Stranraer,3,white
-Edinburgh,Carlisle,2,orange
-Edinburgh,Newcastle,3,green,1
-Edinburgh,Newcastle,3,pink,2
-Glasgow,Stranraer,2,red
-Carlisle,Newcastle,1,yellow
-Carlisle,Barrow,1,red
-Newcastle,Leeds,2,white,1
-Newcastle,Leeds,2,orange,2
-Barrow,Leeds,2,green
-Liverpool,Manchester,1,orange,1
-Liverpool,Manchester,1,pink,2
-Leeds,Manchester,1,red,1
-Leeds,Manchester,1,blue,2
-Leeds,Nottingham,2,pink
-Leeds,Hull,1,yellow
-Manchester,Llandrindod Wells,3,green
-Manchester,Birmingham,2,black,1
-Manchester,Birmingham,2,yellow,2
-Llandrindod Wells,Holyhead,3,blue
-Llandrindod Wells,Aberystwyth,1,white
-Llandrindod Wells,Cardiff,1,pink
-Aberystwyth,Carmarthen,1,yellow
-Carmarthen,Cardiff,1,red
-Hull,Nottingham,2,black
-Hull,Norwich,4,neutral
-Nottingham,Norwich,4,white
-Nottingham,Cambridge,2,neutral
-Nottingham,Northampton,1,orange
-Nottingham,Birmingham,1,neutral
-Birmingham,Llandrindod Wells,2,red
-Birmingham,Cardiff,3,blue,1
-Birmingham,Cardiff,3,orange,2
-Birmingham,Reading,2,neutral
-Birmingham,Northampton,1,green,1
-Birmingham,Northampton,1,white,2
-Northampton,Cambridge,1,neutral
-Northampton,Reading,1,red
-Northampton,London,1,pink,1
-Northampton,London,1,blue,2
-Cambridge,Norwich,2,red
-Cambridge,Ipswich,1,black
-Cambridge,London,1,orange,1
-Cambridge,London,1,yellow,2
-Norwich,Ipswich,1,green
-Ipswich,London,1,white
-Bristol,Reading,2,white
-Bristol,Plymouth,3,yellow
-Bristol,Southampton,2,green
-Plymouth,Penzance,2,black
-Southampton,Reading,1,orange
-Southampton,London,2,red,1
-Southampton,London,2,black,2
-Southampton,Brighton,1,blue
-London,Brighton,1,neutral
-London,Dover,2,neutral
-Brighton,Dover,2,pink
+Ullapool,Wick,3,yellow,1-1 2-2
+Ullapool,Inverness,1,orange,1-1 2-2
+Ullapool,Fort William,2,pink,1-1 2-2
+Inverness,Wick,2,red,1-1 2-2
+Inverness,Fort William,2,black,1-1 2-2
+Inverness,Aberdeen,3,pink,1-1 2-2
+Inverness,Dundee,2,blue,1-1 2-2
+Fort William,Dundee,3,green,1-1 2-2
+Fort William,Glasgow,2,orange,1-1 2-2
+Aberdeen,Dundee,1,white,1-1 2-2
+Dundee,Edinburgh,1,yellow,1-1 2-2
+Dundee,Edinburgh,1,red,1-1 2-2
+Edinburgh,Glasgow,1,blue,1-1 2-2
+Edinburgh,Glasgow,1,black,1-1 2-2
+Edinburgh,Stranraer,3,white,1-1 2-2
+Edinburgh,Carlisle,2,orange,1-1 2-2
+Edinburgh,Newcastle,3,green,1-1 2-2
+Edinburgh,Newcastle,3,pink,1-1 2-2
+Glasgow,Stranraer,2,red,1-1 2-2
+Carlisle,Newcastle,1,yellow,1-1 2-2
+Carlisle,Barrow,1,red,1-1 2-2
+Newcastle,Leeds,2,white,1-1 2-2
+Newcastle,Leeds,2,orange,1-1 2-2
+Barrow,Leeds,2,green,1-1 2-2
+Liverpool,Manchester,1,orange,1-1 2-2
+Liverpool,Manchester,1,pink,1-1 2-2
+Leeds,Manchester,1,red,1-1 2-2
+Leeds,Manchester,1,blue,1-1 2-2
+Leeds,Nottingham,2,pink,1-1 2-2
+Leeds,Hull,1,yellow,1-1 2-2
+Manchester,Llandrindod Wells,3,green,1-1 2-2
+Manchester,Birmingham,2,black,1-1 2-2
+Manchester,Birmingham,2,yellow,1-1 2-2
+Llandrindod Wells,Holyhead,3,blue,1-1 2-2
+Llandrindod Wells,Aberystwyth,1,white,1-1 2-2
+Llandrindod Wells,Cardiff,1,pink,1-1 2-2
+Aberystwyth,Carmarthen,1,yellow,1-1 2-2
+Carmarthen,Cardiff,1,red,1-1 2-2
+Hull,Nottingham,2,black,1-1 2-2
+Hull,Norwich,4,neutral,1-1 2-2
+Nottingham,Norwich,4,white,1-1 2-2
+Nottingham,Cambridge,2,neutral,1-1 2-2
+Nottingham,Northampton,1,orange,1-1 2-2
+Nottingham,Birmingham,1,neutral,1-1 2-2
+Birmingham,Llandrindod Wells,2,red,1-1 2-2
+Birmingham,Cardiff,3,blue,1-1 2-2
+Birmingham,Cardiff,3,orange,1-1 2-2
+Birmingham,Reading,2,neutral,1-1 2-2
+Birmingham,Northampton,1,green,1-1 2-2
+Birmingham,Northampton,1,white,1-1 2-2
+Northampton,Cambridge,1,neutral,1-1 2-2
+Northampton,Reading,1,red,1-1 2-2
+Northampton,London,1,pink,1-1 2-2
+Northampton,London,1,blue,1-1 2-2
+Cambridge,Norwich,2,red,1-1 2-2
+Cambridge,Ipswich,1,black,1-1 2-2
+Cambridge,London,1,orange,1-1 2-2
+Cambridge,London,1,yellow,1-1 2-2
+Norwich,Ipswich,1,green,1-1 2-2
+Ipswich,London,1,white,1-1 2-2
+Bristol,Reading,2,white,1-1 2-2
+Bristol,Plymouth,3,yellow,1-1 2-2
+Bristol,Southampton,2,green,1-1 2-2
+Plymouth,Penzance,2,black,1-1 2-2
+Southampton,Reading,1,orange,1-1 2-2
+Southampton,London,2,red,1-1 2-2
+Southampton,London,2,black,1-1 2-2
+Southampton,Brighton,1,blue,1-1 2-2
+London,Brighton,1,neutral,1-1 2-2
+London,Dover,2,neutral,1-1 2-2
+Brighton,Dover,2,pink,1-1 2-2

@@ -23,9 +23,16 @@ import java.net.URISyntaxException;
 public class MenuNavigation extends JApplet
 implements MouseListener, MouseMotionListener, ActionListener {
     //set up access to the Image Library
+    GameBoard board;
     String menuAudio = "";
 
     int playerCount = 0;
+
+    private boolean firstClick = true;
+    CityName firstCity;
+    CityName secondCity;
+    City Citya;
+    City Cityb;
 
     //hover booleans
     private boolean stornowayHover = false;
@@ -76,6 +83,24 @@ implements MouseListener, MouseMotionListener, ActionListener {
     private boolean doverHover = false;
     private boolean franceHover = false;
 
+    //purchaseHighlight
+    private boolean walesHighlight = false;
+    private boolean irelandHighlight = false;
+    private boolean scotlandHighlight = false;
+    private boolean propellersHighlight = false;
+    private boolean mechanicalHighlight = false;
+    private boolean superheatedHighlight = false;
+    private boolean dieselHighlight = false;
+    private boolean boilerHighlight = false;
+    private boolean doubleheadingHighlight = false;
+    private boolean steamturbineHighlight = false;
+    private boolean watertendersHighlight = false;
+    private boolean boosterHighlight = false;
+    private boolean riskycontractHighlight = false;
+    private boolean rightofwayHighlight = false;
+    private boolean equalisingbeamHighlight = false;
+    private boolean thermocompressorHighlight = false;
+
     //board menu states
     private boolean mainMenu = true;
     private boolean selectNumPlayersScreen = false;
@@ -108,10 +133,12 @@ implements MouseListener, MouseMotionListener, ActionListener {
     private boolean buyTechButton = false;
     private boolean viewTechButton = false;
     private boolean viewDestButton = false;
+    private boolean rulesScreenInGame = false;
 
     //buyTechButtons
     private boolean purchaseButton = false;
     private boolean highlight = false;
+    private boolean canPurchase = false;
 
     /**
      * Called by the browser or applet viewer to inform this JApplet that it
@@ -120,6 +147,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
      */
     public void init()
     {
+        ImgLib.ImageLibrary();
         // this is a workaround for a security conflict with some browsers
         // including some versions of Netscape & Internet Explorer which do 
         // not allow access to the AWT system event queue which JApplets do 
@@ -138,6 +166,8 @@ implements MouseListener, MouseMotionListener, ActionListener {
         Cursor a = toolkit.createCustomCursor(ImgLib.mouseCursor,
                 new Point(this.getX(),this.getY()), "img");
         setCursor(a);
+
+        //gameboard
 
         // provide any initialisation necessary for your JApplet
         addMouseListener( this );
@@ -317,6 +347,14 @@ implements MouseListener, MouseMotionListener, ActionListener {
             && viewDestButton == false)
             {
                 viewDestButton = true;
+                repaint();
+            }
+            //when you mouse over RULES
+            else if(x >= 781 && x <= 781+196 && y >= 28 && y <= 28+51
+            && rulesButton == false)
+            {
+                //paint highlighted button
+                rulesButton = true;
                 repaint();
             }
             //if hovering over the city of stornoway
@@ -658,6 +696,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
             else if(!(x >= 612 && x <= 612+196 && y >= 508 && y <= 508+51) &&
             !(x >= 828 && x <= 828+196 && y >= 508 && y <= 508+51) &&
             !(x >= 1044 && x <= 1044+196 && y >= 508 && y <= 508+51) &&
+            !(x >= 781 && x <= 781+196 && y >= 28 && y <= 28+51) &&
             !(x >= 385 && x <= 385+20 && y >= 39 && y <= 39+20) &&
             !(x >= 419 && x <= 419+20 && y >= 84 && y <= 84+20) &&
             !(x >= 535 && x <= 535+20 && y >= 84 && y <= 84+20) &&
@@ -708,7 +747,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
             !(x >= 291 && x <= 291+20 && y >= 850 && y <= 850+20))
             {
                 viewTechButton = buyTechButton = viewDestButton =
-                stornowayHover = false;
+                rulesButton = stornowayHover = false;
                 ullapoolHover = false;
                 wickHover = false;
                 fortwilliamHover = false;
@@ -794,15 +833,175 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 purchaseButton = true;
                 repaint();
             }
+            //when you mouse over WALES
+            else if(x >= 50 && x <= 50+247 && y >= 91 && y <= 91+160
+            && walesHighlight == false)
+            {
+                walesHighlight = true;
+                repaint();
+            }
+            //when you mouse over IRELAND
+            else if(x >= 352 && x <= 352+247 && y >= 91 && y <= 91+160
+            && irelandHighlight == false)
+            {
+                irelandHighlight = true;
+                repaint();
+            }
+            //when you mouse over SCOTLAND
+            else if(x >= 659 && x <= 659+247 && y >= 91 && y <= 91+160
+            && scotlandHighlight == false)
+            {
+                scotlandHighlight = true;
+                repaint();
+            }
+            //when you mouse over PROPELLERS
+            else if(x >= 960 && x <= 960+247 && y >= 91 && y <= 91+160
+            && propellersHighlight == false)
+            {
+                propellersHighlight = true;
+                repaint();
+            }
+            //when you mouse over MECHANICAL STOKER
+            else if(x >= 50 && x <= 50+247 && y >= 276 && y <= 276+160
+            && mechanicalHighlight == false)
+            {
+                mechanicalHighlight = true;
+                repaint();
+            }
+            //when you mouse over SUPERHEATED STEAM BOILER
+            else if(x >= 352 && x <= 352+247 && y >= 276 && y <= 276+160
+            && superheatedHighlight == false)
+            {
+                superheatedHighlight = true;
+                repaint();
+            }
+            //when you mouse over DIESEL POWER
+            else if(x >= 659 && x <= 659+247 && y >= 276 && y <= 276+160
+            && dieselHighlight == false)
+            {
+                dieselHighlight = true;
+                repaint();
+            }
+            //when you mouse over BOILER LAGGING
+            else if(x >= 960 && x <= 960+247 && y >= 276 && y <= 276+160
+            && boilerHighlight == false)
+            {
+                boilerHighlight = true;
+                repaint();
+            }
+            //when you mouse over DOUBLE HEADING
+            else if(x >= 50 && x <= 50+247 && y >= 461 && y <= 461+160
+            && doubleheadingHighlight == false)
+            {
+                doubleheadingHighlight = true;
+                repaint();
+            }
+            //when you mouse over STEAM TURBINE
+            else if(x >= 352 && x <= 352+247 && y >= 461 && y <= 461+160
+            && steamturbineHighlight == false)
+            {
+                steamturbineHighlight = true;
+                repaint();
+            }
+            //when you mouse over WATER TENDERS
+            else if(x >= 659 && x <= 659+247 && y >= 461 && y <= 461+160
+            && watertendersHighlight == false)
+            {
+                watertendersHighlight = true;
+                repaint();
+            }
+            //when you mouse over BOOSTER
+            else if(x >= 960 && x <= 960+247 && y >= 461 && y <= 461+160
+            && boosterHighlight == false)
+            {
+                boosterHighlight = true;
+                repaint();
+            }
+            //when you mouse over RISKY CONTRACT
+            else if(x >= 50 && x <= 50+247 && y >= 646 && y <= 646+160
+            && riskycontractHighlight == false)
+            {
+                riskycontractHighlight = true;
+                repaint();
+            }
+            //when you mouse over RIGHT OF WAY
+            else if(x >= 352 && x <= 352+247 && y >= 646 && y <= 646+160
+            && rightofwayHighlight == false)
+            {
+                rightofwayHighlight = true;
+                repaint();
+            }
+            //when you mouse over EQUALISING BEAM
+            else if(x >= 659 && x <= 659+247 && y >= 646 && y <= 646+160
+            && equalisingbeamHighlight == false)
+            {
+                equalisingbeamHighlight = true;
+                repaint();
+            }
+            //when you mouse over THERMO COMPRESSOR
+            else if(x >= 960 && x <= 960+247 && y >= 646 && y <= 646+160
+            && thermocompressorHighlight == false)
+            {
+                thermocompressorHighlight = true;
+                repaint();
+            }
             else if(!(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
-            && !(x >= 543 && x <= 543+174 && y >= 828 && y <= 828+51))
+            && !(x >= 543 && x <= 543+174 && y >= 828 && y <= 828+51)
+            && !(x >= 50 && x <= 50+247 && y >= 91 && y <= 91+160)
+            && !(x >= 352 && x <= 352+247 && y >= 91 && y <= 91+160)
+            && !(x >= 659 && x <= 659+247 && y >= 91 && y <= 91+160)
+            && !(x >= 960 && x <= 960+247 && y >= 91 && y <= 91+160)
+            && !(x >= 50 && x <= 50+247 && y >= 276 && y <= 276+160)
+            && !(x >= 352 && x <= 352+247 && y >= 276 && y <= 276+160)
+            && !(x >= 659 && x <= 659+247 && y >= 276 && y <= 276+160)
+            && !(x >= 960 && x <= 960+247 && y >= 276 && y <= 276+160)
+            && !(x >= 50 && x <= 50+247 && y >= 461 && y <= 461+160)
+            && !(x >= 352 && x <= 352+247 && y >= 461 && y <= 461+160)
+            && !(x >= 659 && x <= 659+247 && y >= 461 && y <= 461+160)
+            && !(x >= 960 && x <= 960+247 && y >= 461 && y <= 461+160)
+            && !(x >= 50 && x <= 50+247 && y >= 646 && y <= 646+160)
+            && !(x >= 352 && x <= 352+247 && y >= 646 && y <= 646+160)
+            && !(x >= 659 && x <= 659+247 && y >= 646 && y <= 646+160)
+            && !(x >= 960 && x <= 960+247 && y >= 646 && y <= 646+160))
             {
                 purchaseButton = false;
                 backButton = false;
+                walesHighlight = false;
+                irelandHighlight = false;
+                scotlandHighlight = false;
+                propellersHighlight = false;
+                mechanicalHighlight = false;
+                superheatedHighlight = false;
+                dieselHighlight = false;
+                boilerHighlight = false;
+                doubleheadingHighlight = false;
+                steamturbineHighlight = false;
+                watertendersHighlight = false;
+                boosterHighlight = false;
+                riskycontractHighlight = false;
+                rightofwayHighlight = false;
+                equalisingbeamHighlight = false;
+                thermocompressorHighlight = false;
                 repaint();
             }
         }
         else if(viewDest == true)
+        {
+            //when you mouse over BACK BUTTON
+            if((x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+            && backButton == false)
+            {
+                //paint highlighted button
+                backButton = true;
+                repaint();
+            }
+            else if(!(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48))
+            {
+                backButton = false;
+                repaint();
+            }
+        }
+        else if(rulesScreenInGame == true)
         {
             //when you mouse over BACK BUTTON
             if((x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
@@ -951,72 +1150,97 @@ implements MouseListener, MouseMotionListener, ActionListener {
 
             }
         }
-        else if(gameBoard == true)
-        {
-            //Plays a button sound when you press viewTechButton
-            if(x >= 612 && x <= 612+196 && y >= 508 && y <= 508+51)
-            {
-                //if you press the 1st mouse button 
-                //on the 3 PLAYERS button it shows
-                //a PRESSED button image
-                paintPressedviewTechButton(g);
-            }
-            //Plays a button sound when you press buyTechButton
-            else if(x >= 828 && x <= 828+196 && y >= 508 && y <= 508+51)
-            {
-                //if you press the 1st mouse button 
-                //on the 3 PLAYERS button it shows
-                //a PRESSED button image
-                paintPressedBuyTechButton(g);
-            }
-            //Plays a button sound when you press viewDestButton
-            else if(x >= 1044 && x <= 1044+196 && y >= 508 && y <= 508+51)
-            {
-                //if you press the 1st mouse button 
-                //on the 3 PLAYERS button it shows
-                //a PRESSED button image
-                paintPressedviewDestButton(g);
+        else if(gameBoard == true){
+            if (e.getButton() == MouseEvent.BUTTON1) {
+                //Plays a button sound when you press viewTechButton
+                if(x >= 612 && x <= 612+196 && y >= 508 && y <= 508+51)
+                {
+                    //if you press the 1st mouse button 
+                    //on the VIEWTECH button it shows
+                    //a PRESSED button image
+                    paintPressedviewTechButton(g);
+                }
+                //Plays a button sound when you press buyTechButton
+                else if(x >= 828 && x <= 828+196 && y >= 508 && y <= 508+51)
+                {
+                    //if you press the 1st mouse button 
+                    //on the BUYTECH button it shows
+                    //a PRESSED button image
+                    paintPressedBuyTechButton(g);
+                }
+                //Plays a button sound when you press viewDestButton
+                else if(x >= 1044 && x <= 1044+196 && y >= 508 && y <= 508+51)
+                {
+                    //if you press the 1st mouse button 
+                    //on the VIEWDESTINATION button it shows
+                    //a PRESSED button image
+                    paintPressedviewDestButton(g);
+                }
+                //Plays a button sound when you press RULES
+                else if(x >= 781 && x <= 781+196 && y >= 28 && y <= 28+51)
+                {
+                    //if you press the 1st mouse button 
+                    //on the RULES button it shows
+                    //a PRESSED button image
+                    g.drawImage(ImgLib.viewRulesButtonPressed, 781, 28, this);
+                }
             }
 
         }
-        else if(viewTech == true)
-        {
-            if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
-            {
-                //if you press the 1st mouse button 
-                //on the BACK button it shows
-                //a PRESSED button image
-                paintPressedBackButton(g);
+        else if(viewTech == true){
+            if (e.getButton() == MouseEvent.BUTTON1) {
+                if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+                {
+                    //if you press the 1st mouse button 
+                    //on the BACK button it shows
+                    //a PRESSED button image
+                    paintPressedBackButton(g);
+                }
             }
 
         }        
-        else if(buyTech == true)
-        {
-            if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
-            {
-                //if you press the 1st mouse button 
-                //on the BACK button it shows
-                //a PRESSED button image
-                paintPressedBackButton(g);
-            }
+        else if(buyTech == true){
+            if (e.getButton() == MouseEvent.BUTTON1) {
+                if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+                {
+                    //if you press the 1st mouse button 
+                    //on the BACK button it shows
+                    //a PRESSED button image
+                    paintPressedBackButton(g);
+                }
 
-            else if(x >= 543 && x <= 543+174 && y >= 828 && y <= 828+51)
-            {
-                //if you press the 1st mouse button 
-                //on the PURCHASE button it shows
-                //a PRESSED button image
-                paintPressedPurchaseButton(g);
+                else if(x >= 543 && x <= 543+174 && y >= 828 && y <= 828+51)
+                {
+                    //if you press the 1st mouse button 
+                    //on the PURCHASE button it shows
+                    //a PRESSED button image
+                    paintPressedPurchaseButton(g);
+                }
             }
 
         }        
-        else if(viewDest == true)
-        {
-            if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
-            {
-                //if you press the 1st mouse button 
-                //on the BACK button it shows
-                //a PRESSED button image
-                paintPressedBackButton(g);
+        else if(viewDest == true){
+            if (e.getButton() == MouseEvent.BUTTON1) {
+                if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+                {
+                    //if you press the 1st mouse button 
+                    //on the BACK button it shows
+                    //a PRESSED button image
+                    paintPressedBackButton(g);
+                }
+            }
+
+        }
+        else if(rulesScreenInGame == true){
+            if (e.getButton() == MouseEvent.BUTTON1) {
+
+                if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+                {
+                    //if you press the 1st mouse button 
+                    //on the BACK button it shows
+                    //a PRESSED button image
+                    paintPressedBackButton(g);
+                }
             }
 
         }
@@ -1177,6 +1401,14 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 //a PRESSED button image
                 paintUnselectedviewDestButton(g);
             }
+            //Plays a button sound when you press RULES
+            else if(x >= 781 && x <= 781+196 && y >= 28 && y <= 28+51)
+            {
+                //if you press the 1st mouse button 
+                //on the RULES button it shows
+                //a PRESSED button image
+                g.drawImage(ImgLib.viewRulesButtonUnselected, 781, 28, this);
+            }
 
         }
         else if(viewTech == true)
@@ -1209,6 +1441,17 @@ implements MouseListener, MouseMotionListener, ActionListener {
             }
         }
         else if(viewDest == true)
+        {
+            if((x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+            && backButton == false)
+            {
+                //if you press the 1st mouse button 
+                //on the BACK button it shows
+                //a PRESSED button image
+                paintUnselectedBackButton(g);
+            }
+        }
+        else if(rulesScreenInGame == true)
         {
             if((x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
             && backButton == false)
@@ -1350,6 +1593,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                     selectNumPlayersScreen = false;
                     gameBoard = true;
                     playerCount = 2;
+                    //board = new GameBoard(playerCount);
                 }
 
                 //Plays a button sound when you press 3 PLAYERS
@@ -1362,6 +1606,7 @@ implements MouseListener, MouseMotionListener, ActionListener {
                     selectNumPlayersScreen = false;
                     gameBoard = true;
                     playerCount = 3;
+                    //board = new GameBoard(playerCount);
                 }
 
                 //Plays a button sound when you press 4 PLAYERS
@@ -1374,41 +1619,866 @@ implements MouseListener, MouseMotionListener, ActionListener {
                     selectNumPlayersScreen = false;
                     gameBoard = true;
                     playerCount = 4;
+                    //board = new GameBoard(playerCount);
                 }
 
             }
         }
-        else if(gameBoard == true)
-        {
-            //Plays a button sound when you press viewTechButton
-            if(x >= 612 && x <= 612+196 && y >= 508 && y <= 508+51)
-            {
-                //play the button sound
-                playButtonSound();
-                //set the gameBoard to false
-                //set the viewtech true
-                gameBoard = false;
-                viewTech = true;
-            }
-            //Plays a button sound when you press buyTechButton
-            else if(x >= 828 && x <= 828+196 && y >= 508 && y <= 508+51)
-            {
-                //play the button sound
-                playButtonSound();
-                //set the gameBoard to false
-                //set the buyTech true
-                gameBoard = false;
-                buyTech = true;
-            }
-            //Plays a button sound when you press viewDestButton
-            else if(x >= 1044 && x <= 1044+196 && y >= 508 && y <= 508+51)
-            {
-                //play the button sound
-                playButtonSound();
-                //set the gameBoard to false
-                //set the viewDest true
-                gameBoard = false;
-                viewDest = true;
+        else if(gameBoard == true){
+            if (e.getButton() == MouseEvent.BUTTON1) {
+
+                //Plays a button sound when you press viewTechButton
+                if(x >= 612 && x <= 612+196 && y >= 508 && y <= 508+51)
+                {
+                    //play the button sound
+                    playButtonSound();
+                    //set the gameBoard to false
+                    //set the viewtech true
+                    gameBoard = false;
+                    viewTech = true;
+                }
+                //Plays a button sound when you press buyTechButton
+                else if(x >= 828 && x <= 828+196 && y >= 508 && y <= 508+51)
+                {
+                    //play the button sound
+                    playButtonSound();
+                    //set the gameBoard to false
+                    //set the buyTech true
+                    gameBoard = false;
+                    buyTech = true;
+                }
+                //Plays a button sound when you press viewDestButton
+                else if(x >= 1044 && x <= 1044+196 && y >= 508 && y <= 508+51)
+                {
+                    //play the button sound
+                    playButtonSound();
+                    //set the gameBoard to false
+                    //set the viewDest true
+                    gameBoard = false;
+                    viewDest = true;
+                }
+                //Plays a button sound when you press RULES
+                else if(x >= 781 && x <= 781+196 && y >= 28 && y <= 28+51)
+                {
+                    //play the button sound
+                    playButtonSound();
+                    //set mainMenu to false
+                    //set rulesScreen to true
+                    gameBoard = false;
+                    rulesScreenInGame = true;
+                }
+                //if you press the destination card deck
+                else if(x >= 772 && x <= 772+214 && y >= 110 && y <= 110+138)
+                {
+                    showStatus("You Draw cards from the destination card deck");
+                }
+                //if you press the traincards deck
+                else if(x >= 772 && x <= 772+214 && y >= 265 && y <= 265+138)
+                {
+                    showStatus("You a card from the Train Card Deck");
+                }
+                //if you draw CARD 1
+                else if(x >= 603 && x <= 603+146 && y >= 8 && y <= 8+93)
+                {
+                    showStatus("You Pickup card 1");
+                }
+                //if you draw CARD 2
+                else if(x >= 603 && x <= 603+146 && y >= 106 && y <= 106+93)
+                {
+                    showStatus("You Pickup card 2");
+                }
+                //if you draw CARD 3
+                else if(x >= 603 && x <= 603+146 && y >= 203 && y <= 203+93)
+                {
+                    showStatus("You Pickup card 3");
+                }
+                //if you draw CARD 4
+                else if(x >= 603 && x <= 603+146 && y >= 301 && y <= 301+93)
+                {
+                    showStatus("You Pickup card 4");
+                }
+                //if you draw CARD 5
+                else if(x >= 603 && x <= 603+146 && y >= 399 && y <= 399+93)
+                {
+                    showStatus("You Pickup card 5");
+                }
+                //if you click the city of stornoway
+                else if(x >= 385 && x <= 385+20 && y >= 39 && y <= 39+20)
+                {
+                    //if this is the first click set it as first
+                    //otherwise set it to the second
+                    //if this is the second click then
+                    //
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Stornoway;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Stornoway;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: stornoway - " + firstCity + ", " + secondCity);
+
+                }
+                //if hovering over the city of ullapool
+                else if(x >= 419 && x <= 419+20 && y >= 84 && y <= 84+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Ullapool;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Ullapool;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: ullapool - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of wick
+                else if(x >= 535 && x <= 535+20 && y >= 84 && y <= 84+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Wick;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Wick;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: wick - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of fort william
+                else if(x >= 373 && x <= 373+20 && y >= 173 && y <= 173+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.FortWilliam;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.FortWilliam;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: fort william - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of inverness
+                else if(x >= 449 && x <= 449+20 && y >= 128 && y <= 128+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Inverness;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Inverness;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: inverness - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of aberdeen
+                else if(x >= 527 && x <= 527+20 && y >= 209 && y <= 209+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Aberdeen;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Aberdeen;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: aberdeen - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of londonderry
+                else if(x >= 213 && x <= 213+20 && y >= 253 && y <= 253+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Londonderry;;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Londonderry;;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: londonderry - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of glasgow
+                else if(x >= 377 && x <= 377+20 && y >= 270 && y <= 270+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Glasgow;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Glasgow;
+                        secondCity = null;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: glasgow - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of edinburgh
+                else if(x >= 434 && x <= 434+20 && y >= 287 && y <= 287+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Edinburgh;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Edinburgh;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: edinburgh - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of dundee
+                else if(x >= 472 && x <= 472+20 && y >= 242 && y <= 242+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Dundee;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Dundee;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: dundee - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of sligo
+                else if(x >= 118 && x <= 118+20 && y >= 288 && y <= 288+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Sligo;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Sligo;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: sligo - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of belfast
+                else if(x >= 253 && x <= 253+20 && y >= 332 && y <= 332+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Belfast;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Belfast;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: belfast - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of stranraer
+                else if(x >= 311 && x <= 311+20 && y >= 326 && y <= 326+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Stranraer;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Stranraer;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: stranraer - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of galway
+                else if(x >= 50 && x <= 50+20 && y >= 354 && y <= 354+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Galway;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Galway;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: galway - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of dundalk
+                else if(x >= 205 && x <= 205+20 && y >= 367 && y <= 367+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Dundalk;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Dundalk;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: dundalk - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of carlisle
+                else if(x >= 400 && x <= 400+20 && y >= 380 && y <= 380+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Carlisle;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Carlisle;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: carlisle - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of newcastle
+                else if(x >= 467 && x <= 467+20 && y >= 397 && y <= 397+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Newcastle;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Newcastle;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: newcastle - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of limerick
+                else if(x >= 50 && x <= 50+20 && y >= 420 && y <= 420+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Limerick;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Limerick;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: limerick - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of tullamore
+                else if(x >= 125 && x <= 125+20 && y >= 407 && y <= 407+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Tullamore;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Tullamore;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: tullamore - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of dublin
+                else if(x >= 182 && x <= 182+20 && y >= 422 && y <= 422+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Dublin;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Dublin;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: dublin - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of barrows
+                else if(x >= 361 && x <= 361+20 && y >= 427 && y <= 427+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Barrow;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Barrow;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: barrows - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of cork
+                else if(x >= 39 && x <= 39+20 && y >= 489 && y <= 489+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Cork;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Cork;
+                        secondCity = null;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: cork - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of rosslare
+                else if(x >= 134 && x <= 134+20 && y >= 501 && y <= 501+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Rosslare;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Rosslare;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: rosslare - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of hollyhead
+                else if(x >= 265 && x <= 265+20 && y >= 466 && y <= 466+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Holyhead;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Holyhead;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: hollyhead - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of liverpool
+                else if(x >= 335 && x <= 335+20 && y >= 478 && y <= 478+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Liverpool;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Liverpool;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: liverpool - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of leeds
+                else if(x >= 432 && x <= 432+20 && y >= 483 && y <= 483+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Leeds;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Leeds;
+                        firstClick = true;
+
+                    }
+                    showStatus("Selected City: leeds - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of aberystryth
+                else if(x >= 245 && x <= 245+20 && y >= 551 && y <= 551+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Aberystwyth;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Aberystwyth;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: aberystryth - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of manchester
+                else if(x >= 381 && x <= 381+20 && y >= 510 && y <= 510+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Manchester;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Manchester;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: manchester - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of hull
+                else if(x >= 483 && x <= 483+20 && y >= 520 && y <= 520+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Hull;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Hull;
+                        secondCity = null;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: hull - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of carmarthen
+                else if(x >= 211 && x <= 211+20 && y >= 600 && y <= 600+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Carmarthen;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Carmarthen;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: carmarthen - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of llandrindod wells
+                else if(x >= 284 && x <= 284+20 && y >= 591 && y <= 591+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.LlandrindodWells;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.LlandrindodWells;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: llandrindod wells - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of birmingham
+                else if(x >= 364 && x <= 364+20 && y >= 602 && y <= 602+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Birmingham;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Birmingham;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: birmingham - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of nottingham
+                else if(x >= 415 && x <= 415+20 && y >= 576 && y <= 576+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Nottingham;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Nottingham;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: nottingham - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of cardiff
+                else if(x >= 252 && x <= 252+20 && y >= 640 && y <= 640+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Cardiff;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Cardiff;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: cardiff - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of northampton
+                else if(x >= 402 && x <= 402+20 && y >= 646 && y <= 646+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Northampton;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Northampton;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: northampton - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of cambridge
+                else if(x >= 457 && x <= 457+20 && y >= 663 && y <= 663+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Cambridge;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Cambridge;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: cambridge - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of norwich
+                else if(x >= 543 && x <= 543+20 && y >= 657 && y <= 657+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Norwich;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Norwich;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: norwich - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of penzance
+                else if(x >= 83 && x <= 83+20 && y >= 694 && y <= 694+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Penzance;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Penzance;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: penzance - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of plymouth
+                else if(x >= 172 && x <= 172+20 && y >= 703 && y <= 703+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Plymouth;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Plymouth;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: plymouth - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of bristol
+                else if(x >= 290 && x <= 290+20 && y >= 675 && y <= 675+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Bristol;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Bristol;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: bristol - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of reading
+                else if(x >= 370 && x <= 370+20 && y >= 697 && y <= 697+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Reading;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Reading;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: reading - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of london
+                else if(x >= 426 && x <= 426+20 && y >= 716 && y <= 716+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.London;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.London;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: london - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of ipswich
+                else if(x >= 500 && x <= 500+20 && y >= 709 && y <= 709+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Ipswich;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Ipswich;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: ipswich - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of southampton
+                else if(x >= 338 && x <= 338+20 && y >= 751 && y <= 751+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Southampton;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Southampton;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: southampton - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of brighton
+                else if(x >= 399 && x <= 399+20 && y >= 777 && y <= 777+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Brighton;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Brighton;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: brighton - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of dover
+                else if(x >= 491 && x <= 491+20 && y >= 778 && y <= 778+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.Dover;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.Dover;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: dover - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of france
+                else if(x >= 560 && x <= 560+20 && y >= 819 && y <= 819+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.France;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.France;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: france - " + firstCity + ", " + secondCity);
+                }
+                //if hovering over the city of france
+                else if(x >= 291 && x <= 291+20 && y >= 850 && y <= 850+20)
+                {
+                    if(firstClick == true)
+                    {
+                        firstCity = CityName.France;
+                        secondCity = null;
+                        firstClick = false;
+                    }
+                    else if(firstClick == false)
+                    {
+                        secondCity = CityName.France;
+                        firstClick = true;
+                    }
+                    showStatus("Selected City: france - " + firstCity + ", " + secondCity);
+                }
             }
 
         }        
@@ -1438,17 +2508,159 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 gameBoard = true;
                 buyTech = false;
             }
-
-            //Plays a button sound when you press PURCHASE
-            else if(x >= 543 && x <= 543+174 && y >= 828 && y <= 828+51)
+            //plays a button sound when you press on WALES
+            else if(x >= 50 && x <= 50+247 && y >= 91 && y <= 91+160)
             {
                 //play the button sound
                 playButtonSound();
-                //add the selected tech to the player
+                //set the tech to purchase
+                canPurchase = true;
+            }
+            //plays a button sound when you press on IRELAND
+            else if(x >= 352 && x <= 352+247 && y >= 91 && y <= 91+160)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the tech to purchase
+                canPurchase = true;
+            }
+            //plays a button sound when you press on SCOTLAND
+            else if(x >= 659 && x <= 659+247 && y >= 91 && y <= 91+160)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the tech to purchase
+                canPurchase = true;
+            }
 
-                //go back to the gameboard
-                gameBoard = true;
-                buyTech = false;
+            //plays a button sound when you press on PROPELLERS
+            else if(x >= 659 && x <= 659+247 && y >= 91 && y <= 91+160)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the tech to purchase
+                canPurchase = true;
+            }
+            //plays a sound when you press on MECHANICAL STOKER
+            else if(x >= 50 && x <= 50+247 && y >= 276 && y <= 276+160)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the tech to purchase
+                canPurchase = true;
+            }
+            //plays a sound when you press on SUPERHEATED STEAM BOILER
+            else if(x >= 352 && x <= 352+247 && y >= 276 && y <= 276+160)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the tech to purchase
+                canPurchase = true;
+            }
+            //plays a sound when you press on DIESEL POWER
+            else if(x >= 960 && x <= 960+247 && y >= 276 && y <= 276+160)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the tech to purchase
+                canPurchase = true;
+            }
+            //plays a sound when you press on BOILER LAGGING
+            else if(x >= 659 && x <= 659+247 && y >= 276 && y <= 276+160)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the tech to purchase
+                canPurchase = true;
+            }
+            //plays a sound when you press on DOUBLE HEADING
+            else if(x >= 50 && x <= 50+247 && y >= 461 && y <= 461+160)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the tech to purchase
+                canPurchase = true;
+            }
+            //plays a sound when you press on STEAM TURBINE
+            else if(x >= 352 && x <= 352+247 && y >= 461 && y <= 461+160)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the tech to purchase
+                canPurchase = true;
+            }
+            //plays a sound when you press on WATER TENDERS
+            else if(x >= 659 && x <= 659+247 && y >= 461 && y <= 461+160)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the tech to purchase
+                canPurchase = true;
+            }
+            //plays a sound when you press on BOOSTERS
+            else if(x >= 960 && x <= 960+247 && y >= 461 && y <= 461+160)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the tech to purchase
+                canPurchase = true;
+            }
+            //plays a sound when you press on RISKY CONTRACT
+            else if(x >= 50 && x <= 50+247 && y >= 646 && y <= 646+160)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the tech to purchase
+                canPurchase = true;
+            }
+            //plays a sound when you press on RIGHT OF WAY
+            else if(x >= 352 && x <= 352+247 && y >= 646 && y <= 646+160)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the tech to purchase
+                canPurchase = true;
+            }
+            //plays a sound when you press on EQUALISING BEAM
+            else if(x >= 659 && x <= 659+247 && y >= 646 && y <= 646+160)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the tech to purchase
+                canPurchase = true;
+            }
+            //plays a sound when you press on THERMO COMPRESSOR
+            else if(x >= 960 && x <= 960+247 && y >= 646 && y <= 646+160)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the tech to purchase
+                canPurchase = true;
+            }
+            //Plays a button sound when you press PURCHASE
+            else if(x >= 543 && x <= 543+174 && y >= 828 && y <= 828+51)
+            {
+                if(canPurchase == true)
+                {
+                    //play the purchase sound
+                    playButtonSoundPurchase();
+                    //check to see if selected tech is
+                    //buyable
+
+                    //add the selected tech to the player
+
+                    //reset the purchase boolean
+                    canPurchase = false;
+                    //go back to the gameboard
+                    gameBoard = true;
+                    buyTech = false;
+                }
+                else
+                {
+                    //play the error sound
+                    playButtonSoundError();
+                }
+
             }
 
         }        
@@ -1463,6 +2675,20 @@ implements MouseListener, MouseMotionListener, ActionListener {
                 //set the viewDest true
                 gameBoard = true;
                 viewDest = false;
+            }
+
+        }
+        else if(rulesScreenInGame == true)
+        {
+            //Plays a button sound when you press BACK
+            if(x >= 5 && x <= 5+98 && y >= 846 && y <= 846+48)
+            {
+                //play the button sound
+                playButtonSound();
+                //set the gameBoard to false
+                //set the viewDest true
+                gameBoard = true;
+                rulesScreenInGame = false;
             }
 
         }
@@ -1509,6 +2735,9 @@ implements MouseListener, MouseMotionListener, ActionListener {
             {
                 setUpGameBoardScreenFourPlayers();
             }
+            //this needs a condition where it only prints when updated
+            g.setFont(new Font("Wide Latin", Font.PLAIN, 20)); 
+            g.drawString("0",770,610);
             checkGameBoardButtons(g);
             checkCityHover(g);
         }
@@ -1532,12 +2761,31 @@ implements MouseListener, MouseMotionListener, ActionListener {
             setUpViewDestScreen();
             checkViewDestButtons(g);
         }
+        else if(rulesScreenInGame == true)
+        {
+            setUpRulesScreenInGame();
+            checkViewRulesScreenInGameButtons(g);
+        }
 
     }
 
     //===============================================
     //      methods for button highlighting
     //===============================================
+
+    public void checkViewRulesScreenInGameButtons(Graphics g)
+    {
+        if(backButton == true)
+        {
+            //show the highlighted button
+            paintHighlightedBackButton(g);
+        }
+        else
+        {
+            //show the unselected button
+            paintUnselectedBackButton(g);
+        }
+    }
 
     public void checkViewTechButtons(Graphics g)
     {
@@ -1570,6 +2818,86 @@ implements MouseListener, MouseMotionListener, ActionListener {
             paintHighlightedPurchaseButton(g);
         else
             paintUnselectedPurchaseButton(g);
+
+        if(walesHighlight == true)
+            g.drawImage(ImgLib.walesHighlight, 50, 91, this);
+        else
+            g.drawImage(ImgLib.emptySelect, 50, 91, this);
+
+        if(irelandHighlight == true)
+            g.drawImage(ImgLib.irelandHighlight, 352, 91, this);
+        else
+            g.drawImage(ImgLib.emptySelect, 50, 91, this);
+
+        if(scotlandHighlight == true)
+            g.drawImage(ImgLib.scotlandHighlight, 659, 91, this);
+        else
+            g.drawImage(ImgLib.emptySelect, 50, 91, this);
+
+        if(propellersHighlight == true)
+            g.drawImage(ImgLib.propellersHighlight, 960, 91, this);
+        else
+            g.drawImage(ImgLib.emptySelect, 50, 91, this);
+
+        if(mechanicalHighlight == true)
+            g.drawImage(ImgLib.mechanicalHighlight, 50, 276, this);
+        else
+            g.drawImage(ImgLib.emptySelect, 50, 91, this);
+
+        if(superheatedHighlight == true)
+            g.drawImage(ImgLib.superheatedHighlight, 352, 276, this);
+        else
+            g.drawImage(ImgLib.emptySelect, 50, 91, this);
+
+        if(dieselHighlight == true)
+            g.drawImage(ImgLib.dieselHighlight, 659, 276, this);
+        else
+            g.drawImage(ImgLib.emptySelect, 50, 91, this);
+
+        if(boilerHighlight == true)
+            g.drawImage(ImgLib.boilerHighlight, 960, 276, this);
+        else
+            g.drawImage(ImgLib.emptySelect, 50, 91, this);
+
+        if(doubleheadingHighlight == true)
+            g.drawImage(ImgLib.doubleheadingHighlight, 50, 461, this);
+        else
+            g.drawImage(ImgLib.emptySelect, 50, 91, this);
+
+        if(steamturbineHighlight == true)
+            g.drawImage(ImgLib.steamturbineHighlight, 352, 461, this);
+        else
+            g.drawImage(ImgLib.emptySelect, 50, 91, this);
+
+        if(watertendersHighlight == true)
+            g.drawImage(ImgLib.watertendersHighlight, 659, 461, this);
+        else
+            g.drawImage(ImgLib.emptySelect, 50, 91, this);
+
+        if(boosterHighlight == true)
+            g.drawImage(ImgLib.boosterHighlight, 960, 461, this);
+        else
+            g.drawImage(ImgLib.emptySelect, 50, 91, this);
+
+        if(riskycontractHighlight == true)
+            g.drawImage(ImgLib.riskycontractHighlight, 50, 646, this);
+        else
+            g.drawImage(ImgLib.emptySelect, 50, 91, this);
+
+        if(rightofwayHighlight == true)
+            g.drawImage(ImgLib.rightofwayHighlight, 352, 646, this);
+        else
+            g.drawImage(ImgLib.emptySelect, 50, 91, this);
+
+        if(equalisingbeamHighlight == true)
+            g.drawImage(ImgLib.equalisingbeamHighlight, 659, 646, this);
+        else
+            g.drawImage(ImgLib.emptySelect, 50, 91, this);
+
+        if(thermocompressorHighlight == true)
+            g.drawImage(ImgLib.thermocompressorHighlight, 960, 646, this);
+        else
+            g.drawImage(ImgLib.emptySelect, 50, 91, this);
     }
 
     public void checkViewDestButtons(Graphics g)
@@ -1834,6 +3162,10 @@ implements MouseListener, MouseMotionListener, ActionListener {
         else
             g.drawImage(ImgLib.viewDestButtonUnselected, 1044, 508, this);
 
+        if(rulesButton == true)
+            g.drawImage(ImgLib.viewRulesButtonHighlighted, 781, 28, this);
+        else
+            g.drawImage(ImgLib.viewRulesButtonUnselected, 781, 28, this);
     }    
 
     //===============================================
@@ -1900,6 +3232,12 @@ implements MouseListener, MouseMotionListener, ActionListener {
         g.drawImage(ImgLib.viewDest, 0, 0, this);
     }
 
+    public void setUpRulesScreenInGame()
+    {
+        Graphics g = getGraphics();
+        g.drawImage(ImgLib.rulesScreenInGame, 0, 0, this);
+    }
+
     //===============================================
     //      Setting up the game sounds
     //===============================================
@@ -1916,6 +3254,22 @@ implements MouseListener, MouseMotionListener, ActionListener {
     {
         //set the random number to play random button sound
         String buttonSound = "resources/sounds/buttons/Pageturn.wav";
+        //plays random button sound from button names
+        play( getDocumentBase(), buttonSound );
+    }
+
+    public void playButtonSoundError()
+    {
+        //set the random number to play random button sound
+        String buttonSound = "resources/sounds/buttons/error.wav";
+        //plays random button sound from button names
+        play( getDocumentBase(), buttonSound );
+    }
+
+    public void playButtonSoundPurchase()
+    {
+        //set the random number to play random button sound
+        String buttonSound = "resources/sounds/buttons/purchase.wav";
         //plays random button sound from button names
         play( getDocumentBase(), buttonSound );
     }

@@ -11,6 +11,7 @@ public class Dest extends Card
 {
     CityName cityA, cityB;
     private static final String path = "resources\\images\\cards\\destination cards\\";
+    int pointValue;
     public Dest(String line, String delim){
         StringTokenizer st = new StringTokenizer(line,delim);
         String cityAStr = st.nextToken();

@@ -12,7 +12,8 @@ public class CardSelectPanel extends JPanel
     Image background;
     ArrayList<Card> cards, selected;
     int cardWidth, cardHeight ,rows, border = 50, topBorder = 100, leftBorder = 50;
-    JButton backButt,purchaseButt;
+    //JButton backButt,purchaseButt;
+    GButton backButt,purchaseButt;
     String title;
 
     boolean[] selectedCards;
@@ -35,43 +36,11 @@ public class CardSelectPanel extends JPanel
             rows = 4;
         }
 
-        backButt = new JButton("");
-        backButt.setBounds(5, 828, 98, 48);
-        backButt.setIcon(new ImageIcon(ImgLib.backButtonUnselected));
-        backButt.setBorderPainted(false);
-        backButt.setOpaque(false);
-        backButt.setContentAreaFilled(false);
-        backButt.setActionCommand("back");
-
-        purchaseButt = new JButton("");
-        purchaseButt.setBounds(543, 828, 174, 51);
-        purchaseButt.setIcon(new ImageIcon(ImgLib.purchaseButtonUnselected));
-        purchaseButt.setBorderPainted(false);
-        purchaseButt.setOpaque(false);
-        purchaseButt.setContentAreaFilled(false);
-        purchaseButt.setActionCommand("purchase");
-
-        backButt.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseEntered(java.awt.event.MouseEvent evt) {
-                    backButt.setIcon(new ImageIcon(ImgLib.backButtonHighlighted));
-                }
-
-                public void mouseExited(java.awt.event.MouseEvent evt) {
-                    backButt.setIcon(new ImageIcon(ImgLib.backButtonUnselected));
-                }
-            });
-
-        purchaseButt.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseEntered(java.awt.event.MouseEvent evt) {
-                    purchaseButt.setIcon(new ImageIcon(ImgLib.purchaseButtonHighlighted));
-                }
-
-                public void mouseExited(java.awt.event.MouseEvent evt) {
-                    purchaseButt.setIcon(new ImageIcon(ImgLib.purchaseButtonUnselected));
-                }
-            });
-
+        
+        backButt = new GButton(new int[]{5,828,98,48},ImgLib.backButtonUnselected,ImgLib.backButtonHighlighted);
         this.add(backButt);
+        
+        purchaseButt = new GButton(new int[]{5,828,98,48},ImgLib.backButtonUnselected,ImgLib.backButtonHighlighted);
         this.add(purchaseButt);
     }
 

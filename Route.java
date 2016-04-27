@@ -1,4 +1,5 @@
 import java.util.*;
+import java.awt.*;
 /**
  * A Object Orented Class to hold all information pertaining to a route for the game Ticket to Ride
  * 
@@ -22,6 +23,9 @@ public class Route
     //the playerID of the current owner of the route
     int ownerID;
 
+    //stores a list of polygons which represent the tiles in a given route
+    ArrayList<Polygon> polygons;
+
     /**
      * Basic constructor to initlise values to their null/default values
      */
@@ -40,6 +44,7 @@ public class Route
         String cityBStr = st.nextToken();
         String trainRequirementStr = st.nextToken();
         String colorStr = st.nextToken();
+        String pointsList = st.nextToken();
 
         //identifying message for this class
         String classMsg = "(ERR CONST Route)";
@@ -65,6 +70,31 @@ public class Route
             trainRequirement = Integer.parseInt(trainRequirementStr);
         }catch(Exception e){
             System.err.println(classMsg+trainRequirementStr+": Cannot parse trainRequirement to int");
+        }
+        try{
+            polygons = new ArrayList<Polygon>();
+            StringTokenizer points = new StringTokenizer(pointsList," ");
+            while(points.hasMoreTokens()){
+                String xStr = points.nextToken(), yStr = points.nextToken();
+                StringTokenizer xValues = new StringTokenizer(xStr,"-");
+                StringTokenizer yValues = new StringTokenizer(yStr,"-");
+                int numberOfPoints = 0;
+                if(xValues.countTokens() == xValues.countTokens()){
+                    numberOfPoints = xValues.countTokens();
+                }else{
+                    System.err.println(classMsg+": X and Y values do not match in length for polygon");
+                }
+                int[] xList = new int[numberOfPoints];
+                int[] yList = new int[numberOfPoints];
+                for(int i=0; i<numberOfPoints;i++){
+                    xList[i] = Integer.parseInt(xValues.nextToken());
+                    yList[i] = Integer.parseInt(yValues.nextToken());
+                }
+                //System.out.println("X:("+Arrays.toString(xList)+") Y:("+Arrays.toString(yList)+") Count:"+numberOfPoints);
+                polygons.add(new Polygon(xList,yList,numberOfPoints));
+            }
+        }catch(Exception e){
+            System.err.println(classMsg+": Cannot parse points to polygon");
         }
         //sets the ownerID to its default value of -1 awaiting a player to capture it
         ownerID = -1;

@@ -9,9 +9,8 @@ import java.awt.*;
  * @version (a version number or a date)
  */
 public class GamePanel extends JPanel{
-    CityBuilder cb;//replace with a refrence to GameBoard.citys
-    DeckBuilder db;//replace with a refrence to GameBoard.currentPlayer.hand;
-    JButton viewTechnologyButt,buyTechnologyButt, viewDestinationsButt;
+    GameBoard gameBoard;
+    GButton viewTechButt, buyTechButt, viewDestButt;
     ArrayList<Card> selectedTechCards,selectedDestCards;
 
     Rectangle mapBounds = new Rectangle(9,39,590,885);
@@ -23,51 +22,25 @@ public class GamePanel extends JPanel{
     public GamePanel()
     {
         this.setLayout(null);
-
-        cb = new CityBuilder();
-        db = new DeckBuilder();
+        
+        gameBoard = new GameBoard();
 
         selectedTechCards = new ArrayList<Card>();
         selectedDestCards = new ArrayList<Card>();
 
-        viewTechnologyButt = new JButton("");
-        viewTechnologyButt.setBounds(612, 508, 196, 51);
-        viewTechnologyButt.setIcon(new ImageIcon(ImgLib.viewTechButtonUnselected));
-        viewTechnologyButt.setBorderPainted(false);
-        viewTechnologyButt.setOpaque(false);
-        viewTechnologyButt.setContentAreaFilled(false);
-
-        buyTechnologyButt = new JButton("");
-        buyTechnologyButt.setBounds(828, 508, 196, 51);
-        buyTechnologyButt.setIcon(new ImageIcon(ImgLib.buyTechButtonUnselected));
-        buyTechnologyButt.setBorderPainted(false);
-        buyTechnologyButt.setOpaque(false);
-        buyTechnologyButt.setContentAreaFilled(false);
-
-        viewDestinationsButt = new JButton("");
-        viewDestinationsButt.setBounds(1044, 508, 196, 51);
-        viewDestinationsButt.setIcon(new ImageIcon(ImgLib.viewDestButtonUnselected));
-        viewDestinationsButt.setBorderPainted(false);
-        viewDestinationsButt.setOpaque(false);
-        viewDestinationsButt.setContentAreaFilled(false);
-
-        viewTechnologyButt.addActionListener(new ActionListener() {
+        
+        viewTechButt = new GButton(new int[]{612,508,196,51},ImgLib.viewTechButtonUnselected,ImgLib.viewTechButtonHighlighted);
+        viewTechButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e)
                 {
                     //showPlayerCards(GameBoard.getCurrPlayer().getTech());
                 }
             });
-        viewTechnologyButt.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseEntered(java.awt.event.MouseEvent evt) {
-                    viewTechnologyButt.setIcon(new ImageIcon(ImgLib.viewTechButtonHighlighted));
-                }
-
-                public void mouseExited(java.awt.event.MouseEvent evt) {
-                    viewTechnologyButt.setIcon(new ImageIcon(ImgLib.viewTechButtonUnselected));
-                }
-            });
-
-        buyTechnologyButt.addActionListener(new ActionListener() {
+        this.add(viewTechButt);
+        
+        
+        buyTechButt = new GButton(new int[]{828,508,196,51},ImgLib.viewTechButtonUnselected,ImgLib.viewTechButtonHighlighted);
+        buyTechButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e)
                 {
                     for(Card c : purchaseTechCards()){
@@ -75,17 +48,11 @@ public class GamePanel extends JPanel{
                     }
                 }
             });
-        buyTechnologyButt.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseEntered(java.awt.event.MouseEvent evt) {
-                    buyTechnologyButt.setIcon(new ImageIcon(ImgLib.buyTechButtonHighlighted));
-                }
-
-                public void mouseExited(java.awt.event.MouseEvent evt) {
-                    buyTechnologyButt.setIcon(new ImageIcon(ImgLib.buyTechButtonUnselected));
-                }
-            });
-
-        viewDestinationsButt.addActionListener(new ActionListener() {
+        this.add(buyTechButt);
+        
+        
+        viewDestButt = new GButton(new int[]{1044,508,196,51},ImgLib.viewTechButtonUnselected,ImgLib.viewTechButtonHighlighted);
+        viewDestButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e)
                 {
                     for(Card c : selectDestCards()){
@@ -93,17 +60,9 @@ public class GamePanel extends JPanel{
                     }
                 }
             });
-        viewDestinationsButt.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseEntered(java.awt.event.MouseEvent evt) {
-                    viewDestinationsButt.setIcon(new ImageIcon(ImgLib.viewDestButtonHighlighted));
-                }
-
-                public void mouseExited(java.awt.event.MouseEvent evt) {
-                    viewDestinationsButt.setIcon(new ImageIcon(ImgLib.viewDestButtonUnselected));
-                }
-            });
-
-        for(City c : cb.cities){
+        this.add(viewDestButt);
+        
+        for(City c : gameBoard.cities){
             JLabel cityLabel = new JLabel();
             cityLabel.setBounds(c.x,c.y,20,20);
             cityLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -134,17 +93,12 @@ public class GamePanel extends JPanel{
                         getClickedCard(p);
                 }
             });
-
-        this.add(viewTechnologyButt);
-        this.add(buyTechnologyButt);
-        this.add(viewDestinationsButt);
-
     }
 
     public ArrayList<Card> purchaseTechCards(){
         int limit = 1, minimum = 1;
         JFrame parentFrame = (JFrame)SwingUtilities.windowForComponent(this);
-        CardSelectPanel panel = new CardSelectPanel("Purchase Technologies",db.tech);
+        CardSelectPanel panel = new CardSelectPanel("Purchase Technologies",gameBoard.techAvail);
         JDialog jd = new JDialog(parentFrame,true);
         jd.setTitle("Card Select");
 
@@ -188,7 +142,7 @@ public class GamePanel extends JPanel{
     public ArrayList<Card> selectDestCards(){
         int limit = 4, minimum = 3;
         JFrame parentFrame = (JFrame)SwingUtilities.windowForComponent(this);
-        CardSelectPanel panel = new CardSelectPanel("Select Destination Cards",db.dest);
+        CardSelectPanel panel = new CardSelectPanel("Select Destination Cards",gameBoard.destDeck.drawCards(5));
         JDialog jd = new JDialog(parentFrame,true);
         jd.setTitle("Card Select");
 
@@ -249,7 +203,7 @@ public class GamePanel extends JPanel{
     {
         super.paintComponent( g );
         g.drawImage(ImgLib.background,0,0,this);
-        for(City c : cb.cities){
+        for(City c : gameBoard.cities){
             g.setColor(Color.GREEN);
             g.drawRect(c.x,c.y,20,20);
             if(c.hover)
@@ -260,7 +214,7 @@ public class GamePanel extends JPanel{
     } // end method paintComponent
 
     public void mouseCheckHoverCity(Point p){
-        for(City c : cb.cities){
+        for(City c : gameBoard.cities){
             Rectangle cityBounds = new Rectangle(c.getX(),c.getY(),20,20);
             if(cityBounds.contains(p)){
                 c.hover = true;
@@ -274,7 +228,7 @@ public class GamePanel extends JPanel{
     }
 
     public CityName getClickedCity(Point p){
-        for(City c : cb.cities){
+        for(City c : gameBoard.cities){
             Rectangle cityBounds = new Rectangle(c.x,c.y,20,20);
             if(cityBounds.contains(p)){
                 System.out.println(c.name);
@@ -286,7 +240,7 @@ public class GamePanel extends JPanel{
 
     public void drawPlayerHand(Graphics g){
         int rows = 3, cardWidth=146, cardHeight=94, leftBorder=650, topBorder=585;
-        ArrayList<Card> trainCards = db.train;//GameBoard.getCurrPlayer().getTech();
+        ArrayList<Card> trainCards = gameBoard.getCurrentPlayer().heldTrainCards;//GameBoard.getCurrPlayer().getTech();
         RouteColor[] order = new RouteColor[]{
                 RouteColor.BLACK,
                 RouteColor.GREEN,
@@ -317,7 +271,7 @@ public class GamePanel extends JPanel{
 
     public RouteColor getClickedCard(Point point){
         int rows = 3, cardWidth=146, cardHeight=94, leftBorder=650, topBorder=585;//+39;
-        ArrayList<Card> trainCards = db.train;//GameBoard.getCurrPlayer().getTech();
+        ArrayList<Card> trainCards = gameBoard.getCurrentPlayer().heldTrainCards;//GameBoard.getCurrPlayer().getTech();
         RouteColor[] order = new RouteColor[]{
                 RouteColor.BLACK,
                 RouteColor.GREEN,
