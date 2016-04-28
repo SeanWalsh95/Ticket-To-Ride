@@ -22,6 +22,7 @@ public class Player
         this.id = playerID;
         this.name = playerName;
         this.color = playerColor;
+        trainPieces = 35;
     }
 
     public String toString(){
