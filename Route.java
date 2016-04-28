@@ -101,6 +101,6 @@ public class Route
     }
 
     public String toString(){
-        return "Route: "+cityA+"\t"+cityB+"\t"+color+"\t"+trainRequirement+"\t";
+        return "Route "+cityA+" to "+cityB;
     }
 }

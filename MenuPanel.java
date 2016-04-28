@@ -152,7 +152,7 @@ public class MenuPanel extends JPanel
             if(input ==  null || input.equals("")){
                 name = generated;
             }else{
-                name = input+" (Player "+i+")";
+                name = input+" (Player "+(i+1)+")";
             }
             System.out.println(name);
 

@@ -17,6 +17,9 @@ public class GamePanel extends JPanel{
     Rectangle playersCardsBounds = new Rectangle(609,573+50,636,320); 
     int xOFFSET= 0, yOFFSET = 50;
 
+    boolean firstCityClick = true, routeSelected = false;
+    CityName routePointA, routePointB;
+
     /**
      * Constructor for objects of class GamePanel
      */
@@ -69,6 +72,7 @@ public class GamePanel extends JPanel{
             cityLabel.setBounds(c.getX(),c.getY(),20,20);
             cityLabel.addMouseListener(new java.awt.event.MouseAdapter() {
                     public void mousePressed( MouseEvent e ){
+                        cityClicked(c.name);
                         System.out.println(c.name);
                         //add call to cityClicked() method here
                     }
@@ -85,6 +89,22 @@ public class GamePanel extends JPanel{
                 });
             this.add(cityLabel);
         }
+    }
+
+    private void cityClicked(CityName c){
+        if(!routeSelected)
+            if(firstCityClick){
+                routePointA = c;
+                firstCityClick = false;
+                routeSelected = false;
+            }else{
+                routePointB = c;
+                if(gameBoard.getRoute(routePointA, routePointB) != null)
+                    routeSelected = true;
+                else
+                    firstCityClick = true;
+            }
+        repaint();
     }
 
     /**
@@ -228,6 +248,7 @@ public class GamePanel extends JPanel{
         }
         drawPlayerHand(g);
         drawPlayerInfo(g);
+        drawUserInfo(g);
         //drawTrainDeck(g);
     } // end method paintComponent
 
@@ -292,7 +313,7 @@ public class GamePanel extends JPanel{
      */
     public void drawPlayerInfo(Graphics g){
         int width=241, height=91, leftBorder=1011, topBorder=8+yOFFSET;
-        
+
         Font currentFont = g.getFont();
         Font newFont = currentFont.deriveFont(currentFont.getSize() * 1F);
         g.setFont(newFont);
@@ -307,5 +328,67 @@ public class GamePanel extends JPanel{
             g.fillRect(g.getFontMetrics().stringWidth(p.name)+x+10,y+3,15,15);
 
         }
+    }
+
+    public void drawUserInfo(Graphics g){
+        int x=8,y=25;
+        Font currentFont = g.getFont();
+        Font newFont = currentFont.deriveFont(currentFont.getSize() * 1F);
+        g.setFont(newFont);
+        g.setColor(Color.WHITE);
+        JPanel self = this;
+        JButton clearButt = new JButton("Clear");
+        clearButt.setBounds(708, y, 75, 25);
+        clearButt.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e)
+                {
+                    firstCityClick = true;
+                    routeSelected = false;
+                    routePointA = null;
+                    routePointB = null;
+                    self.repaint();
+                }
+            });
+
+        JButton purchaseButt = new JButton("Purchase");
+        purchaseButt.setBounds(608, y, 100, 25);
+        purchaseButt.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e)
+                {
+                    Route r = gameBoard.getRoute(routePointA, routePointB);
+                    System.out.println("Purchase action "+routeSelected+" "+r.toString());
+                    if(routeSelected && r != null){
+                        City a, b;
+                        a = b = null;
+                        for(City c: gameBoard.cities){
+                            if(r.cityA == c.name)
+                                a = c;
+                            if(r.cityB == c.name)
+                                b = c;
+                        }
+
+                        System.out.println(a.name + "  " + b.name);
+                        if(a != null && b != null){
+                            System.out.println("Calling GB for "+r.toString());
+                            gameBoard.buyRoute(a,b);
+                        }
+                    }
+                }
+            });
+        this.add(clearButt);
+        this.add(purchaseButt);
+        if(routeSelected){
+            Route r = gameBoard.getRoute(routePointA, routePointB);
+            if(r != null){
+                g.drawString(r.toString()+" selected",x+5,y+5+(g.getFontMetrics().getHeight()/2));
+            }else{
+                firstCityClick = true;
+                routeSelected = false;
+            }
+        }
+    }
+
+    public ArrayList<Card> selectTrainCards(){
+        return null;
     }
 }

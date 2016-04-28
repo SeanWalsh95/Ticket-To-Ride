@@ -84,11 +84,10 @@ public class GameBoard {
         boolean success = false;
         if (desRoute == null) return success;
         if(JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null,
-            "choose one",
             "Do you want " +
             "to purchase the route from " +
             desRoute.cityA + " to " + desRoute.cityB
-            + "?",JOptionPane.YES_NO_OPTION)){
+            + "?","choose one",JOptionPane.YES_NO_OPTION)){
             return success;
         }
         if (desRoute.ownerID == -1 || hasTech(curPlayer, Technology
@@ -582,17 +581,16 @@ public class GameBoard {
         Player p = getCurrentPlayer();
         for(int i = 0; i<p.heldTrainCards.size(); i++){
             if(JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null,
-                "choose one",
                 "Do you want " +
                 "to" +
                 " " +
                 "add a " + ((Train)p.heldTrainCards.get(i)).color + " " +
-                "train to your pool?",JOptionPane.YES_NO_OPTION)){
+                "train to your pool?","choose one",JOptionPane.YES_NO_OPTION)){
                 selected.add(p.heldTrainCards.get(i));
             }
         }
-        int confirm = JOptionPane.showConfirmDialog(null,"choose one",
-                "You sure?",JOptionPane.YES_NO_CANCEL_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(null,"You sure?",
+        "choose one",JOptionPane.YES_NO_CANCEL_OPTION);
         if(JOptionPane.YES_OPTION == confirm)return selected;
         else if(JOptionPane.NO_OPTION == confirm)return selectTrains();
         return null;
