@@ -15,6 +15,8 @@ public class ImgLib
 
     public static Image woodBackground;
 
+    public static Image playerCard;
+
     public static Image selectButtonHighlighted;
     public static Image selectButtonUnselected;
 
@@ -148,11 +150,14 @@ public class ImgLib
     {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
 
+        playerCard = toolkit.getImage(
+                "resources/images/backgrounds/PlayerCard.png");
+
         selectButtonHighlighted = toolkit.getImage(
-            "resources/images/buttons/selectButtonHighlighted.png");
+                "resources/images/buttons/selectButtonHighlighted.png");
         selectButtonUnselected = toolkit.getImage(
             "resources/images/buttons/selectButtonUnselected.png");
-            
+
         //Images for the viewTechScreen
         viewTech = toolkit.getImage(
             "resources/images/backgrounds/viewTechScreen.png");

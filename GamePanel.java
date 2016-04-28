@@ -13,8 +13,9 @@ public class GamePanel extends JPanel{
     GButton viewTechButt, buyTechButt, viewDestButt;
     ArrayList<Card> selectedTechCards,selectedDestCards;
 
-    Rectangle mapBounds = new Rectangle(9,39,590,885);
-    Rectangle playersCardsBounds = new Rectangle(609,573,636,320); 
+    Rectangle mapBounds = new Rectangle(9,39+50,590,885);
+    Rectangle playersCardsBounds = new Rectangle(609,573+50,636,320); 
+    int xOFFSET= 0, yOFFSET = 50;
 
     /**
      * Constructor for objects of class GamePanel
@@ -25,24 +26,24 @@ public class GamePanel extends JPanel{
 
         gameBoard = new GameBoard(players);
         for(Player p : gameBoard.players){
-            p.heldDestinationCards.addAll(selectDestCards("Player "+(p.playerID+1)+": Select Your Starting Destination Cards",3,5,5));
+            p.heldDestinationCards.addAll(selectDestCards("Player "+(p.id+1)+": Select Your Starting Destination Cards",3,5,5));
             p.heldTrainCards.addAll(gameBoard.trainDeck.drawCards(5));
         }
 
         selectedTechCards = new ArrayList<Card>();
         selectedDestCards = new ArrayList<Card>();
 
-        viewTechButt = new GButton(new int[]{612,508,196,51},ImgLib.viewTechButtonUnselected,ImgLib.viewTechButtonHighlighted);
+        viewTechButt = new GButton(new int[]{612,508+yOFFSET,196,51},ImgLib.viewTechButtonUnselected,ImgLib.viewTechButtonHighlighted);
         viewTechButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e)
                 {
                     Player p = gameBoard.getCurrentPlayer();
-                    showPlayerCards("Player "+(p.playerID+1)+"'s Tech Cards", p.heldTechCards);
+                    showPlayerCards("Player "+(p.id+1)+"'s Tech Cards", p.heldTechCards);
                 }
             });
         this.add(viewTechButt);
 
-        buyTechButt = new GButton(new int[]{828,508,196,51},ImgLib.buyTechButtonUnselected,ImgLib.buyTechButtonHighlighted);
+        buyTechButt = new GButton(new int[]{828,508+yOFFSET,196,51},ImgLib.buyTechButtonUnselected,ImgLib.buyTechButtonHighlighted);
         buyTechButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e)
                 {
@@ -53,19 +54,19 @@ public class GamePanel extends JPanel{
             });
         this.add(buyTechButt);
 
-        viewDestButt = new GButton(new int[]{1044,508,196,51},ImgLib.viewDestButtonUnselected,ImgLib.viewDestButtonHighlighted);
+        viewDestButt = new GButton(new int[]{1044,508+yOFFSET,196,51},ImgLib.viewDestButtonUnselected,ImgLib.viewDestButtonHighlighted);
         viewDestButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e)
                 {
                     Player p = gameBoard.getCurrentPlayer();
-                    showPlayerCards("Player "+(p.playerID+1)+"'s Destination Cards", p.heldDestinationCards);
+                    showPlayerCards("Player "+(p.id+1)+"'s Destination Cards", p.heldDestinationCards);
                 }
             });
         this.add(viewDestButt);
 
         for(City c : gameBoard.cities){
             JLabel cityLabel = new JLabel();
-            cityLabel.setBounds(c.x,c.y,20,20);
+            cityLabel.setBounds(c.getX(),c.getY(),20,20);
             cityLabel.addMouseListener(new java.awt.event.MouseAdapter() {
                     public void mousePressed( MouseEvent e ){
                         System.out.println(c.name);
@@ -128,6 +129,8 @@ public class GamePanel extends JPanel{
         jd.add(panel);
         jd.setVisible(true);
 
+        JOptionPane.showMessageDialog(new JFrame(), "Select 4 train cards or one locomotive");
+
         return selectedTechCards;
     }
 
@@ -183,7 +186,7 @@ public class GamePanel extends JPanel{
         gameBoard.destDeck.discard(panel.getRemainder());
         return selectedDestCards;
     }
-    
+
     /**
      * presents the user with a list of given cards
      * 
@@ -219,11 +222,12 @@ public class GamePanel extends JPanel{
         g.drawImage(ImgLib.background,0,0,this);
         for(City c : gameBoard.cities){
             g.setColor(Color.GREEN);
-            g.drawRect(c.x,c.y,20,20);
+            g.drawRect(c.getX(),c.getY(),20,20);
             if(c.hover)
-                g.drawImage(ImgLib.getHover(c.name), c.x-87, c.y-60, this);
+                g.drawImage(ImgLib.getHover(c.name), c.getX()-87, c.getY()-60, this);
         }
         drawPlayerHand(g);
+        drawPlayerInfo(g);
         //drawTrainDeck(g);
     } // end method paintComponent
 
@@ -231,7 +235,7 @@ public class GamePanel extends JPanel{
      * draws the current players hand of train cards
      */
     public void drawPlayerHand(Graphics g){
-        int rows = 3, cardWidth=146, cardHeight=94, leftBorder=650, topBorder=585;
+        int rows = 3, cardWidth=146, cardHeight=94, leftBorder=650, topBorder=585+yOFFSET;
         ArrayList<Card> trainCards = gameBoard.getCurrentPlayer().heldTrainCards;//GameBoard.getCurrPlayer().getTech();
         RouteColor[] order = new RouteColor[]{
                 RouteColor.BLACK,
@@ -275,11 +279,33 @@ public class GamePanel extends JPanel{
      * draws the train deck cards
      */
     public void drawTrainDeck(Graphics g){
-        int cardWidth=146, cardHeight=94, leftBorder=603, topBorder=5;//+39;
+        int cardWidth=241, cardHeight=94, leftBorder=1011, topBorder=8+yOFFSET;
         for(int i=0; i < 9; i++){
             int x = leftBorder;//((i%rows)*0)+(i%rows)*cardWidth+leftBorder;
             int y = (i*4)+(i*cardHeight)+topBorder;
             g.drawImage(ImgLib.backOfTrainCard,x,y,cardWidth,cardHeight,this);
+        }
+    }
+
+    /**
+     * draws information about the current players of the game to the board
+     */
+    public void drawPlayerInfo(Graphics g){
+        int width=241, height=91, leftBorder=1011, topBorder=8+yOFFSET;
+        
+        Font currentFont = g.getFont();
+        Font newFont = currentFont.deriveFont(currentFont.getSize() * 1F);
+        g.setFont(newFont);
+        for(int i=0; i < gameBoard.players.size(); i++){
+            Player p = gameBoard.players.get(i);
+            int x = leftBorder;
+            int y = topBorder + (height*i) + (11*i);
+            g.drawImage(ImgLib.playerCard,x,y,width,height,this);
+            g.setColor(Color.WHITE);
+            g.drawString(p.name+"",x+5,y+5+(g.getFontMetrics().getHeight()/2));
+            g.setColor(p.color);
+            g.fillRect(g.getFontMetrics().stringWidth(p.name)+x+10,y+3,15,15);
+
         }
     }
 }

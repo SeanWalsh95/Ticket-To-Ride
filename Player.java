@@ -8,9 +8,9 @@ import java.awt.*;
  */
 public class Player
 {
-    protected String playerName = "";
-    protected int playerID = 0;
-    protected Color playerColor = Color.BLACK;
+    protected String name = "";
+    protected int id = 0;
+    protected Color color = Color.BLACK;
     protected int trainPieces = 0;
     protected int score = 0;
     protected int completedDestCards = 0;
@@ -18,14 +18,14 @@ public class Player
     protected ArrayList<Card> heldTrainCards = new ArrayList<Card>();
     protected ArrayList<Card> heldTechCards = new ArrayList<Card>();
 
-    public Player(int id, String name, Color color){
-        playerID = id;
-        playerName = name;
-        playerColor = color;
+    public Player(int playerID, String playerName, Color playerColor){
+        this.id = playerID;
+        this.name = playerName;
+        this.color = playerColor;
     }
 
     public String toString(){
-        return playerName+" ID:"+playerID;
+        return name+" ID:"+id;
     }
 
 }

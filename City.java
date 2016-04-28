@@ -9,8 +9,7 @@ public class City
 {
     CityName name;
     Region region;
-    int x, y;
-    int xOFFSET= 16, yOFFSET = 39;
+    private int x, y, xOFFSET= 0, yOFFSET = 50;
     boolean hover;
 
     /**

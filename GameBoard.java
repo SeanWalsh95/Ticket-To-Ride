@@ -99,7 +99,7 @@ public class GameBoard {
                     if (purchase(desRoute, curPlayer, ((FerryRoute)
                             desRoute).locomotiveRequirement,trainsToSpend)) {
                         success = true;
-                        desRoute.ownerID = curPlayer.playerID;
+                        desRoute.ownerID = curPlayer.id;
                         if (hasTech(curPlayer, Technology.BoilerLagging))
                             curPlayer.score += 1;
                         if (hasTech(curPlayer, Technology.SteamTurbine))
@@ -130,7 +130,7 @@ public class GameBoard {
                 } else {
                     if (purchase(desRoute, curPlayer, 0, trainsToSpend)) {
                         success = true;
-                        desRoute.ownerID = curPlayer.playerID;
+                        desRoute.ownerID = curPlayer.id;
                         if (hasTech(curPlayer, Technology.BoilerLagging))
                             curPlayer.score += 1;
                         if (desRoute.trainRequirement == 1) {
@@ -479,7 +479,7 @@ public class GameBoard {
         int score = 0;
         for (int i = 0; i < player.heldDestinationCards.size(); i++) {
             ArrayList<CityName> visited = new ArrayList<CityName>();
-            if (checkDestCard(player.playerID,
+            if (checkDestCard(player.id,
                 ((Dest) player.heldDestinationCards.get(i)).cityA,
                 ((Dest) player.heldDestinationCards.get(i)).cityB,
                 visited)) {
@@ -532,7 +532,7 @@ public class GameBoard {
      * @return The length of the longest route the player owns
      */
     private int longestRoutePlayerOwns(Player player) {
-        int pID = player.playerID;
+        int pID = player.id;
         int max = 0;
         int temp = 0;
         for (Route route : routes) {
