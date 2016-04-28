@@ -9,7 +9,7 @@ import java.awt.*;
  */
 public class GButton extends JButton
 {
-
+    Image hover, base;
     /**
      * Constructor for objects of class gButton
      * 
@@ -20,6 +20,8 @@ public class GButton extends JButton
      */
     public GButton(int[] bounds, Image base, Image hover)
     {
+        this.hover = hover;
+        this.base = base;
         this.setText("");
         this.setBounds(bounds[0], bounds[1], bounds[2], bounds[3]);
         this.setIcon(new ImageIcon(base));
@@ -38,5 +40,4 @@ public class GButton extends JButton
             });
 
     }
-    
 }

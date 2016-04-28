@@ -1,4 +1,4 @@
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.*;
 /**
  * Write a description of class GameDriver here.
@@ -10,14 +10,25 @@ public class GameDriver
 {
     public static void main(String args[]){
         ImgLib.ImageLibrary();
+        
+        JDialog menuDialog = new JDialog(new JFrame("Ticket to Ride - Team 3 (2016) [MENU]"),true);
+        MenuPanel mp = new MenuPanel();
+        menuDialog.setSize( 1276, 939 ); // set frame size
+        menuDialog.add(mp);
+        menuDialog.setVisible(true);
+        
+        System.out.println(mp.numberOfPlayers);
+        
+        
+        
         JFrame gameFrame = new JFrame("Ticket to Ride - Team 3 (2016)");
-
         gameFrame.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
         gameFrame.setSize( 1276, 939 ); // set frame size
 
-        GamePanel gp = new GamePanel();
+        GamePanel gp = new GamePanel(mp.players);
         gameFrame.add( gp, BorderLayout.CENTER ); // add panel to frame
 
         gameFrame.setVisible( true ); // display frame
+        
     }
 }

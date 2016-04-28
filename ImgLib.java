@@ -15,6 +15,9 @@ public class ImgLib
 
     public static Image woodBackground;
 
+    public static Image selectButtonHighlighted;
+    public static Image selectButtonUnselected;
+
     public static Image backOfTrainCard;
     public static Image backOfDestCard;
 
@@ -144,6 +147,12 @@ public class ImgLib
     public static void ImageLibrary()
     {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
+
+        selectButtonHighlighted = toolkit.getImage(
+            "resources/images/buttons/selectButtonHighlighted.png");
+        selectButtonUnselected = toolkit.getImage(
+            "resources/images/buttons/selectButtonUnselected.png");
+            
         //Images for the viewTechScreen
         viewTech = toolkit.getImage(
             "resources/images/backgrounds/viewTechScreen.png");

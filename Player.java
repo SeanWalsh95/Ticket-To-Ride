@@ -16,11 +16,11 @@ public class Player
     protected int completedDestCards = 0;
     protected ArrayList<Card> heldDestinationCards = new ArrayList<Card>();
     protected ArrayList<Card> heldTrainCards = new ArrayList<Card>();
-    protected ArrayList<Tech> tech = new ArrayList<Tech>();
+    protected ArrayList<Card> heldTechCards = new ArrayList<Card>();
 
     public Player(int id, String name, Color color){
-        playerName = name;
         playerID = id;
+        playerName = name;
         playerColor = color;
     }
 

@@ -20,12 +20,8 @@ public class GameBoard {
     private int currentPlayer;
     private int lastPlayer;
 
-    public GameBoard(){
-        players = new ArrayList<Player>();
-        players.add(new Player(0,"bob",Color.BLUE));
-        players.add(new Player(1,"joe",Color.GREEN));
-        players.add(new Player(2,"sam",Color.RED));
-
+    public GameBoard(ArrayList<Player> playersIn){
+        
         routes = new ArrayList<Route>();
         try(Scanner sc = new Scanner(new File("resources\\Routes.txt")))
         {
@@ -62,9 +58,17 @@ public class GameBoard {
 
         lastTurn = false;
 
-        currentPlayer = 1;
+        currentPlayer = 0;
 
         lastPlayer = -1;
+        
+        players = playersIn;
+        /*
+        players = new ArrayList<Player>();
+        players.add(new Player(0,"bob",Color.BLUE));
+        players.add(new Player(1,"joe",Color.GREEN));
+        players.add(new Player(2,"sam",Color.RED));
+         */
     }
 
     /**
@@ -342,8 +346,8 @@ public class GameBoard {
      * specified name
      */
     private boolean hasTech(Player player, Technology techName) {
-        for (Tech tech : player.tech) {
-            if (tech.name == techName) {
+        for (Card c : player.heldTechCards) {
+            if (((Tech)c).name == techName) {
                 return true;
             }
         }
@@ -357,10 +361,10 @@ public class GameBoard {
      * @param techName The name of the tech you want to discard
      */
     private void discardTech(Player player, Technology techName) {
-        for (Tech tech : player.tech) {
-            if (tech.name == techName) {
-                techAvail.add(tech);
-                player.tech.remove(tech);
+        for (Card c : player.heldTechCards) {
+            if (((Tech)c).name == techName) {
+                techAvail.add(((Tech)c));
+                player.heldTechCards.remove(((Tech)c));
             }
         }
 
@@ -409,7 +413,7 @@ public class GameBoard {
                     trainDeck.discarded.add(train);
                 }
                 techAvail.remove(tech);
-                curPlayer.tech.add(tech);
+                curPlayer.heldTechCards.add(tech);
                 return true;
             } else {
                 if (hasTech(curPlayer, Technology.Booster)) {
@@ -421,7 +425,7 @@ public class GameBoard {
                             trainDeck.discarded.add(train);
                         }
                         techAvail.remove(tech);
-                        curPlayer.tech.add(tech);
+                        curPlayer.heldTechCards.add(tech);
                         return true;
                     }
                 } else {
@@ -433,7 +437,7 @@ public class GameBoard {
                             trainDeck.discarded.add(train);
                         }
                         techAvail.remove(tech);
-                        curPlayer.tech.add(tech);
+                        curPlayer.heldTechCards.add(tech);
                         return true;
                     }
                 }
