@@ -5,7 +5,6 @@
  * @author (your name here)
  * @version (version number or date here)
  */
-public enum Region
-{
-    Scotland,Ireland,Wales,England,France
+public enum Region {
+	Scotland, Ireland, Wales, England, France
 }

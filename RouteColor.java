@@ -5,7 +5,6 @@
  * @author (your name here)
  * @version (version number or date here)
  */
-public enum RouteColor
-{
-   YELLOW,PINK,RED,BLACK,BLUE,GREEN,WHITE,ORANGE,NEUTRAL
+public enum RouteColor {
+	YELLOW, PINK, RED, BLACK, BLUE, GREEN, WHITE, ORANGE, NEUTRAL
 }
