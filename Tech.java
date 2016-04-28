@@ -12,7 +12,8 @@ public class Tech extends Card {
 	int numberAvalable, cost;
 	Technology name;
 	String description, nameString;
-	private static final String path = "resources\\images\\cards\\Technologies\\";
+	private static final String path = 
+		"resources\\images\\cards\\Technologies\\";
 
 	/**
 	 * Constructor that takes a string deliminated with the given deliminator to

@@ -283,7 +283,7 @@ public class GamePanel extends JPanel {
 		int rows = 3, cardWidth = 146, cardHeight = 94, leftBorder = 650,
 				topBorder = 585 + yOFFSET;
 		ArrayList<Card> trainCards = gameBoard
-				.getCurrentPlayer().heldTrainCards;// GameBoard.getCurrPlayer().getTech();
+				.getCurrentPlayer().heldTrainCards;
 		RouteColor[] order = new RouteColor[] { RouteColor.BLACK,
 				RouteColor.GREEN, RouteColor.BLUE, RouteColor.YELLOW,
 				RouteColor.NEUTRAL, RouteColor.ORANGE, RouteColor.RED,

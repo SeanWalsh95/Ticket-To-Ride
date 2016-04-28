@@ -47,7 +47,7 @@ public class GameBoard {
 				techAvail.add(new Tech(sc.nextLine(), ","));
 		} catch (Exception e) {
 			System.err.println(
-					"(ERR Tech): Cannot find file: resources\\Technologies.txt");
+				"(ERR Tech): Cannot find file: resources\\Technologies.txt");
 		}
 
 		trainDeck = new Deck("Train", "resources\\TrainCards.txt");

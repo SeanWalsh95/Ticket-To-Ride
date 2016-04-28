@@ -169,14 +169,14 @@ public class ImgLib {
 				.getImage("resources/images/cards/BackOfTicket.png");
 
 		// Images for the buyTechScreen
-		buyTech = toolkit
-				.getImage("resources/images/backgrounds/buyTechScreen.png");
+		buyTech = toolkit.getImage(
+			"resources/images/backgrounds/buyTechScreen.png");
 		purchaseButtonUnselected = toolkit.getImage(
-				"resources/images/buttons/buyTech/purchaseButtonUnselected.png");
+			"resources/images/buttons/buyTech/purchaseButtonUnselected.png");
 		purchaseButtonHighlighted = toolkit.getImage(
-				"resources/images/buttons/buyTech/purchaseButtonHighlighted.png");
+			"resources/images/buttons/buyTech/purchaseButtonHighlighted.png");
 		purchaseButtonPressed = toolkit.getImage(
-				"resources/images/buttons/buyTech/purchaseButtonPressed.png");
+			"resources/images/buttons/buyTech/purchaseButtonPressed.png");
 
 		// Images for the viewDestScreen
 		viewDest = toolkit
@@ -284,104 +284,106 @@ public class ImgLib {
 				.getImage("resources/images/mouseCursors/mouseCursorFinal.png");
 
 		// general Images needed more than once
-		backButtonUnselected = toolkit
-				.getImage("resources/images/buttons/BackButtonUnselected.png");
-		backButtonHighlighted = toolkit
-				.getImage("resources/images/buttons/BackButtonHighlighted.png");
-		backButtonPressed = toolkit
-				.getImage("resources/images/buttons/BackButtonPressed.png");
+		backButtonUnselected = toolkit.getImage(
+			"resources/images/buttons/BackButtonUnselected.png");
+		backButtonHighlighted = toolkit.getImage(
+			"resources/images/buttons/BackButtonHighlighted.png");
+		backButtonPressed = toolkit.getImage(
+			"resources/images/buttons/BackButtonPressed.png");
 
 		// get the images from the backgrounds folder
 		mainMenuBackground = toolkit.getImage(
-				"resources/images/backgrounds/MainMenuBackground.png");
+			"resources/images/backgrounds/MainMenuBackground.png");
 		gameBoarbackground2Players = toolkit.getImage(
-				"resources/images/backgrounds/GameBackground 2 Players.png");
+			"resources/images/backgrounds/GameBackground 2 Players.png");
 		gameBoarbackground3Players = toolkit.getImage(
-				"resources/images/backgrounds/GameBackground 3 Players.png");
+			"resources/images/backgrounds/GameBackground 3 Players.png");
 		gameBoarbackground4Players = toolkit.getImage(
-				"resources/images/backgrounds/GameBackground 4 Players.png");
+			"resources/images/backgrounds/GameBackground 4 Players.png");
 
 		// images for the Main Menu
-		mainMenu = toolkit
-				.getImage("resources/images/backgrounds/MainMenu.png");
+		mainMenu = toolkit.getImage(
+			"resources/images/backgrounds/MainMenu.png");
 		playButtonUnselected = toolkit.getImage(
-				"resources/images/buttons/mainMenu/PlayGameButtonUnselected.png");
+			"resources/images/buttons/mainMenu/PlayGameButtonUnselected.png");
 		rulesButtonUnselected = toolkit.getImage(
-				"resources/images/buttons/mainMenu/RulesButtonUnselected.png");
+			"resources/images/buttons/mainMenu/RulesButtonUnselected.png");
 		quitButtonUnselected = toolkit.getImage(
-				"resources/images/buttons/mainMenu/QuitButtonUnselected.png");
+			"resources/images/buttons/mainMenu/QuitButtonUnselected.png");
 		playButtonHighlighted = toolkit.getImage(
-				"resources/images/buttons/mainMenu/PlayGameButtonHighlighted.png");
+			"resources/images/buttons/mainMenu/PlayGameButtonHighlighted.png");
 		rulesButtonHighlighted = toolkit.getImage(
-				"resources/images/buttons/mainMenu/RulesButtonHighlighted.png");
+			"resources/images/buttons/mainMenu/RulesButtonHighlighted.png");
 		quitButtonHighlighted = toolkit.getImage(
-				"resources/images/buttons/mainMenu/QuitButtonHighlighted.png");
+			"resources/images/buttons/mainMenu/QuitButtonHighlighted.png");
 		playButtonPressed = toolkit.getImage(
-				"resources/images/buttons/mainMenu/PlayGameButtonPressed.png");
+			"resources/images/buttons/mainMenu/PlayGameButtonPressed.png");
 		rulesButtonPressed = toolkit.getImage(
-				"resources/images/buttons/mainMenu/RulesButtonPressed.png");
+			"resources/images/buttons/mainMenu/RulesButtonPressed.png");
 		quitButtonPressed = toolkit.getImage(
-				"resources/images/buttons/mainMenu/QuitButtonPressed.png");
+			"resources/images/buttons/mainMenu/QuitButtonPressed.png");
 
 		// images for the selectNumPlayersScreen
 		selectPlayers = toolkit.getImage(
-				"resources/images/backgrounds/MainMenuSelectPlayers.png");
+			"resources/images/backgrounds/MainMenuSelectPlayers.png");
 		twoPlayersUnselected = toolkit.getImage(
-				"resources/images/buttons/numPlayers/2PlayersUnselected.png");
+			"resources/images/buttons/numPlayers/2PlayersUnselected.png");
 		threePlayersUnselected = toolkit.getImage(
-				"resources/images/buttons/numPlayers/3PlayersUnselected.png");
+			"resources/images/buttons/numPlayers/3PlayersUnselected.png");
 		fourPlayersUnselected = toolkit.getImage(
-				"resources/images/buttons/numPlayers/4PlayersUnselected.png");
+			"resources/images/buttons/numPlayers/4PlayersUnselected.png");
 		twoPlayersHighlighted = toolkit.getImage(
-				"resources/images/buttons/numPlayers/2PlayersHighlighted.png");
+			"resources/images/buttons/numPlayers/2PlayersHighlighted.png");
 		threePlayersHighlighted = toolkit.getImage(
-				"resources/images/buttons/numPlayers/3PlayersHighlighted.png");
+			"resources/images/buttons/numPlayers/3PlayersHighlighted.png");
 		fourPlayersHighlighted = toolkit.getImage(
-				"resources/images/buttons/numPlayers/4PlayersHighlighted.png");
+			"resources/images/buttons/numPlayers/4PlayersHighlighted.png");
 		twoPlayersPressed = toolkit.getImage(
-				"resources/images/buttons/numPlayers/2PlayersPressed.png");
+			"resources/images/buttons/numPlayers/2PlayersPressed.png");
 		threePlayersPressed = toolkit.getImage(
-				"resources/images/buttons/numPlayers/3PlayersPressed.png");
+			"resources/images/buttons/numPlayers/3PlayersPressed.png");
 		fourPlayersPressed = toolkit.getImage(
-				"resources/images/buttons/numPlayers/4PlayersPressed.png");
+			"resources/images/buttons/numPlayers/4PlayersPressed.png");
 
 		// images for the rules screen
 		rulesScreen1 = toolkit
-				.getImage("resources/images/backgrounds/rulesScreenPage1.png");
+			.getImage("resources/images/backgrounds/rulesScreenPage1.png");
 		rulesScreen2 = toolkit
-				.getImage("resources/images/backgrounds/rulesScreenPage2.png");
+			.getImage("resources/images/backgrounds/rulesScreenPage2.png");
 		nextButtonUnselected = toolkit.getImage(
-				"resources/images/buttons/rulesScreen/NextButtonUnselected.png");
+			"resources/images/buttons/rulesScreen/NextButtonUnselected.png");
 		previousButtonUnselected = toolkit.getImage(
-				"resources/images/buttons/rulesScreen/PreviousButtonUnselected.png");
+			"resources/images/buttons/rulesScreen/"+
+            "PreviousButtonUnselected.png");
 		nextButtonHighlighted = toolkit.getImage(
-				"resources/images/buttons/rulesScreen/NextButtonHighlighted.png");
+			"resources/images/buttons/rulesScreen/NextButtonHighlighted.png");
 		previousButtonHighlighted = toolkit.getImage(
-				"resources/images/buttons/rulesScreen/PreviousButtonHighlighted.png");
+			"resources/images/buttons/rulesScreen/"+
+            "PreviousButtonHighlighted.png");
 		nextButtonPressed = toolkit.getImage(
-				"resources/images/buttons/rulesScreen/NextButtonPressed.png");
+			"resources/images/buttons/rulesScreen/NextButtonPressed.png");
 		previousButtonPressed = toolkit.getImage(
-				"resources/images/buttons/rulesScreen/PreviousButtonPressed.png");
+			"resources/images/buttons/rulesScreen/PreviousButtonPressed.png");
 
 		// Images for the game board screen
 		buyTechButtonUnselected = toolkit.getImage(
-				"resources/images/buttons/gameBoard/BuyTechButtonUnselected.png");
+			"resources/images/buttons/gameBoard/BuyTechButtonUnselected.png");
 		buyTechButtonHighlighted = toolkit.getImage(
-				"resources/images/buttons/gameBoard/BuyTechButtonHighlighted.png");
+			"resources/images/buttons/gameBoard/BuyTechButtonHighlighted.png");
 		buyTechButtonPressed = toolkit.getImage(
-				"resources/images/buttons/gameBoard/BuyTechButtonPressed.png");
+			"resources/images/buttons/gameBoard/BuyTechButtonPressed.png");
 		viewTechButtonUnselected = toolkit.getImage(
-				"resources/images/buttons/gameBoard/ViewTechButtonUnselected.png");
+			"resources/images/buttons/gameBoard/ViewTechButtonUnselected.png");
 		viewTechButtonHighlighted = toolkit.getImage(
-				"resources/images/buttons/gameBoard/ViewTechButtonHighlighted.png");
+			"resources/images/buttons/gameBoard/ViewTechButtonHighlighted.png");
 		viewTechButtonPressed = toolkit.getImage(
-				"resources/images/buttons/gameBoard/ViewTechButtonPressed.png");
+			"resources/images/buttons/gameBoard/ViewTechButtonPressed.png");
 		viewDestButtonUnselected = toolkit.getImage(
-				"resources/images/buttons/gameBoard/ViewDestButtonUnselected.png");
+			"resources/images/buttons/gameBoard/ViewDestButtonUnselected.png");
 		viewDestButtonHighlighted = toolkit.getImage(
-				"resources/images/buttons/gameBoard/ViewDestButtonHighlighted.png");
+			"resources/images/buttons/gameBoard/ViewDestButtonHighlighted.png");
 		viewDestButtonPressed = toolkit.getImage(
-				"resources/images/buttons/gameBoard/ViewDestButtonPressed.png");
+			"resources/images/buttons/gameBoard/ViewDestButtonPressed.png");
 	}
 
 	public static Image getHover(CityName name) {

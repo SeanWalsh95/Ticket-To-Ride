@@ -257,7 +257,8 @@ public class MenuPanel extends JPanel {
 						break;
 					} else {
 						JOptionPane.showMessageDialog(new JFrame(),
-								"This Color was already chosen please choose another");
+								"This Color was already chosen "+ 
+                                "please choose another");
 					}
 				}
 			}

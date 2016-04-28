@@ -10,7 +10,8 @@ import java.io.File;
  */
 public class Dest extends Card {
 	CityName cityA, cityB;
-	private static final String path = "resources\\images\\cards\\destination cards\\";
+	private static final String path = 
+		"resources\\images\\cards\\destination cards\\";
 	int pointValue;
 
 	public Dest(String line, String delim) {

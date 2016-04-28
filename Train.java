@@ -10,7 +10,8 @@ import java.io.File;
  */
 public class Train extends Card {
 	RouteColor color;
-	private static final String path = "resources\\images\\cards\\train cards\\";
+	private static final String path = 
+		"resources\\images\\cards\\train cards\\";
 
 	/**
 	 * import from csv in the format RouteColor
