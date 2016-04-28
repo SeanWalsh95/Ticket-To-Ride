@@ -17,14 +17,12 @@ public class GameDriver
         menuDialog.add(mp);
         menuDialog.setVisible(true);
         
-        System.out.println(mp.numberOfPlayers);
-        
-        
         
         JFrame gameFrame = new JFrame("Ticket to Ride - Team 3 (2016)");
         gameFrame.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
         gameFrame.setSize( 1276, 989 ); // set frame size
 
+        //creates new GamePanel, passing player list form the MenuPanel
         GamePanel gp = new GamePanel(mp.players);
         gameFrame.add( gp, BorderLayout.CENTER ); // add panel to frame
 

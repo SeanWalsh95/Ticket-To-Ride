@@ -13,29 +13,27 @@ public class ImgLib
     //mouse cursor
     public static Image mouseCursor;
 
-    public static Image woodBackground;
-
+    //image to display under player information
     public static Image playerCard;
-
-    public static Image selectButtonHighlighted;
-    public static Image selectButtonUnselected;
-
+    
+    //image for the back of the cards
     public static Image backOfTrainCard;
     public static Image backOfDestCard;
 
-    //general Images needed more than once
-    public static Image backButtonUnselected;
-    public static Image backButtonHighlighted;
-    public static Image backButtonPressed;
-
     //get the images from the backgrounds folder
+    public static Image background;
+    public static Image woodBackground;
     public static Image mainMenuBackground;
     public static Image gameBoarbackground2Players;
     public static Image gameBoarbackground3Players;
     public static Image gameBoarbackground4Players;
-
-    //images for the Main Menu
-    public static Image mainMenu;
+    
+    //button Images
+    public static Image backButtonUnselected;
+    public static Image backButtonHighlighted;
+    public static Image backButtonPressed;
+    public static Image selectButtonHighlighted;
+    public static Image selectButtonUnselected;
     public static Image playButtonUnselected;
     public static Image rulesButtonUnselected;
     public static Image quitButtonUnselected;
@@ -45,6 +43,27 @@ public class ImgLib
     public static Image playButtonPressed;
     public static Image rulesButtonPressed;
     public static Image quitButtonPressed;
+    public static Image nextButtonUnselected;
+    public static Image previousButtonUnselected;
+    public static Image nextButtonHighlighted;
+    public static Image previousButtonHighlighted;
+    public static Image nextButtonPressed;
+    public static Image previousButtonPressed;
+    public static Image purchaseButtonUnselected;
+    public static Image purchaseButtonHighlighted;
+    public static Image purchaseButtonPressed;
+    public static Image buyTechButtonUnselected;
+    public static Image buyTechButtonHighlighted;
+    public static Image buyTechButtonPressed;
+    public static Image viewTechButtonUnselected;
+    public static Image viewTechButtonHighlighted;
+    public static Image viewTechButtonPressed;
+    public static Image viewDestButtonUnselected;
+    public static Image viewDestButtonHighlighted;
+    public static Image viewDestButtonPressed;
+
+    //images for the Main Menu
+    public static Image mainMenu;
 
     //images for the selectNumPlayersScreen
     public static Image selectPlayers;
@@ -61,23 +80,6 @@ public class ImgLib
     //images for the rulesScreen
     public static Image rulesScreen1;
     public static Image rulesScreen2;
-    public static Image nextButtonUnselected;
-    public static Image previousButtonUnselected;
-    public static Image nextButtonHighlighted;
-    public static Image previousButtonHighlighted;
-    public static Image nextButtonPressed;
-    public static Image previousButtonPressed;
-
-    //images for the gameBoard screen
-    public static Image buyTechButtonUnselected;
-    public static Image buyTechButtonHighlighted;
-    public static Image buyTechButtonPressed;
-    public static Image viewTechButtonUnselected;
-    public static Image viewTechButtonHighlighted;
-    public static Image viewTechButtonPressed;
-    public static Image viewDestButtonUnselected;
-    public static Image viewDestButtonHighlighted;
-    public static Image viewDestButtonPressed;
 
     //CityHover Images
     public static Image emptyHover;
@@ -129,16 +131,11 @@ public class ImgLib
     public static Image doverHover;
     public static Image franceHover;
 
-    public static Image background;
-
     //images for the viewTechScreen
     public static Image viewTech;
 
     //Images for the buyTechScreen
     public static Image buyTech;
-    public static Image purchaseButtonUnselected;
-    public static Image purchaseButtonHighlighted;
-    public static Image purchaseButtonPressed;
 
     //Images for the viewDestScreen
     public static Image viewDest;

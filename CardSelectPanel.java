@@ -2,19 +2,24 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.*;
 /**
- * Write a description of class CardSelectPanel here.
+ * Extnsion of JPanel to be used to have a player select from a group of given cards
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Sean Walsh
+ * @version 1.0
  */
 public class CardSelectPanel extends JPanel
 {
+    //backround image to be drawn behind everything
     Image background;
-    ArrayList<Card> cards, selected;
+    //lists for cards passed in for selection
+    ArrayList<Card> cards;
+    //int's representing various static vlaues
     int cardWidth, cardHeight ,rows, border = 50, topBorder = 100, leftBorder = 50;
+    //GButton's to be pressed by the user
     protected GButton backButt,purchaseButt;
+    //String to be printed at the top of the Panel
     String title;
-
+    //array of size cards that holds if a card is or is not selected
     boolean[] selectedCards;
     /**
      * Contsructor for CardSelectPanel
@@ -23,14 +28,17 @@ public class CardSelectPanel extends JPanel
      * @param avalableCards the list of cards to print to the screen
      */
     public CardSelectPanel(String titleIn, ArrayList<Card> avalableCards){
-        JPanel self = this;
         this.setLayout(null);
-        title = titleIn;
-
         this.background = ImgLib.woodBackground;
-
+        
+        //sets the title of the Panel
+        title = titleIn;
+        
+        //init the boolean array to size of the passed list of cards
         selectedCards = new boolean[avalableCards.size()+1];
+        //sets the local list to refrence the passed list
         cards = new ArrayList<Card>(avalableCards);
+        //sets the width and height based on the card type
         if(avalableCards.size() > 0){
             if(avalableCards.get(0) instanceof Dest){
                 cardWidth = 160;
@@ -43,6 +51,10 @@ public class CardSelectPanel extends JPanel
             }
         }
 
+        //self refrence to this JPanel for button ActionListener's 
+        JPanel self = this;
+        
+        //adds a back GButton that closes the JDialog Class containing this JPanel
         backButt = new GButton(new int[]{5,828,98,48},ImgLib.backButtonUnselected,ImgLib.backButtonHighlighted);
         backButt.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e)
@@ -51,13 +63,12 @@ public class CardSelectPanel extends JPanel
                 }
             });
         this.add(backButt);
-
-        purchaseButt = new GButton(new int[]{543,828,174,51},ImgLib.purchaseButtonUnselected,ImgLib.purchaseButtonHighlighted);
-        this.add(purchaseButt);
     }
 
     /**
-     * paint component for this JPanel component
+     * PaintComponent for this JPanel component
+     * 
+     * @param g the Graphics object for this Class
      */
     public void paintComponent( Graphics g )
     {
@@ -65,13 +76,18 @@ public class CardSelectPanel extends JPanel
         g.drawImage(background,0,0,this);
         g.setColor(Color.WHITE);
 
+        //sets the curent font to a larger size
         Font currentFont = g.getFont();
         Font newFont = currentFont.deriveFont(currentFont.getSize() * 3F);
         g.setFont(newFont);
+        
+        //centers the title text
         int titleBuffer = (this.getWidth()-(g.getFontMetrics().stringWidth(title)))/2;
+        
+        //paints the title text
         g.drawString(title,titleBuffer,50);
 
-        //int x=58, y=110;
+        //paints the list of cards to the screen
         for(int i=0; i < cards.size();i++){
             int x = ((i%rows)*25)+(i%rows)*cardWidth+leftBorder;
             int y = ((i/rows)*25)+(i/rows)*cardHeight+topBorder;

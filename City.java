@@ -9,8 +9,8 @@ public class City
 {
     CityName name;
     Region region;
-    private int x, y, xOFFSET= 0, yOFFSET = 50;
-    boolean hover;
+    protected int x, y;
+    protected boolean hover;
 
     /**
      * Constructor that takes a string deliminated with the given deliminator to initlize the values of this class
@@ -50,29 +50,5 @@ public class City
 
     public String toString(){
         return name+","+region+" ("+x+","+y+")";
-    }
-
-    public int getX(){
-        return x+xOFFSET;
-    }
-    
-    public int getY(){
-        return y+yOFFSET;
-    }
-    
-    /**
-     * method to determine if a the curser is hovering over a citys location
-     * 
-     * @param mouseX the current x positon of the curser
-     * @param mouseY the current y positon of the curser
-     * 
-     * @return true if hovering false if not
-     */
-    public boolean inRange(int mouseX, int mouseY){
-        if(mouseX >= x+xOFFSET && mouseX <= x+20+xOFFSET && mouseY >= y+yOFFSET && mouseY <= y+20+yOFFSET){
-            return true;
-        }else{
-            return false;
-        }
-    }
+    }    
 }

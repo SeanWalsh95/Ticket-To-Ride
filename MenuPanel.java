@@ -3,28 +3,44 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.*;
 /**
- * A panel to present the user with a game menu and take in the initial options 
+ * A panel to present the user with a game menu and take in the initial Player options 
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Sean Walsh
+ * @version 1.0
  */
 public class MenuPanel extends JPanel
 {
+    //backround image to paint behind everything
     Image background;
+    //Player count choice
     protected int numberOfPlayers;
+    //ArrayList of players to be eventually passed to the GameBoard
     protected ArrayList<Player> players = new ArrayList<Player>();
 
+    /**
+     * Constructor for MenuPanel
+     */
     public MenuPanel(){
+        //sets the layout to null allowing for absolute positioning of components
         this.setLayout(null);
+        //defaults to the main menu page
         mainMenu();
     }
 
+    /**
+     * Paint component method for this JPanel component
+     * 
+     * @param g the Graphics object for this Class
+     */
     public void paintComponent( Graphics g )
     {
         super.paintComponent( g );
         g.drawImage(background,0,0,this);
     }
 
+    /**
+     * Main mene method to present the user with starting options
+     */
     public void mainMenu(){
         this.removeAll();
         background = ImgLib.mainMenuBackground;
@@ -59,6 +75,9 @@ public class MenuPanel extends JPanel
         this.repaint(); 
     }
 
+    /**
+     * gameRules method to present the user with the game rules
+     */
     private void gameRules(){
         this.removeAll();
         background = ImgLib.rulesScreen1;
@@ -95,6 +114,9 @@ public class MenuPanel extends JPanel
         this.repaint(); 
     }
 
+    /**
+     * playGame method to present the user with the initial starting options for a new game
+     */
     private void playGame(){
         this.removeAll();
 
@@ -140,24 +162,39 @@ public class MenuPanel extends JPanel
         this.repaint(); 
     }
 
+    /**
+     * buildPlayers method to build a List of players based on user input and then launch the game
+     */
     private void buildPlayers(){
+        //lists to keep track of what has already been chosen
         ArrayList<String> chosenNames = new ArrayList<String>();
         ArrayList<Color> chosenColors = new ArrayList<Color>();
+        
+        //loop through the selected number of players
         for(int i=0; i < numberOfPlayers; i++){
+            //player input values to be placed into a Player object
             String name;
             Color color;
-
+            
+            //default player name if nothing is chosen
             String generated = "Player "+(i+1);
+            
+            //player inputs a name of their choice
             String input = JOptionPane.showInputDialog("Player "+(i+1)+" enter your name");
+            
+            //handles bad inputs
             if(input ==  null || input.equals("")){
                 name = generated;
             }else{
                 name = input+" (Player "+(i+1)+")";
             }
-            System.out.println(name);
-
+            
+            //loops untill a valid choice
             while(true){
+                //player inputs a custom color
                 Color newColor = JColorChooser.showDialog(null, "Choose a color", Color.BLUE);
+                
+                //handles if the color has already been chosen
                 boolean uniqueColor = true;
                 if(newColor != null){
                     for(Color c : chosenColors)
@@ -171,12 +208,15 @@ public class MenuPanel extends JPanel
                     }
                 }
             }
-
+            
+            //adds choices to lists for future refrence
             chosenNames.add(name);
             chosenColors.add(color);
 
+            //creates and adds a new player to the player list
             players.add(new Player(i,name,color));
         }
+        //closes the JDialog Class containing this JPanel
         ((JDialog)SwingUtilities.windowForComponent(this)).dispose();
     }
 }
