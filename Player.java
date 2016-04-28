@@ -18,11 +18,12 @@ public class Player {
 	protected ArrayList<Card> heldTrainCards = new ArrayList<Card>();
 	protected ArrayList<Card> heldTechCards = new ArrayList<Card>();
 
-	public Player(int playerID, String playerName, Color playerColor) {
-		this.id = playerID;
-		this.name = playerName;
-		this.color = playerColor;
-	}
+    public Player(int playerID, String playerName, Color playerColor){
+        this.id = playerID;
+        this.name = playerName;
+        this.color = playerColor;
+        trainPieces = 35;
+    }
 
 	public String toString() {
 		return name + " ID:" + id;
