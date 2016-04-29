@@ -11,8 +11,8 @@ import java.awt.*;
  */
 public class GamePanel extends JPanel {
     GameBoard gameBoard;
-    GButton viewTechButt, buyTechButt, viewDestButt;
-    ArrayList<Card> selectedTechCards, selectedDestCards;
+    GButton viewTechButt, buyTechButt, viewDestButt, destDeckButt, trainCardsButt, gameRulesButt;
+    ArrayList<Card> selectedTechCards, selectedDestCards, faceUpTrainCards;
 
     // offset for compatibility
     int xOFFSET = 0, yOFFSET = 50;
@@ -28,6 +28,11 @@ public class GamePanel extends JPanel {
     public GamePanel(ArrayList<Player> players) {
         this.setLayout(null);
 
+        // init selection arrays
+        selectedTechCards = new ArrayList<Card>();
+        selectedDestCards = new ArrayList<Card>();
+        faceUpTrainCards = new ArrayList<Card>();
+
         gameBoard = new GameBoard(players);
         // init for players
         for (Player p : gameBoard.players) {
@@ -35,12 +40,63 @@ public class GamePanel extends JPanel {
                     "Player " + (p.id + 1)
                     + ": Select Your Starting Destination Cards",
                     3, 5, 5));
-            p.heldTrainCards.addAll(gameBoard.trainDeck.drawCards(5));
+            p.heldTrainCards.addAll(gameBoard.trainDeck.drawCards(4));
+            p.heldTrainCards.add(gameBoard.trainDeck.getFirstLocomotive());
         }
+        
+        gameBoard.trainDeck.shuffle();
 
-        // init selection arrays
-        selectedTechCards = new ArrayList<Card>();
-        selectedDestCards = new ArrayList<Card>();
+        faceUpTrainCards.addAll(gameBoard.trainDeck.drawCards(5));
+
+        // JLabel to allow a player to draw Train Cards
+        JLabel faceUpCardsLabel = new JLabel();
+        faceUpCardsLabel.setBounds(603,8 + yOFFSET,147,485);
+        faceUpCardsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(MouseEvent e) {
+                    selectTrainCards("Select your train cards",
+                    1,2);
+                    repaint();
+                }
+            });
+        this.add(faceUpCardsLabel);
+
+        // GButton to allow a player to draw Dest Cards
+        destDeckButt = new GButton(new int[] {772,110 + yOFFSET,215,138},
+            ImgLib.backOfDestCard.getScaledInstance(215,138, Image.SCALE_FAST),
+            ImgLib.backOfDestCard.getScaledInstance(215,138, Image.SCALE_FAST));
+        destDeckButt.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(MouseEvent e){
+                    Player p = gameBoard.getCurrentPlayer();
+                    p.heldDestinationCards.addAll(selectDestCards(
+                    "Player " + (p.id + 1)
+                    + ": Select Your Destination Cards",
+                    1, 3, 5));
+                    //draws a set number of cards from the dest deck
+                }
+            });
+        this.add(destDeckButt);
+
+        // GButton to allow a player to draw Train Cards
+        trainCardsButt = new GButton(new int[] {772,256 + yOFFSET,215,138},
+            ImgLib.backOfTrainCard.getScaledInstance(215,138, Image.SCALE_FAST),
+            ImgLib.backOfTrainCard.getScaledInstance(215,138, Image.SCALE_FAST));
+        trainCardsButt.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(MouseEvent e) {
+                    //draws a set number of cards from the train deck
+                }
+            });
+        this.add(trainCardsButt);
+
+        // GButton to allow a player to view the game rules
+        gameRulesButt = new GButton(new int[] { 792, 28 + yOFFSET, 196, 51 },
+            ImgLib.buyTechButtonUnselected,
+            ImgLib.buyTechButtonHighlighted);
+        gameRulesButt.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    //display the game rules in a JDialog
+                }
+            });
+        //this.add(gameRulesButt);
 
         // GButton to allow a player to view their Tech Cards
         viewTechButt = new GButton(new int[] { 612, 508 + yOFFSET, 196, 51 },
@@ -176,6 +232,65 @@ public class GamePanel extends JPanel {
         return selectedTechCards;
     }
 
+    
+    /**
+     * method to present the player with a list of Train Cards to choose from,
+     * unselected cards are added to gameBoard.trainDeck.discard
+     * 
+     * @param title
+     *            text to display at the top of the window
+     * @param minimum
+     *            minimum number of cards that can be selected
+     * @param limit
+     *            maximum number of cards that can be selected
+     * @param numberOfCards
+     *            number of cards to draw from the GameBoard Train Deck
+     * @return a list of selected cards
+     */
+    public ArrayList<Card> selectTrainCards(String title, int minimum, int limit){
+        JFrame parentFrame = (JFrame) SwingUtilities.windowForComponent(this);
+        CardSelectPanel panel = new CardSelectPanel(title,faceUpTrainCards);
+        JDialog jd = new JDialog(parentFrame, true);
+        jd.setTitle("Card Select");
+
+        jd.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(MouseEvent e) {
+                    int index = -1;
+                    index = panel.getCardIndex(e.getPoint());
+                    if (index > -1 && (panel.getNumberSelected() < limit
+                        || panel.selectedCards[index]))
+                        panel.select(index);
+                }
+            });
+
+        GButton selectButt = new GButton(new int[] { 543, 828, 174, 51 },
+                ImgLib.selectButtonUnselected, ImgLib.selectButtonHighlighted);
+        selectButt.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    if (panel.getNumberSelected() >= minimum) {
+                        Player p = gameBoard.getCurrentPlayer();
+                        p.heldTrainCards.addAll(panel.getSelected());
+                        jd.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(new JFrame(),
+                            "You must select at least " + minimum + " cards");
+                    }
+                }
+            });
+        panel.add(selectButt);
+
+        jd.setSize(1276, 939); // set frame size
+        jd.add(panel);
+        jd.setVisible(true);
+
+        for(int i=0; i < panel.selectedCards.length; i++)
+            if(panel.selectedCards[i])
+                faceUpTrainCards.set(i,gameBoard.trainDeck.drawCards(1).get(0));
+
+        return selectedDestCards;
+    }
+
+    
     /**
      * method to present the player with a list of Dest Cards to choose from,
      * unselected cards are added to gameBoard.destDeck.discard
@@ -188,7 +303,7 @@ public class GamePanel extends JPanel {
      *            maximum number of cards that can be selected
      * @param numberOfCards
      *            number of cards to draw from the GameBoard Dest Deck
-     * @return a list of selected cards
+     * @return a list of selected cards  
      */
     public ArrayList<Card> selectDestCards(String title, int minimum, int limit,
     int numberOfCards) {
@@ -270,7 +385,7 @@ public class GamePanel extends JPanel {
         drawPlayerHand(g);
         drawPlayerInfo(g);
         drawSelectedRouteInfo(g);
-        // drawTrainDeck(g);
+        drawFaceUpTrains(g);
     } // end method paintComponent
 
     /**
@@ -323,13 +438,14 @@ public class GamePanel extends JPanel {
      * @param g
      *            the Graphics object for this Class
      */
-    public void drawTrainDeck(Graphics g) {
-        int cardWidth = 241, cardHeight = 94, leftBorder = 1011,
+    public void drawFaceUpTrains(Graphics g) {
+        int cardWidth = 147, cardHeight = 94, leftBorder = 603,
         topBorder = 8 + yOFFSET;
-        for (int i = 0; i < 9; i++) {
-            int x = leftBorder;// ((i%rows)*0)+(i%rows)*cardWidth+leftBorder;
+        for(int i=0; i < faceUpTrainCards.size(); i++){
+            Card c = faceUpTrainCards.get(i);
+            int x = leftBorder;
             int y = (i * 4) + (i * cardHeight) + topBorder;
-            g.drawImage(ImgLib.backOfTrainCard, x, y, cardWidth, cardHeight,
+            g.drawImage(c.getImage(), x, y, cardWidth, cardHeight,
                 this);
         }
     }
@@ -359,7 +475,7 @@ public class GamePanel extends JPanel {
             g.setColor(p.color);
             g.fillRect(g.getFontMetrics().stringWidth(p.name) + x + 10, y + 3,
                 15, 15);
-                
+
             g.setColor(Color.WHITE);
             g.drawImage(
                 ImgLib.trainIcon,

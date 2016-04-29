@@ -169,9 +169,9 @@ public class ImgLib {
 				.getImage("resources/images/backgrounds/GameBackground.png");
 
 		backOfTrainCard = toolkit
-				.getImage("resources/images/cards/BackOfCard.png");
+				.getImage("resources/images/cards/BackOfCard.jpg");
 		backOfDestCard = toolkit
-				.getImage("resources/images/cards/BackOfTicket.png");
+				.getImage("resources/images/cards/BackOfTicket.jpg");
 
 		// Images for the buyTechScreen
 		buyTech = toolkit.getImage(
