@@ -34,8 +34,9 @@ public class Deck {
             drawnCards.add(deck.remove(0));
             if(deck.size()==0){
                 if(false == this.rebuildDeck()){
-                    JOptionPane.showMessageDialog(null,"Alert!","There are no" +
-                            " more cards!",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"There are no" +
+                            " more cards!", "Alert!",JOptionPane
+                            .INFORMATION_MESSAGE);
                     return drawnCards;
                 }
             }

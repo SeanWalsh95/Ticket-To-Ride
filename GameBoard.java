@@ -6,8 +6,8 @@ import javax.swing.*;
 /**
  * Write a description of class GameBoard here.
  *
- * @author (Nolan Tunny)
- * @version ()
+ * @author Nolan Tunny
+ * @version 1.0
  */
 public class GameBoard {
     protected ArrayList<Player> players;
@@ -20,6 +20,12 @@ public class GameBoard {
     protected int lastPlayer;
     private boolean lastTurn;
 
+    /**
+     * Constructor for the GameBoard class that sets the board up to be
+     * played and handle logic
+     *
+     * @param playersIn An array list representing the players of the game
+     */
     public GameBoard(ArrayList<Player> playersIn){
 
         routes = new ArrayList<Route>();
@@ -144,6 +150,12 @@ public class GameBoard {
                             curPlayer.trainPieces -= 10;
                         }
                     }
+                    else {
+                        JOptionPane.showMessageDialog(null,
+                                "Purchase failed try again","Alert!",
+                                JOptionPane
+                                .INFORMATION_MESSAGE);
+                    }
                 } else {
                     if (purchase(desRoute, curPlayer, 0, trainsToSpend)) {
                         success = true;
@@ -176,6 +188,12 @@ public class GameBoard {
                             curPlayer.trainPieces -= 10;
                         }
                     }
+                    else {
+                        JOptionPane.showMessageDialog(null,
+                                "Purchase failed try again","Alert!",
+                                JOptionPane
+                                        .INFORMATION_MESSAGE);
+                    }
                 }
             }
         }
@@ -205,7 +223,7 @@ public class GameBoard {
         RouteColor colorOfClaim = route.color;
         if (trainReq > trains.size()) return false;
         else if (trains.size() >= trainReq) {
-            if (route.color != RouteColor.NEUTRAL) {
+            if (route.color == RouteColor.NEUTRAL) {
                 RouteColor mostPopColor = getMostColor(trains);
                 for (Card train : trains) {
                     if (((Train)train).color != mostPopColor) unmatchedTrains++;
