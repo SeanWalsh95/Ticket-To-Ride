@@ -45,4 +45,19 @@ public class Dest extends Card {
 		}
 		return null;
 	}
+	
+    /**
+     * method to compare this Dest card to other Objects
+     * 
+     * @param o A Object to compare to
+     * @return true if the Objests are equal
+     * @return false if the Objects are not equal
+     */
+    @Override
+    public boolean equals(Object o){
+        if(o instanceof Dest)
+            if(this.cityA == ((Dest)o).cityA && this.cityB == ((Dest)o).cityB)
+                return true;
+        return false;
+    }
 }

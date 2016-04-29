@@ -271,6 +271,7 @@ public class GamePanel extends JPanel {
                     if (panel.getNumberSelected() >= minimum) {
                         Player p = gameBoard.getCurrentPlayer();
                         p.heldTrainCards.addAll(panel.getSelected());
+                        gameBoard.endTurn();
                         jd.dispose();
                     } else {
                         JOptionPane.showMessageDialog(new JFrame(),

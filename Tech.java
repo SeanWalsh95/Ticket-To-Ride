@@ -66,4 +66,19 @@ public class Tech extends Card {
 		}
 		return null;
 	}
+	
+    /**
+     * method to compare this Tech card to other Objects
+     * 
+     * @param o A Object to compare to
+     * @return true if the Objests are equal
+     * @return false if the Objects are not equal
+     */
+    @Override
+    public boolean equals(Object o){
+        if(o instanceof Tech)
+            if(this.name == ((Tech)o).name)
+                return true;
+        return false;
+    }
 }
