@@ -3,15 +3,16 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.*;
 import java.io.*;
+
 /**
  * Write a description of class GameDriver here.
- * 
- * @author (your name)
- * @version (a version number or a date)
+ *
+ * @author Sean Walsh
+ * @version 1.0
  */
 public class GameDriver {
     static Clip clip;
-    
+
     public static void main(String args[]) {
         ImgLib.ImageLibrary();
 
@@ -69,7 +70,7 @@ public class GameDriver {
 
         // plays random background sound from filePath
         try (AudioInputStream inputStream = AudioSystem
-            .getAudioInputStream(new File(filePath))) {
+                .getAudioInputStream(new File(filePath))) {
             clip = AudioSystem.getClip();
             clip.open(inputStream);
             // plays audio on loop

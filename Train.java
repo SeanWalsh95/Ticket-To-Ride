@@ -4,18 +4,17 @@ import java.io.File;
 
 /**
  * Write a description of class Train here.
- * 
- * @author (your name)
- * @version (a version number or a date)
+ *
+ * @author Sean Walsh
+ * @version 1.0
  */
 public class Train extends Card {
     RouteColor color;
-    private static final String path = 
-        "resources\\images\\cards\\train cards\\";
+    private static final String path =
+            "resources\\images\\cards\\train cards\\";
 
     /**
      * import from csv in the format RouteColor
-     * 
      */
     public Train(RouteColor color) {
         this.color = color;
@@ -28,7 +27,7 @@ public class Train extends Card {
             return toolkit.getImage(filePath);
         } catch (Exception e) {
             System.err.println("(ERR Train.getImage): Cannot find file \""
-                + filePath + "\"");
+                    + filePath + "\"");
         }
         return null;
     }
@@ -40,22 +39,21 @@ public class Train extends Card {
             return toolkit.getImage(filePath);
         } catch (Exception e) {
             System.err.println("(ERR Train.getImage): Cannot find file \""
-                + filePath + "\"");
+                    + filePath + "\"");
         }
         return null;
     }
 
     /**
      * method to compare this Train card to other Objects
-     * 
+     *
      * @param o A Object to compare to
-     * @return true if the Objests are equal
      * @return false if the Objects are not equal
      */
     @Override
-    public boolean equals(Object o){
-        if(o instanceof Train)
-            if(this.color == ((Train)o).color)
+    public boolean equals(Object o) {
+        if (o instanceof Train)
+            if (this.color == ((Train) o).color)
                 return true;
         return false;
     }

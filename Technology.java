@@ -1,9 +1,9 @@
 
 /**
  * Enumeration class Technology - write a description of the enum class here
- * 
- * @author (your name here)
- * @version (version number or date here)
+ *
+ * @author Sean Walsh
+ * @version 1.0
  */
 public enum Technology
 {

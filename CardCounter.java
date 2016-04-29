@@ -1,16 +1,16 @@
 import java.util.*;
+
 /**
  * Static methods to help with cards
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ *
+ * @author Sean Walsh
+ * @version 1.0
  */
-public class CardCounter
-{
-    public static int countTrainColor(ArrayList<Card> list ,RouteColor color){ 
+public class CardCounter {
+    public static int countTrainColor(ArrayList<Card> list, RouteColor color) {
         int count = 0;
-        for(Card c: list)
-            if(((Train)c).color == color)
+        for (Card c : list)
+            if (((Train) c).color == color)
                 count++;
         return count;
     }
