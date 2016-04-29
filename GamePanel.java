@@ -83,6 +83,7 @@ public class GamePanel extends JPanel {
         trainCardsButt.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
                     //draws a set number of cards from the train deck
+                    //THE NUMBER OF CARDS DRAWN IS DEPENDENT ON TECHNOLOGY
                 }
             });
         this.add(trainCardsButt);
