@@ -16,9 +16,9 @@ public class GameBoard {
     protected ArrayList<Card> techAvail;
     protected Deck trainDeck;
     protected Deck destDeck;
+    protected int currentPlayer;
+    protected int lastPlayer;
     private boolean lastTurn;
-    private int currentPlayer;
-    private int lastPlayer;
 
     public GameBoard(ArrayList<Player> playersIn){
 

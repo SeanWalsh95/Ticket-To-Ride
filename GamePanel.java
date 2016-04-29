@@ -469,6 +469,10 @@ public class GamePanel extends JPanel {
             int x = leftBorder;
             int y = topBorder + (height * i) + (11 * i);
             int fHeight = g.getFontMetrics().getHeight();
+            if(i == gameBoard.currentPlayer){
+                g.setColor(Color.RED);
+                g.fillRect(x-5,y-5,246,96);
+            }
             g.drawImage(ImgLib.playerCard, x, y, width, height, this);
             g.setColor(Color.WHITE);
             g.drawString(p.name + "", x + 5,
@@ -535,6 +539,7 @@ public class GamePanel extends JPanel {
                         if (a != null && b != null) {
                             System.out.println("Calling GB for " + r.toString());
                             gameBoard.buyRoute(a, b);
+                            self.repaint();
                         }
                     }
                 }
