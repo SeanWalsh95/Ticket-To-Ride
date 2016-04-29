@@ -122,7 +122,7 @@ public class GamePanel extends JPanel {
                 routeSelected = false;
             } else {
                 routePointB = c;
-                if (gameBoard.getRoute(routePointA, routePointB) != null)
+                if (gameBoard.getRoute(routePointA, routePointB,null) != null)
                     routeSelected = true;
                 else
                     firstCityClick = true;
@@ -401,7 +401,7 @@ public class GamePanel extends JPanel {
         purchaseButt.setBounds(608, y, 100, 25);
         purchaseButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    Route r = gameBoard.getRoute(routePointA, routePointB);
+                    Route r = gameBoard.getRoute(routePointA, routePointB,null);
                     System.out.println("Purchase action " + routeSelected + " "
                         + r.toString());
                     if (routeSelected && r != null) {
@@ -425,7 +425,7 @@ public class GamePanel extends JPanel {
         this.add(clearButt);
         this.add(purchaseButt);
         if (routeSelected) {
-            Route r = gameBoard.getRoute(routePointA, routePointB);
+            Route r = gameBoard.getRoute(routePointA, routePointB,null);
             if (r != null) {
                 g.drawString(r.toString() + " selected", x + 5,
                     y + 5 + (g.getFontMetrics().getHeight() / 2));
