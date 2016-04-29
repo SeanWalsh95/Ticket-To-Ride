@@ -12,6 +12,8 @@ public class ImgLib {
 	// mouse cursor
 	public static Image mouseCursor;
 
+	public static Image trainIcon;
+	
 	// image to display under player information
 	public static Image playerCard;
 
@@ -145,8 +147,11 @@ public class ImgLib {
 	public static void ImageLibrary() {
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
-		playerCard = toolkit
-				.getImage("resources/images/backgrounds/PlayerCard.png");
+		trainIcon = toolkit.getImage(
+				"resources/images/backgrounds/TrainIcon.png");
+		
+		playerCard = toolkit.getImage(
+				"resources/images/backgrounds/PlayerCard.png");
 
 		selectButtonHighlighted = toolkit.getImage(
 				"resources/images/buttons/selectButtonHighlighted.png");
