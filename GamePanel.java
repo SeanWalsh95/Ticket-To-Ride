@@ -435,17 +435,6 @@ public class GamePanel extends JPanel {
                     cardHeight, this);
                 g.setColor(Color.WHITE);
                 g.drawString(count + "", x - 15, y + 25);
-                RouteColor rc = order[i];
-                JLabel trainCardLabel = new JLabel();
-                trainCardLabel.setBounds(x, y, cardWidth, cardHeight);
-                trainCardLabel
-                .addMouseListener(new java.awt.event.MouseAdapter() {
-                        public void mousePressed(MouseEvent e) {
-                            System.out.println(rc);
-                            // add call to cardClicked() method here
-                        }
-                    });
-                this.add(trainCardLabel);
             }
         }
     }
