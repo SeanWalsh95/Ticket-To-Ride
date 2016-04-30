@@ -395,6 +395,7 @@ public class GamePanel extends JPanel {
         drawPlayerInfo(g);
         drawSelectedRouteInfo(g);
         drawFaceUpTrains(g);
+        drawRouteTiles(g);
     } // end method paintComponent
 
     /**
@@ -562,8 +563,12 @@ public class GamePanel extends JPanel {
         }
     }
 
-    // WIP
-    public ArrayList<Card> selectTrainCards() {
-        return null;
+    public void drawRouteTiles(Graphics g){
+        for(Route r : gameBoard.routes)
+            if(!(r instanceof FerryRoute)){
+                g.setColor(Color.GREEN);
+                for(Polygon p: r.polygons)
+                    g.fillPolygon(p);
+            }
     }
 }

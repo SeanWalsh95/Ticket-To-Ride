@@ -25,6 +25,7 @@ public class FerryRoute extends Route {
         String cityBStr = st.nextToken();
         String locomotiveRequiremnetStr = st.nextToken();
         String trainRequirementStr = st.nextToken();
+        //String pointsList = st.nextToken();
 
         // identifying message for this class
         String classMsg = "(ERR CONST FerryRoute)";
@@ -54,6 +55,38 @@ public class FerryRoute extends Route {
             System.err.println(classMsg + trainRequirementStr
                     + ": Cannot parse trainRequirement to int");
         }
+        /*
+        try {
+            polygons = new ArrayList<Polygon>();
+            StringTokenizer points = new StringTokenizer(pointsList, " ");
+            while (points.hasMoreTokens()) {
+                String xStr = points.nextToken(), yStr = points.nextToken();
+                StringTokenizer xValues = new StringTokenizer(xStr, "-");
+                StringTokenizer yValues = new StringTokenizer(yStr, "-");
+                int numberOfPoints = 0;
+                if (xValues.countTokens() == xValues.countTokens()) {
+                    numberOfPoints = xValues.countTokens();
+                } else {
+                    System.err.println(classMsg
+                            + ":X and Y values do not match in length for " +
+                            "polygon");
+                }
+                int[] xList = new int[numberOfPoints];
+                int[] yList = new int[numberOfPoints];
+                for (int i = 0; i < numberOfPoints; i++) {
+                    xList[i] = Integer.parseInt(xValues.nextToken());
+                    yList[i] = Integer.parseInt(yValues.nextToken());
+                }
+                // System.out.println("X:("+Arrays.toString(xList)+")
+                // Y:("+Arrays.toString(yList)+") Count:"+numberOfPoints);
+                polygons.add(new Polygon(xList, yList, numberOfPoints));
+            }
+        } catch (Exception e) {
+            System.err.println(classMsg + ": Cannot parse points to polygon");
+        }
+        */
+       
+       
         // ferry routes do not have a color so its color value is always neutral
         color = RouteColor.NEUTRAL;
         // sets the ownerID to its default value of -1 awaiting a player to

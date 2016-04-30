@@ -1,6 +1,6 @@
-Ullapool,Wick,3,yellow,1-1 2-2
-Ullapool,Inverness,1,orange,1-1 2-2
-Ullapool,Fort William,2,pink,1-1 2-2
+Ullapool,Wick,3,yellow,441-467-470-444 136-123-132-144 472-472-501-501 122-131-131-122 505-503-533-531 123-132-130-139
+Ullapool,Inverness,1,orange,435-443-457-449 155-151-176-180
+Ullapool,Fort William,2,pink,413-421-409-400 156-159-185-181 339-407-395-387 183-187-212-208
 Inverness,Wick,2,red,1-1 2-2
 Inverness,Fort William,2,black,1-1 2-2
 Inverness,Aberdeen,3,pink,1-1 2-2
