@@ -34,8 +34,16 @@ public class GameBoard {
             while(sc.hasNext())
                 routes.add(new Route(sc.nextLine(),","));
         }catch(Exception e){
-            System.err.println("(ERR Tech): Cannot find file: " +
+            System.err.println("(ERR Routes): Cannot find file: " +
                 "resources\\Routes.txt");
+        }
+        try(Scanner sc = new Scanner(new File("resources\\FerryRoutes.txt")))
+        {
+            while(sc.hasNext())
+                routes.add(new FerryRoute(sc.nextLine(),","));
+        }catch(Exception e){
+            System.err.println("(ERR routes): Cannot find file: " +
+                "resources\\FerryRoutes.txt");
         }
 
         cities = new ArrayList<City>();
