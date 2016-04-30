@@ -72,6 +72,7 @@ public class GameBoard {
         trainDeck.shuffle();
 
         destDeck = new  Deck("Dest","resources\\DestinationCards.txt");
+        destDeck.shuffle();
 
         lastTurn = false;
 
