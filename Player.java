@@ -29,4 +29,20 @@ public class Player {
         return name + " ID:" + id;
     }
 
+    /**
+     * Removes a train card from the player's hand that is
+     * the same as the given card
+     * 
+     * @param tr The train you want to remove
+     * 
+     * @return The train you removed
+     */
+    public Card removeTrainCard(Card tr){
+        for(int i = 0; i < heldTrainCards.size(); i++){
+            if(tr.equals(heldTrainCards.get(i))){
+                return heldTrainCards.remove(i);
+            }
+        }
+        return null;
+    }
 }

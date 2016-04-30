@@ -122,7 +122,7 @@ public class GameBoard {
         if (desRoute.ownerID == -1 || hasTech(curPlayer, Technology
             .RightOfWay)) {
             if (techChecker(curPlayer, desRoute, cityA, cityB)) {
-                ArrayList<Card> trainsToSpend = selectTrains();
+                ArrayList<Card> trainsToSpend = promptTrainSelect();
                 if (desRoute instanceof FerryRoute) {
                     if (purchase(desRoute, curPlayer, ((FerryRoute)
                             desRoute).locomotiveRequirement,trainsToSpend)) {
@@ -261,8 +261,7 @@ public class GameBoard {
         locos -= locoCost;
         if (trainReq > (locos + properColor)) return false;
         for (Card train : trains) {
-            player.heldTrainCards.remove(train);
-            trainDeck.discarded.add(train);
+            trainDeck.discarded.add(player.removeTrainCard(train));
         }
         return true;
     }
@@ -442,7 +441,7 @@ public class GameBoard {
      * @return Method returns true if the tech is purchased successfully
      */
     public boolean buyTech(Tech tech) {
-        ArrayList<Card> trainsToSpend = selectTrains();
+        ArrayList<Card> trainsToSpend = promptTrainSelect();
         ArrayList<Card> trainsSpent = new ArrayList<Card>();
         Player curPlayer = getCurrentPlayer();
         int locoCost = tech.cost;
@@ -461,8 +460,7 @@ public class GameBoard {
             System.out.println(trainsSpent);
             if (trainsSpent.size() == locoCost) {
                 for (int i = 0; i<trainsSpent.size(); i++) {
-                    trainDeck.discarded.add(trainsSpent.get(i));
-                    curPlayer.heldTrainCards.remove(trainsSpent.get(i));
+                    trainDeck.discarded.add(curPlayer.removeTrainCard(trainsSpent.get(i)));
                 }
                 techAvail.remove(tech);
                 curPlayer.heldTechCards.add(tech);
@@ -474,9 +472,7 @@ public class GameBoard {
                         () / 3)) {
                         trainsSpent.addAll(trainsToSpend);
                         for (int i = 0; i<trainsSpent.size(); i++) {
-                            trainDeck.discarded.add(trainsSpent.get(i));
-                            curPlayer.heldTrainCards.remove(trainsSpent.get(i));
-                            i--;
+                            trainDeck.discarded.add(curPlayer.removeTrainCard(trainsSpent.get(i)));
                         }
                         techAvail.remove(tech);
                         curPlayer.heldTechCards.add(tech);
@@ -487,9 +483,7 @@ public class GameBoard {
                         () / 4)) {
                         trainsSpent.addAll(trainsToSpend);
                         for (int i = 0; i<trainsSpent.size(); i++) {
-                            trainDeck.discarded.add(trainsSpent.get(i));
-                            curPlayer.heldTrainCards.remove(trainsSpent.get(i));
-                            i--;
+                            trainDeck.discarded.add(curPlayer.removeTrainCard(trainsSpent.get(i)));
                         }
                         techAvail.remove(tech);
                         curPlayer.heldTechCards.add(tech);
@@ -653,7 +647,7 @@ public class GameBoard {
         else if(JOptionPane.NO_OPTION == confirm)return selectTrains();
         return null;
     }
-    
+
     /**
      * Prompts the player to select trains to spend
      * 
@@ -662,7 +656,8 @@ public class GameBoard {
     private ArrayList<Card> promptTrainSelect(){
         JFrame parentFrame = new JFrame();
         Player p = getCurrentPlayer();
-        TrainSelectPanel panel = new TrainSelectPanel("TESTING",p.heldTrainCards);
+        TrainSelectPanel panel =
+            new TrainSelectPanel("TESTING",p.heldTrainCards);
         JDialog jd = new JDialog(parentFrame, true);
         jd.setTitle("Card Select");
 
