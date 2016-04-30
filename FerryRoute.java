@@ -58,7 +58,7 @@ public class FerryRoute extends Route {
         color = RouteColor.NEUTRAL;
         // sets the ownerID to its default value of -1 awaiting a player to
         // capture it
-        ownerID = -1;
+        ownerID = new ArrayList<Integer>();
     }
 
     public String toString() {

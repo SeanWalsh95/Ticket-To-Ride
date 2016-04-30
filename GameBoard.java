@@ -119,7 +119,7 @@ public class GameBoard {
                 return success;
         }
         if (desRoute == null) return success;
-        if (desRoute.ownerID == -1 || hasTech(curPlayer, Technology
+        if (desRoute.ownerID.size() == 0 || hasTech(curPlayer, Technology
             .RightOfWay)) {
             if (techChecker(curPlayer, desRoute, cityA, cityB)) {
                 ArrayList<Card> trainsToSpend = promptTrainSelect();
@@ -127,7 +127,7 @@ public class GameBoard {
                     if (purchase(desRoute, curPlayer, ((FerryRoute)
                             desRoute).locomotiveRequirement,trainsToSpend)) {
                         success = true;
-                        desRoute.ownerID = curPlayer.id;
+                        desRoute.ownerID.add(curPlayer.id);
                         if(players.size() == 2)
                             routes.remove(
                                 getRoute(cityA.name,cityB.name,desRoute));
@@ -167,7 +167,7 @@ public class GameBoard {
                 } else {
                     if (purchase(desRoute, curPlayer, 0, trainsToSpend)) {
                         success = true;
-                        desRoute.ownerID = curPlayer.id;
+                        desRoute.ownerID.add(curPlayer.id);
                         if(players.size() == 2)
                             routes.remove(
                                 getRoute(cityA.name,cityB.name,desRoute));
@@ -447,7 +447,6 @@ public class GameBoard {
         int locoCost = tech.cost;
         System.out.println(trainsToSpend);
         if (trainsToSpend.size() < locoCost){
-            System.out.println("BOOB");
             return false;
         }
         else {
@@ -464,7 +463,6 @@ public class GameBoard {
                 }
                 techAvail.remove(tech);
                 curPlayer.heldTechCards.add(tech);
-                System.out.println("OOP DARREN WIN");
                 return true;
             } else {
                 if (hasTech(curPlayer, Technology.Booster)) {
@@ -487,12 +485,10 @@ public class GameBoard {
                         }
                         techAvail.remove(tech);
                         curPlayer.heldTechCards.add(tech);
-                        System.out.println("OOP DARREN FIN");
                         return true;
                     }
                 }
             }
-            System.out.println("OOP DARREN LIM");
             return false;
         }
 
@@ -561,7 +557,7 @@ public class GameBoard {
         else {
             visited.add(start);
             for (int i = 0; i < routes.size(); i++) {
-                if (routes.get(i).ownerID == playerID) {
+                if (routes.get(i).ownerID.contains(playerID)) {
                     if (routes.get(i).cityA.equals(start) &&
                     !visited.contains(routes.get(i).cityB))
                         return checkDestCard(playerID, routes.get(i).cityB,
@@ -587,7 +583,7 @@ public class GameBoard {
         int max = 0;
         int temp = 0;
         for (Route route : routes) {
-            if (route.ownerID == pID) {
+            if (route.ownerID.contains(pID)) {
                 temp = playerRouteLength(pID, route, new ArrayList<Route>());
             }
             if (temp > max) max = temp;
@@ -609,7 +605,7 @@ public class GameBoard {
         int temp = 0;
         visited.add(route);
         for (Route rt : routes) {
-            if (!visited.contains(rt) && rt.ownerID == pID &&
+            if (!visited.contains(rt) && rt.ownerID.contains(pID) &&
             (rt.cityA == route.cityA || rt.cityB == route.cityB ||
                 rt.cityA == route.cityB || rt.cityB == rt.cityA)) {
                 ArrayList<Route> tempVis = new ArrayList<Route>();

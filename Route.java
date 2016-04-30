@@ -22,7 +22,7 @@ public class Route {
     int trainRequirement;
 
     // the playerID of the current owner of the route
-    int ownerID;
+    ArrayList<Integer> ownerID;
 
     // stores a list of polygons which represent the tiles in a given route
     ArrayList<Polygon> polygons;
@@ -107,7 +107,7 @@ public class Route {
         }
         // sets the ownerID to its default value of -1 awaiting a player to
         // capture it
-        ownerID = -1;
+        ownerID = new ArrayList<Integer>();
     }
 
     public String toString() {
