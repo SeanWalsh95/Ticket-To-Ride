@@ -17,7 +17,7 @@ public class GameBoard {
     protected Deck trainDeck;
     protected Deck destDeck;
     protected int currentPlayer;
-    protected int lastPlayer;
+    private int countPlayer;
     private boolean lastTurn;
     protected boolean rightOfWay;
 
@@ -79,7 +79,7 @@ public class GameBoard {
 
         currentPlayer = 0;
 
-        lastPlayer = -1;
+        countPlayer = -1;
 
         players = playersIn;
         /*
@@ -532,9 +532,15 @@ public class GameBoard {
      */
     public void endTurn() {
         rightOfWay = false;
+        if(players.get(currentPlayer).trainPieces <= 3)
+            lastTurn = true;
+        if(lastTurn == true)
+            countPlayer++;
         currentPlayer++;
         if (currentPlayer >= players.size())
             currentPlayer = currentPlayer - players.size();
+        if(countPlayer == players.size()-1)
+            endStep();
     }
 
     /**
@@ -706,7 +712,7 @@ public class GameBoard {
         Player p = getCurrentPlayer();
         TrainSelectPanel panel =
             new TrainSelectPanel("SELECT "
-            + "TRAINS",p.heldTrainCards);
+                + "TRAINS",p.heldTrainCards);
         JDialog jd = new JDialog(parentFrame, true);
         jd.setTitle("Card Select");
 
@@ -742,11 +748,11 @@ public class GameBoard {
             }
         }
         JOptionPane.showMessageDialog(null,highestScore() +
-                " wins!","Congratulations!",
-                JOptionPane
-                .INFORMATION_MESSAGE);
+            " wins!","Congratulations!",
+            JOptionPane
+            .INFORMATION_MESSAGE);
     }
-    
+
     /**
      * Gets the Player with the highest score;
      * 
