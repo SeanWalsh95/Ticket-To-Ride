@@ -128,6 +128,7 @@ public class GamePanel extends JPanel {
                     System.out.println(boughtTech);
                     if (boughtTech.size() != 0)
                         gameBoard.buyTech((Tech) boughtTech.get(0));
+                    repaint();
                 }
             });
         this.add(buyTechButt);
@@ -204,7 +205,7 @@ public class GamePanel extends JPanel {
 
         ArrayList<Card> showTech = new ArrayList<Card>(gameBoard.techAvail);
 
-        Set hashSet = new LinkedHashSet(showTech);
+        Set<Card> hashSet = new LinkedHashSet<Card>(showTech);
         showTech.clear();
         showTech.addAll(hashSet);
 
