@@ -553,7 +553,10 @@ public class GamePanel extends JPanel {
                         if (a != null && b != null) {
                             System.out.println("Calling GB for " + r.toString());
                             gameBoard.buyRoute(a, b);
-                            self.repaint();
+                            firstCityClick = true;
+                            routeSelected = false;
+                            routePointA = null;
+                            routePointB = null;
                         }
                     }
                     self.repaint();
