@@ -582,6 +582,25 @@ public class GameBoard {
     }
 
     /**
+     * This method figures out if the player given has the longest route
+     * 
+     * @param player The player who wants to see if they have the 
+     * longest route
+     * @return Returns true if the given player has the longest route
+     */
+    private boolean doesPlayerHaveLongestRoute(Player player){
+        for(int i = 0; i < players.size(); i++){
+            players.get(i).longestRoute = longestRoutePlayerOwns(players.get(i));
+        }
+        for(int i = 0; i < players.size(); i++){
+            if(player.longestRoute < players.get(i).longestRoute){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    /**
      * This method will figure out the length of a player's longest route
      *
      * @param player The player whose route you want to check.
@@ -677,10 +696,41 @@ public class GameBoard {
      * To be run when the end phase starts, essentially hijacks the game and
      * locks some rules down to account for the final steps
      */
-    public void endStep(){//METHOD INCOMPLETE
-        lastPlayer = currentPlayer;
-        endTurn();
-
+    public void endStep(){
+        checkAllPlayersDest();
+        for(int i = 0; i < players.size(); i++){
+            if(hasTech(players.get(i),Technology.EqualisingBeam)){
+                if(doesPlayerHaveLongestRoute(players.get(i))){
+                    players.get(i).score += 15;
+                }
+                else{
+                    players.get(i).score -= 15;
+                }
+            }
+            if(hasTech(players.get(i),Technology.RiskyContracts)){
+                if(riskyContracts(players.get(i))){
+                    players.get(i).score += 20;
+                }
+                else{
+                    players.get(i).score -= 20;
+                }
+            }
+        }
+    }
+    
+    /**
+     * This method handles the risky contracts card
+     * 
+     * @param player The player who owns the card
+     * @return True if they have the most completed dest cards
+     */
+    private boolean riskyContracts(Player player){
+        for(int i = 0; i < players.size(); i++){
+            if(player.completedDestCards < players.get(i).completedDestCards){
+                return false;
+            }
+        }
+        return true;
     }
 
     /**

@@ -14,6 +14,7 @@ public class Player {
     protected int trainPieces = 0;
     protected int score = 0;
     protected int completedDestCards = 0;
+    protected int longestRoute = 0;
     protected ArrayList<Card> heldDestinationCards = new ArrayList<Card>();
     protected ArrayList<Card> heldTrainCards = new ArrayList<Card>();
     protected ArrayList<Card> heldTechCards = new ArrayList<Card>();
