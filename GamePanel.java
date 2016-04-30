@@ -496,14 +496,21 @@ public class GamePanel extends JPanel {
             g.fillRect(g.getFontMetrics().stringWidth(p.name) + x + 10, y + 3,
                 15, 15);
 
+            y += fHeight;
             g.setColor(Color.WHITE);
             g.drawImage(
                 ImgLib.trainIcon,
-                x + 5, y + fHeight,
+                x + 5, y,
                 20, 20, this);
             g.drawString(
                 p.trainPieces + "",
-                x + 30, y + 15 + fHeight);
+                x + 30, y + 15);
+
+            y += fHeight;
+            g.drawString(
+                "SCORE: "+p.score,
+                x + 5, y + 15);
+
 
         }
     }
