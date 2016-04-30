@@ -93,7 +93,11 @@ public class GamePanel extends JPanel {
                     int limit = 2;
                     if(gameBoard.hasTech(gameBoard.getCurrentPlayer(),Technology.WaterTenders))
                         limit = 3;
-                    p.heldTrainCards.addAll(gameBoard.trainDeck.drawCards(limit));
+                    ArrayList<Card> drawn = gameBoard.trainDeck.drawCards(limit);
+                    showPlayerCards("The cards you drew", drawn);
+                    p.heldTrainCards.addAll(drawn);
+                    gameBoard.endTurn();
+                    repaint();
                 }
             });
         this.add(trainCardsButt);
