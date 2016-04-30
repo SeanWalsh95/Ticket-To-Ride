@@ -516,6 +516,9 @@ public class GameBoard {
      * turn
      */
     public void endTurn() {
+        if(hasTech(players.get(currentPlayer), Technology.RightOfWay)){
+            discardTech(players.get(currentPlayer), Technology.RightOfWay);
+        }
         currentPlayer++;
         if (currentPlayer >= players.size())
             currentPlayer = currentPlayer - players.size();
