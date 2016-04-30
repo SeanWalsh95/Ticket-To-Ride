@@ -556,6 +556,7 @@ public class GamePanel extends JPanel {
                             self.repaint();
                         }
                     }
+                    self.repaint();
                 }
             });
         this.add(clearButt);
