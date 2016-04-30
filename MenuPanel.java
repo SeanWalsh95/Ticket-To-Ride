@@ -31,7 +31,6 @@ public class MenuPanel extends JPanel {
         mainMenu();
     }
 
-
     /**
      * Paint component method for this JPanel component
      *
@@ -52,28 +51,31 @@ public class MenuPanel extends JPanel {
         GButton playGameButt = new GButton(new int[]{503, 464, 260, 111},
                 ImgLib.playButtonUnselected, ImgLib.playButtonHighlighted);
         playGameButt.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                playGame();
-            }
-        });
+                public void actionPerformed(ActionEvent e) {
+                    SoundLib.button.play();
+                    playGame();
+                }
+            });
         this.add(playGameButt);
 
         GButton rulesButt = new GButton(new int[]{125, 464, 260, 111},
                 ImgLib.rulesButtonUnselected, ImgLib.rulesButtonHighlighted);
         rulesButt.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                gameRules();
-            }
-        });
+                public void actionPerformed(ActionEvent e) {
+                    SoundLib.button.play();
+                    gameRules();
+                }
+            });
         this.add(rulesButt);
 
         GButton quitButt = new GButton(new int[]{875, 464, 260, 111},
                 ImgLib.quitButtonUnselected, ImgLib.quitButtonHighlighted);
         quitButt.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+                public void actionPerformed(ActionEvent e) {
+                    SoundLib.button.play();
+                    System.exit(0);
+                }
+            });
         this.add(quitButt);
 
         this.repaint();
@@ -89,31 +91,34 @@ public class MenuPanel extends JPanel {
         GButton next = new GButton(new int[]{962, 13, 80, 30},
                 ImgLib.nextButtonUnselected, ImgLib.nextButtonHighlighted);
         next.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                background = ImgLib.rulesScreen2;
-                repaint();
-            }
-        });
+                public void actionPerformed(ActionEvent e) {
+                    SoundLib.turnPage.play();
+                    background = ImgLib.rulesScreen2;
+                    repaint();
+                }
+            });
         this.add(next);
 
         GButton previous = new GButton(new int[]{219, 13, 80, 30},
                 ImgLib.previousButtonUnselected,
                 ImgLib.previousButtonHighlighted);
         previous.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                background = ImgLib.rulesScreen1;
-                repaint();
-            }
-        });
+                public void actionPerformed(ActionEvent e) {
+                    SoundLib.turnPage.play();
+                    background = ImgLib.rulesScreen1;
+                    repaint();
+                }
+            });
         this.add(previous);
 
         GButton back = new GButton(new int[]{5, 846, 98, 48},
                 ImgLib.backButtonUnselected, ImgLib.backButtonHighlighted);
         back.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                mainMenu();
-            }
-        });
+                public void actionPerformed(ActionEvent e) {
+                    SoundLib.button.play();
+                    mainMenu();
+                }
+            });
         this.add(back);
 
         this.repaint();
@@ -130,40 +135,44 @@ public class MenuPanel extends JPanel {
         GButton twoPlayers = new GButton(new int[]{125, 464, 260, 111},
                 ImgLib.twoPlayersUnselected, ImgLib.twoPlayersHighlighted);
         twoPlayers.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                numberOfPlayers = 2;
-                buildPlayers();
-            }
-        });
+                public void actionPerformed(ActionEvent e) {
+                    SoundLib.button.play();
+                    numberOfPlayers = 2;
+                    buildPlayers();
+                }
+            });
         this.add(twoPlayers);
 
         GButton threePlayers = new GButton(new int[]{500, 464, 260, 111},
                 ImgLib.threePlayersUnselected, ImgLib.threePlayersHighlighted);
         threePlayers.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                numberOfPlayers = 3;
-                buildPlayers();
-            }
-        });
+                public void actionPerformed(ActionEvent e) {
+                    SoundLib.button.play();
+                    numberOfPlayers = 3;
+                    buildPlayers();
+                }
+            });
         this.add(threePlayers);
 
         GButton fourPlayers = new GButton(new int[]{875, 464, 260, 111},
                 ImgLib.fourPlayersUnselected, ImgLib.fourPlayersHighlighted);
         fourPlayers.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                numberOfPlayers = 4;
-                buildPlayers();
-            }
-        });
+                public void actionPerformed(ActionEvent e) {
+                    SoundLib.button.play();
+                    numberOfPlayers = 4;
+                    buildPlayers();
+                }
+            });
         this.add(fourPlayers);
 
         GButton back = new GButton(new int[]{5, 846, 98, 48},
                 ImgLib.backButtonUnselected, ImgLib.backButtonHighlighted);
         back.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                mainMenu();
-            }
-        });
+                public void actionPerformed(ActionEvent e) {
+                    SoundLib.button.play();
+                    mainMenu();
+                }
+            });
         this.add(back);
 
         this.repaint();
@@ -189,7 +198,7 @@ public class MenuPanel extends JPanel {
 
             // player inputs a name of their choice
             String input = JOptionPane
-                    .showInputDialog("Player " + (i + 1) + " enter your name");
+                .showInputDialog("Player " + (i + 1) + " enter your name");
 
             // handles bad inputs
             if (input == null || input.equals("")) {
@@ -215,8 +224,8 @@ public class MenuPanel extends JPanel {
                         break;
                     } else {
                         JOptionPane.showMessageDialog(new JFrame(),
-                                "This Color was already chosen " +
-                                        "please choose another");
+                            "This Color was already chosen " +
+                            "please choose another");
                     }
                 }
             }
