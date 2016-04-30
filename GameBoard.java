@@ -207,9 +207,9 @@ public class GameBoard {
             }
             else{
                 JOptionPane.showMessageDialog(null,
-                            "You don't have the right tech!","Alert!",
-                            JOptionPane
-                            .INFORMATION_MESSAGE);
+                    "You don't have the right tech!","Alert!",
+                    JOptionPane
+                    .INFORMATION_MESSAGE);
             }
         }
         if (success == true) {
@@ -456,6 +456,10 @@ public class GameBoard {
         int locoCost = tech.cost;
         System.out.println(trainsToSpend);
         if (trainsToSpend.size() < locoCost){
+            JOptionPane.showMessageDialog(null,
+                "Purchase failed try again","Alert!",
+                JOptionPane
+                .INFORMATION_MESSAGE);
             return false;
         }
         else {
@@ -498,6 +502,10 @@ public class GameBoard {
                     }
                 }
             }
+            JOptionPane.showMessageDialog(null,
+                "Purchase failed try again","Alert!",
+                JOptionPane
+                .INFORMATION_MESSAGE);
             return false;
         }
 
@@ -599,7 +607,7 @@ public class GameBoard {
         }
         return true;
     }
-    
+
     /**
      * This method will figure out the length of a player's longest route
      *
@@ -717,7 +725,7 @@ public class GameBoard {
             }
         }
     }
-    
+
     /**
      * This method handles the risky contracts card
      * 
