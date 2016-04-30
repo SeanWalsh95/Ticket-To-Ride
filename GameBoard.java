@@ -653,6 +653,25 @@ public class GameBoard {
         else if(JOptionPane.NO_OPTION == confirm)return selectTrains();
         return null;
     }
+    
+    /**
+     * Prompts the player to select trains to spend
+     * 
+     * @return The ArrayList of cards the player wants to spend
+     */
+    private ArrayList<Card> promptTrainSelect(){
+        JFrame parentFrame = new JFrame();
+        Player p = getCurrentPlayer();
+        TrainSelectPanel panel = new TrainSelectPanel("TESTING",p.heldTrainCards);
+        JDialog jd = new JDialog(parentFrame, true);
+        jd.setTitle("Card Select");
+
+        jd.setSize(1276, 939); // set frame size
+        jd.add(panel);
+        jd.setVisible(true);
+
+        return new ArrayList<Card>(panel.selected);
+    }
 
     /**
      * To be run when the end phase starts, essentially hijacks the game and
