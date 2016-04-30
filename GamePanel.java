@@ -200,6 +200,7 @@ public class GamePanel extends JPanel {
      * @return An ArrayList of cards to be purchased
      */
     public ArrayList<Card> purchaseTechCards() {
+        selectedTechCards = new ArrayList<Card>();
         int limit = 1, minimum = 1;
         JFrame parentFrame = (JFrame) SwingUtilities.windowForComponent(this);
         CardSelectPanel panel = new CardSelectPanel("Purchase Technologies",
