@@ -63,6 +63,6 @@ public class Dest extends Card {
     
     @Override
     public int hashCode() {
-        return cityA.hashCode()+cityB.hashCode();
+        return ((cityA+"")+"_"+(cityB+"")).hashCode();
     }
 }

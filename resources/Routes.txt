@@ -69,3 +69,25 @@ Southampton,Brighton,1,blue,1-1 2-2
 London,Brighton,1,neutral,1-1 2-2
 London,Dover,2,neutral,1-1 2-2
 Brighton,Dover,2,pink,1-1 2-2
+Londonderry,Belfast,2,orange,1-1 2-2
+Londonderry,Sligo,2,green,1-1 2-2
+Londonderry,Dundalk,3,pink,1-1 2-2
+Belfast,Dundalk,1,white,1-1 2-2
+Belfast,Dundalk,1,red,1-1 2-2
+Sligo,Dundalk,3,black,1-1 2-2
+Sligo,Tullamore,3,blue,1-1 2-2
+Sligo,Galway,2,orange,1-1 2-2
+Dundalk,Dublin,1,yellow,1-1 2-2
+Dundalk,Dublin,1,blue,1-1 2-2
+Dublin,Tullamore,1,green,1-1 2-2
+Dublin,Tullamore,1,orange,1-1 2-2
+Galway,Tullamore,2,neutral,1-1 2-2
+Galway,Tullamore,2,neutral,1-1 2-2
+Galway,Limerick,1,yellow,1-1 2-2
+Limerick,Tullamore,1,neutral,1-1 2-2
+Limerick,Cork,1,pink,1-1 2-2
+Tullamore,Cork,3,yellow,1-1 2-2
+Tullamore,Rosslare,2,red,1-1 2-2
+Dublin,Rosslare,2,white,1-1,2-2
+Dublin,Rosslare,2,black,1-1,2-2
+Rosslare,Cork,2,blue,1-1 2-2
