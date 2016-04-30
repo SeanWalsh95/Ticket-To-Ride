@@ -37,7 +37,7 @@ Cambridge,England,457,663
 Norwich,England,543,657
 Bristol,England,290,675
 Reading,England,370,697
-Penzance,England,83,694
+Penzance,England,83,694
 Plymouth,England,172,703
 Ipswich,England,500,709
 London,England,426,716
