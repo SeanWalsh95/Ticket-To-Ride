@@ -19,6 +19,7 @@ public class GameBoard {
     protected int currentPlayer;
     protected int lastPlayer;
     private boolean lastTurn;
+    protected boolean rightOfWay;
 
     /**
      * Constructor for the GameBoard class that sets the board up to be
@@ -27,7 +28,7 @@ public class GameBoard {
      * @param playersIn An array list representing the players of the game
      */
     public GameBoard(ArrayList<Player> playersIn){
-
+        rightOfWay = false;
         routes = new ArrayList<Route>();
         try(Scanner sc = new Scanner(new File("resources\\Routes.txt")))
         {
@@ -120,8 +121,7 @@ public class GameBoard {
                 return success;
         }
         if (desRoute == null) return success;
-        if (desRoute.ownerID.size() == 0 || hasTech(curPlayer, Technology
-            .RightOfWay)) {
+        if (desRoute.ownerID.size() == 0 || rightOfWay) {
             if (techChecker(curPlayer, desRoute, cityA, cityB)) {
                 ArrayList<Card> trainsToSpend = promptTrainSelect();
                 if (desRoute instanceof FerryRoute) {
@@ -474,8 +474,13 @@ public class GameBoard {
                 for (int i = 0; i<trainsSpent.size(); i++) {
                     trainDeck.discarded.add(curPlayer.removeTrainCard(trainsSpent.get(i)));
                 }
-                techAvail.remove(tech);
-                curPlayer.heldTechCards.add(tech);
+                if(tech.name == Technology.RightOfWay){
+                    rightOfWay = true;
+                }
+                else{
+                    techAvail.remove(tech);
+                    curPlayer.heldTechCards.add(tech);
+                }
                 return true;
             } else {
                 if (hasTech(curPlayer, Technology.Booster)) {
@@ -485,8 +490,13 @@ public class GameBoard {
                         for (int i = 0; i<trainsSpent.size(); i++) {
                             trainDeck.discarded.add(curPlayer.removeTrainCard(trainsSpent.get(i)));
                         }
-                        techAvail.remove(tech);
-                        curPlayer.heldTechCards.add(tech);
+                        if(tech.name == Technology.RightOfWay){
+                            rightOfWay = true;
+                        }
+                        else{
+                            techAvail.remove(tech);
+                            curPlayer.heldTechCards.add(tech);
+                        }
                         return true;
                     }
                 } else {
@@ -496,8 +506,13 @@ public class GameBoard {
                         for (int i = 0; i<trainsSpent.size(); i++) {
                             trainDeck.discarded.add(curPlayer.removeTrainCard(trainsSpent.get(i)));
                         }
-                        techAvail.remove(tech);
-                        curPlayer.heldTechCards.add(tech);
+                        if(tech.name == Technology.RightOfWay){
+                            rightOfWay = true;
+                        }
+                        else{
+                            techAvail.remove(tech);
+                            curPlayer.heldTechCards.add(tech);
+                        }
                         return true;
                     }
                 }
@@ -516,9 +531,7 @@ public class GameBoard {
      * turn
      */
     public void endTurn() {
-        if(hasTech(players.get(currentPlayer), Technology.RightOfWay)){
-            discardTech(players.get(currentPlayer), Technology.RightOfWay);
-        }
+        rightOfWay = false;
         currentPlayer++;
         if (currentPlayer >= players.size())
             currentPlayer = currentPlayer - players.size();
