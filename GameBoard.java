@@ -205,6 +205,12 @@ public class GameBoard {
                     }
                 }
             }
+            else{
+                JOptionPane.showMessageDialog(null,
+                            "You don't have the right tech!","Alert!",
+                            JOptionPane
+                            .INFORMATION_MESSAGE);
+            }
         }
         if (success == true) {
             if (!hasTech(curPlayer, Technology.Thermocompressor)) endTurn();
@@ -234,6 +240,7 @@ public class GameBoard {
         else if (trains.size() >= trainReq) {
             if (route.color == RouteColor.NEUTRAL) {
                 RouteColor mostPopColor = getMostColor(trains);
+                System.out.println(mostPopColor);
                 for (Card train : trains) {
                     if (((Train)train).color != mostPopColor) unmatchedTrains++;
                     else properColor++;
@@ -369,8 +376,9 @@ public class GameBoard {
         //Handles route length checks
         if (route.trainRequirement == 3) {
             if (!hasTech(player, Technology.MechanicalStoker)) return false;
-        } else if (route.trainRequirement == 4 && route.trainRequirement == 5
-        && route.trainRequirement == 6) {
+        }
+        if (route.trainRequirement == 4 || route.trainRequirement == 5
+        || route.trainRequirement == 6) {
             if (!hasTech(player, Technology.SuperheatedSteamBoiler))
                 return false;
         }
