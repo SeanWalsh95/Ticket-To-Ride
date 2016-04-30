@@ -54,8 +54,11 @@ public class GamePanel extends JPanel {
         faceUpCardsLabel.setBounds(603, 8 + yOFFSET, 147, 485);
         faceUpCardsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
+                    int limit = 2;
+                    if(gameBoard.hasTech(gameBoard.getCurrentPlayer(),Technology.Booster))
+                        limit = 3;
                     selectTrainCards("Select your train cards",
-                        1, 2);
+                        2, limit);
                     repaint();
                 }
             });
@@ -195,7 +198,7 @@ public class GamePanel extends JPanel {
         drawFaceUpTrains(g);
         drawRouteTiles(g);
     } // end method paintComponent
-    
+
     /**
      * Method to help determine a route a player is trying to choose
      *

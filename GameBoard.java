@@ -399,7 +399,7 @@ public class GameBoard {
      * @return The method returns true if the player owns a tech of the
      * specified name
      */
-    private boolean hasTech(Player player, Technology techName) {
+    public boolean hasTech(Player player, Technology techName) {
         for (Card c : player.heldTechCards) {
             if (((Tech)c).name == techName) {
                 return true;
