@@ -57,4 +57,9 @@ public class Train extends Card {
                 return true;
         return false;
     }
+    
+    @Override
+    public int hashCode() {
+        return color.hashCode();
+    }
 }

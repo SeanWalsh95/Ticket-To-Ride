@@ -56,6 +56,18 @@ public class Tech extends Card {
         }
     }
 
+    public Image getImage(Technology name) {
+        String filePath = path + name + ".jpg";
+        try (Scanner sc = new Scanner(new File(filePath))) {
+            Toolkit toolkit = Toolkit.getDefaultToolkit();
+            return toolkit.getImage(filePath);
+        } catch (Exception e) {
+            System.err.println("(ERR Tech.getImage): Cannot find file \""
+                    + filePath + "\"");
+        }
+        return null;
+    }
+    
     public Image getImage() {
         String filePath = path + name + ".jpg";
         try (Scanner sc = new Scanner(new File(filePath))) {
@@ -80,5 +92,10 @@ public class Tech extends Card {
             if (this.name == ((Tech) o).name)
                 return true;
         return false;
+    }
+    
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }

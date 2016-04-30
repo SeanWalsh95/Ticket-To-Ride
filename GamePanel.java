@@ -201,10 +201,17 @@ public class GamePanel extends JPanel {
      */
     public ArrayList<Card> purchaseTechCards() {
         selectedTechCards = new ArrayList<Card>();
+
+        ArrayList<Card> showTech = new ArrayList<Card>(gameBoard.techAvail);
+
+        Set hashSet = new LinkedHashSet(showTech);
+        showTech.clear();
+        showTech.addAll(hashSet);
+
         int limit = 1, minimum = 1;
         JFrame parentFrame = (JFrame) SwingUtilities.windowForComponent(this);
         CardSelectPanel panel = new CardSelectPanel("Purchase Technologies",
-                gameBoard.techAvail);
+                showTech);
         JDialog jd = new JDialog(parentFrame, true);
         jd.setTitle("Card Select");
 
