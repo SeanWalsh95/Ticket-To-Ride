@@ -1,5 +1,5 @@
 import java.util.*;
-
+import java.awt.*;
 /**
  * Write a description of class FerryRoute here.
  *
@@ -25,7 +25,7 @@ public class FerryRoute extends Route {
         String cityBStr = st.nextToken();
         String locomotiveRequiremnetStr = st.nextToken();
         String trainRequirementStr = st.nextToken();
-        //String pointsList = st.nextToken();
+        String pointsList = st.nextToken();
 
         // identifying message for this class
         String classMsg = "(ERR CONST FerryRoute)";
@@ -55,7 +55,6 @@ public class FerryRoute extends Route {
             System.err.println(classMsg + trainRequirementStr
                     + ": Cannot parse trainRequirement to int");
         }
-        /*
         try {
             polygons = new ArrayList<Polygon>();
             StringTokenizer points = new StringTokenizer(pointsList, " ");
@@ -84,9 +83,6 @@ public class FerryRoute extends Route {
         } catch (Exception e) {
             System.err.println(classMsg + ": Cannot parse points to polygon");
         }
-        */
-       
-       
         // ferry routes do not have a color so its color value is always neutral
         color = RouteColor.NEUTRAL;
         // sets the ownerID to its default value of -1 awaiting a player to
