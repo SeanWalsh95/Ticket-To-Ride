@@ -34,18 +34,9 @@ public class GameBoard {
             while(sc.hasNext())
                 routes.add(new Route(sc.nextLine(),","));
         }catch(Exception e){
-            System.err.println("(ERR routes): Cannot find file: " +
+            System.err.println("(ERR Tech): Cannot find file: " +
                 "resources\\Routes.txt");
         }
-        try(Scanner sc = new Scanner(new File("resources\\FerryRoutes.txt")))
-        {
-            while(sc.hasNext())
-                routes.add(new FerryRoute(sc.nextLine(),","));
-        }catch(Exception e){
-            System.err.println("(ERR routes): Cannot find file: " +
-                "resources\\FerryRoutes.txt");
-        }
-        
 
         cities = new ArrayList<City>();
         try(Scanner sc = new Scanner(new File("resources\\Cities.txt")))
@@ -161,9 +152,9 @@ public class GameBoard {
                     }
                     else {
                         JOptionPane.showMessageDialog(null,
-                                "Purchase failed try again","Alert!",
-                                JOptionPane
-                                .INFORMATION_MESSAGE);
+                            "Purchase failed try again","Alert!",
+                            JOptionPane
+                            .INFORMATION_MESSAGE);
                     }
                 } else {
                     if (purchase(desRoute, curPlayer, 0, trainsToSpend)) {
@@ -199,9 +190,9 @@ public class GameBoard {
                     }
                     else {
                         JOptionPane.showMessageDialog(null,
-                                "Purchase failed try again","Alert!",
-                                JOptionPane
-                                        .INFORMATION_MESSAGE);
+                            "Purchase failed try again","Alert!",
+                            JOptionPane
+                            .INFORMATION_MESSAGE);
                     }
                 }
             }
@@ -447,30 +438,36 @@ public class GameBoard {
         ArrayList<Card> trainsSpent = new ArrayList<Card>();
         Player curPlayer = getCurrentPlayer();
         int locoCost = tech.cost;
-        if (trainsToSpend.size() < locoCost) return false;
+        System.out.println(trainsToSpend);
+        if (trainsToSpend.size() < locoCost){
+            System.out.println("BOOB");
+            return false;
+        }
         else {
-            for (Card train : trainsToSpend) {
-                if (((Train) train).color == RouteColor.NEUTRAL) {
-                    trainsToSpend.remove(train);
-                    trainsSpent.add(train);
+            for (int i = 0; i<trainsToSpend.size(); i++) {
+                if (((Train)trainsToSpend.get(i)).color == RouteColor.NEUTRAL) {
+                    trainsSpent.add(trainsToSpend.remove(i));
+                    i--;
                 }
             }
+            System.out.println(trainsSpent);
             if (trainsSpent.size() == locoCost) {
-                for (Card train : trainsSpent) {
-                    curPlayer.heldTrainCards.remove(train);
-                    trainDeck.discarded.add(train);
+                for (int i = 0; i<trainsSpent.size(); i++) {
+                    trainDeck.discarded.add(curPlayer.heldTrainCards.remove(trainsSpent.get(i)));
                 }
                 techAvail.remove(tech);
                 curPlayer.heldTechCards.add(tech);
+                System.out.println("OOP DARREN WIN");
                 return true;
             } else {
                 if (hasTech(curPlayer, Technology.Booster)) {
                     if (locoCost == trainsSpent.size() + (trainsToSpend.size
                         () / 3)) {
                         trainsSpent.addAll(trainsToSpend);
-                        for (Card train : trainsSpent) {
-                            curPlayer.heldTrainCards.remove(train);
-                            trainDeck.discarded.add(train);
+                        for (int i = 0; i<trainsSpent.size(); i++) {
+                            trainDeck.discarded.add(trainsSpent.get(i));
+                            curPlayer.heldTrainCards.remove(trainsSpent.get(i));
+                            i--;
                         }
                         techAvail.remove(tech);
                         curPlayer.heldTechCards.add(tech);
@@ -480,16 +477,19 @@ public class GameBoard {
                     if (locoCost == trainsSpent.size() + (trainsToSpend.size
                         () / 4)) {
                         trainsSpent.addAll(trainsToSpend);
-                        for (Card train : trainsSpent) {
-                            curPlayer.heldTrainCards.remove(train);
-                            trainDeck.discarded.add(train);
+                        for (int i = 0; i<trainsSpent.size(); i++) {
+                            trainDeck.discarded.add(trainsSpent.get(i));
+                            curPlayer.heldTrainCards.remove(trainsSpent.get(i));
+                            i--;
                         }
                         techAvail.remove(tech);
                         curPlayer.heldTechCards.add(tech);
+                        System.out.println("OOP DARREN FIN");
                         return true;
                     }
                 }
             }
+            System.out.println("OOP DARREN LIM");
             return false;
         }
 
