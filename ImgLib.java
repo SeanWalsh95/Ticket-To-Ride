@@ -9,6 +9,7 @@ import java.util.*;
  * @version 2.0
  */
 public class ImgLib {
+     public static Image trainPickerBackground;
     // mouse cursor
     public static Image mouseCursor;
 
@@ -146,7 +147,10 @@ public class ImgLib {
      */
     public static void ImageLibrary() {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-
+        
+        trainPickerBackground = toolkit.getImage(
+                "resources/images/backgrounds/TrainPickerBackground.png");
+        
         trainIcon = toolkit.getImage(
                 "resources/images/backgrounds/TrainIcon.png");
 
@@ -181,7 +185,7 @@ public class ImgLib {
                         ".png");
         purchaseButtonHighlighted = toolkit.getImage(
                 "resources/images/buttons/buyTech/purchaseButtonHighlighted" +
-						".png");
+                        ".png");
         purchaseButtonPressed = toolkit.getImage(
                 "resources/images/buttons/buyTech/purchaseButtonPressed.png");
 
@@ -313,14 +317,14 @@ public class ImgLib {
                 "resources/images/backgrounds/MainMenu.png");
         playButtonUnselected = toolkit.getImage(
                 "resources/images/buttons/mainMenu/PlayGameButtonUnselected" +
-						".png");
+                        ".png");
         rulesButtonUnselected = toolkit.getImage(
                 "resources/images/buttons/mainMenu/RulesButtonUnselected.png");
         quitButtonUnselected = toolkit.getImage(
                 "resources/images/buttons/mainMenu/QuitButtonUnselected.png");
         playButtonHighlighted = toolkit.getImage(
                 "resources/images/buttons/mainMenu/PlayGameButtonHighlighted" +
-						".png");
+                        ".png");
         rulesButtonHighlighted = toolkit.getImage(
                 "resources/images/buttons/mainMenu/RulesButtonHighlighted.png");
         quitButtonHighlighted = toolkit.getImage(

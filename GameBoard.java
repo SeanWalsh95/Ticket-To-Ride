@@ -461,7 +461,8 @@ public class GameBoard {
             System.out.println(trainsSpent);
             if (trainsSpent.size() == locoCost) {
                 for (int i = 0; i<trainsSpent.size(); i++) {
-                    trainDeck.discarded.add(curPlayer.heldTrainCards.remove(trainsSpent.get(i)));
+                    trainDeck.discarded.add(trainsSpent.get(i));
+                    curPlayer.heldTrainCards.remove(trainsSpent.get(i));
                 }
                 techAvail.remove(tech);
                 curPlayer.heldTechCards.add(tech);
