@@ -705,7 +705,8 @@ public class GameBoard {
         JFrame parentFrame = new JFrame();
         Player p = getCurrentPlayer();
         TrainSelectPanel panel =
-            new TrainSelectPanel("TESTING",p.heldTrainCards);
+            new TrainSelectPanel("SELECT "
+            + "TRAINS",p.heldTrainCards);
         JDialog jd = new JDialog(parentFrame, true);
         jd.setTitle("Card Select");
 
@@ -740,6 +741,24 @@ public class GameBoard {
                 }
             }
         }
+        JOptionPane.showMessageDialog(null,highestScore() +
+                " wins!","Congratulations!",
+                JOptionPane
+                .INFORMATION_MESSAGE);
+    }
+    
+    /**
+     * Gets the Player with the highest score;
+     * 
+     * @return The player with the highes score
+     */
+    private Player highestScore(){
+        Player high = players.get(0);
+        for(int i = 1; i < players.size(); i++){
+            if(high.score < players.get(i).score)
+                high = players.get(i);
+        }
+        return high;
     }
 
     /**
