@@ -103,6 +103,7 @@ public class TrainSelectPanel extends JPanel {
                                     if(t.color == order[index]){
                                         selected.add(hand.remove(i));
                                         self.repaint();
+                                        break;
                                     }
                                 }
                             }else if(list == selected){
@@ -111,6 +112,7 @@ public class TrainSelectPanel extends JPanel {
                                     if(t.color == order[index]){
                                         hand.add(selected.remove(i));
                                         self.repaint();
+                                        break;
                                     }
                                 }
                             }
