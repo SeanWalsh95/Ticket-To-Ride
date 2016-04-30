@@ -7,5 +7,10 @@ Propellers,2,4,Allows you to claim Ferry routes.
 Booster,2,4,You may use any 3 cards as a Locomotive (instead of 4).
 Boiler Lagging,2,4,You score 1 extra point for each route that you claim.
 Steam Turbine,2,4,You score 2 extra points for each Ferry route that you claim.
-Double Heading,4,4,At the end of the game you score 2 points for each Ticket that you completed\
-Right Of Way,4,1,You may play this card to claim a route that was already claimed by another player. When playing this card, you must still play the correct number of cards to claim the route. Simply place your trains on it next to the other player's trains. You must immediately claim the route when you take this card, and after you have claimed the route, you return the card to the table so it can be taken by another player. 
+Double Heading,4,4,At the end of the game you score 2 points for each Ticket that you completed
+Right Of Way,4,1,You may play this card to claim a route that was already claimed by another player. When playing this card you must still play the correct number of cards to claim the route. Simply place your trains on it next to the other player's trains. You must immediately claim the route when you take this card, and after you have claimed the route you return the card to the table so it can be taken by another player. 
+Thermocompressor,1,1,Claim 2 Routes this turn then return this card.
+Water Tenders,2,2,When drawing Train Cards, you can decide to draw 2 blind cards instead of the regular 2.
+Risky Contracts,2,1,At the end of the game, score 20 points if you have the most completed tickets. If not, loose 20 points.
+Equalising Beam,2,1,At the end of the game, score 15 points if you have the longest Route. If not loose 15 points.
+Diesel Power,3,1,When claiming a Route you may play 1 less card than required. You must still play at least 1 card and you cannot ignore a Locomotive on a Ferry route
