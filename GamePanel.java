@@ -54,11 +54,8 @@ public class GamePanel extends JPanel {
         faceUpCardsLabel.setBounds(603, 8 + yOFFSET, 147, 485);
         faceUpCardsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
-                    int limit = 2;
-                    if(gameBoard.hasTech(gameBoard.getCurrentPlayer(),Technology.Booster))
-                        limit = 3;
                     selectTrainCards("Select your train cards",
-                        2, limit);
+                        2, 2);
                     repaint();
                 }
             });
@@ -92,6 +89,11 @@ public class GamePanel extends JPanel {
                 public void mousePressed(MouseEvent e) {
                     //draws a set number of cards from the train deck
                     //THE NUMBER OF CARDS DRAWN IS DEPENDENT ON TECHNOLOGY
+                    Player p = gameBoard.getCurrentPlayer();
+                    int limit = 2;
+                    if(gameBoard.hasTech(gameBoard.getCurrentPlayer(),Technology.WaterTenders))
+                        limit = 3;
+                    p.heldTrainCards.addAll(gameBoard.trainDeck.drawCards(limit));
                 }
             });
         this.add(trainCardsButt);
