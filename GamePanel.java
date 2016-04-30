@@ -537,9 +537,9 @@ public class GamePanel extends JPanel {
         purchaseButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     Route r = gameBoard.getRoute(routePointA, routePointB, null);
-                    System.out.println("Purchase action " + routeSelected + " "
-                        + r.toString());
                     if (routeSelected && r != null) {
+                        System.out.println("Purchase action " + routeSelected + " "
+                            + r.toString());
                         City a, b;
                         a = b = null;
                         for (City c : gameBoard.cities) {

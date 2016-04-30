@@ -91,7 +91,6 @@ public class FerryRoute extends Route {
     }
 
     public String toString() {
-        return "FerryRoute: " + cityA + "\t" + cityB + "\t" + color + "\t"
-                + trainRequirement + "\t" + locomotiveRequirement;
+        return "FerryRoute: "+cityA+" to "+cityB;
     }
 }
