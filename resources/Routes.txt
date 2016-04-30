@@ -88,6 +88,6 @@ Limerick,Tullamore,1,neutral,1-1 2-2
 Limerick,Cork,1,pink,1-1 2-2
 Tullamore,Cork,3,yellow,1-1 2-2
 Tullamore,Rosslare,2,red,1-1 2-2
-Dublin,Rosslare,2,white,1-1,2-2
-Dublin,Rosslare,2,black,1-1,2-2
+Dublin,Rosslare,2,white,1-1 2-2
+Dublin,Rosslare,2,black,1-1 2-2
 Rosslare,Cork,2,blue,1-1 2-2

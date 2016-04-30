@@ -573,11 +573,9 @@ public class GamePanel extends JPanel {
     }
 
     public void drawRouteTiles(Graphics g){
+        g.setColor(Color.GREEN);
         for(Route r : gameBoard.routes)
-            if(!(r instanceof FerryRoute)){
-                g.setColor(Color.GREEN);
-                for(Polygon p: r.polygons)
-                    g.fillPolygon(p);
-            }
+            for(Polygon p: r.polygons)
+                g.fillPolygon(p);
     }
 }
