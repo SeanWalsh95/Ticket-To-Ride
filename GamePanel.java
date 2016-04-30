@@ -175,6 +175,28 @@ public class GamePanel extends JPanel {
     }
 
     /**
+     * paint component for this JPanel component
+     *
+     * @param g the Graphics object for this Class
+     */
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(ImgLib.background, 0, 0, this);
+        for (City c : gameBoard.cities) {
+            g.setColor(Color.GREEN);
+            g.drawRect(c.x, c.y + yOFFSET, 20, 20);
+            if (c.hover)
+                g.drawImage(ImgLib.getHover(c.name), c.x - 87,
+                    (c.y + yOFFSET) - 60, this);
+        }
+        drawPlayerHand(g);
+        drawPlayerInfo(g);
+        drawSelectedRouteInfo(g);
+        drawFaceUpTrains(g);
+        drawRouteTiles(g);
+    } // end method paintComponent
+    
+    /**
      * Method to help determine a route a player is trying to choose
      *
      * @Param c the name of a clicked city
@@ -375,28 +397,6 @@ public class GamePanel extends JPanel {
         jd.add(panel);
         jd.setVisible(true);
     }
-
-    /**
-     * paint component for this JPanel component
-     *
-     * @param g the Graphics object for this Class
-     */
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(ImgLib.background, 0, 0, this);
-        for (City c : gameBoard.cities) {
-            g.setColor(Color.GREEN);
-            g.drawRect(c.x, c.y + yOFFSET, 20, 20);
-            if (c.hover)
-                g.drawImage(ImgLib.getHover(c.name), c.x - 87,
-                    (c.y + yOFFSET) - 60, this);
-        }
-        drawPlayerHand(g);
-        drawPlayerInfo(g);
-        drawSelectedRouteInfo(g);
-        drawFaceUpTrains(g);
-        drawRouteTiles(g);
-    } // end method paintComponent
 
     /**
      * draws the current players hand of train cards

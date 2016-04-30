@@ -1,4 +1,5 @@
 import javax.sound.sampled.*;
+import java.applet.*;
 import java.util.*;
 import java.io.*;
 /**
@@ -54,5 +55,30 @@ public class SoundLib
         background = new Sound(filePath);
         // plays audio on loop
         background.playLoop();
+    }
+    
+    //static sub class for holding single audio files
+    static class Sound{
+        
+        private AudioClip sound; // Sound player
+
+        Sound(String filename) {
+            try {
+                sound = Applet.newAudioClip(this.getClass().getResource(filename)); // Load the Sound                
+            } catch (Exception e) {
+            } // Satisfy the catch
+        }
+
+        public void playLoop() {
+            sound.loop(); // Play 
+        }
+
+        public void stop() {
+            sound.stop(); // Play 
+        }
+
+        public void play() {
+            sound.play(); // Play only once
+        }
     }
 }
