@@ -12,7 +12,7 @@ import java.awt.*;
 public class GamePanel extends JPanel {
     GameBoard gameBoard;
     GButton viewTechButt, buyTechButt, viewDestButt, destDeckButt,
-    trainCardsButt, gameRulesButt;
+            trainCardsButt, gameRulesButt;
     ArrayList<Card> selectedTechCards, selectedDestCards, faceUpTrainCards;
 
     // offset for compatibility
@@ -39,7 +39,7 @@ public class GamePanel extends JPanel {
         for (Player p : gameBoard.players) {
             p.heldDestinationCards.addAll(selectDestCards(
                     "Player " + (p.id + 1)
-                    + ": Select Your Starting Destination Cards",
+                            + ": Select Your Starting Destination Cards",
                     3, 5, 5));
             p.heldTrainCards.addAll(gameBoard.trainDeck.drawCards(4));
             p.heldTrainCards.add(gameBoard.trainDeck.getFirstLocomotive());
@@ -53,96 +53,96 @@ public class GamePanel extends JPanel {
         JLabel faceUpCardsLabel = new JLabel();
         faceUpCardsLabel.setBounds(603, 8 + yOFFSET, 147, 485);
         faceUpCardsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    selectFaceUpTrainCards("Select your train cards",
+            public void mousePressed(MouseEvent e) {
+                selectTrainCards("Select your train cards",
                         1, 2);
-                    repaint();
-                }
-            });
+                repaint();
+            }
+        });
         this.add(faceUpCardsLabel);
 
         // GButton to allow a player to draw Dest Cards
         destDeckButt = new GButton(new int[]{772, 110 + yOFFSET, 215, 138},
-            ImgLib.backOfDestCard.getScaledInstance(215, 138, Image
-                .SCALE_FAST),
-            ImgLib.backOfDestCard.getScaledInstance(215, 138, Image
-                .SCALE_FAST));
+                ImgLib.backOfDestCard.getScaledInstance(215, 138, Image
+                        .SCALE_FAST),
+                ImgLib.backOfDestCard.getScaledInstance(215, 138, Image
+                        .SCALE_FAST));
         destDeckButt.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    Player p = gameBoard.getCurrentPlayer();
-                    p.heldDestinationCards.addAll(selectDestCards(
-                            "Player " + (p.id + 1)
-                            + ": Select Your Destination Cards",
-                            1, 3, 3));
-                    //draws a set number of cards from the dest deck
-                }
-            });
+            public void mousePressed(MouseEvent e) {
+                Player p = gameBoard.getCurrentPlayer();
+                p.heldDestinationCards.addAll(selectDestCards(
+                        "Player " + (p.id + 1)
+                                + ": Select Your Destination Cards",
+                        1, 3, 5));
+                //draws a set number of cards from the dest deck
+            }
+        });
         this.add(destDeckButt);
 
         // GButton to allow a player to draw Train Cards
         trainCardsButt = new GButton(new int[]{772, 256 + yOFFSET, 215, 138},
-            ImgLib.backOfTrainCard.getScaledInstance(215, 138, Image
-                .SCALE_FAST),
-            ImgLib.backOfTrainCard.getScaledInstance(215, 138, Image
-                .SCALE_FAST));
+                ImgLib.backOfTrainCard.getScaledInstance(215, 138, Image
+                        .SCALE_FAST),
+                ImgLib.backOfTrainCard.getScaledInstance(215, 138, Image
+                        .SCALE_FAST));
         trainCardsButt.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    promptTrainSelect();
-                    //draws a set number of cards from the train deck
-                    //THE NUMBER OF CARDS DRAWN IS DEPENDENT ON TECHNOLOGY
-                }
-            });
+            public void mousePressed(MouseEvent e) {
+                //draws a set number of cards from the train deck
+                //THE NUMBER OF CARDS DRAWN IS DEPENDENT ON TECHNOLOGY
+            }
+        });
         this.add(trainCardsButt);
 
         // GButton to allow a player to view the game rules
         gameRulesButt = new GButton(new int[]{792, 28 + yOFFSET, 196, 51},
-            ImgLib.buyTechButtonUnselected,
-            ImgLib.buyTechButtonHighlighted);
+                ImgLib.buyTechButtonUnselected,
+                ImgLib.buyTechButtonHighlighted);
         gameRulesButt.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    //display the game rules in a JDialog
-                }
-            });
+            public void actionPerformed(ActionEvent e) {
+                //display the game rules in a JDialog
+            }
+        });
         //this.add(gameRulesButt);
 
         // GButton to allow a player to view their Tech Cards
         viewTechButt = new GButton(new int[]{612, 508 + yOFFSET, 196, 51},
-            ImgLib.viewTechButtonUnselected,
-            ImgLib.viewTechButtonHighlighted);
+                ImgLib.viewTechButtonUnselected,
+                ImgLib.viewTechButtonHighlighted);
         viewTechButt.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    Player p = gameBoard.getCurrentPlayer();
-                    showPlayerCards("Player " + (p.id + 1) + "'s Tech Cards",
+            public void actionPerformed(ActionEvent e) {
+                Player p = gameBoard.getCurrentPlayer();
+                showPlayerCards("Player " + (p.id + 1) + "'s Tech Cards",
                         p.heldTechCards);
-                }
-            });
+            }
+        });
         this.add(viewTechButt);
 
         // GButton to allow a player to purchase a Tech Card
         buyTechButt = new GButton(new int[]{828, 508 + yOFFSET, 196, 51},
-            ImgLib.buyTechButtonUnselected,
-            ImgLib.buyTechButtonHighlighted);
+                ImgLib.buyTechButtonUnselected,
+                ImgLib.buyTechButtonHighlighted);
         buyTechButt.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    ArrayList<Card> boughtTech = new ArrayList<Card>();
-                    boughtTech.addAll(purchaseTechCards());
-                    if (boughtTech.size() > 0)
-                        gameBoard.buyTech((Tech) boughtTech.get(0));
-                }
-            });
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Card> boughtTech = new ArrayList<Card>();
+                boughtTech.addAll(purchaseTechCards());
+                System.out.println(boughtTech);
+                if (boughtTech.size() != 0)
+                    gameBoard.buyTech((Tech) boughtTech.get(0));
+            }
+        });
         this.add(buyTechButt);
 
         // Gbutton to allow a player to view their Dest Cards
         viewDestButt = new GButton(new int[]{1044, 508 + yOFFSET, 196, 51},
-            ImgLib.viewDestButtonUnselected,
-            ImgLib.viewDestButtonHighlighted);
+                ImgLib.viewDestButtonUnselected,
+                ImgLib.viewDestButtonHighlighted);
         viewDestButt.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    Player p = gameBoard.getCurrentPlayer();
-                    showPlayerCards("Player " + (p.id + 1) + "'s Destination Cards",
+            public void actionPerformed(ActionEvent e) {
+                Player p = gameBoard.getCurrentPlayer();
+                showPlayerCards("Player " + (p.id + 1) + "'s Destination Cards",
                         p.heldDestinationCards);
-                }
-            });
+            }
+        });
         this.add(viewDestButt);
 
         // adds JLabel component with MouseListener's for every city in
@@ -151,24 +151,24 @@ public class GamePanel extends JPanel {
             JLabel cityLabel = new JLabel();
             cityLabel.setBounds(c.x, c.y + yOFFSET, 20, 20);
             cityLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-                    // calls cityClicked if a city is clicked
-                    public void mousePressed(MouseEvent e) {
-                        cityClicked(c.name);
-                        //System.out.println(c.name);
-                    }
+                // calls cityClicked if a city is clicked
+                public void mousePressed(MouseEvent e) {
+                    cityClicked(c.name);
+                    //System.out.println(c.name);
+                }
 
-                    // displays the city name if hoverd
-                    public void mouseEntered(java.awt.event.MouseEvent evt) {
-                        c.hover = true;
-                        repaint();
-                    }
+                // displays the city name if hoverd
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    c.hover = true;
+                    repaint();
+                }
 
-                    // removes the city name if not hoverd
-                    public void mouseExited(java.awt.event.MouseEvent evt) {
-                        c.hover = false;
-                        repaint();
-                    }
-                });
+                // removes the city name if not hoverd
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    c.hover = false;
+                    repaint();
+                }
+            });
             this.add(cityLabel);
         }
     }
@@ -209,29 +209,29 @@ public class GamePanel extends JPanel {
         jd.setTitle("Card Select");
 
         jd.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    int index = -1;
-                    index = panel.getCardIndex(e.getPoint());
-                    if (index > -1 && (panel.getNumberSelected() < limit
+            public void mousePressed(MouseEvent e) {
+                int index = -1;
+                index = panel.getCardIndex(e.getPoint());
+                if (index > -1 && (panel.getNumberSelected() < limit
                         || panel.selectedCards[index]))
-                        panel.select(index);
-                }
-            });
+                    panel.select(index);
+            }
+        });
 
         GButton purchaseButt = new GButton(new int[]{543, 828, 174, 51},
                 ImgLib.purchaseButtonUnselected,
                 ImgLib.purchaseButtonHighlighted);
         purchaseButt.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent e) {
-                    if (panel.getNumberSelected() >= minimum) {
-                        selectedTechCards = panel.getSelected();
-                        jd.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(new JFrame(),
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                if (panel.getNumberSelected() == minimum) {
+                    selectedTechCards = panel.getSelected();
+                    jd.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(new JFrame(),
                             "You must select at least " + minimum + " cards");
-                    }
                 }
-            });
+            }
+        });
         panel.add(purchaseButt);
 
         jd.setSize(1276, 939); // set frame size
@@ -241,19 +241,6 @@ public class GamePanel extends JPanel {
         return selectedTechCards;
     }
 
-    public ArrayList<Card> promptTrainSelect(){
-        JFrame parentFrame = (JFrame) SwingUtilities.windowForComponent(this);
-        Player p = gameBoard.getCurrentPlayer();
-        TrainSelectPanel panel = new TrainSelectPanel("TESTING",p.heldTrainCards);
-        JDialog jd = new JDialog(parentFrame, true);
-        jd.setTitle("Card Select");
-
-        jd.setSize(1276, 939); // set frame size
-        jd.add(panel);
-        jd.setVisible(true);
-
-        return new ArrayList<Card>(panel.selected);
-    }
 
     /**
      * method to present the player with a list of Train Cards to choose from,
@@ -266,38 +253,38 @@ public class GamePanel extends JPanel {
      *                      Deck
      * @return a list of selected cards
      */
-    public void selectFaceUpTrainCards(String title, int minimum, int
-    limit) {
+    public ArrayList<Card> selectTrainCards(String title, int minimum, int
+            limit) {
         JFrame parentFrame = (JFrame) SwingUtilities.windowForComponent(this);
         CardSelectPanel panel = new CardSelectPanel(title, faceUpTrainCards);
         JDialog jd = new JDialog(parentFrame, true);
         jd.setTitle("Card Select");
 
         jd.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    int index = -1;
-                    index = panel.getCardIndex(e.getPoint());
-                    if (index > -1 && (panel.getNumberSelected() < limit
+            public void mousePressed(MouseEvent e) {
+                int index = -1;
+                index = panel.getCardIndex(e.getPoint());
+                if (index > -1 && (panel.getNumberSelected() < limit
                         || panel.selectedCards[index]))
-                        panel.select(index);
-                }
-            });
+                    panel.select(index);
+            }
+        });
 
         GButton selectButt = new GButton(new int[]{543, 828, 174, 51},
                 ImgLib.selectButtonUnselected, ImgLib.selectButtonHighlighted);
         selectButt.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent e) {
-                    if (panel.getNumberSelected() >= minimum) {
-                        Player p = gameBoard.getCurrentPlayer();
-                        p.heldTrainCards.addAll(panel.getSelected());
-                        gameBoard.endTurn();
-                        jd.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(new JFrame(),
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                if (panel.getNumberSelected() >= minimum) {
+                    Player p = gameBoard.getCurrentPlayer();
+                    p.heldTrainCards.addAll(panel.getSelected());
+                    gameBoard.endTurn();
+                    jd.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(new JFrame(),
                             "You must select at least " + minimum + " cards");
-                    }
                 }
-            });
+            }
+        });
         panel.add(selectButt);
 
         jd.setSize(1276, 939); // set frame size
@@ -306,9 +293,12 @@ public class GamePanel extends JPanel {
 
         for (int i = 0; i < panel.selectedCards.length; i++)
             if (panel.selectedCards[i])
-                faceUpTrainCards.set(i,
-                    gameBoard.trainDeck.drawCards(1).get(0));
+                faceUpTrainCards.set(i, gameBoard.trainDeck.drawCards(1).get
+                        (0));
+
+        return selectedDestCards;
     }
+
 
     /**
      * method to present the player with a list of Dest Cards to choose from,
@@ -321,7 +311,7 @@ public class GamePanel extends JPanel {
      * @return a list of selected cards
      */
     public ArrayList<Card> selectDestCards(String title, int minimum, int limit,
-    int numberOfCards) {
+                                           int numberOfCards) {
         JFrame parentFrame = (JFrame) SwingUtilities.windowForComponent(this);
         CardSelectPanel panel = new CardSelectPanel(title,
                 gameBoard.destDeck.drawCards(numberOfCards));
@@ -329,28 +319,28 @@ public class GamePanel extends JPanel {
         jd.setTitle("Card Select");
 
         jd.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    int index = -1;
-                    index = panel.getCardIndex(e.getPoint());
-                    if (index > -1 && (panel.getNumberSelected() < limit
+            public void mousePressed(MouseEvent e) {
+                int index = -1;
+                index = panel.getCardIndex(e.getPoint());
+                if (index > -1 && (panel.getNumberSelected() < limit
                         || panel.selectedCards[index]))
-                        panel.select(index);
-                }
-            });
+                    panel.select(index);
+            }
+        });
 
         GButton selectButt = new GButton(new int[]{543, 828, 174, 51},
                 ImgLib.selectButtonUnselected, ImgLib.selectButtonHighlighted);
         selectButt.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent e) {
-                    if (panel.getNumberSelected() >= minimum) {
-                        selectedDestCards = panel.getSelected();
-                        jd.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(new JFrame(),
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                if (panel.getNumberSelected() >= minimum) {
+                    selectedDestCards = panel.getSelected();
+                    jd.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(new JFrame(),
                             "You must select at least " + minimum + " cards");
-                    }
                 }
-            });
+            }
+        });
         panel.add(selectButt);
 
         jd.setSize(1276, 939); // set frame size
@@ -392,7 +382,7 @@ public class GamePanel extends JPanel {
             g.drawRect(c.x, c.y + yOFFSET, 20, 20);
             if (c.hover)
                 g.drawImage(ImgLib.getHover(c.name), c.x - 87,
-                    (c.y + yOFFSET) - 60, this);
+                        (c.y + yOFFSET) - 60, this);
         }
         drawPlayerHand(g);
         drawPlayerInfo(g);
@@ -407,9 +397,9 @@ public class GamePanel extends JPanel {
      */
     public void drawPlayerHand(Graphics g) {
         int rows = 3, cardWidth = 146, cardHeight = 94, leftBorder = 650,
-        topBorder = 585 + yOFFSET;
+                topBorder = 585 + yOFFSET;
         ArrayList<Card> trainCards = gameBoard
-            .getCurrentPlayer().heldTrainCards;
+                .getCurrentPlayer().heldTrainCards;
         RouteColor[] order = new RouteColor[]{RouteColor.BLACK,
                 RouteColor.GREEN, RouteColor.BLUE, RouteColor.YELLOW,
                 RouteColor.NEUTRAL, RouteColor.ORANGE, RouteColor.RED,
@@ -425,19 +415,19 @@ public class GamePanel extends JPanel {
             int count = CardCounter.countTrainColor(trainCards, order[i]);
             if (count > 0) {
                 g.drawImage(Train.getImage(order[i]), x, y, cardWidth,
-                    cardHeight, this);
+                        cardHeight, this);
                 g.setColor(Color.WHITE);
                 g.drawString(count + "", x - 15, y + 25);
                 RouteColor rc = order[i];
                 JLabel trainCardLabel = new JLabel();
                 trainCardLabel.setBounds(x, y, cardWidth, cardHeight);
                 trainCardLabel
-                .addMouseListener(new java.awt.event.MouseAdapter() {
-                        public void mousePressed(MouseEvent e) {
-                            System.out.println(rc);
-                            // add call to cardClicked() method here
-                        }
-                    });
+                        .addMouseListener(new java.awt.event.MouseAdapter() {
+                            public void mousePressed(MouseEvent e) {
+                                System.out.println(rc);
+                                // add call to cardClicked() method here
+                            }
+                        });
                 this.add(trainCardLabel);
             }
         }
@@ -450,13 +440,13 @@ public class GamePanel extends JPanel {
      */
     public void drawFaceUpTrains(Graphics g) {
         int cardWidth = 147, cardHeight = 94, leftBorder = 603,
-        topBorder = 8 + yOFFSET;
+                topBorder = 8 + yOFFSET;
         for (int i = 0; i < faceUpTrainCards.size(); i++) {
             Card c = faceUpTrainCards.get(i);
             int x = leftBorder;
             int y = (i * 4) + (i * cardHeight) + topBorder;
             g.drawImage(c.getImage(), x, y, cardWidth, cardHeight,
-                this);
+                    this);
         }
     }
 
@@ -467,7 +457,7 @@ public class GamePanel extends JPanel {
      */
     public void drawPlayerInfo(Graphics g) {
         int width = 241, height = 91, leftBorder = 1011,
-        topBorder = 8 + yOFFSET;
+                topBorder = 8 + yOFFSET;
 
         Font currentFont = g.getFont();
         Font newFont = currentFont.deriveFont(currentFont.getSize() * 1F);
@@ -484,19 +474,19 @@ public class GamePanel extends JPanel {
             g.drawImage(ImgLib.playerCard, x, y, width, height, this);
             g.setColor(Color.WHITE);
             g.drawString(p.name + "", x + 5,
-                y + 5 + (fHeight / 2));
+                    y + 5 + (fHeight / 2));
             g.setColor(p.color);
             g.fillRect(g.getFontMetrics().stringWidth(p.name) + x + 10, y + 3,
-                15, 15);
+                    15, 15);
 
             g.setColor(Color.WHITE);
             g.drawImage(
-                ImgLib.trainIcon,
-                x + 5, y + fHeight,
-                20, 20, this);
+                    ImgLib.trainIcon,
+                    x + 5, y + fHeight,
+                    20, 20, this);
             g.drawString(
-                p.trainPieces + "",
-                x + 30, y + 15 + fHeight);
+                    p.trainPieces + "",
+                    x + 30, y + 15 + fHeight);
 
         }
     }
@@ -516,52 +506,57 @@ public class GamePanel extends JPanel {
         JButton clearButt = new JButton("Clear");
         clearButt.setBounds(708, y, 75, 25);
         clearButt.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    firstCityClick = true;
-                    routeSelected = false;
-                    routePointA = null;
-                    routePointB = null;
-                    self.repaint();
-                }
-            });
+            public void actionPerformed(ActionEvent e) {
+                firstCityClick = true;
+                routeSelected = false;
+                routePointA = null;
+                routePointB = null;
+                self.repaint();
+            }
+        });
 
         JButton purchaseButt = new JButton("Purchase");
         purchaseButt.setBounds(608, y, 100, 25);
         purchaseButt.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    Route r = gameBoard.getRoute(routePointA, routePointB, null);
-                    System.out.println("Purchase action " + routeSelected + " "
+            public void actionPerformed(ActionEvent e) {
+                Route r = gameBoard.getRoute(routePointA, routePointB, null);
+                System.out.println("Purchase action " + routeSelected + " "
                         + r.toString());
-                    if (routeSelected && r != null) {
-                        City a, b;
-                        a = b = null;
-                        for (City c : gameBoard.cities) {
-                            if (r.cityA == c.name)
-                                a = c;
-                            if (r.cityB == c.name)
-                                b = c;
-                        }
+                if (routeSelected && r != null) {
+                    City a, b;
+                    a = b = null;
+                    for (City c : gameBoard.cities) {
+                        if (r.cityA == c.name)
+                            a = c;
+                        if (r.cityB == c.name)
+                            b = c;
+                    }
 
-                        System.out.println(a.name + "  " + b.name);
-                        if (a != null && b != null) {
-                            System.out.println("Calling GB for " + r.toString());
-                            gameBoard.buyRoute(a, b);
-                            self.repaint();
-                        }
+                    System.out.println(a.name + "  " + b.name);
+                    if (a != null && b != null) {
+                        System.out.println("Calling GB for " + r.toString());
+                        gameBoard.buyRoute(a, b);
+                        self.repaint();
                     }
                 }
-            });
+            }
+        });
         this.add(clearButt);
         this.add(purchaseButt);
         if (routeSelected) {
             Route r = gameBoard.getRoute(routePointA, routePointB, null);
             if (r != null) {
                 g.drawString(r.toString() + " selected", x + 5,
-                    y + 5 + (g.getFontMetrics().getHeight() / 2));
+                        y + 5 + (g.getFontMetrics().getHeight() / 2));
             } else {
                 firstCityClick = true;
                 routeSelected = false;
             }
         }
+    }
+
+    // WIP
+    public ArrayList<Card> selectTrainCards() {
+        return null;
     }
 }
