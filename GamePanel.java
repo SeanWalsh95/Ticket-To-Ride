@@ -303,9 +303,8 @@ public class GamePanel extends JPanel {
      *                      Deck
      * @return a list of selected cards
      */
-    public ArrayList<Card> selectTrainCards(String title, int minimum, int
+    public void selectTrainCards(String title, int minimum, int
     limit) {
-        selectedDestCards = new ArrayList<Card>();
         JFrame parentFrame = (JFrame) SwingUtilities.windowForComponent(this);
         CardSelectPanel panel = new CardSelectPanel(title, faceUpTrainCards);
         JDialog jd = new JDialog(parentFrame, true);
@@ -346,8 +345,6 @@ public class GamePanel extends JPanel {
             if (panel.selectedCards[i])
                 faceUpTrainCards.set(i, gameBoard.trainDeck.drawCards(1).get
                     (0));
-
-        return selectedDestCards;
     }
 
     /**
@@ -362,6 +359,7 @@ public class GamePanel extends JPanel {
      */
     public ArrayList<Card> selectDestCards(String title, int minimum, int limit,
     int numberOfCards) {
+        selectedDestCards = new ArrayList<Card>();
         JFrame parentFrame = (JFrame) SwingUtilities.windowForComponent(this);
         CardSelectPanel panel = new CardSelectPanel(title,
                 gameBoard.destDeck.drawCards(numberOfCards));
