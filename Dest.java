@@ -11,13 +11,14 @@ import java.io.File;
 public class Dest extends Card {
     CityName cityA, cityB;
     private static final String path =
-            "resources\\images\\cards\\destination cards\\";
+        "resources\\images\\cards\\destination cards\\";
     int pointValue;
 
     public Dest(String line, String delim) {
         StringTokenizer st = new StringTokenizer(line, delim);
         String cityAStr = st.nextToken();
         String cityBStr = st.nextToken();
+        String pointValueStr = st.nextToken();
 
         // identifying message for this class
         String classMsg = "(ERR CONST Destination)";
@@ -32,6 +33,12 @@ public class Dest extends Card {
         } catch (Exception e) {
             System.err.println(classMsg + cityBStr + ": Invalid City name");
         }
+        try {
+            pointValue = Integer.parseInt(pointValueStr);
+        } catch (Exception e) {
+            System.err.println(classMsg + pointValueStr
+                + ": Cannot parse pointValue to int");
+        }
     }
 
     public Image getImage() {
@@ -41,7 +48,7 @@ public class Dest extends Card {
             return toolkit.getImage(filePath);
         } catch (Exception e) {
             System.err.println("(ERR Dest.getImage): Cannot find file \""
-                    + filePath + "\"");
+                + filePath + "\"");
         }
         return null;
     }
@@ -56,11 +63,11 @@ public class Dest extends Card {
     public boolean equals(Object o) {
         if (o instanceof Dest)
             if (this.cityA == ((Dest) o).cityA && this.cityB == ((Dest) o)
-                    .cityB)
+            .cityB)
                 return true;
         return false;
     }
-    
+
     @Override
     public int hashCode() {
         return ((cityA+"")+"_"+(cityB+"")).hashCode();

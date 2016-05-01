@@ -737,9 +737,12 @@ public class GameBoard {
     private ArrayList<Card> promptTrainSelect(){
         JFrame parentFrame = new JFrame();
         Player p = getCurrentPlayer();
+        int cost = 0;//use as a paramater for this method
+        String title = 
+            "SELECT TRAINS (Cost:"+cost+")";
         TrainSelectPanel panel =
-            new TrainSelectPanel("SELECT "
-                + "TRAINS",p.heldTrainCards);
+            new TrainSelectPanel(
+            title,p.heldTrainCards);
         JDialog jd = new JDialog(parentFrame, true);
         jd.setTitle("Card Select");
 
