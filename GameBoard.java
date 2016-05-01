@@ -128,6 +128,13 @@ public class GameBoard {
                 .INFORMATION_MESSAGE);
             return success;
         }
+        if(desRoute.ownerID.contains(curPlayer.id)){
+            JOptionPane.showMessageDialog(null,
+                "You already own that route!","Alert!",
+                JOptionPane
+                .INFORMATION_MESSAGE);
+            return success;
+        }
         if (desRoute.ownerID.size() == 0 || rightOfWay) {
             if (techChecker(curPlayer, desRoute, cityA, cityB)) {
                 ArrayList<Card> trainsToSpend = promptTrainSelect();
@@ -482,6 +489,10 @@ public class GameBoard {
                     trainDeck.discarded.add(curPlayer.removeTrainCard(trainsSpent.get(i)));
                 }
                 if(tech.name == Technology.RightOfWay){
+                    JOptionPane.showMessageDialog(null,
+                        "You Have purchased Right of Way!","Alert!",
+                        JOptionPane
+                        .INFORMATION_MESSAGE);
                     rightOfWay = true;
                 }
                 else{
@@ -498,6 +509,10 @@ public class GameBoard {
                             trainDeck.discarded.add(curPlayer.removeTrainCard(trainsSpent.get(i)));
                         }
                         if(tech.name == Technology.RightOfWay){
+                            JOptionPane.showMessageDialog(null,
+                                "You Have purchased Right of Way!","Alert!",
+                                JOptionPane
+                                .INFORMATION_MESSAGE);
                             rightOfWay = true;
                         }
                         else{
@@ -514,6 +529,10 @@ public class GameBoard {
                             trainDeck.discarded.add(curPlayer.removeTrainCard(trainsSpent.get(i)));
                         }
                         if(tech.name == Technology.RightOfWay){
+                            JOptionPane.showMessageDialog(null,
+                                "You Have purchased Right of Way!","Alert!",
+                                JOptionPane
+                                .INFORMATION_MESSAGE);
                             rightOfWay = true;
                         }
                         else{
