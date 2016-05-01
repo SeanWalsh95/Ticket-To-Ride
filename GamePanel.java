@@ -195,8 +195,8 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(ImgLib.background, 0, 0, this);
-        drawRouteTiles(g);
-        //drawOwnedTiles(g);
+        //drawRouteTiles(g);
+        drawOwnedTiles(g);
         drawCityHover(g);
         drawPlayerHand(g);
         drawPlayerInfo(g);
@@ -522,23 +522,6 @@ public class GamePanel extends JPanel {
                     routeSelected = false;
                     routePointA = null;
                     routePointB = null;
-                    gameBoard.routes.clear();
-                    try(Scanner sc = new Scanner(new File("resources\\Routes.txt")))
-                    {
-                         while(sc.hasNext())
-                             gameBoard.routes.add(new Route(sc.nextLine(),","));
-                    }catch(Exception ex){
-                        System.err.println("(ERR Routes): Cannot find file: " +
-                            "resources\\Routes.txt");
-                    }
-                    try(Scanner sc = new Scanner(new File("resources\\FerryRoutes.txt")))
-                    {
-                        while(sc.hasNext())
-                            gameBoard.routes.add(new FerryRoute(sc.nextLine(),","));
-                    }catch(Exception ex){
-                        System.err.println("(ERR routes): Cannot find file: " +
-                            "resources\\FerryRoutes.txt");
-                    }
                     self.repaint();
                 }
             });
@@ -594,8 +577,6 @@ public class GamePanel extends JPanel {
      */
     public void drawCityHover(Graphics g){
         for (City c : gameBoard.cities) {
-            //g.setColor(Color.GREEN);
-            //g.drawRect(c.x, c.y + yOFFSET, 20, 20);
             if (c.hover)
                 g.drawImage(ImgLib.getHover(c.name), c.x - 87,
                     (c.y + yOFFSET) - 60, this);
