@@ -159,7 +159,10 @@ public class GamePanel extends JPanel {
         // GameBoard
         for (City c : gameBoard.cities) {
             JLabel cityLabel = new JLabel();
-            cityLabel.setBounds(c.x, c.y + yOFFSET, 20, 20);
+            if(c.name == CityName.NewYork)
+                cityLabel.setBounds(c.x, c.y + yOFFSET, 105, 35);
+            else
+                cityLabel.setBounds(c.x, c.y + yOFFSET, 20, 20);
             cityLabel.addMouseListener(new java.awt.event.MouseAdapter() {
                     // calls cityClicked if a city is clicked
                     public void mousePressed(MouseEvent e) {

@@ -46,4 +46,4 @@ Brighton,England,399,777
 Dover,England,491,778
 France,France,560,819
 France,France,291,850
-NewYork,England,44,813
+NewYork,England,40,795
