@@ -70,12 +70,14 @@ public class GamePanel extends JPanel {
                 .SCALE_FAST));
         destDeckButt.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
+                    //draws a set number of cards from the dest deck
                     Player p = gameBoard.getCurrentPlayer();
                     p.heldDestinationCards.addAll(selectDestCards(
                             "Player " + (p.id + 1)
                             + ": Select Your Destination Cards",
                             1, 3, 3));
-                    //draws a set number of cards from the dest deck
+                    gameBoard.endTurn();
+                    repaint();
                 }
             });
         this.add(destDeckButt);
