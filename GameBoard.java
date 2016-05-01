@@ -559,6 +559,10 @@ public class GameBoard {
     public void endTurn() {
         rightOfWay = false;
         if(trainDeck.deck.size() == 0) trainDeck.rebuildDeck();
+        if(trainDeck.shuffle){
+            techAvail.remove(getTech(Technology.RiskyContracts));
+            techAvail.remove(getTech(Technology.EqualisingBeam));
+        }
         if(players.get(currentPlayer).trainPieces <= 3)
             lastTurn = true;
         if(lastTurn == true)
