@@ -525,8 +525,8 @@ public class GamePanel extends JPanel {
                     gameBoard.routes.clear();
                     try(Scanner sc = new Scanner(new File("resources\\Routes.txt")))
                     {
-                        // while(sc.hasNext())
-                        //     routes.add(new Route(sc.nextLine(),","));
+                         while(sc.hasNext())
+                             gameBoard.routes.add(new Route(sc.nextLine(),","));
                     }catch(Exception ex){
                         System.err.println("(ERR Routes): Cannot find file: " +
                             "resources\\Routes.txt");

@@ -32,8 +32,8 @@ public class GameBoard {
         routes = new ArrayList<Route>();
         try(Scanner sc = new Scanner(new File("resources\\Routes.txt")))
         {
-           // while(sc.hasNext())
-           //     routes.add(new Route(sc.nextLine(),","));
+            while(sc.hasNext())
+                routes.add(new Route(sc.nextLine(),","));
         }catch(Exception e){
             System.err.println("(ERR Routes): Cannot find file: " +
                 "resources\\Routes.txt");
