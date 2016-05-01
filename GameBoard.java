@@ -128,6 +128,13 @@ public class GameBoard {
                 .INFORMATION_MESSAGE);
             return success;
         }
+        if(desRoute.ownerID.contains(curPlayer.id)){
+            JOptionPane.showMessageDialog(null,
+                "You already own that route!","Alert!",
+                JOptionPane
+                .INFORMATION_MESSAGE);
+            return success;
+        }
         if (desRoute.ownerID.size() == 0 || rightOfWay) {
             if (techChecker(curPlayer, desRoute, cityA, cityB)) {
                 ArrayList<Card> trainsToSpend = promptTrainSelect();
