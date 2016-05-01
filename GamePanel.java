@@ -194,15 +194,9 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(ImgLib.background, 0, 0, this);
-        drawRouteTiles(g);
-        //drawOwnedTiles(g);
-        for (City c : gameBoard.cities) {
-            //g.setColor(Color.GREEN);
-            //g.drawRect(c.x, c.y + yOFFSET, 20, 20);
-            if (c.hover)
-                g.drawImage(ImgLib.getHover(c.name), c.x - 87,
-                    (c.y + yOFFSET) - 60, this);
-        }
+        //drawRouteTiles(g);
+        drawOwnedTiles(g);
+        drawCityHover(g);
         drawPlayerHand(g);
         drawPlayerInfo(g);
         drawSelectedRouteInfo(g);
@@ -576,6 +570,21 @@ public class GamePanel extends JPanel {
     }
 
     /**
+     * Draws the city hover image neer the city if the city is hoverd
+     * 
+     * @param g the Graphics object for this Class
+     */
+    public void drawCityHover(Graphics g){
+        for (City c : gameBoard.cities) {
+            //g.setColor(Color.GREEN);
+            //g.drawRect(c.x, c.y + yOFFSET, 20, 20);
+            if (c.hover)
+                g.drawImage(ImgLib.getHover(c.name), c.x - 87,
+                    (c.y + yOFFSET) - 60, this);
+        }
+    }
+
+    /**
      * colors in tiles owned by a player
      * 
      * @param g the Graphics object for this Class
@@ -585,10 +594,30 @@ public class GamePanel extends JPanel {
             for(Polygon p: r.polygons)
                 for(int i=0; i < r.ownerID.size(); i++){
                     int id = r.ownerID.get(i);
-                    p.translate(0,2*i);
+                    Polygon sP = shiftPoly(p,0,4*i);
                     g.setColor(gameBoard.players.get(id).color);
-                    g.fillPolygon(p);
+                    g.fillPolygon(sP);
                 }    
+    }
+
+    /**
+     * method to non destructively shift a polygon
+     * 
+     * @param p polygon to be shifted
+     * @param deltaX ammount to shift on the xaxis
+     * @param deltaY ammount to shift on the yaxis
+     * @return a new polygon that has been shifted
+     */
+    private Polygon shiftPoly(Polygon p,int deltaX, int deltaY){
+        int npoints = p.npoints;
+        int[] copyX = new int[p.xpoints.length], copyY = new int[p.ypoints.length];
+        for(int i=0; i < p.xpoints.length; i++)
+            copyX[i] = p.xpoints[i];
+        for(int i=0; i < p.ypoints.length; i++)
+            copyY[i] = p.ypoints[i];
+        Polygon translated = new Polygon(copyX,copyY,npoints);
+        translated.translate(deltaX,deltaY);
+        return translated;
     }
 
     /**
