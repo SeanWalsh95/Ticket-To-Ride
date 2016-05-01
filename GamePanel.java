@@ -29,7 +29,8 @@ public class GamePanel extends JPanel {
      */
     public GamePanel(ArrayList<Player> players) {
         this.setLayout(null);
-
+        JPanel self = this;
+        
         // init selection arrays
         selectedTechCards = new ArrayList<Card>();
         selectedDestCards = new ArrayList<Card>();
@@ -107,14 +108,24 @@ public class GamePanel extends JPanel {
 
         // GButton to allow a player to view the game rules
         gameRulesButt = new GButton(new int[]{792, 28 + yOFFSET, 196, 51},
-            ImgLib.buyTechButtonUnselected,
-            ImgLib.buyTechButtonHighlighted);
+            ImgLib.rulesButtonUnselected.getScaledInstance(196, 51, Image
+                .SCALE_FAST),
+            ImgLib.rulesButtonHighlighted.getScaledInstance(196, 51, Image
+                .SCALE_FAST));
         gameRulesButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     //display the game rules in a JDialog
+                    JFrame parentFrame = (JFrame) SwingUtilities.windowForComponent(self);
+                    RulesPanel panel = new RulesPanel();
+                    JDialog jd = new JDialog(parentFrame, true);
+                    jd.setTitle("Game Rules");
+
+                    jd.setSize(1276, 939); // set frame size
+                    jd.add(panel);
+                    jd.setVisible(true);
                 }
             });
-        //this.add(gameRulesButt);
+        this.add(gameRulesButt);
 
         // GButton to allow a player to view their Tech Cards
         viewTechButt = new GButton(new int[]{612, 508 + yOFFSET, 196, 51},
@@ -358,7 +369,7 @@ public class GamePanel extends JPanel {
         jd.setTitle("Card Select");
 
         panel.remove(panel.backButt);
-        
+
         jd.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
                     int index = -1;
