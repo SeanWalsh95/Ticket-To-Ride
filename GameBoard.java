@@ -137,7 +137,7 @@ public class GameBoard {
         }
         if (desRoute.ownerID.size() == 0 || rightOfWay) {
             if (techChecker(curPlayer, desRoute, cityA, cityB)) {
-                ArrayList<Card> trainsToSpend = promptTrainSelect();
+                ArrayList<Card> trainsToSpend = promptTrainSelect(desRoute);
                 if (desRoute instanceof FerryRoute) {
                     if (purchase(desRoute, curPlayer, ((FerryRoute)
                             desRoute).locomotiveRequirement,trainsToSpend)) {
@@ -464,7 +464,7 @@ public class GameBoard {
      * @return Method returns true if the tech is purchased successfully
      */
     public boolean buyTech(Tech tech) {
-        ArrayList<Card> trainsToSpend = promptTrainSelect();
+        ArrayList<Card> trainsToSpend = promptTrainSelect(tech);
         ArrayList<Card> trainsSpent = new ArrayList<Card>();
         Player curPlayer = getCurrentPlayer();
         int locoCost = tech.cost;
@@ -738,15 +738,50 @@ public class GameBoard {
      * 
      * @return The ArrayList of cards the player wants to spend
      */
-    private ArrayList<Card> promptTrainSelect(){
+    private ArrayList<Card> promptTrainSelect(Route route){
         JFrame parentFrame = new JFrame();
         Player p = getCurrentPlayer();
-        int cost = 0;//use as a paramater for this method
-        String title = 
-            "SELECT TRAINS (Cost:"+cost+")";
+        String title;
+        if(route instanceof FerryRoute){
+            title = 
+            "SELECT TRAINS (Cost:"+
+            (route.trainRequirement-
+                ((FerryRoute)route).locomotiveRequirement)+" "+
+            route.color+ " " + 
+            ((FerryRoute)route).locomotiveRequirement+
+            " locomotives)";
+        }
+        else{
+            title = 
+            "SELECT TRAINS (Cost:"+route.trainRequirement+" "+
+            route.color+")";
+        }
         TrainSelectPanel panel =
             new TrainSelectPanel(
-            title,p.heldTrainCards);
+                title,p.heldTrainCards);
+        JDialog jd = new JDialog(parentFrame, true);
+        jd.setTitle("Card Select");
+
+        jd.setSize(1276, 939); // set frame size
+        jd.add(panel);
+        jd.setVisible(true);
+
+        return new ArrayList<Card>(panel.selected);
+    }
+
+    /**
+     * Prompts the player to select trains to spend
+     * 
+     * @return The ArrayList of cards the player wants to spend
+     */
+    private ArrayList<Card> promptTrainSelect(Tech tech){
+        JFrame parentFrame = new JFrame();
+        Player p = getCurrentPlayer();
+        String title = 
+            "SELECT TRAINS (Cost:"+tech.cost+")";
+        TrainSelectPanel panel =
+            new TrainSelectPanel(
+                title,p.heldTrainCards);
         JDialog jd = new JDialog(parentFrame, true);
         jd.setTitle("Card Select");
 
