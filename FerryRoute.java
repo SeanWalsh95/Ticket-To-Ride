@@ -23,7 +23,7 @@ public class FerryRoute extends Route {
         StringTokenizer st = new StringTokenizer(s, delim);
         String cityAStr = st.nextToken();
         String cityBStr = st.nextToken();
-        String locomotiveRequiremnetStr = st.nextToken();
+        String locomotiveRequirementStr = st.nextToken();
         String trainRequirementStr = st.nextToken();
         String pointsList = st.nextToken();
 
@@ -44,9 +44,9 @@ public class FerryRoute extends Route {
             System.err.println(classMsg + cityBStr + ": Invalid City name");
         }
         try {
-            trainRequirement = Integer.parseInt(trainRequirementStr);
+            locomotiveRequirement = Integer.parseInt(locomotiveRequirementStr);
         } catch (Exception e) {
-            System.err.println(classMsg + locomotiveRequiremnetStr
+            System.err.println(classMsg + locomotiveRequirementStr
                     + ": Cannot parse locomotiveRequiremnet to int");
         }
         try {
