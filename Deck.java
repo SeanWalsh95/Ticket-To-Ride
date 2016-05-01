@@ -92,6 +92,7 @@ public class Deck {
         }
         shuffle();
         this.discarded.clear();
+        shuffle = true;
         return true;
     }
 
