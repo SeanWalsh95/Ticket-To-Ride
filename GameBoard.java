@@ -169,7 +169,7 @@ public class GameBoard {
                             curPlayer.score += 15;
                             curPlayer.trainPieces -= 6;
                         } else {
-                            curPlayer.score += 30;
+                            curPlayer.score += 40;
                             curPlayer.trainPieces -= 10;
                         }
                     }
@@ -207,7 +207,7 @@ public class GameBoard {
                             curPlayer.score += 15;
                             curPlayer.trainPieces -= 6;
                         } else {
-                            curPlayer.score += 30;
+                            curPlayer.score += 40;
                             curPlayer.trainPieces -= 10;
                         }
                     }
@@ -558,6 +558,7 @@ public class GameBoard {
      */
     public void endTurn() {
         rightOfWay = false;
+        if(trainDeck.deck.size() == 0) trainDeck.rebuildDeck();
         if(players.get(currentPlayer).trainPieces <= 3)
             lastTurn = true;
         if(lastTurn == true)
