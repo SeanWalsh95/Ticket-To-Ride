@@ -489,6 +489,10 @@ public class GameBoard {
                     trainDeck.discarded.add(curPlayer.removeTrainCard(trainsSpent.get(i)));
                 }
                 if(tech.name == Technology.RightOfWay){
+                    JOptionPane.showMessageDialog(null,
+                        "You Have purchased Right of Way!","Alert!",
+                        JOptionPane
+                        .INFORMATION_MESSAGE);
                     rightOfWay = true;
                 }
                 else{
@@ -505,6 +509,10 @@ public class GameBoard {
                             trainDeck.discarded.add(curPlayer.removeTrainCard(trainsSpent.get(i)));
                         }
                         if(tech.name == Technology.RightOfWay){
+                            JOptionPane.showMessageDialog(null,
+                                "You Have purchased Right of Way!","Alert!",
+                                JOptionPane
+                                .INFORMATION_MESSAGE);
                             rightOfWay = true;
                         }
                         else{
@@ -521,6 +529,10 @@ public class GameBoard {
                             trainDeck.discarded.add(curPlayer.removeTrainCard(trainsSpent.get(i)));
                         }
                         if(tech.name == Technology.RightOfWay){
+                            JOptionPane.showMessageDialog(null,
+                                "You Have purchased Right of Way!","Alert!",
+                                JOptionPane
+                                .INFORMATION_MESSAGE);
                             rightOfWay = true;
                         }
                         else{
