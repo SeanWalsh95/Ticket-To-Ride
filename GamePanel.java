@@ -191,8 +191,8 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(ImgLib.background, 0, 0, this);
-        //drawRouteTiles(g);
-        drawOwnedTiles(g);
+        drawRouteTiles(g);
+        //drawOwnedTiles(g);
         for (City c : gameBoard.cities) {
             //g.setColor(Color.GREEN);
             //g.drawRect(c.x, c.y + yOFFSET, 20, 20);
@@ -581,7 +581,6 @@ public class GamePanel extends JPanel {
         for(Route r : gameBoard.routes)
             for(Polygon p: r.polygons)
                 for(int i=0; i < r.ownerID.size(); i++){
-                    System.out.println("trying to draw "+r.toString());
                     int id = r.ownerID.get(i);
                     p.translate(0,2*i);
                     g.setColor(gameBoard.players.get(id).color);
