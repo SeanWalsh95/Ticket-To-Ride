@@ -121,6 +121,13 @@ public class GameBoard {
                 return success;
         }
         if (desRoute == null) return success;
+        if (curPlayer.trainPieces < desRoute.trainRequirement){
+            JOptionPane.showMessageDialog(null,
+                "Insufficient train pieces!","Alert!",
+                JOptionPane
+                .INFORMATION_MESSAGE);
+            return success;
+        }
         if (desRoute.ownerID.size() == 0 || rightOfWay) {
             if (techChecker(curPlayer, desRoute, cityA, cityB)) {
                 ArrayList<Card> trainsToSpend = promptTrainSelect();
