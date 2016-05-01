@@ -191,9 +191,11 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(ImgLib.background, 0, 0, this);
+        //drawRouteTiles(g);
+        drawOwnedTiles(g);
         for (City c : gameBoard.cities) {
-            g.setColor(Color.GREEN);
-            g.drawRect(c.x, c.y + yOFFSET, 20, 20);
+            //g.setColor(Color.GREEN);
+            //g.drawRect(c.x, c.y + yOFFSET, 20, 20);
             if (c.hover)
                 g.drawImage(ImgLib.getHover(c.name), c.x - 87,
                     (c.y + yOFFSET) - 60, this);
@@ -202,7 +204,6 @@ public class GamePanel extends JPanel {
         drawPlayerInfo(g);
         drawSelectedRouteInfo(g);
         drawFaceUpTrains(g);
-        drawRouteTiles(g);
     } // end method paintComponent
 
     /**
@@ -500,7 +501,6 @@ public class GamePanel extends JPanel {
                 "SCORE: "+p.score,
                 x + 5, y + 15);
 
-
         }
     }
 
@@ -572,6 +572,26 @@ public class GamePanel extends JPanel {
         }
     }
 
+    /**
+     * colors in tiles owned by a player
+     * 
+     * @param g the Graphics object for this Class
+     */
+    public void drawOwnedTiles(Graphics g){
+        for(Route r : gameBoard.routes)
+            for(Polygon p: r.polygons)
+                for(int i=0; i < r.ownerID.size(); i++){
+                    System.out.println("trying to draw "+r.toString());
+                    int id = r.ownerID.get(i);
+                    p.translate(0,2*i);
+                    g.setColor(gameBoard.players.get(id).color);
+                    g.fillPolygon(p);
+                }    
+    }
+
+    /**
+     * for testing only
+     */
     public void drawRouteTiles(Graphics g){
         g.setColor(Color.GREEN);
         for(Route r : gameBoard.routes)
