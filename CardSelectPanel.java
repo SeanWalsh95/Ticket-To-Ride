@@ -18,7 +18,7 @@ public class CardSelectPanel extends JPanel {
     int cardWidth, cardHeight, rows, border = 50, topBorder = 100,
             leftBorder = 50;
     // GButton's to be pressed by the user
-    protected GButton backButt, purchaseButt;
+    protected GButton backButt;
     // String to be printed at the top of the Panel
     String title;
     // array of size cards that holds if a card is or is not selected

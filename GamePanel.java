@@ -357,6 +357,8 @@ public class GamePanel extends JPanel {
         JDialog jd = new JDialog(parentFrame, true);
         jd.setTitle("Card Select");
 
+        panel.remove(panel.backButt);
+        
         jd.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
                     int index = -1;
