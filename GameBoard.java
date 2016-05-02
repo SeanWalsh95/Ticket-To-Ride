@@ -308,14 +308,8 @@ public class GameBoard {
      * @return The color most prevalent in the array
      */
     private RouteColor getMostColor(ArrayList<Card> trains) {
-        int yellow = 0;
-        int pink = 0;
-        int red = 0;
-        int black = 0;
-        int blue = 0;
-        int green = 0;
-        int white = 0;
-        int orange = 0;
+        int yellow,pink, red, black, blue, green, white, orange;
+        yellow = pink = red = black = blue = green = white = orange = 0;
         for (Card train : trains) {
             if (((Train) train).color == RouteColor.YELLOW) yellow++;
             else if (((Train) train).color == RouteColor.PINK) pink++;
@@ -354,7 +348,7 @@ public class GameBoard {
         >= orange) {
             return RouteColor.WHITE;
         } else {
-            return RouteColor.BLACK;
+            return RouteColor.ORANGE;
         }
     }
 
