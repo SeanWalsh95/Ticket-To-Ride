@@ -74,9 +74,9 @@ public class GamePanel extends JPanel {
                         int drawReftence = 2;
                         if(handleTech)
                             drawReftence = 3;
-                        if(handleTech && p.drawCount <= 1){
-                                JOptionPane.showMessageDialog(new JFrame(),
-                                    "Draw from the deck with watertenders");
+                        if(handleTech && p.drawCount <= 1 && p.startedWithDeck){
+                            JOptionPane.showMessageDialog(new JFrame(),
+                                "Draw from the deck with watertenders");
                         }else{
                             Train locoCheck = (Train)faceUpTrainCards.get(index);
                             if(locoCheck.color == RouteColor.NEUTRAL && p.drawCount != drawReftence){
@@ -86,6 +86,7 @@ public class GamePanel extends JPanel {
                                 if(locoCheck.color == RouteColor.NEUTRAL)
                                     p.drawCount = 0;
                                 Train t = (Train)faceUpTrainCards.remove(index);
+                                p.heldTrainCards.add(t);
                                 faceUpTrainCards.add(index,
                                     gameBoard.trainDeck.drawCards(1).get(0));
                                 if(handleTech)
@@ -134,8 +135,8 @@ public class GamePanel extends JPanel {
                     SoundLib.turnPage.play();
                     //draws a set number of cards from the train deck
                     //THE NUMBER OF CARDS DRAWN IS DEPENDENT ON TECHNOLOGY
-
                     Player p = gameBoard.getCurrentPlayer();    
+                    p.startedWithDeck = true;
                     Train t = (Train)gameBoard.trainDeck.drawCards(1).get(0);
                     p.drawCount--;
                     JOptionPane.showMessageDialog(
@@ -146,8 +147,9 @@ public class GamePanel extends JPanel {
                                 t.getImage().getScaledInstance(
                                     215, 138, Image.SCALE_FAST))));
                     p.heldTrainCards.add(t);
-                    if(p.drawCount <= 0)
+                    if(p.drawCount <= 0){
                         gameBoard.endTurn();
+                    }
                     repaint();
                 }
             });

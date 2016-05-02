@@ -19,6 +19,7 @@ public class Player {
     protected ArrayList<Card> heldDestinationCards = new ArrayList<Card>();
     protected ArrayList<Card> heldTrainCards = new ArrayList<Card>();
     protected ArrayList<Card> heldTechCards = new ArrayList<Card>();
+    protected boolean startedWithDeck = false;
 
     public Player(int playerID, String playerName, Color playerColor) {
         this.id = playerID;

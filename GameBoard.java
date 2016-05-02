@@ -577,6 +577,7 @@ public class GameBoard {
             players.get(currentPlayer).drawCount = 3;
         else
             players.get(currentPlayer).drawCount = 2;
+        players.get(currentPlayer).startedWithDeck = false;
         if(players.get(currentPlayer).trainPieces <= 3)
             lastTurn = true;
         if(lastTurn == true)
