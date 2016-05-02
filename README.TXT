@@ -21,6 +21,8 @@ Ride UK edition.  The primary feature of this version of Ticket To Ride is the p
 REQUIREMENTS/CONFIG
 -------------------
 
+Run the .bat file included in the HW5 directory and the game will start
+
 Due to the resolution and file size of some of the premium images and sounds we use Ticket To Ride UK Edition
 requires more than the standard JVM memory allocation, we recommend running the program with the -Xmx3G
 paramater to give the JVM access to enough memory in order for it to load all of our images dynamically and
