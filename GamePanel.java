@@ -353,68 +353,6 @@ public class GamePanel extends JPanel {
     }
 
     /**
-     * method to present the player with a list of Train Cards to choose from,
-     * unselected cards are added to gameBoard.trainDeck.discard
-     *
-     * @param title         text to display at the top of the window
-     * @param minimum       minimum number of cards that can be selected
-     * @param limit         maximum number of cards that can be selected
-     * @param numberOfCards number of cards to draw from the GameBoard Train
-     *                      Deck
-     * @return a list of selected cards
-     */
-    public void selectTrainCards(String title, int minimum, int
-    limit) {
-        JFrame parentFrame = (JFrame) SwingUtilities.windowForComponent(this);
-        CardSelectPanel panel = new CardSelectPanel(title, faceUpTrainCards);
-        JDialog jd = new JDialog(parentFrame, true);
-        jd.setTitle("Card Select");
-
-        jd.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    SoundLib.button.play();
-                    int index = -1;
-                    index = panel.getCardIndex(e.getPoint());
-                    if (index > -1 && (panel.getNumberSelected() < limit
-                        || panel.selectedCards[index]))
-                        panel.select(index);
-                }
-            });
-
-        GButton selectButt = new GButton(new int[]{543, 828, 174, 51},
-                ImgLib.selectButtonUnselected, ImgLib.selectButtonHighlighted,
-                ImgLib.selectButtonPressed);
-        selectButt.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent e) {
-                    if (panel.getNumberSelected() >= minimum) {
-                        SoundLib.purchase.play();
-                        Player p = gameBoard.getCurrentPlayer();
-                        p.heldTrainCards.addAll(panel.getSelected());
-                        gameBoard.endTurn();
-                        jd.dispose();
-                    } else {
-                        SoundLib.error.play();
-                        JOptionPane.showMessageDialog(new JFrame(),
-                            "You Must Select At Least " + minimum + " Card(s)");
-                    }
-                    repaint();
-                }
-            });
-        panel.add(selectButt);
-
-        jd.setSize(1276, 939); // set frame size
-        jd.add(panel);
-        jd.setVisible(true);
-
-        for (int i = 0; i < panel.selectedCards.length; i++)
-            if (panel.selectedCards[i]){
-                faceUpTrainCards.remove(i);
-                faceUpTrainCards.add(i, gameBoard.trainDeck.drawCards(1).get
-                    (0));
-            }
-    }
-
-    /**
      * method to present the player with a list of Dest Cards to choose from,
      * unselected cards are added to gameBoard.destDeck.discard
      *
