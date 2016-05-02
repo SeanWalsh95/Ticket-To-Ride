@@ -503,6 +503,7 @@ public class GameBoard {
                     rightOfWay = true;
                 }
                 else{
+                    if(tech.name == Technology.WaterTenders) curPlayer.drawCount++;
                     techAvail.remove(tech);
                     curPlayer.heldTechCards.add(tech);
                 }
@@ -523,6 +524,7 @@ public class GameBoard {
                             rightOfWay = true;
                         }
                         else{
+                            if(tech.name == Technology.WaterTenders) curPlayer.drawCount++;
                             techAvail.remove(tech);
                             curPlayer.heldTechCards.add(tech);
                         }
@@ -543,6 +545,7 @@ public class GameBoard {
                             rightOfWay = true;
                         }
                         else{
+                            if(tech.name == Technology.WaterTenders) curPlayer.drawCount++;
                             techAvail.remove(tech);
                             curPlayer.heldTechCards.add(tech);
                         }
@@ -570,6 +573,10 @@ public class GameBoard {
             techAvail.remove(getTech(Technology.RiskyContracts));
             techAvail.remove(getTech(Technology.EqualisingBeam));
         }
+        if(hasTech(players.get(currentPlayer),Technology.WaterTenders))
+            players.get(currentPlayer).drawCount = 3;
+        else
+            players.get(currentPlayer).drawCount = 2;
         if(players.get(currentPlayer).trainPieces <= 3)
             lastTurn = true;
         if(lastTurn == true)
