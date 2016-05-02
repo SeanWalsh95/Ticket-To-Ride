@@ -25,6 +25,10 @@ public class GameDriver {
         JFrame gameFrame = new JFrame("Ticket to Ride - Team 3 (2016)");
         gameFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         gameFrame.setSize(1276, 989); // set frame size
+        
+        //set app icon
+        Image image = new ImageIcon(ImgLib.appIcon).getImage();
+        gameFrame.setIconImage(image);
 
         // creates new GamePanel, passing player list form the MenuPanel
         GamePanel gp = new GamePanel(mp.players);

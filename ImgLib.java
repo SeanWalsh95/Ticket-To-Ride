@@ -11,6 +11,8 @@ import java.util.*;
 public class ImgLib {
     public static Image mouseCursor;
 
+    public static Image appIcon;
+
     public static Image clearRouteButtonUnselected;
     public static Image clearRouteButtonHighlighted;
     public static Image purchaseRouteButtonUnselected;
@@ -75,6 +77,8 @@ public class ImgLib {
         // get the image for the mouse cursor
         mouseCursor = toolkit.getImage(
             "resources/images/mouseCursors/mouseCursorFinal.png");
+        appIcon = toolkit.getImage(
+            "resources/images/icon.png");  
 
         clearRouteButtonUnselected = toolkit.getImage(
             "resources/images/buttons/ClearRouteButtonUnselected.png");
