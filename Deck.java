@@ -30,17 +30,18 @@ public class Deck {
      */
     public ArrayList<Card> drawCards(int x) {
         ArrayList<Card> drawnCards = new ArrayList<Card>();
-        for (int i = 0; i < x; i++) {
-            drawnCards.add(deck.remove(0));
-            if(deck.size()==0){
-                if(false == this.rebuildDeck()){
-                    JOptionPane.showMessageDialog(null,"There are no" +
+        if(x < deck.size())
+            for (int i = 0; i < x; i++) {
+                drawnCards.add(deck.remove(0));
+                if(deck.size()==0){
+                    if(false == this.rebuildDeck()){
+                        JOptionPane.showMessageDialog(null,"There are no" +
                             " more cards!", "Alert!",JOptionPane
                             .INFORMATION_MESSAGE);
-                    return drawnCards;
+                        return drawnCards;
+                    }
                 }
             }
-        }
         return drawnCards;
     }
 

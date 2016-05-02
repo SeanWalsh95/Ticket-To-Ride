@@ -68,6 +68,7 @@ public class CardSelectPanel extends JPanel {
             ImgLib.backButtonUnselected, ImgLib.backButtonHighlighted);
         backButt.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
+                    SoundLib.button.play();
                     cards = new ArrayList<Card>();
                     for(int i = 0; i < selectedCards.length; i++)
                         selectedCards[i] = false;
@@ -88,7 +89,7 @@ public class CardSelectPanel extends JPanel {
         g.setColor(Color.WHITE);
 
         // sets the curent font to a larger size
-        
+
         Font newFont = new Font("Wide Latin", Font.PLAIN, 30);
         g.setFont(newFont);
 

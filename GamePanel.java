@@ -342,11 +342,7 @@ public class GamePanel extends JPanel {
                     if (panel.getNumberSelected() >= minimum) {
                         SoundLib.purchase.play();
                         Player p = gameBoard.getCurrentPlayer();
-                        for(int i=0; i < panel.selectedCards.length;i++){
-                            if(panel.selectedCards[i])
-                                p.heldTrainCards.add(faceUpTrainCards.remove(i));
-                        }
-                        //p.heldTrainCards.addAll(panel.getSelected());
+                        p.heldTrainCards.addAll(panel.getSelected());
                         gameBoard.endTurn();
                         jd.dispose();
                     } else {
@@ -364,9 +360,11 @@ public class GamePanel extends JPanel {
         jd.setVisible(true);
 
         for (int i = 0; i < panel.selectedCards.length; i++)
-            if (panel.selectedCards[i])
-                faceUpTrainCards.set(i, gameBoard.trainDeck.drawCards(1).get
+            if (panel.selectedCards[i]){
+                faceUpTrainCards.remove(i);
+                faceUpTrainCards.add(i, gameBoard.trainDeck.drawCards(1).get
                     (0));
+            }
     }
 
     /**
@@ -552,8 +550,15 @@ public class GamePanel extends JPanel {
         g.setFont(newFont);
         g.setColor(Color.WHITE);
         JPanel self = this;
-        JButton clearButt = new JButton("Clear");
-        clearButt.setBounds(708, y, 75, 25);
+
+        GButton clearButt = new GButton(
+                new int[]{708, y, 75, 25},
+                ImgLib.clearRouteButtonUnselected.
+                getScaledInstance(75, 25, Image.SCALE_FAST),
+                ImgLib.clearRouteButtonHighlighted.
+                getScaledInstance(75, 25, Image.SCALE_FAST));
+        //JButton clearButt = new JButton("Clear");
+        //clearButt.setBounds(708, y, 75, 25);
         clearButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
@@ -565,8 +570,14 @@ public class GamePanel extends JPanel {
                 }
             });
 
-        JButton purchaseButt = new JButton("Purchase");
-        purchaseButt.setBounds(608, y, 100, 25);
+        GButton purchaseButt = new GButton(
+                new int[]{608, y, 100, 25},
+                ImgLib.purchaseRouteButtonUnselected.
+                getScaledInstance(100, 25, Image.SCALE_FAST),
+                ImgLib.purchaseRouteButtonHighlighted.
+                getScaledInstance(100, 25, Image.SCALE_FAST));
+        //JButton purchaseButt = new JButton("Purchase");
+        //purchaseButt.setBounds(608, y, 100, 25);
         purchaseButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     Route r = gameBoard.getRoute(routePointA, routePointB, null);

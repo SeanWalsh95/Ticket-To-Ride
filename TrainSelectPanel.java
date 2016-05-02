@@ -43,8 +43,12 @@ public class TrainSelectPanel extends JPanel {
         this.hand = new ArrayList<Card>(playersHand);
         this.selected = new ArrayList<Card>();
 
-        JButton purchaseButt = new JButton("Confirm");
-        purchaseButt.setBounds(543,828,174,51);
+        GButton purchaseButt = new GButton(
+                new int[]{543,828,174,51},
+                ImgLib.confirmPurchaseButtonUnselected,
+                ImgLib.confirmPurchaseButtonHighlighted);
+        //JButton purchaseButt = new JButton("Confirm");
+        //purchaseButt.setBounds(543,828,174,51);
         purchaseButt.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
                     SoundLib.purchase.play();

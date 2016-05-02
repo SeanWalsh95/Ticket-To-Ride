@@ -18,8 +18,8 @@ public class ImgLib {
     public static Image purchaseRouteButtonUnselected;
     public static Image purchaseRouteButtonHighlighted;
 
-    public static Image ConfirmPurchaseButtonUnselected;
-    public static Image ConfirmPurchaseButtonHighlighted;
+    public static Image confirmPurchaseButtonUnselected;
+    public static Image confirmPurchaseButtonHighlighted;
 
     public static Image mainMenu;
     public static Image background;
@@ -90,9 +90,9 @@ public class ImgLib {
         purchaseRouteButtonHighlighted = toolkit.getImage(
             "resources/images/buttons/PurchaseRouteButtonHighlighted.png");
 
-        ConfirmPurchaseButtonUnselected = toolkit.getImage(
+        confirmPurchaseButtonUnselected = toolkit.getImage(
             "resources/images/buttons/ConfirmPurchaseButtonUnselected.png");
-        ConfirmPurchaseButtonHighlighted = toolkit.getImage(
+        confirmPurchaseButtonHighlighted = toolkit.getImage(
             "resources/images/buttons/ConfirmPurchaseButtonHighlighted.png");
 
         // get the images from the backgrounds folder
