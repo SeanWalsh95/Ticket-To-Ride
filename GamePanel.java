@@ -78,8 +78,10 @@ public class GamePanel extends JPanel {
                             JOptionPane.showMessageDialog(new JFrame(),
                                 "Draw from the deck with watertenders");
                         }else{
-                            Train locoCheck = (Train)faceUpTrainCards.get(index);
-                            if(locoCheck.color == RouteColor.NEUTRAL && p.drawCount != drawReftence){
+                            Train locoCheck = 
+							(Train)faceUpTrainCards.get(index);
+                            if(locoCheck.color == RouteColor.NEUTRAL &&
+							p.drawCount != drawReftence){
                                 JOptionPane.showMessageDialog(new JFrame(),
                                     "Cannot draw a locomotive");
                             }else{
@@ -164,7 +166,8 @@ public class GamePanel extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
                     //display the game rules in a JDialog
-                    JFrame parentFrame = (JFrame) SwingUtilities.windowForComponent(self);
+                    JFrame parentFrame = 
+					(JFrame) SwingUtilities.windowForComponent(self);
                     RulesPanel panel = new RulesPanel();
                     JDialog jd = new JDialog(parentFrame, true);
                     jd.setTitle("Game Rules");
@@ -218,7 +221,8 @@ public class GamePanel extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
                     Player p = gameBoard.getCurrentPlayer();
-                    showPlayerCards("Player " + (p.id + 1) + "'s Destination Cards",
+                    showPlayerCards("Player " + (p.id + 1) +
+						"'s Destination Cards",
                         p.heldDestinationCards);
                 }
             });
@@ -329,7 +333,7 @@ public class GamePanel extends JPanel {
                 ImgLib.purchaseButtonUnselected,
                 ImgLib.purchaseButtonHighlighted,
                 ImgLib.purchaseButtonPressed);
-        purchaseButt.addActionListener(new java.awt.event.ActionListener() {
+        purchaseButt.addActionListener(new java.awt.event.ActionListener(){
                 public void actionPerformed(java.awt.event.ActionEvent e) {
 
                     if (panel.getNumberSelected() == minimum) {
@@ -570,10 +574,12 @@ public class GamePanel extends JPanel {
         //purchaseButt.setBounds(608, y, 100, 25);
         purchaseButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    Route r = gameBoard.getRoute(routePointA, routePointB, null);
+                    Route r = gameBoard.getRoute(routePointA,
+						routePointB, null);
                     if (routeSelected && r != null) {
                         SoundLib.purchase.play();
-                        System.out.println("Purc`hase Action " + routeSelected + " "
+                        System.out.println("Purc`hase Action " + 
+							routeSelected + " "
                             + r.toString());
                         City a, b;
                         a = b = null;
@@ -586,7 +592,8 @@ public class GamePanel extends JPanel {
 
                         System.out.println(a.name + "  " + b.name);
                         if (a != null && b != null) {
-                            System.out.println("Calling GB for " + r.toString());
+                            System.out.println("Calling GB for " +
+								r.toString());
                             gameBoard.buyRoute(a, b);
                             firstCityClick = true;
                             routeSelected = false;
@@ -654,7 +661,8 @@ public class GamePanel extends JPanel {
      */
     private Polygon shiftPoly(Polygon p,int deltaX, int deltaY){
         int npoints = p.npoints;
-        int[] copyX = new int[p.xpoints.length], copyY = new int[p.ypoints.length];
+        int[] copyX = new int[p.xpoints.length], copyY = 
+			new int[p.ypoints.length];
         for(int i=0; i < p.xpoints.length; i++)
             copyX[i] = p.xpoints[i];
         for(int i=0; i < p.ypoints.length; i++)

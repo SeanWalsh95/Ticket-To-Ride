@@ -37,7 +37,8 @@ public class SoundLib
 
         Sound(String filename) {
             try {
-                sound = Applet.newAudioClip(this.getClass().getResource(filename)); // Load the Sound                
+                sound = Applet.newAudioClip(
+					this.getClass().getResource(filename)); // Load the Sound                
             } catch (Exception e) {
             } // Satisfy the catch
         }

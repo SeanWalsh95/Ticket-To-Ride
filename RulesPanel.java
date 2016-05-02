@@ -57,7 +57,8 @@ public class RulesPanel extends JPanel
         back.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
-                    ((JDialog) SwingUtilities.windowForComponent(self)).dispose();
+                    ((JDialog)
+						SwingUtilities.windowForComponent(self)).dispose();
                 }
             });
         this.add(back);

@@ -60,7 +60,8 @@ public class MenuPanel extends JPanel {
         playGameButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
-                    //playGameButt.setIcon(((Icon) new ImageIcon(ImgLib.playButtonPressed)));
+                    //playGameButt.setIcon(
+					//((Icon) new ImageIcon(ImgLib.playButtonPressed)));
                     playGame();
                 }
             });
