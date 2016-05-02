@@ -113,10 +113,8 @@ public class GamePanel extends JPanel {
 
         // GButton to allow a player to view the game rules
         gameRulesButt = new GButton(new int[]{792, 28 + yOFFSET, 196, 51},
-            ImgLib.rulesButtonUnselected.getScaledInstance(196, 51, Image
-                .SCALE_FAST),
-            ImgLib.rulesButtonHighlighted.getScaledInstance(196, 51, Image
-                .SCALE_FAST));
+            ImgLib.rulesButtonUnselectedGb,
+            ImgLib.rulesButtonHighlightedGb);
         gameRulesButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     //display the game rules in a JDialog

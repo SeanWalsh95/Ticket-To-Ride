@@ -33,6 +33,8 @@ public class ImgLib {
     public static Image playButtonUnselected;
     public static Image rulesButtonHighlighted;
     public static Image rulesButtonUnselected;
+    public static Image rulesButtonHighlightedGb;
+    public static Image rulesButtonUnselectedGb;
     public static Image quitButtonHighlighted;
     public static Image quitButtonUnselected;
     public static Image selectButtonHighlighted;
@@ -115,6 +117,11 @@ public class ImgLib {
             "resources/images/buttons/mainMenu/RulesButtonHighlighted.png");
         rulesButtonUnselected = toolkit.getImage(
             "resources/images/buttons/mainMenu/RulesButtonUnselected.png");
+
+        rulesButtonHighlightedGb = toolkit.getImage(
+            "resources/images/buttons/gameBoard/RulesButtonHighlighted.png");
+        rulesButtonUnselectedGb = toolkit.getImage(
+            "resources/images/buttons/gameBoard/RulesButtonUnselected.png");
 
         quitButtonHighlighted = toolkit.getImage(
             "resources/images/buttons/mainMenu/QuitButtonHighlighted.png");
