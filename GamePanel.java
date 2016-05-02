@@ -329,13 +329,18 @@ public class GamePanel extends JPanel {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
                     if (panel.getNumberSelected() >= minimum) {
                         Player p = gameBoard.getCurrentPlayer();
-                        p.heldTrainCards.addAll(panel.getSelected());
+                        for(int i=0; i < panel.selectedCards.length;i++){
+                            if(panel.selectedCards[i])
+                                p.heldTrainCards.add(faceUpTrainCards.remove(i));
+                        }
+                        //p.heldTrainCards.addAll(panel.getSelected());
                         gameBoard.endTurn();
                         jd.dispose();
                     } else {
                         JOptionPane.showMessageDialog(new JFrame(),
                             "You must select at least " + minimum + " cards");
                     }
+                    repaint();
                 }
             });
         panel.add(selectButt);
@@ -449,7 +454,7 @@ public class GamePanel extends JPanel {
                 g.drawImage(Train.getImage(order[i]), x, y, cardWidth,
                     cardHeight, this);
                 g.setColor(Color.WHITE);
-                g.drawString(count + "", x - 15, y + 25);
+                g.drawString(count + "", x - 20, y + 25);
             }
         }
     }
