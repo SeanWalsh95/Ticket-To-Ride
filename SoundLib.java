@@ -13,8 +13,8 @@ public class SoundLib
     public static Sound background;
     public static Sound button = new Sound("resources/sounds/buttons/button1.au");
     public static Sound turnPage = new Sound("resources/sounds/buttons/Pageturn.wav");
-    //public static Sound purchase = new Sound("resources/sounds/buttons/purchase.wav");
-    //public static Sound error = new Sound("resources/sounds/buttons/error.wav");
+    public static Sound purchase = new Sound("resources/sounds/buttons/purchase.wav");
+    public static Sound error = new Sound("resources/sounds/buttons/error.wav");
     public static Sound gong = new Sound("resources/sounds/buttons/soundgong.au");
 
     public static void SoundLib() {
