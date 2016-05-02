@@ -30,13 +30,18 @@ public class GamePanel extends JPanel {
     public GamePanel(ArrayList<Player> players) {
         this.setLayout(null);
         JPanel self = this;
-        
+
         // init selection arrays
         selectedTechCards = new ArrayList<Card>();
         selectedDestCards = new ArrayList<Card>();
         faceUpTrainCards = new ArrayList<Card>();
 
         gameBoard = new GameBoard(players);
+        //makes the mouse cursor
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Cursor a = toolkit.createCustomCursor(ImgLib.mouseCursor,
+                new Point(this.getX(),this.getY()), "img");
+        setCursor(a);
         // init for players
         for (Player p : gameBoard.players) {
             p.heldDestinationCards.addAll(selectDestCards(

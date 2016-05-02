@@ -12,6 +12,7 @@ public class TrainSelectPanel extends JPanel {
 
     // backround image to be drawn behind everything
     Image background;
+
     // int's representing various static vlaues
     int cardWidth = 147, cardHeight = 94, rows = 2;
     // String to be printed at the top of the Panel
@@ -32,6 +33,11 @@ public class TrainSelectPanel extends JPanel {
     {
         JPanel self = this;
         this.setLayout(null);
+        //makes the mouse cursor
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Cursor a = toolkit.createCustomCursor(ImgLib.mouseCursor,
+                new Point(this.getX(),this.getY()), "img");
+        setCursor(a);
         this.background = ImgLib.trainPickerBackground;
         this.title = title;
         this.hand = new ArrayList<Card>(playersHand);
@@ -40,13 +46,13 @@ public class TrainSelectPanel extends JPanel {
         JButton purchaseButt = new JButton("Confirm");
         purchaseButt.setBounds(543,828,174,51);
         purchaseButt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                ((JDialog) SwingUtilities.windowForComponent(self)).dispose();
-            }
-        });
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    ((JDialog) SwingUtilities.windowForComponent(self)).dispose();
+                }
+            });
         this.add(purchaseButt);
     }
-    
+
     /**
      * PaintComponent for this JPanel component
      *

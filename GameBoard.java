@@ -247,8 +247,9 @@ public class GameBoard {
         int locos = 0;
         int unmatchedTrains = 0;
         int properColor = 0;
-        int trainReq = route.trainRequirement;
+        int trainReq = route.trainRequirement - locoCost;
         if (hasTech(player, Technology.DieselPower)) trainReq--;
+        if ((locoCost + trainReq) == 0) trainReq = 1;
         RouteColor colorOfClaim = route.color;
         if (trainReq > trains.size()) return false;
         else if (trains.size() >= trainReq) {
@@ -256,8 +257,14 @@ public class GameBoard {
                 RouteColor mostPopColor = getMostColor(trains);
                 System.out.println(mostPopColor);
                 for (Card train : trains) {
-                    if (((Train)train).color != mostPopColor) unmatchedTrains++;
+                    if (((Train)train).color != mostPopColor 
+                    && ((Train)train).color != RouteColor.NEUTRAL)
+                        unmatchedTrains++;
                     else properColor++;
+                }
+                if (properColor > trainReq){
+                    unmatchedTrains += (properColor - trainReq);
+                    properColor = trainReq;
                 }
                 if (hasTech(player, Technology.Booster)) {
                     locos += unmatchedTrains / 3;
@@ -266,8 +273,14 @@ public class GameBoard {
                 }
             } else {
                 for (Card train : trains) {
-                    if (((Train)train).color != colorOfClaim) unmatchedTrains++;
+                    if (((Train)train).color != route.color
+                    && ((Train)train).color != RouteColor.NEUTRAL)
+                        unmatchedTrains++;
                     else properColor++;
+                }
+                if (properColor > trainReq){
+                    unmatchedTrains += (properColor - trainReq);
+                    properColor = trainReq;
                 }
                 if (hasTech(player, Technology.Booster)) {
                     locos += unmatchedTrains / 3;

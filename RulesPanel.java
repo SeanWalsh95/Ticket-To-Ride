@@ -20,6 +20,11 @@ public class RulesPanel extends JPanel
     {
         this.setLayout(null);
         JPanel self = this;
+        //makes the mouse cursor
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Cursor a = toolkit.createCustomCursor(ImgLib.mouseCursor,
+                new Point(this.getX(),this.getY()), "img");
+        setCursor(a);
         background = ImgLib.rulesScreen1;
         GButton next = new GButton(new int[]{962, 13, 80, 30},
                 ImgLib.nextButtonUnselected, ImgLib.nextButtonHighlighted);

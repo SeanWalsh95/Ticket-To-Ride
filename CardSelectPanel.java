@@ -32,6 +32,11 @@ public class CardSelectPanel extends JPanel {
      */
     public CardSelectPanel(String titleIn, ArrayList<Card> avalableCards) {
         this.setLayout(null);
+        //makes the mouse cursor
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Cursor a = toolkit.createCustomCursor(ImgLib.mouseCursor,
+                new Point(this.getX(),this.getY()), "img");
+        setCursor(a);
         this.background = ImgLib.woodBackground;
 
         // sets the title of the Panel
