@@ -57,17 +57,44 @@ public class GamePanel extends JPanel {
 
         faceUpTrainCards.addAll(gameBoard.trainDeck.drawCards(5));
 
-        // JLabel to allow a player to draw Train Cards
-        JLabel faceUpCardsLabel = new JLabel();
-        faceUpCardsLabel.setBounds(603, 8 + yOFFSET, 147, 485);
-        faceUpCardsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    selectTrainCards("Select Your Train Cards",
-                        2, 2);
-                    repaint();
-                }
-            });
-        this.add(faceUpCardsLabel);
+        //check face up card clicked
+        for (int i = 0; i < faceUpTrainCards.size(); i++) {
+            int cardWidth = 147, cardHeight = 94, leftBorder = 603,
+            topBorder = 8 + yOFFSET;
+            int x = leftBorder;
+            int y = (i * 4) + (i * cardHeight) + topBorder;
+            int index = i;
+            JLabel faceUpCard = new JLabel();
+            faceUpCard.setBounds(x,y,cardWidth, cardHeight);
+            faceUpCard.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mousePressed(MouseEvent e) {
+                        Player p = gameBoard.getCurrentPlayer();
+                        boolean handleTech = 
+                            gameBoard.hasTech(p,Technology.WaterTenders);
+                        int drawReftence = 2;
+                        if(handleTech)
+                            drawReftence = 3;
+                        Train locoCheck = (Train)faceUpTrainCards.get(index);
+                        if(locoCheck.color == RouteColor.NEUTRAL && p.drawCount != drawReftence){
+                            JOptionPane.showMessageDialog(new JFrame(),
+                                "cannot draw a loco");
+                        }else{
+                            if(locoCheck.color == RouteColor.NEUTRAL)
+                                p.drawCount = 0;
+                            Train t = (Train)faceUpTrainCards.remove(index);
+                            faceUpTrainCards.add(index,
+                                gameBoard.trainDeck.drawCards(1).get(0));
+                            if(handleTech)
+                                p.drawCount -= 2;
+                            else
+                                p.drawCount--;
+                            gameBoard.endTurn();
+                        }
+                        repaint();
+                    }
+                });
+            this.add(faceUpCard);
+        }
 
         // GButton to allow a player to draw Dest Cards
         destDeckButt = new GButton(new int[]{772, 110 + yOFFSET, 215, 138},
@@ -101,13 +128,18 @@ public class GamePanel extends JPanel {
                     SoundLib.turnPage.play();
                     //draws a set number of cards from the train deck
                     //THE NUMBER OF CARDS DRAWN IS DEPENDENT ON TECHNOLOGY
-                    Player p = gameBoard.getCurrentPlayer();
-                    int limit = 2;
-                    if(gameBoard.hasTech(gameBoard.getCurrentPlayer(),Technology.WaterTenders))
-                        limit = 3;
-                    ArrayList<Card> drawn = gameBoard.trainDeck.drawCards(limit);
-                    showPlayerCards("The Cards You Drew", drawn);
-                    p.heldTrainCards.addAll(drawn);
+
+                    Player p = gameBoard.getCurrentPlayer();    
+                    Train t = (Train)gameBoard.trainDeck.drawCards(1).get(0);
+                    p.drawCount--;
+                    JOptionPane.showMessageDialog(
+                        null,
+                        "",
+                        "You Drew", JOptionPane.INFORMATION_MESSAGE,
+                        ((Icon)new ImageIcon(
+                                t.getImage().getScaledInstance(
+                                    215, 138, Image.SCALE_FAST))));
+                    p.heldTrainCards.add(t);
                     gameBoard.endTurn();
                     repaint();
                 }
