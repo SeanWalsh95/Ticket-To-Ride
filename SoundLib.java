@@ -23,7 +23,7 @@ public class SoundLib
     public static void SoundLib() {
         //grab filepath of soundtrack
         String filePath =
-            "resources/sounds/backgroundSounds/CustomSoundTrack.au";
+            "resources/sounds/backgroundSounds/tryEverything.au";
         // plays random background sound from filePath
         background = new Sound(filePath);
         // plays audio on loop
