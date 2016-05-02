@@ -46,6 +46,11 @@ public class MenuPanel extends JPanel {
      */
     public void mainMenu() {
         this.removeAll();
+        //makes the mouse cursor
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Cursor a = toolkit.createCustomCursor(ImgLib.mouseCursor,
+                new Point(this.getX(),this.getY()), "img");
+        setCursor(a);
         background = ImgLib.mainMenuBackground;
 
         GButton playGameButt = new GButton(new int[]{503, 464, 260, 111},
