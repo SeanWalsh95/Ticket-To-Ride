@@ -294,6 +294,7 @@ public class GameBoard {
         if (locos < locoCost) return false;
         locos -= locoCost;
         if (trainReq > (locos + properColor)) return false;
+        if (properColor + locos < 1) return false;
         for (Card train : trains) {
             trainDeck.discarded.add(player.removeTrainCard(train));
         }
