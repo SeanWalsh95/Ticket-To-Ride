@@ -74,21 +74,27 @@ public class GamePanel extends JPanel {
                         int drawReftence = 2;
                         if(handleTech)
                             drawReftence = 3;
-                        Train locoCheck = (Train)faceUpTrainCards.get(index);
-                        if(locoCheck.color == RouteColor.NEUTRAL && p.drawCount != drawReftence){
-                            JOptionPane.showMessageDialog(new JFrame(),
-                                "cannot draw a loco");
+                        if(handleTech && p.drawCount <= 1){
+                                JOptionPane.showMessageDialog(new JFrame(),
+                                    "Draw from the deck with watertenders");
                         }else{
-                            if(locoCheck.color == RouteColor.NEUTRAL)
-                                p.drawCount = 0;
-                            Train t = (Train)faceUpTrainCards.remove(index);
-                            faceUpTrainCards.add(index,
-                                gameBoard.trainDeck.drawCards(1).get(0));
-                            if(handleTech)
-                                p.drawCount -= 2;
-                            else
-                                p.drawCount--;
-                            gameBoard.endTurn();
+                            Train locoCheck = (Train)faceUpTrainCards.get(index);
+                            if(locoCheck.color == RouteColor.NEUTRAL && p.drawCount != drawReftence){
+                                JOptionPane.showMessageDialog(new JFrame(),
+                                    "Cannot draw a locomotive");
+                            }else{
+                                if(locoCheck.color == RouteColor.NEUTRAL)
+                                    p.drawCount = 0;
+                                Train t = (Train)faceUpTrainCards.remove(index);
+                                faceUpTrainCards.add(index,
+                                    gameBoard.trainDeck.drawCards(1).get(0));
+                                if(handleTech)
+                                    p.drawCount -= 2;
+                                else
+                                    p.drawCount--;
+                                if(p.drawCount <= 0)
+                                    gameBoard.endTurn();
+                            }
                         }
                         repaint();
                     }
@@ -140,7 +146,8 @@ public class GamePanel extends JPanel {
                                 t.getImage().getScaledInstance(
                                     215, 138, Image.SCALE_FAST))));
                     p.heldTrainCards.add(t);
-                    gameBoard.endTurn();
+                    if(p.drawCount <= 0)
+                        gameBoard.endTurn();
                     repaint();
                 }
             });
