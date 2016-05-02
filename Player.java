@@ -10,6 +10,7 @@ import java.awt.*;
 public class Player {
     protected String name = "";
     protected int id = 0;
+    protected int drawCount = 2;
     protected Color color = Color.BLACK;
     protected int trainPieces = 0;
     protected int score = 0;

@@ -22,9 +22,11 @@ REQUIREMENTS/CONFIG
 -------------------
 
 Due to the resolution and file size of some of the premium images and sounds we use Ticket To Ride UK Edition
-requires more than the standard JVM memory allocation, we recommend running the program with the -Xmx1024m
+requires more than the standard JVM memory allocation, we recommend running the program with the -Xmx3G
 paramater to give the JVM access to enough memory in order for it to load all of our images dynamically and
 properly.
+
+This version of Ticker to Ride requires 3GB of ram allocated to run.
 
 
 TROUBLESHOOTING
