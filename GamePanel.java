@@ -117,7 +117,8 @@ public class GamePanel extends JPanel {
         // GButton to allow a player to view the game rules
         gameRulesButt = new GButton(new int[]{781, 28 + yOFFSET, 196, 51},
             ImgLib.rulesButtonUnselectedGb,
-            ImgLib.rulesButtonHighlightedGb);
+            ImgLib.rulesButtonHighlightedGb,
+            ImgLib.rulesButtonPressedGb);
         gameRulesButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
@@ -137,7 +138,8 @@ public class GamePanel extends JPanel {
         // GButton to allow a player to view their Tech Cards
         viewTechButt = new GButton(new int[]{612, 508 + yOFFSET, 196, 51},
             ImgLib.viewTechButtonUnselected,
-            ImgLib.viewTechButtonHighlighted);
+            ImgLib.viewTechButtonHighlighted,
+            ImgLib.viewTechButtonPressed);
         viewTechButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
@@ -151,7 +153,8 @@ public class GamePanel extends JPanel {
         // GButton to allow a player to purchase a Tech Card
         buyTechButt = new GButton(new int[]{828, 508 + yOFFSET, 196, 51},
             ImgLib.buyTechButtonUnselected,
-            ImgLib.buyTechButtonHighlighted);
+            ImgLib.buyTechButtonHighlighted,
+            ImgLib.buyTechButtonPressed);
         buyTechButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
@@ -168,7 +171,8 @@ public class GamePanel extends JPanel {
         // Gbutton to allow a player to view their Dest Cards
         viewDestButt = new GButton(new int[]{1044, 508 + yOFFSET, 196, 51},
             ImgLib.viewDestButtonUnselected,
-            ImgLib.viewDestButtonHighlighted);
+            ImgLib.viewDestButtonHighlighted,
+            ImgLib.viewDestButtonPressed);
         viewDestButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
@@ -282,7 +286,8 @@ public class GamePanel extends JPanel {
 
         GButton purchaseButt = new GButton(new int[]{543, 828, 174, 51},
                 ImgLib.purchaseButtonUnselected,
-                ImgLib.purchaseButtonHighlighted);
+                ImgLib.purchaseButtonHighlighted,
+                ImgLib.purchaseButtonPressed);
         purchaseButt.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
 
@@ -293,7 +298,7 @@ public class GamePanel extends JPanel {
                     } else {
                         SoundLib.error.play();
                         JOptionPane.showMessageDialog(new JFrame(),
-                            "You Must Select At Least " + minimum + " Cards");
+                            "You Must Select At Least " + minimum + " Card(s)");
                     }
                 }
             });
@@ -336,7 +341,8 @@ public class GamePanel extends JPanel {
             });
 
         GButton selectButt = new GButton(new int[]{543, 828, 174, 51},
-                ImgLib.selectButtonUnselected, ImgLib.selectButtonHighlighted);
+                ImgLib.selectButtonUnselected, ImgLib.selectButtonHighlighted,
+                ImgLib.selectButtonPressed);
         selectButt.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
                     if (panel.getNumberSelected() >= minimum) {
@@ -348,7 +354,7 @@ public class GamePanel extends JPanel {
                     } else {
                         SoundLib.error.play();
                         JOptionPane.showMessageDialog(new JFrame(),
-                            "You must select at least " + minimum + " cards");
+                            "You Must Select At Least " + minimum + " Card(s)");
                     }
                     repaint();
                 }
@@ -400,7 +406,8 @@ public class GamePanel extends JPanel {
             });
 
         GButton selectButt = new GButton(new int[]{543, 828, 174, 51},
-                ImgLib.selectButtonUnselected, ImgLib.selectButtonHighlighted);
+                ImgLib.selectButtonUnselected, ImgLib.selectButtonHighlighted,
+                ImgLib.selectButtonPressed);
         selectButt.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
                     if (panel.getNumberSelected() >= minimum) {
@@ -410,7 +417,7 @@ public class GamePanel extends JPanel {
                     } else {
                         SoundLib.error.play();
                         JOptionPane.showMessageDialog(new JFrame(),
-                            "You Must Select At Least " + minimum + " Cards");
+                            "You Must Select At Least " + minimum + " Card(s)");
                     }
                 }
             });
@@ -552,11 +559,13 @@ public class GamePanel extends JPanel {
         JPanel self = this;
 
         GButton clearButt = new GButton(
-                new int[]{708, y, 75, 25},
+                new int[]{690, y, 100, 25},
                 ImgLib.clearRouteButtonUnselected.
-                getScaledInstance(75, 25, Image.SCALE_FAST),
+                getScaledInstance(100, 25, Image.SCALE_FAST),
                 ImgLib.clearRouteButtonHighlighted.
-                getScaledInstance(75, 25, Image.SCALE_FAST));
+                getScaledInstance(100, 25, Image.SCALE_FAST),
+                ImgLib.clearRouteButtonPressed.
+                getScaledInstance(100, 25, Image.SCALE_FAST));
         //JButton clearButt = new JButton("Clear");
         //clearButt.setBounds(708, y, 75, 25);
         clearButt.addActionListener(new ActionListener() {
@@ -571,10 +580,12 @@ public class GamePanel extends JPanel {
             });
 
         GButton purchaseButt = new GButton(
-                new int[]{608, y, 100, 25},
+                new int[]{570, y, 100, 25},
                 ImgLib.purchaseRouteButtonUnselected.
                 getScaledInstance(100, 25, Image.SCALE_FAST),
                 ImgLib.purchaseRouteButtonHighlighted.
+                getScaledInstance(100, 25, Image.SCALE_FAST),
+                ImgLib.purchaseRouteButtonPressed.
                 getScaledInstance(100, 25, Image.SCALE_FAST));
         //JButton purchaseButt = new JButton("Purchase");
         //purchaseButt.setBounds(608, y, 100, 25);
@@ -583,7 +594,7 @@ public class GamePanel extends JPanel {
                     Route r = gameBoard.getRoute(routePointA, routePointB, null);
                     if (routeSelected && r != null) {
                         SoundLib.purchase.play();
-                        System.out.println("Purchase Action " + routeSelected + " "
+                        System.out.println("Purc`hase Action " + routeSelected + " "
                             + r.toString());
                         City a, b;
                         a = b = null;

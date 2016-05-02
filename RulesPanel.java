@@ -27,7 +27,8 @@ public class RulesPanel extends JPanel
         setCursor(a);
         background = ImgLib.rulesScreen1;
         GButton next = new GButton(new int[]{962, 13, 80, 30},
-                ImgLib.nextButtonUnselected, ImgLib.nextButtonHighlighted);
+                ImgLib.nextButtonUnselected, ImgLib.nextButtonHighlighted,
+                ImgLib.nextButtonPressed);
         next.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.turnPage.play();
@@ -39,7 +40,8 @@ public class RulesPanel extends JPanel
 
         GButton previous = new GButton(new int[]{219, 13, 80, 30},
                 ImgLib.previousButtonUnselected,
-                ImgLib.previousButtonHighlighted);
+                ImgLib.previousButtonHighlighted,
+                ImgLib.previousButtonPressed);
         previous.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.turnPage.play();
@@ -50,7 +52,8 @@ public class RulesPanel extends JPanel
         this.add(previous);
 
         GButton back = new GButton(new int[]{5, 846, 98, 48},
-                ImgLib.backButtonUnselected, ImgLib.backButtonHighlighted);
+                ImgLib.backButtonUnselected, ImgLib.backButtonHighlighted,
+                ImgLib.backButtonPressed);
         back.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();

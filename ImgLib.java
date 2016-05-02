@@ -39,16 +39,19 @@ public class ImgLib {
     //buttons
     public static Image backButtonHighlighted;
     public static Image backButtonUnselected;
+    public static Image backButtonPressed;
     public static Image playButtonHighlighted;
     public static Image playButtonUnselected;
     public static Image rulesButtonHighlighted;
     public static Image rulesButtonUnselected;
     public static Image rulesButtonHighlightedGb;
+    public static Image rulesButtonPressedGb;
     public static Image rulesButtonUnselectedGb;
     public static Image quitButtonHighlighted;
     public static Image quitButtonUnselected;
     public static Image selectButtonHighlighted;
     public static Image selectButtonUnselected;
+    public static Image selectButtonPressed;
     public static Image purchaseButtonHighlighted;
     public static Image purchaseButtonUnselected;
     public static Image twoPlayersHighlighted;
@@ -68,6 +71,34 @@ public class ImgLib {
     public static Image viewDestButtonHighlighted;
     public static Image viewDestButtonUnselected;
 
+    //other
+    public static Image confirmPurchaseButtonPressed;
+
+    //main menu Pressed
+    public static Image playButtonPressed;
+    public static Image rulesButtonPressed;
+    public static Image quitButtonPressed;
+
+    //select num players
+    public static Image twoPlayersPressed;
+    public static Image threePlayersPressed;
+    public static Image fourPlayersPressed;
+
+    //rules screen
+    public static Image nextButtonPressed;
+    public static Image previousButtonPressed;
+
+    //gameboard
+    public static Image buyTechButtonPressed;
+    public static Image viewTechButtonPressed;
+    public static Image viewDestButtonPressed;
+    public static Image viewRulesButtonPressed;
+    public static Image clearRouteButtonPressed;
+    public static Image purchaseRouteButtonPressed;
+
+    //buy tech
+    public static Image purchaseButtonPressed;
+
     /**
      * Constructor for objects of class ImageLibrary
      */
@@ -80,6 +111,45 @@ public class ImgLib {
         appIcon = toolkit.getImage(
             "resources/images/icon.png");  
 
+        //main menu test pressed
+        playButtonPressed = toolkit.getImage(
+            "resources/images/buttons/mainMenu/PlayGameButtonPressed.png");
+        rulesButtonPressed = toolkit.getImage(
+            "resources/images/buttons/mainMenu/RulesButtonPressed.png");
+        quitButtonPressed = toolkit.getImage(
+            "resources/images/buttons/mainMenu/QuitButtonPressed.png");
+
+        //selectnumplayers
+        twoPlayersPressed = toolkit.getImage(
+            "resources/images/buttons/numPlayers/2PlayersPressed.png");
+        threePlayersPressed = toolkit.getImage(
+            "resources/images/buttons/numPlayers/3PlayersPressed.png");
+        fourPlayersPressed = toolkit.getImage(
+            "resources/images/buttons/numPlayers/4PlayersPressed.png");
+
+        //rules
+        nextButtonPressed = toolkit.getImage(
+            "resources/images/buttons/rulesScreen/NextButtonPressed.png");
+        previousButtonPressed = toolkit.getImage(
+            "resources/images/buttons/rulesScreen/PreviousButtonPressed.png");
+
+        // gameboard screen
+        buyTechButtonPressed = toolkit.getImage(
+            "resources/images/buttons/gameBoard/BuyTechButtonPressed.png");
+        viewTechButtonPressed = toolkit.getImage(
+            "resources/images/buttons/gameBoard/ViewTechButtonPressed.png");
+        viewDestButtonPressed = toolkit.getImage(
+            "resources/images/buttons/gameBoard/ViewDestButtonPressed.png");
+        viewRulesButtonPressed = toolkit.getImage(
+            "resources/images/buttons/gameBoard/RulesButtonPressed.png");
+        clearRouteButtonPressed = toolkit.getImage(
+            "resources/images/buttons/ClearRouteButtonPressed.png");
+        purchaseRouteButtonPressed = toolkit.getImage(
+            "resources/images/buttons/PurchaseRouteButtonPressed.png");
+
+        //
+
+        //////gameboard hover images////
         clearRouteButtonUnselected = toolkit.getImage(
             "resources/images/buttons/ClearRouteButtonUnselected.png");
         clearRouteButtonHighlighted = toolkit.getImage(
@@ -94,6 +164,8 @@ public class ImgLib {
             "resources/images/buttons/ConfirmPurchaseButtonUnselected.png");
         confirmPurchaseButtonHighlighted = toolkit.getImage(
             "resources/images/buttons/ConfirmPurchaseButtonHighlighted.png");
+        confirmPurchaseButtonPressed = toolkit.getImage(
+            "resources/images/buttons/ConfirmPurchaseButtonPressed.png");
 
         // get the images from the backgrounds folder
         mainMenu = toolkit.getImage(
@@ -132,6 +204,9 @@ public class ImgLib {
             "resources/images/buttons/BackButtonHighlighted.png");
         backButtonUnselected = toolkit.getImage(
             "resources/images/buttons/BackButtonUnselected.png");
+        //general pressed
+        backButtonPressed = toolkit.getImage(
+            "resources/images/buttons/BackButtonPressed.png");
 
         playButtonHighlighted = toolkit.getImage(
             "resources/images/buttons/mainMenu/PlayGameButtonHighlighted" +
@@ -149,6 +224,8 @@ public class ImgLib {
             "resources/images/buttons/gameBoard/RulesButtonHighlighted.png");
         rulesButtonUnselectedGb = toolkit.getImage(
             "resources/images/buttons/gameBoard/RulesButtonUnselected.png");
+        rulesButtonPressedGb = toolkit.getImage(
+            "resources/images/buttons/gameBoard/RulesButtonPressed.png");
 
         quitButtonHighlighted = toolkit.getImage(
             "resources/images/buttons/mainMenu/QuitButtonHighlighted.png");
@@ -159,12 +236,17 @@ public class ImgLib {
             "resources/images/buttons/selectButtonHighlighted.png");
         selectButtonUnselected = toolkit.getImage(
             "resources/images/buttons/selectButtonUnselected.png");
+        selectButtonPressed = toolkit.getImage(
+            "resources/images/buttons/selectButtonPressed.png");
 
         purchaseButtonHighlighted = toolkit.getImage(
             "resources/images/buttons/buyTech/purchaseButtonHighlighted" +
             ".png");
         purchaseButtonUnselected = toolkit.getImage(
             "resources/images/buttons/buyTech/purchaseButtonUnselected" +
+            ".png");
+        purchaseButtonPressed = toolkit.getImage(
+            "resources/images/buttons/buyTech/purchaseButtonPressed" +
             ".png");
 
         twoPlayersHighlighted = toolkit.getImage(

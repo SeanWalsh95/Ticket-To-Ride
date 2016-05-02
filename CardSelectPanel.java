@@ -65,7 +65,8 @@ public class CardSelectPanel extends JPanel {
         // adds a back GButton that closes the JDialog Class containing this
         // JPanel
         backButt = new GButton(new int[]{5, 828, 98, 48},
-            ImgLib.backButtonUnselected, ImgLib.backButtonHighlighted);
+            ImgLib.backButtonUnselected, ImgLib.backButtonHighlighted,
+            ImgLib.backButtonPressed);
         backButt.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
                     SoundLib.button.play();

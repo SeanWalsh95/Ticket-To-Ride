@@ -54,17 +54,20 @@ public class MenuPanel extends JPanel {
         background = ImgLib.mainMenuBackground;
 
         GButton playGameButt = new GButton(new int[]{503, 464, 260, 111},
-                ImgLib.playButtonUnselected, ImgLib.playButtonHighlighted);
+                ImgLib.playButtonUnselected, ImgLib.playButtonHighlighted,
+                ImgLib.playButtonPressed);
         playGameButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
+                    //playGameButt.setIcon(((Icon) new ImageIcon(ImgLib.playButtonPressed)));
                     playGame();
                 }
             });
         this.add(playGameButt);
 
         GButton rulesButt = new GButton(new int[]{125, 464, 260, 111},
-                ImgLib.rulesButtonUnselected, ImgLib.rulesButtonHighlighted);
+                ImgLib.rulesButtonUnselected, ImgLib.rulesButtonHighlighted,
+                ImgLib.rulesButtonPressed);
         rulesButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
@@ -74,7 +77,8 @@ public class MenuPanel extends JPanel {
         this.add(rulesButt);
 
         GButton quitButt = new GButton(new int[]{875, 464, 260, 111},
-                ImgLib.quitButtonUnselected, ImgLib.quitButtonHighlighted);
+                ImgLib.quitButtonUnselected, ImgLib.quitButtonHighlighted,
+                ImgLib.quitButtonPressed);
         quitButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
@@ -94,7 +98,8 @@ public class MenuPanel extends JPanel {
         background = ImgLib.rulesScreen1;
 
         GButton next = new GButton(new int[]{962, 13, 80, 30},
-                ImgLib.nextButtonUnselected, ImgLib.nextButtonHighlighted);
+                ImgLib.nextButtonUnselected, ImgLib.nextButtonHighlighted,
+                ImgLib.nextButtonPressed);
         next.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.turnPage.play();
@@ -106,7 +111,8 @@ public class MenuPanel extends JPanel {
 
         GButton previous = new GButton(new int[]{219, 13, 80, 30},
                 ImgLib.previousButtonUnselected,
-                ImgLib.previousButtonHighlighted);
+                ImgLib.previousButtonHighlighted,
+                ImgLib.previousButtonPressed);
         previous.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.turnPage.play();
@@ -117,7 +123,8 @@ public class MenuPanel extends JPanel {
         this.add(previous);
 
         GButton back = new GButton(new int[]{5, 846, 98, 48},
-                ImgLib.backButtonUnselected, ImgLib.backButtonHighlighted);
+                ImgLib.backButtonUnselected, ImgLib.backButtonHighlighted,
+                ImgLib.backButtonPressed);
         back.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
@@ -138,7 +145,8 @@ public class MenuPanel extends JPanel {
         this.removeAll();
 
         GButton twoPlayers = new GButton(new int[]{125, 464, 260, 111},
-                ImgLib.twoPlayersUnselected, ImgLib.twoPlayersHighlighted);
+                ImgLib.twoPlayersUnselected, ImgLib.twoPlayersHighlighted,
+                ImgLib.twoPlayersPressed);
         twoPlayers.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
@@ -147,9 +155,10 @@ public class MenuPanel extends JPanel {
                 }
             });
         this.add(twoPlayers);
-
-        GButton threePlayers = new GButton(new int[]{500, 464, 260, 111},
-                ImgLib.threePlayersUnselected, ImgLib.threePlayersHighlighted);
+        
+        GButton threePlayers = new GButton(new int[]{503, 464, 260, 111},
+                ImgLib.threePlayersUnselected, ImgLib.threePlayersHighlighted,
+                ImgLib.threePlayersPressed);
         threePlayers.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
@@ -160,7 +169,8 @@ public class MenuPanel extends JPanel {
         this.add(threePlayers);
 
         GButton fourPlayers = new GButton(new int[]{875, 464, 260, 111},
-                ImgLib.fourPlayersUnselected, ImgLib.fourPlayersHighlighted);
+                ImgLib.fourPlayersUnselected, ImgLib.fourPlayersHighlighted,
+                ImgLib.fourPlayersPressed);
         fourPlayers.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
@@ -171,7 +181,8 @@ public class MenuPanel extends JPanel {
         this.add(fourPlayers);
 
         GButton back = new GButton(new int[]{5, 846, 98, 48},
-                ImgLib.backButtonUnselected, ImgLib.backButtonHighlighted);
+                ImgLib.backButtonUnselected, ImgLib.backButtonHighlighted,
+                ImgLib.backButtonPressed);
         back.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();

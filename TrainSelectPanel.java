@@ -46,7 +46,8 @@ public class TrainSelectPanel extends JPanel {
         GButton purchaseButt = new GButton(
                 new int[]{543,828,174,51},
                 ImgLib.confirmPurchaseButtonUnselected,
-                ImgLib.confirmPurchaseButtonHighlighted);
+                ImgLib.confirmPurchaseButtonHighlighted,
+                ImgLib.confirmPurchaseButtonPressed);
         //JButton purchaseButt = new JButton("Confirm");
         //purchaseButt.setBounds(543,828,174,51);
         purchaseButt.addActionListener(new java.awt.event.ActionListener() {
