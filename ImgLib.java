@@ -13,6 +13,8 @@ public class ImgLib {
 
     public static Image appIcon;
 
+    public static Image selectPlayersScreen;
+
     public static Image clearRouteButtonUnselected;
     public static Image clearRouteButtonHighlighted;
     public static Image purchaseRouteButtonUnselected;
@@ -109,7 +111,10 @@ public class ImgLib {
         mouseCursor = toolkit.getImage(
             "resources/images/mouseCursors/mouseCursorFinal.png");
         appIcon = toolkit.getImage(
-            "resources/images/icon.png");  
+            "resources/images/icon.png");
+
+        selectPlayersScreen = toolkit.getImage(
+            "resources/images/backgrounds/MainMenuSelectPlayers.png");
 
         //main menu test pressed
         playButtonPressed = toolkit.getImage(

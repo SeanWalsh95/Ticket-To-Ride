@@ -51,6 +51,7 @@ public class MenuPanel extends JPanel {
         Cursor a = toolkit.createCustomCursor(ImgLib.mouseCursor,
                 new Point(this.getX(),this.getY()), "img");
         setCursor(a);
+        
         background = ImgLib.mainMenuBackground;
 
         GButton playGameButt = new GButton(new int[]{503, 464, 260, 111},
@@ -144,6 +145,8 @@ public class MenuPanel extends JPanel {
     private void playGame() {
         this.removeAll();
 
+        background = ImgLib.selectPlayersScreen;
+        
         GButton twoPlayers = new GButton(new int[]{125, 464, 260, 111},
                 ImgLib.twoPlayersUnselected, ImgLib.twoPlayersHighlighted,
                 ImgLib.twoPlayersPressed);
