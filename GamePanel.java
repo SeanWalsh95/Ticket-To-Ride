@@ -42,6 +42,7 @@ public class GamePanel extends JPanel {
         Cursor a = toolkit.createCustomCursor(ImgLib.mouseCursor,
                 new Point(this.getX(),this.getY()), "img");
         setCursor(a);
+
         // init for players
         for (Player p : gameBoard.players) {
             p.heldDestinationCards.addAll(selectDestCards(
@@ -61,7 +62,7 @@ public class GamePanel extends JPanel {
         faceUpCardsLabel.setBounds(603, 8 + yOFFSET, 147, 485);
         faceUpCardsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
-                    selectTrainCards("Select your train cards",
+                    selectTrainCards("Select Your Train Cards",
                         2, 2);
                     repaint();
                 }
@@ -76,6 +77,7 @@ public class GamePanel extends JPanel {
                 .SCALE_FAST));
         destDeckButt.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
+                    SoundLib.turnPage.play();
                     //draws a set number of cards from the dest deck
                     Player p = gameBoard.getCurrentPlayer();
                     p.heldDestinationCards.addAll(selectDestCards(
@@ -96,6 +98,7 @@ public class GamePanel extends JPanel {
                 .SCALE_FAST));
         trainCardsButt.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
+                    SoundLib.turnPage.play();
                     //draws a set number of cards from the train deck
                     //THE NUMBER OF CARDS DRAWN IS DEPENDENT ON TECHNOLOGY
                     Player p = gameBoard.getCurrentPlayer();
@@ -103,7 +106,7 @@ public class GamePanel extends JPanel {
                     if(gameBoard.hasTech(gameBoard.getCurrentPlayer(),Technology.WaterTenders))
                         limit = 3;
                     ArrayList<Card> drawn = gameBoard.trainDeck.drawCards(limit);
-                    showPlayerCards("The cards you drew", drawn);
+                    showPlayerCards("The Cards You Drew", drawn);
                     p.heldTrainCards.addAll(drawn);
                     gameBoard.endTurn();
                     repaint();
@@ -112,11 +115,12 @@ public class GamePanel extends JPanel {
         this.add(trainCardsButt);
 
         // GButton to allow a player to view the game rules
-        gameRulesButt = new GButton(new int[]{792, 28 + yOFFSET, 196, 51},
+        gameRulesButt = new GButton(new int[]{781, 28 + yOFFSET, 196, 51},
             ImgLib.rulesButtonUnselectedGb,
             ImgLib.rulesButtonHighlightedGb);
         gameRulesButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    SoundLib.button.play();
                     //display the game rules in a JDialog
                     JFrame parentFrame = (JFrame) SwingUtilities.windowForComponent(self);
                     RulesPanel panel = new RulesPanel();
@@ -136,6 +140,7 @@ public class GamePanel extends JPanel {
             ImgLib.viewTechButtonHighlighted);
         viewTechButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    SoundLib.button.play();
                     Player p = gameBoard.getCurrentPlayer();
                     showPlayerCards("Player " + (p.id + 1) + "'s Tech Cards",
                         p.heldTechCards);
@@ -149,6 +154,7 @@ public class GamePanel extends JPanel {
             ImgLib.buyTechButtonHighlighted);
         buyTechButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    SoundLib.button.play();
                     ArrayList<Card> boughtTech = new ArrayList<Card>();
                     boughtTech.addAll(purchaseTechCards());
                     System.out.println(boughtTech);
@@ -165,6 +171,7 @@ public class GamePanel extends JPanel {
             ImgLib.viewDestButtonHighlighted);
         viewDestButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    SoundLib.button.play();
                     Player p = gameBoard.getCurrentPlayer();
                     showPlayerCards("Player " + (p.id + 1) + "'s Destination Cards",
                         p.heldDestinationCards);
@@ -264,6 +271,7 @@ public class GamePanel extends JPanel {
 
         jd.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
+                    SoundLib.button.play();
                     int index = -1;
                     index = panel.getCardIndex(e.getPoint());
                     if (index > -1 && (panel.getNumberSelected() < limit
@@ -277,12 +285,15 @@ public class GamePanel extends JPanel {
                 ImgLib.purchaseButtonHighlighted);
         purchaseButt.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
+
                     if (panel.getNumberSelected() == minimum) {
+                        SoundLib.button.play();
                         selectedTechCards = panel.getSelected();
                         jd.dispose();
                     } else {
+                        SoundLib.error.play();
                         JOptionPane.showMessageDialog(new JFrame(),
-                            "You must select at least " + minimum + " cards");
+                            "You Must Select At Least " + minimum + " Cards");
                     }
                 }
             });
@@ -315,6 +326,7 @@ public class GamePanel extends JPanel {
 
         jd.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
+                    SoundLib.button.play();
                     int index = -1;
                     index = panel.getCardIndex(e.getPoint());
                     if (index > -1 && (panel.getNumberSelected() < limit
@@ -328,6 +340,7 @@ public class GamePanel extends JPanel {
         selectButt.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
                     if (panel.getNumberSelected() >= minimum) {
+                        SoundLib.purchase.play();
                         Player p = gameBoard.getCurrentPlayer();
                         for(int i=0; i < panel.selectedCards.length;i++){
                             if(panel.selectedCards[i])
@@ -337,6 +350,7 @@ public class GamePanel extends JPanel {
                         gameBoard.endTurn();
                         jd.dispose();
                     } else {
+                        SoundLib.error.play();
                         JOptionPane.showMessageDialog(new JFrame(),
                             "You must select at least " + minimum + " cards");
                     }
@@ -378,6 +392,7 @@ public class GamePanel extends JPanel {
 
         jd.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
+                    SoundLib.button.play();
                     int index = -1;
                     index = panel.getCardIndex(e.getPoint());
                     if (index > -1 && (panel.getNumberSelected() < limit
@@ -391,11 +406,13 @@ public class GamePanel extends JPanel {
         selectButt.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
                     if (panel.getNumberSelected() >= minimum) {
+                        SoundLib.button.play();
                         selectedDestCards = panel.getSelected();
                         jd.dispose();
                     } else {
+                        SoundLib.error.play();
                         JOptionPane.showMessageDialog(new JFrame(),
-                            "You must select at least " + minimum + " cards");
+                            "You Must Select At Least " + minimum + " Cards");
                     }
                 }
             });
@@ -539,6 +556,7 @@ public class GamePanel extends JPanel {
         clearButt.setBounds(708, y, 75, 25);
         clearButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    SoundLib.button.play();
                     firstCityClick = true;
                     routeSelected = false;
                     routePointA = null;
@@ -553,7 +571,8 @@ public class GamePanel extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     Route r = gameBoard.getRoute(routePointA, routePointB, null);
                     if (routeSelected && r != null) {
-                        System.out.println("Purchase action " + routeSelected + " "
+                        SoundLib.purchase.play();
+                        System.out.println("Purchase Action " + routeSelected + " "
                             + r.toString());
                         City a, b;
                         a = b = null;
@@ -574,6 +593,10 @@ public class GamePanel extends JPanel {
                             routePointB = null;
                         }
                     }
+                    else
+                    {
+                        SoundLib.error.play();
+                    }
                     self.repaint();
                 }
             });
@@ -582,7 +605,7 @@ public class GamePanel extends JPanel {
         if (routeSelected) {
             Route r = gameBoard.getRoute(routePointA, routePointB, null);
             if (r != null) {
-                g.drawString(r.toString() + " selected", x + 5,
+                g.drawString(r.toString() + " Selected", x + 5,
                     y + 5 + (g.getFontMetrics().getHeight() / 2));
             } else {
                 firstCityClick = true;

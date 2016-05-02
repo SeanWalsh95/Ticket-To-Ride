@@ -203,7 +203,7 @@ public class MenuPanel extends JPanel {
 
             // player inputs a name of their choice
             String input = JOptionPane
-                .showInputDialog("Player " + (i + 1) + " enter your name");
+                .showInputDialog("Player " + (i + 1) + " Enter Your Name");
 
             // handles bad inputs
             if (input == null || input.equals("")) {
@@ -216,7 +216,7 @@ public class MenuPanel extends JPanel {
             while (true) {
                 // player inputs a custom color
                 Color newColor = JColorChooser.showDialog(null,
-                        "Choose a color", Color.BLUE);
+                        "Choose A Color", Color.BLUE);
 
                 // handles if the color has already been chosen
                 boolean uniqueColor = true;
@@ -229,8 +229,8 @@ public class MenuPanel extends JPanel {
                         break;
                     } else {
                         JOptionPane.showMessageDialog(new JFrame(),
-                            "This Color was already chosen " +
-                            "please choose another");
+                            "This Color Was Already Chosen " +
+                            "Please Choose Another");
                     }
                 }
             }

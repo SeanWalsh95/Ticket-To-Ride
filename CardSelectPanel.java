@@ -88,8 +88,8 @@ public class CardSelectPanel extends JPanel {
         g.setColor(Color.WHITE);
 
         // sets the curent font to a larger size
-        Font currentFont = g.getFont();
-        Font newFont = currentFont.deriveFont(currentFont.getSize() * 3F);
+        
+        Font newFont = new Font("Wide Latin", Font.PLAIN, 30);
         g.setFont(newFont);
 
         // centers the title text
@@ -106,7 +106,7 @@ public class CardSelectPanel extends JPanel {
             g.drawImage(cards.get(i).getImage(), x, y, cardWidth, cardHeight,
                 this);
             if (selectedCards[i]) {
-                g.setColor(new Color(225, 225, 0, 50));
+                g.setColor(new Color(195, 224, 235, 165));
                 g.fillRect(x, y, cardWidth, cardHeight);
             }
         }

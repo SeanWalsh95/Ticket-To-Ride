@@ -47,6 +47,7 @@ public class TrainSelectPanel extends JPanel {
         purchaseButt.setBounds(543,828,174,51);
         purchaseButt.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
+                    SoundLib.purchase.play();
                     ((JDialog) SwingUtilities.windowForComponent(self)).dispose();
                 }
             });
@@ -63,7 +64,7 @@ public class TrainSelectPanel extends JPanel {
         g.drawImage(background, 0, 0, this);
 
         // sets the curent font to a larger size
-        g.setFont(g.getFont().deriveFont(30F));
+        g.setFont(new Font("Wide Latin", Font.PLAIN, 30));
         g.setColor(Color.WHITE);
 
         // centers the title text
@@ -73,10 +74,10 @@ public class TrainSelectPanel extends JPanel {
         // paints the title text
         g.drawString(title, titleBuffer, 50);
 
-        g.drawString("Your Hand", 225, 150);
-        g.drawString("Selected Cards", 875, 150);
+        g.drawString("Your Hand", 170, 150);
+        g.drawString("Selected Cards", 790, 150);
 
-        g.setFont(g.getFont().deriveFont(20F));
+        g.setFont(new Font("Wide Latin", Font.PLAIN, 12));
         drawCards(g,155,184,hand);
         drawCards(g,801,184,selected);
 
