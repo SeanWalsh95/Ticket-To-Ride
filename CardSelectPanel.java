@@ -16,7 +16,7 @@ public class CardSelectPanel extends JPanel {
     ArrayList<Card> cards;
     // int's representing various static vlaues
     int cardWidth, cardHeight, rows, border = 50, topBorder = 100,
-            leftBorder = 50;
+    leftBorder = 50;
     // GButton's to be pressed by the user
     protected GButton backButt;
     // String to be printed at the top of the Panel
@@ -60,12 +60,15 @@ public class CardSelectPanel extends JPanel {
         // adds a back GButton that closes the JDialog Class containing this
         // JPanel
         backButt = new GButton(new int[]{5, 828, 98, 48},
-                ImgLib.backButtonUnselected, ImgLib.backButtonHighlighted);
+            ImgLib.backButtonUnselected, ImgLib.backButtonHighlighted);
         backButt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                ((JDialog) SwingUtilities.windowForComponent(self)).dispose();
-            }
-        });
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    cards = new ArrayList<Card>();
+                    for(int i = 0; i < selectedCards.length; i++)
+                        selectedCards[i] = false;
+                    ((JDialog) SwingUtilities.windowForComponent(self)).dispose();
+                }
+            });
         this.add(backButt);
     }
 
@@ -96,7 +99,7 @@ public class CardSelectPanel extends JPanel {
             int x = ((i % rows) * 25) + (i % rows) * cardWidth + leftBorder;
             int y = ((i / rows) * 25) + (i / rows) * cardHeight + topBorder;
             g.drawImage(cards.get(i).getImage(), x, y, cardWidth, cardHeight,
-                    this);
+                this);
             if (selectedCards[i]) {
                 g.setColor(new Color(225, 225, 0, 50));
                 g.fillRect(x, y, cardWidth, cardHeight);
