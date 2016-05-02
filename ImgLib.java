@@ -11,6 +11,14 @@ import java.util.*;
 public class ImgLib {
     public static Image mouseCursor;
 
+    public static Image clearRouteButtonUnselected;
+    public static Image clearRouteButtonHighlighted;
+    public static Image purchaseRouteButtonUnselected;
+    public static Image purchaseRouteButtonHighlighted;
+
+    public static Image ConfirmPurchaseButtonUnselected;
+    public static Image ConfirmPurchaseButtonHighlighted;
+
     public static Image mainMenu;
     public static Image background;
     public static Image woodBackground;
@@ -67,6 +75,21 @@ public class ImgLib {
         // get the image for the mouse cursor
         mouseCursor = toolkit.getImage(
             "resources/images/mouseCursors/mouseCursorFinal.png");
+
+        clearRouteButtonUnselected = toolkit.getImage(
+            "resources/images/buttons/ClearRouteButtonUnselected.png");
+        clearRouteButtonHighlighted = toolkit.getImage(
+            "resources/images/buttons/ClearRouteButtonHighlighted.png");
+
+        purchaseRouteButtonUnselected = toolkit.getImage(
+            "resources/images/buttons/PurchaseRouteButtonUnselected.png");
+        purchaseRouteButtonHighlighted = toolkit.getImage(
+            "resources/images/buttons/PurchaseRouteButtonHighlighted.png");
+
+        ConfirmPurchaseButtonUnselected = toolkit.getImage(
+            "resources/images/buttons/ConfirmPurchaseButtonUnselected.png");
+        ConfirmPurchaseButtonHighlighted = toolkit.getImage(
+            "resources/images/buttons/ConfirmPurchaseButtonHighlighted.png");
 
         // get the images from the backgrounds folder
         mainMenu = toolkit.getImage(
