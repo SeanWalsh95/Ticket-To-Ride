@@ -42,6 +42,9 @@ public class Deck {
                     }
                 }
             }
+        else
+            JOptionPane.showMessageDialog(new JFrame(),
+                "The deck is empty rebuild/shuffle the deck");
         return drawnCards;
     }
 
