@@ -249,6 +249,7 @@ public class GameBoard {
         int properColor = 0;
         int trainReq = route.trainRequirement - locoCost;
         if (hasTech(player, Technology.DieselPower)) trainReq--;
+        if ((locoCost + trainReq) == 0) trainReq = 1;
         RouteColor colorOfClaim = route.color;
         if (trainReq > trains.size()) return false;
         else if (trains.size() >= trainReq) {
@@ -294,7 +295,6 @@ public class GameBoard {
         if (locos < locoCost) return false;
         locos -= locoCost;
         if (trainReq > (locos + properColor)) return false;
-        if (properColor + locos < 1) return false;
         for (Card train : trains) {
             trainDeck.discarded.add(player.removeTrainCard(train));
         }
