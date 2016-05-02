@@ -30,6 +30,8 @@ properly.
 
 This version of Ticket to Ride requires 3GB of ram allocated to run.
 
+Additionally the computer that you wish to run Ticket To Ride on must have java 1.8
+
 
 TROUBLESHOOTING
 ---------------
