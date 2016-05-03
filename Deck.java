@@ -4,10 +4,10 @@ import java.util.*;
 import javax.swing.*;
 
 /**
- * Write a description of class Deck here.
+ * A Class to represent a deck of cards
  * 
- * @author (your name)
- * @version (a version number or a date)
+ * @author Team 3
+ * @version 1.0
  */
 public class Deck {
     protected ArrayList<Card> deck = new ArrayList<Card>();

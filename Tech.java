@@ -13,7 +13,7 @@ public class Tech extends Card {
     Technology name;
     String description, nameString;
     private static final String path =
-            "resources\\images\\cards\\Technologies\\";
+        "resources\\images\\cards\\Technologies\\";
 
     /**
      * Constructor that takes a string deliminated with the given
@@ -52,22 +52,31 @@ public class Tech extends Card {
             numberAvalable = Integer.parseInt(numberAvalableStr);
         } catch (Exception e) {
             System.err.println(classMsg + numberAvalable
-                    + ": Cannot parse numberAvalable to int");
+                + ": Cannot parse numberAvalable to int");
         }
     }
 
-    public Image getImage(Technology name) {
+    /**
+     * static method to get a genral image for this object type
+     * @param color type of card 
+     * @return an image based on the type of card
+     */
+    public static Image getImage(Technology name) {
         String filePath = path + name + ".jpg";
         try (Scanner sc = new Scanner(new File(filePath))) {
             Toolkit toolkit = Toolkit.getDefaultToolkit();
             return toolkit.getImage(filePath);
         } catch (Exception e) {
             System.err.println("(ERR Tech.getImage): Cannot find file \""
-                    + filePath + "\"");
+                + filePath + "\"");
         }
         return null;
     }
-    
+
+    /**
+     * a method that returns a image representing this object
+     * @return an image that represents this object
+     */
     public Image getImage() {
         String filePath = path + name + ".jpg";
         try (Scanner sc = new Scanner(new File(filePath))) {
@@ -75,7 +84,7 @@ public class Tech extends Card {
             return toolkit.getImage(filePath);
         } catch (Exception e) {
             System.err.println("(ERR Tech.getImage): Cannot find file \""
-                    + filePath + "\"");
+                + filePath + "\"");
         }
         return null;
     }
@@ -93,7 +102,11 @@ public class Tech extends Card {
                 return true;
         return false;
     }
-    
+
+    /**
+     * method that returns a unique int for this object
+     * @return a unique int for this object
+     */
     @Override
     public int hashCode() {
         return name.hashCode();
