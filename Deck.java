@@ -111,12 +111,17 @@ public class Deck {
      * This method adds discarded cards to the discarded ArrayList
      * 
      * @param x
-     *            An ArrayList of cards that are going to be discarded
+     *        An ArrayList of cards that are going to be discarded
      */
     public void discard(ArrayList<Card> x) {
         this.discarded.addAll(x);
     }
 
+    /**
+     * returns the first locomotive in the deck
+     * 
+     * @return the forst locomotive in this deck
+     */
     public Card getFirstLocomotive(){
         for(int i=0; i < deck.size(); i++){
             Card c = deck.get(i);
