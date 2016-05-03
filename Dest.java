@@ -14,6 +14,12 @@ public class Dest extends Card {
         "resources\\images\\cards\\destination cards\\";
     int pointValue;
 
+    /**
+     * The constructor for dest cards
+     * 
+     * @param line A string from file IO
+     * @param A delim for the line string
+     */
     public Dest(String line, String delim) {
         StringTokenizer st = new StringTokenizer(line, delim);
         String cityAStr = st.nextToken();
@@ -41,6 +47,11 @@ public class Dest extends Card {
         }
     }
 
+    /**
+     * Method gets the filepath for the image
+     * 
+     * @return The objects image
+     */
     public Image getImage() {
         String filePath = path + cityA + "_" + cityB + ".jpg";
         try (Scanner sc = new Scanner(new File(filePath))) {
@@ -68,6 +79,12 @@ public class Dest extends Card {
         return false;
     }
 
+    /**
+     * This method creates the hashCode for a dest
+     * card
+     * 
+     * @return The hashcode int
+     */
     @Override
     public int hashCode() {
         return ((cityA+"")+"_"+(cityB+"")).hashCode();

@@ -74,7 +74,7 @@ public class CardSelectPanel extends JPanel {
                     for(int i = 0; i < selectedCards.length; i++)
                         selectedCards[i] = false;
                     ((JDialog) 
-						SwingUtilities.windowForComponent(self)).dispose();
+                        SwingUtilities.windowForComponent(self)).dispose();
                 }
             });
         this.add(backButt);

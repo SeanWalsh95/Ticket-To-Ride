@@ -21,6 +21,13 @@ public class Player {
     protected ArrayList<Card> heldTechCards = new ArrayList<Card>();
     protected boolean startedWithDeck = false;
 
+    /**
+     * Constructor for Player class
+     * 
+     * @param playerID A number ID for the player
+     * @param playerName The player's name
+     * @param playerColor The player's chosen color
+     */
     public Player(int playerID, String playerName, Color playerColor) {
         this.id = playerID;
         this.name = playerName;
@@ -28,6 +35,11 @@ public class Player {
         trainPieces = 35;
     }
 
+    /**
+     * To String method for player class
+     * 
+     * @return The string representation of a player object
+     */
     public String toString() {
         return name + " ID:" + id;
     }

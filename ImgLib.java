@@ -298,6 +298,13 @@ public class ImgLib {
 
     }
 
+    /**
+     * Gets the hover text for a city
+     * 
+     * @param name The name of the city you want to get hover for
+     * 
+     * @return The image for hover
+     */
     public static Image getHover(CityName name) {
         String path = "resources\\images\\cityHover\\" + name + "Hover.png";
         try (Scanner sc = new Scanner(new File(path))) {
