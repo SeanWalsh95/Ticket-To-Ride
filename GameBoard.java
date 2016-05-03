@@ -101,6 +101,21 @@ public class GameBoard {
         Player curPlayer = players.get(currentPlayer);
         Route desRoute = getRoute(cityA.name, cityB.name,null);
         boolean success = false;
+        if(hasTech(curPlayer,Technology.WaterTenders) &&
+        curPlayer.drawCount < 3){
+            JOptionPane.showMessageDialog(null,
+                "You are already drawing!","Alert!",
+                JOptionPane
+                .INFORMATION_MESSAGE);
+                return success;
+        }
+        if(curPlayer.drawCount < 2){
+            JOptionPane.showMessageDialog(null,
+                "You are already drawing!","Alert!",
+                JOptionPane
+                .INFORMATION_MESSAGE);
+                return success;
+        }     
         if(JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog
         (null,
             "Do you want to purchase the " + desRoute
@@ -368,7 +383,7 @@ public class GameBoard {
         //You need no tech for the southampton to New York route this base
         // case handles that;
         if (route.cityA == CityName.NewYork || route.cityB == CityName.NewYork) 
-			return true;
+            return true;
 
         //Next 2 if blocks handles all checks for region techs
         if (cityA.region != Region.England) {
@@ -495,7 +510,7 @@ public class GameBoard {
             if (trainsSpent.size() == locoCost) {
                 for (int i = 0; i<trainsSpent.size(); i++) {
                     trainDeck.discarded.add(
-						curPlayer.removeTrainCard(trainsSpent.get(i)));
+                        curPlayer.removeTrainCard(trainsSpent.get(i)));
                 }
                 if(tech.name == Technology.RightOfWay){
                     JOptionPane.showMessageDialog(null,
@@ -506,7 +521,7 @@ public class GameBoard {
                 }
                 else{
                     if(tech.name == Technology.WaterTenders) 
-						curPlayer.drawCount++;
+                        curPlayer.drawCount++;
                     techAvail.remove(tech);
                     curPlayer.heldTechCards.add(tech);
                 }
@@ -518,7 +533,7 @@ public class GameBoard {
                         trainsSpent.addAll(trainsToSpend);
                         for (int i = 0; i<trainsSpent.size(); i++) {
                             trainDeck.discarded.add(
-								curPlayer.removeTrainCard(trainsSpent.get(i)));
+                                curPlayer.removeTrainCard(trainsSpent.get(i)));
                         }
                         if(tech.name == Technology.RightOfWay){
                             JOptionPane.showMessageDialog(null,
@@ -529,7 +544,7 @@ public class GameBoard {
                         }
                         else{
                             if(tech.name == Technology.WaterTenders)
-								curPlayer.drawCount++;
+                                curPlayer.drawCount++;
                             techAvail.remove(tech);
                             curPlayer.heldTechCards.add(tech);
                         }
@@ -541,7 +556,7 @@ public class GameBoard {
                         trainsSpent.addAll(trainsToSpend);
                         for (int i = 0; i<trainsSpent.size(); i++) {
                             trainDeck.discarded.add(
-								curPlayer.removeTrainCard(trainsSpent.get(i)));
+                                curPlayer.removeTrainCard(trainsSpent.get(i)));
                         }
                         if(tech.name == Technology.RightOfWay){
                             JOptionPane.showMessageDialog(null,
@@ -552,7 +567,7 @@ public class GameBoard {
                         }
                         else{
                             if(tech.name == Technology.WaterTenders)
-								curPlayer.drawCount++;
+                                curPlayer.drawCount++;
                             techAvail.remove(tech);
                             curPlayer.heldTechCards.add(tech);
                         }
@@ -674,7 +689,7 @@ public class GameBoard {
     private boolean doesPlayerHaveLongestRoute(Player player){
         for(int i = 0; i < players.size(); i++){
             players.get(i).longestRoute = 
-				longestRoutePlayerOwns(players.get(i));
+            longestRoutePlayerOwns(players.get(i));
         }
         for(int i = 0; i < players.size(); i++){
             if(player.longestRoute < players.get(i).longestRoute){
