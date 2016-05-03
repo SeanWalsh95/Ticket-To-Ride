@@ -107,14 +107,14 @@ public class GameBoard {
                 "You are already drawing!","Alert!",
                 JOptionPane
                 .INFORMATION_MESSAGE);
-                return success;
+            return success;
         }
         if(curPlayer.drawCount < 2){
             JOptionPane.showMessageDialog(null,
                 "You are already drawing!","Alert!",
                 JOptionPane
                 .INFORMATION_MESSAGE);
-                return success;
+            return success;
         }     
         if(JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog
         (null,

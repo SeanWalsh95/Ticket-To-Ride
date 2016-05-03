@@ -35,14 +35,14 @@ public class GButton extends JButton {
                 // action for when the mouse enters the buttons bounds
                 public void mouseEntered(java.awt.event.MouseEvent evt) {
                     // sets the image icon of the 
-					//button to the given hover image
+                    //button to the given hover image
                     self.setIcon(((Icon) new ImageIcon(hover)));
                 }
 
                 // action for when the mouse exits the buttons bounds
                 public void mouseExited(java.awt.event.MouseEvent evt) {
                     // sets the image icon of the
-					//button to the given base image
+                    //button to the given base image
                     self.setIcon(((Icon) new ImageIcon(base)));
                 }
             });
@@ -76,28 +76,28 @@ public class GButton extends JButton {
                 // action for when the mouse enters the buttons bounds
                 public void mouseEntered(java.awt.event.MouseEvent evt) {
                     // sets the image icon of the
-					// button to the given hover image
+                    // button to the given hover image
                     self.setIcon(((Icon) new ImageIcon(hover)));
                 }
 
                 // action for when the mouse exits the buttons bounds
                 public void mouseExited(java.awt.event.MouseEvent evt) {
                     // sets the image icon of the 
-					// button to the given base image
+                    // button to the given base image
                     self.setIcon(((Icon) new ImageIcon(base)));
                 }
 
                 //action for when the mouse is pressed
                 public void mousePressed(java.awt.event.MouseEvent evt) {
                     // sets the image icon of the 
-					// button to the given hover image
+                    // button to the given hover image
                     self.setIcon(((Icon) new ImageIcon(pressed)));
                 }
 
                 //action for when the mouse is released
                 public void mouseReleased(java.awt.event.MouseEvent evt) {
                     // sets the image icon of the 
-					// button to the given base image
+                    // button to the given base image
                     self.setIcon(((Icon) new ImageIcon(base)));
                 }
             });

@@ -54,7 +54,7 @@ public class TrainSelectPanel extends JPanel {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
                     SoundLib.purchase.play();
                     ((JDialog)
-						SwingUtilities.windowForComponent(self)).dispose();
+                        SwingUtilities.windowForComponent(self)).dispose();
                 }
             });
         this.add(purchaseButt);
@@ -90,7 +90,7 @@ public class TrainSelectPanel extends JPanel {
     }
 
     public void drawCards(Graphics g,int leftBorder,int topBorder,
-		ArrayList<Card> list){
+    ArrayList<Card> list){
         JPanel self = this;
 
         for (int i = 0; i < 9; i++) {

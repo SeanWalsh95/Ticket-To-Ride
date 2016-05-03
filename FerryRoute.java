@@ -90,6 +90,11 @@ public class FerryRoute extends Route {
         ownerID = new ArrayList<Integer>();
     }
 
+    /**
+     * toString method for FerryRoutes
+     * 
+     * @return The string representation of a FerryRoute
+     */
     public String toString() {
         return "FerryRoute: "+cityA+" to "+cityB;
     }

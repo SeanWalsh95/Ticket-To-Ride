@@ -7,5 +7,11 @@ import java.awt.Image;
  * @version 1.1
  */
 public abstract class Card {
+    /**
+     * Forces all subclasses to have
+     * getImage method
+     * 
+     * @return The image with the card
+     */
     public abstract Image getImage();
 }

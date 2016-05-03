@@ -37,7 +37,12 @@ public class SoundLib
     static class Sound{
 
         private AudioClip sound; // Sound player
-
+        
+        /**
+         * Constructor for sound
+         * 
+         * @param filename The path of the sound file
+         */
         Sound(String filename) {
             try {
                 sound = Applet.newAudioClip(
@@ -46,14 +51,23 @@ public class SoundLib
             } // Satisfy the catch
         }
 
+        /**
+         * Play sound on a loop
+         */
         public void playLoop() {
             sound.loop(); // Play 
         }
 
+        /**
+         * stop sound
+         */
         public void stop() {
             sound.stop(); // Play 
         }
 
+        /**
+         * play sound once
+         */
         public void play() {
             sound.play(); // Play only once
         }

@@ -51,7 +51,7 @@ public class MenuPanel extends JPanel {
         Cursor a = toolkit.createCustomCursor(ImgLib.mouseCursor,
                 new Point(this.getX(),this.getY()), "img");
         setCursor(a);
-        
+
         background = ImgLib.mainMenuBackground;
 
         GButton playGameButt = new GButton(new int[]{503, 464, 260, 111},
@@ -61,7 +61,7 @@ public class MenuPanel extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
                     //playGameButt.setIcon(
-					//((Icon) new ImageIcon(ImgLib.playButtonPressed)));
+                    //((Icon) new ImageIcon(ImgLib.playButtonPressed)));
                     playGame();
                 }
             });
@@ -147,7 +147,7 @@ public class MenuPanel extends JPanel {
         this.removeAll();
 
         background = ImgLib.selectPlayersScreen;
-        
+
         GButton twoPlayers = new GButton(new int[]{125, 464, 260, 111},
                 ImgLib.twoPlayersUnselected, ImgLib.twoPlayersHighlighted,
                 ImgLib.twoPlayersPressed);
@@ -159,7 +159,7 @@ public class MenuPanel extends JPanel {
                 }
             });
         this.add(twoPlayers);
-        
+
         GButton threePlayers = new GButton(new int[]{503, 464, 260, 111},
                 ImgLib.threePlayersUnselected, ImgLib.threePlayersHighlighted,
                 ImgLib.threePlayersPressed);

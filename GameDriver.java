@@ -11,6 +11,11 @@ import java.awt.*;
  */
 public class GameDriver {
 
+    /**
+     * Main method to run project
+     * 
+     * @param args[] Takes command line args
+     */
     public static void main(String args[]) {
         ImgLib.ImageLibrary();
         SoundLib.SoundLib();
@@ -25,7 +30,7 @@ public class GameDriver {
         JFrame gameFrame = new JFrame("Ticket to Ride - Team 3 (2016)");
         gameFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         gameFrame.setSize(1276, 989); // set frame size
-        
+
         //set app icon
         Image image = new ImageIcon(ImgLib.appIcon).getImage();
         gameFrame.setIconImage(image);
