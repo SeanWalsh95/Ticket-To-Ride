@@ -50,6 +50,11 @@ public class City {
         hover = false;
     }
 
+    /**
+     *  The toString method for the city class
+     * 
+     * @return The string that represents the city
+     */
     public String toString() {
         return name + "," + region + " (" + x + "," + y + ")";
     }
