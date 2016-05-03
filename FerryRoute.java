@@ -47,13 +47,13 @@ public class FerryRoute extends Route {
             locomotiveRequirement = Integer.parseInt(locomotiveRequirementStr);
         } catch (Exception e) {
             System.err.println(classMsg + locomotiveRequirementStr
-                    + ": Cannot parse locomotiveRequiremnet to int");
+                + ": Cannot parse locomotiveRequiremnet to int");
         }
         try {
             trainRequirement = Integer.parseInt(trainRequirementStr);
         } catch (Exception e) {
             System.err.println(classMsg + trainRequirementStr
-                    + ": Cannot parse trainRequirement to int");
+                + ": Cannot parse trainRequirement to int");
         }
         try {
             polygons = new ArrayList<Polygon>();
@@ -67,8 +67,8 @@ public class FerryRoute extends Route {
                     numberOfPoints = xValues.countTokens();
                 } else {
                     System.err.println(classMsg
-                            + ":X and Y values do not match in length for " +
-                            "polygon");
+                        + ":X and Y values do not match in length for " +
+                        "polygon");
                 }
                 int[] xList = new int[numberOfPoints];
                 int[] yList = new int[numberOfPoints];

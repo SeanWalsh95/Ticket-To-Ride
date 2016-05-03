@@ -75,7 +75,7 @@ public class Route {
             trainRequirement = Integer.parseInt(trainRequirementStr);
         } catch (Exception e) {
             System.err.println(classMsg + trainRequirementStr
-                    + ": Cannot parse trainRequirement to int");
+                + ": Cannot parse trainRequirement to int");
         }
         try {
             polygons = new ArrayList<Polygon>();
@@ -89,8 +89,8 @@ public class Route {
                     numberOfPoints = xValues.countTokens();
                 } else {
                     System.err.println(classMsg
-                            + ":X and Y values do not match in length for " +
-                            "polygon");
+                        + ":X and Y values do not match in length for " +
+                        "polygon");
                 }
                 int[] xList = new int[numberOfPoints];
                 int[] yList = new int[numberOfPoints];

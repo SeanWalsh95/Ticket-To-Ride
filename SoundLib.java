@@ -3,10 +3,10 @@ import java.applet.*;
 import java.util.*;
 import java.io.*;
 /**
- * Write a description of class SoundLib here.
+ * A Class to hold the sounds played in the game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Team 3
+ * @version 1.0
  */
 public class SoundLib
 {
@@ -20,6 +20,9 @@ public class SoundLib
     public static Sound error =
         new Sound("resources/sounds/buttons/error.au");
 
+    /**
+     * static initializer for this calss
+     */
     public static void SoundLib() {
         //grab filepath of soundtrack
         String filePath =
@@ -38,7 +41,7 @@ public class SoundLib
         Sound(String filename) {
             try {
                 sound = Applet.newAudioClip(
-					this.getClass().getResource(filename)); // Load the Sound                
+                    this.getClass().getResource(filename)); // Load the Sound                
             } catch (Exception e) {
             } // Satisfy the catch
         }
