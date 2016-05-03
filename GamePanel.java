@@ -13,7 +13,7 @@ import java.io.*;
 public class GamePanel extends JPanel {
     GameBoard gameBoard;
     GButton viewTechButt, buyTechButt, viewDestButt, destDeckButt,
-    trainCardsButt, gameRulesButt;
+    trainCardsButt, gameRulesButt,endTurn;
     ArrayList<Card> selectedTechCards, selectedDestCards, faceUpTrainCards;
 
     // offset for compatibility
@@ -56,6 +56,19 @@ public class GamePanel extends JPanel {
         gameBoard.trainDeck.shuffle();
 
         faceUpTrainCards.addAll(gameBoard.trainDeck.drawCards(5));
+
+        //GButton to end the turn
+        endTurn = new GButton(new int[]{828, 447 + yOFFSET, 196, 51},
+            ImgLib.endTurnButtonUnselected,
+            ImgLib.endTurnButtonHighlighted,
+            ImgLib.endTurnButtonPressed);
+        endTurn.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    gameBoard.endTurn();
+                    repaint();
+                }
+            });
+        this.add(endTurn);
 
         //check face up card clicked
         for (int i = 0; i < faceUpTrainCards.size(); i++) {
@@ -207,15 +220,25 @@ public class GamePanel extends JPanel {
         buyTechButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     SoundLib.button.play();
-                    ArrayList<Card> boughtTech = new ArrayList<Card>();
-                    boughtTech.addAll(purchaseTechCards());
-                    System.out.println(boughtTech);
-                    if (boughtTech.size() != 0)
-                        gameBoard.buyTech((Tech) boughtTech.get(0));
-                    repaint();
+                    Player p = gameBoard.getCurrentPlayer();
+                    int drawReftence = 2;
+                    if(gameBoard.hasTech(p,Technology.WaterTenders))
+                        drawReftence = 3;
+                    if(p.drawCount == drawReftence){
+                        ArrayList<Card> boughtTech = new ArrayList<Card>();
+                        boughtTech.addAll(purchaseTechCards());
+                        System.out.println(boughtTech);
+                        if (boughtTech.size() != 0)
+                            gameBoard.buyTech((Tech) boughtTech.get(0));
+                        repaint();
+                    }else{
+                        JOptionPane.showMessageDialog(new JFrame(),
+                            "Cannot buy, you have already drawn");
+                    }
                 }
             });
-        this.add(buyTechButt);
+        this.
+        add(buyTechButt);
 
         // Gbutton to allow a player to view their Dest Cards
         viewDestButt = new GButton(new int[]{1044, 508 + yOFFSET, 196, 51},

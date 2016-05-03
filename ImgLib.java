@@ -20,6 +20,10 @@ public class ImgLib {
     public static Image purchaseRouteButtonUnselected;
     public static Image purchaseRouteButtonHighlighted;
 
+    public static Image endTurnButtonUnselected;
+    public static Image endTurnButtonHighlighted;
+    public static Image endTurnButtonPressed;
+
     public static Image confirmPurchaseButtonUnselected;
     public static Image confirmPurchaseButtonHighlighted;
 
@@ -123,6 +127,13 @@ public class ImgLib {
             "resources/images/buttons/mainMenu/RulesButtonPressed.png");
         quitButtonPressed = toolkit.getImage(
             "resources/images/buttons/mainMenu/QuitButtonPressed.png");
+
+        endTurnButtonUnselected = toolkit.getImage(
+            "resources/images/buttons/gameBoard/EndTurnButtonUnselected.png");
+        endTurnButtonHighlighted = toolkit.getImage(
+            "resources/images/buttons/gameBoard/EndTurnButtonHighlighted.png");
+        endTurnButtonPressed = toolkit.getImage(
+            "resources/images/buttons/gameBoard/EndTurnButtonPressed.png");
 
         //selectnumplayers
         twoPlayersPressed = toolkit.getImage(
