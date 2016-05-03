@@ -79,9 +79,9 @@ public class GamePanel extends JPanel {
                                 "Draw from the deck with watertenders");
                         }else{
                             Train locoCheck = 
-							(Train)faceUpTrainCards.get(index);
+                                (Train)faceUpTrainCards.get(index);
                             if(locoCheck.color == RouteColor.NEUTRAL &&
-							p.drawCount != drawReftence){
+                            p.drawCount != drawReftence){
                                 JOptionPane.showMessageDialog(new JFrame(),
                                     "Cannot draw a locomotive");
                             }else{
@@ -113,15 +113,20 @@ public class GamePanel extends JPanel {
                 .SCALE_FAST));
         destDeckButt.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
-                    SoundLib.turnPage.play();
-                    //draws a set number of cards from the dest deck
                     Player p = gameBoard.getCurrentPlayer();
-                    p.heldDestinationCards.addAll(selectDestCards(
-                            "Player " + (p.id + 1)
-                            + ": Select Your Destination Cards",
-                            1, 3, 3));
-                    gameBoard.endTurn();
-                    repaint();
+                    int drawReftence = 2;
+                    if(gameBoard.hasTech(p,Technology.WaterTenders))
+                        drawReftence = 3;
+                    if(p.drawCount == drawReftence){
+                        SoundLib.turnPage.play();
+                        //draws a set number of cards from the dest deck
+                        p.heldDestinationCards.addAll(selectDestCards(
+                                "Player " + (p.id + 1)
+                                + ": Select Your Destination Cards",
+                                1, 3, 3));
+                        gameBoard.endTurn();
+                        repaint();
+                    }
                 }
             });
         this.add(destDeckButt);
@@ -167,7 +172,7 @@ public class GamePanel extends JPanel {
                     SoundLib.button.play();
                     //display the game rules in a JDialog
                     JFrame parentFrame = 
-					(JFrame) SwingUtilities.windowForComponent(self);
+                        (JFrame) SwingUtilities.windowForComponent(self);
                     RulesPanel panel = new RulesPanel();
                     JDialog jd = new JDialog(parentFrame, true);
                     jd.setTitle("Game Rules");
@@ -222,7 +227,7 @@ public class GamePanel extends JPanel {
                     SoundLib.button.play();
                     Player p = gameBoard.getCurrentPlayer();
                     showPlayerCards("Player " + (p.id + 1) +
-						"'s Destination Cards",
+                        "'s Destination Cards",
                         p.heldDestinationCards);
                 }
             });
@@ -575,11 +580,11 @@ public class GamePanel extends JPanel {
         purchaseButt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     Route r = gameBoard.getRoute(routePointA,
-						routePointB, null);
+                            routePointB, null);
                     if (routeSelected && r != null) {
                         SoundLib.purchase.play();
                         System.out.println("Purc`hase Action " + 
-							routeSelected + " "
+                            routeSelected + " "
                             + r.toString());
                         City a, b;
                         a = b = null;
@@ -593,7 +598,7 @@ public class GamePanel extends JPanel {
                         System.out.println(a.name + "  " + b.name);
                         if (a != null && b != null) {
                             System.out.println("Calling GB for " +
-								r.toString());
+                                r.toString());
                             gameBoard.buyRoute(a, b);
                             firstCityClick = true;
                             routeSelected = false;
@@ -662,7 +667,7 @@ public class GamePanel extends JPanel {
     private Polygon shiftPoly(Polygon p,int deltaX, int deltaY){
         int npoints = p.npoints;
         int[] copyX = new int[p.xpoints.length], copyY = 
-			new int[p.ypoints.length];
+            new int[p.ypoints.length];
         for(int i=0; i < p.xpoints.length; i++)
             copyX[i] = p.xpoints[i];
         for(int i=0; i < p.ypoints.length; i++)
