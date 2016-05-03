@@ -162,6 +162,8 @@ public class GamePanel extends JPanel {
                     SoundLib.turnPage.play();
                     //draws a set number of cards from the train deck
                     //THE NUMBER OF CARDS DRAWN IS DEPENDENT ON TECHNOLOGY
+                    if(gameBoard.trainDeck.deck.size() <= 0)
+                        gameBoard.trainDeck.rebuildDeck();
                     Player p = gameBoard.getCurrentPlayer();    
                     p.startedWithDeck = true;
                     Train t = (Train)gameBoard.trainDeck.drawCards(1).get(0);
