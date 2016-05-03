@@ -609,6 +609,9 @@ public class GameBoard {
             currentPlayer = currentPlayer - players.size();
         if(countPlayer == players.size()-1)
             endStep();
+        if (trainDeck.deck.size() <= 1){
+            trainDeck.rebuildDeck();
+        }
     }
 
     /**
