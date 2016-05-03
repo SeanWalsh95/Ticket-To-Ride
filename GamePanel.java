@@ -81,13 +81,9 @@ public class GamePanel extends JPanel {
             faceUpCard.setBounds(x,y,cardWidth, cardHeight);
             faceUpCard.addMouseListener(new java.awt.event.MouseAdapter() {
                     public void mousePressed(MouseEvent e) {
-                        if(faceUpTrainCards.size() < 5){
-                            for(int i=0; i < 5; i++)
-                                if(gameBoard.trainDeck.deck.size() >= 1)
-                                    faceUpTrainCards.add(
-                                        gameBoard.trainDeck.
-                                        drawCards(1).get(0));
-                        }
+                        if(faceUpTrainCards.size() < 5)
+                            faceUpTrainCards.addAll(
+                                gameBoard.trainDeck.drawCards(5));
                         Player p = gameBoard.getCurrentPlayer();
                         boolean handleTech = 
                             gameBoard.hasTech(p,Technology.WaterTenders);
